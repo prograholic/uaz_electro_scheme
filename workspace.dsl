@@ -8,118 +8,139 @@ workspace "Name" "Description" {
             relay = container {
                 tags "relay"
             }
+
+            fuse = container {
+                tags "fuse"
+            }
+
+            switch = container {
+                tags "switch"
+            }
+
+            light = container {
+                tags "light"
+            }
+
+            plus = component {
+                tags "plus"
+            }
+
+            minus = component {
+                tags "minus"
+            }
         }
 
         es = softwareSystem "Электрическая система УАЗ" {
+
             ground = container "Масса (корпус)" {
                 tags "ground"
             }
 
-            ground_switch = container "Размыкатель массы" {
-                tags "switch"
-            }
+            ground_switch = switch "Размыкатель массы"
 
-            akb = container "Аккумулятор" {
-                plus = component "+" {
-                    tags "plus"
+            power_group = group "Система питания" {
+                akb = container "Аккумулятор" {
+                    plus = plus "+"
+                    minus = minus "-"
                 }
-                minus = component "-" {
-                    tags "minus"
+
+                starter = container "Стартер" {
+                    tags "starter"
+                    plus = plus "+"
+                    st = component "Втяг. 20А" {
+                        # Информация о мощности: https://forum.uazbuka.ru/showthread.php?t=40718
+                    }
+                }
+
+                generator = container "Генератор" {
+                    tags "generator"
+                    plus = plus "+"
+                    minus = minus "-"
+                    v = component "Возб"
                 }
             }
 
-            starter = container "Стартер" {
-                tags "starter"
-                plus = component "+" {
-                    tags "plus"
+            group "Система зажигания" {
+                ignition_relay = relay "Реле зажигания" {
+                    !include relay.dsl
                 }
-                st = component "Втяг"
-            }
 
-            generator = container "Генератор" {
-                tags "generator"
-                plus = component "+" {
-                    tags "plus"
+                starter_relay = relay "Реле стартера" {
+                    !include relay5.dsl
                 }
-                v = component "Возб"
-            }
-            
-            ignition_relay = container "Реле зажигания" {
-                !include relay.dsl
-            }
 
-            starter_relay = container "Реле стартера" {
-                !include relay5.dsl
-            }
+                ignition_relay_fuse = fuse "Предохранитель для реле зажигания. 80A" {
+                    !include fuse.dsl
+                }
+                starter_relay_fuse = fuse "Предохранитель для реле стартера. 80A" {
+                    !include fuse.dsl
+                }
 
-            ignition_relay_fuse = container "Предохранитель для реле зажигания" {
-                tags "fuse"
-            }
-            starter_relay_fuse = container "Предохранитель для реле стартера" {
-                tags "fuse"
-            }
+                ignition_switch = switch "Выключатель зажигания"
 
-            ignition_switch = container "Выключатель зажигания" {
-                tags "switch"
-            }
+                ignition = container "Система зажигания"
 
-            ignition = container "Система зажигания"
-
-            start_button = container "Кнопка Старт" {
-                tags "switch"
+                start_button = switch "Кнопка Старт"
             }
 
             winch = container "Лебедка" {
-                plus = component "+" {
-                    tags "plus"
-                }
-                minus = component "-" {
-                    tags "minus"
-                }
+                plus = plus "+"
+                minus = minus "-"
             }
 
             other_from_ignition = container "прочие потребители от зажигания"
             other_from_akb_gen = container "прочие потребители от АКБ и генератора напрямую"
             control_line_from_ignition = container "Потребители управляющей линии от зажигания"
-            control_line_from_ignition_fuse = container "Предохранители потребителей управляющей линии от зажигания" {
-                tags "fuse"
+            control_line_from_ignition_fuse = fuse "Предохранитель потребителей управляющей линии от зажигания" {
+                !include fuse.dsl
             }
 
-            coolant_vent_1 = container "Электровентилятор охлаждения ДВС 1"{
-                tags "vent"
-            }
+            internal_lighing = container "Система подсветки приборов"
 
-            coolant_vent_1_fuse = container "Предохранитель вентилятора охлаждения ДВС 1" {
-                tags "fuse"
-            }
+            group "Система охлаждения" {
 
-            coolant_vent_1_relay = container "Реле электровентилятора охлаждения ДВС 1" {
-                !include relay.dsl
-            }
+                coolant_vent_1 = container "Электровентилятор охлаждения ДВС 1"{
+                    tags "vent"
+                    plus = plus "+"
+                    minus = minus "-"
+                }
 
-            coolant_vent_2 = container "Электровентилятор охлаждения ДВС 2"{
-                tags "vent"
-            }
+                coolant_vent_1_fuse = fuse "Предохранитель вентилятора охлаждения ДВС 1" {
+                    !include fuse.dsl
+                }
 
-            coolant_vent_2_fuse = container "Предохранитель вентилятора охлаждения ДВС 2" {
-                tags "fuse"
-            }
+                coolant_vent_1_relay = relay "Реле электровентилятора охлаждения ДВС 1" {
+                    !include relay.dsl
+                }
 
-            coolant_vent_2_relay = container "Реле электровентилятора охлаждения ДВС 2" {
-                !include relay.dsl
-            }
+                coolant_vent_2 = container "Электровентилятор охлаждения ДВС 2"{
+                    tags "vent"
+                    plus = plus "+"
+                    minus = minus "-"
+                }
 
-            coolant_sensor = container "Датчик включения электровентиляторов охлаждения ДВС"
+                coolant_vent_2_fuse = fuse "Предохранитель вентилятора охлаждения ДВС 2" {
+                    !include fuse.dsl
+                }
 
-            coolant_control_switch = container "Переключатель управления вентиляторами охлаждения ДВС" {
-                tags "switch"
+                coolant_vent_2_relay = relay "Реле электровентилятора охлаждения ДВС 2" {
+                    !include relay.dsl
+                }
 
-                D = component "D"
-                I = component "I"
-                U = component "U"
-                V = component "V"
-                L = component "L"
-                H = component "H"
+                coolant_sensor = container "Датчик включения электровентиляторов охлаждения ДВС"
+
+                coolant_control_switch = switch "Переключатель управления вентиляторами охлаждения ДВС" {
+                    D = component "D"
+                    I = component "I"
+                    U = component "U"
+                    V = component "V"
+                    L = component "L"
+                    H = component "H"
+                }
+
+                coolant_control_light = light "Подсветка переключателя управления вентиляторами охлаждения ДВС" {
+                    !include light.dsl
+                }
             }
 
             #######################
@@ -143,7 +164,7 @@ workspace "Name" "Description" {
             }
 
     
-            generator -> ground "50 мм2" {
+            generator.minus -> ground "50 мм2" {
                 tags "50мм2"
             }
             generator.plus -> starter.plus "50 мм2" {
@@ -151,45 +172,66 @@ workspace "Name" "Description" {
                 tags "red"
             }
     
-            starter.plus -> ignition_relay_fuse
+            starter.plus -> ignition_relay_fuse.plus "16 мм2" {
+                tags "16мм2"
+                tags "red"
+            }
     
-            ignition_relay_fuse -> ignition_relay._30
-            ignition_relay_fuse -> ignition_switch
-            ignition_relay_fuse -> other_from_akb_gen
-            ignition_relay_fuse -> generator.v
+            ignition_relay_fuse.minus -> ignition_relay._30
+            ignition_relay_fuse.minus -> ignition_switch
+            ignition_relay_fuse.minus -> other_from_akb_gen
+            ignition_relay_fuse.minus -> generator.v "4 мм2" {
+                tags "4мм2"
+                tags "red"
+            }
     
             ignition_switch -> ignition_relay._85
             
             ignition_relay._86 -> ground
-            ignition_relay._87 -> starter_relay_fuse
+            ignition_relay._87 -> starter_relay_fuse.plus "16 мм2" {
+                tags "16мм2"
+                tags "red"
+            }
             
-            starter_relay_fuse -> starter_relay._30
-            starter_relay_fuse -> ignition
-            starter_relay_fuse -> other_from_ignition
-            starter_relay_fuse -> start_button
+            starter_relay_fuse.minus -> starter_relay._30 "6 мм2" {
+                tags "6мм2"
+                tags "black"
+            }
+            starter_relay_fuse.minus -> ignition "4 мм2" {
+                tags "4мм2"
+                tags "black"
+            }
+            starter_relay_fuse.minus -> other_from_ignition
+            starter_relay_fuse.minus -> start_button
     
             start_button -> starter_relay._85
     
             starter_relay._86 -> ground
-            starter_relay._87 -> starter.st
-            starter_relay._88 -> control_line_from_ignition_fuse
-            control_line_from_ignition_fuse -> control_line_from_ignition
+            starter_relay._87 -> starter.st "6 мм2" {
+                tags "6мм2"
+                tags "black"
+            }
+            starter_relay._88 -> control_line_from_ignition_fuse.plus "6 мм2" {
+                tags "6мм2"
+                tags "black"
+            }
+            control_line_from_ignition_fuse.minus -> control_line_from_ignition
         
             winch.minus -> ground "50 мм2" {
                 tags "50мм2"
                 tags "black"
             }
 
-            coolant_vent_1 -> ground
-            coolant_vent_1_fuse -> coolant_vent_1
-            coolant_vent_1_relay._87 -> coolant_vent_1_fuse
+            coolant_vent_1.minus -> ground
+            coolant_vent_1_fuse.minus -> coolant_vent_1.plus
+            coolant_vent_1_relay._87 -> coolant_vent_1_fuse.plus
             control_line_from_ignition -> coolant_vent_1_relay._85
             other_from_akb_gen -> coolant_vent_1_relay._30
             coolant_vent_1_relay._86 -> coolant_control_switch.I
 
-            coolant_vent_2 -> ground
-            coolant_vent_2_fuse -> coolant_vent_2
-            coolant_vent_2_relay._87 -> coolant_vent_2_fuse
+            coolant_vent_2.minus -> ground
+            coolant_vent_2_fuse.minus -> coolant_vent_2.plus
+            coolant_vent_2_relay._87 -> coolant_vent_2_fuse.plus
             control_line_from_ignition -> coolant_vent_2_relay._85
             other_from_akb_gen -> coolant_vent_2_relay._30
             coolant_vent_2_relay._86 -> coolant_control_switch.I
@@ -197,7 +239,10 @@ workspace "Name" "Description" {
             coolant_sensor -> ground
             coolant_sensor -> coolant_control_switch.D
             coolant_control_switch.U -> ground
-            
+            coolant_control_light.plus -> coolant_control_switch.H
+            internal_lighing -> coolant_control_light.plus
+            coolant_control_light.minus -> ground
+            coolant_control_switch.D -> coolant_control_light.minus
         }
     }
 
@@ -211,7 +256,15 @@ workspace "Name" "Description" {
             autolayout lr
         }
 
-        component es.akb  overall_component_view "Общий вид всех компонент" {
+        component es.akb power_system_view "Система питания" {
+            include "element.type==component && element==->es.power_group->"
+            include "element.type==container && element==->es.power_group->"
+            #include "element.type==component"
+            #include "element.type==container"
+            autolayout lr
+        }
+
+        component es.akb overall_component_view "Общий вид всех компонент" {
             include "element.type==component"
             include "element.type==container"
             autolayout lr
@@ -233,8 +286,11 @@ workspace "Name" "Description" {
 
         component es.generator {
             include "element.parent==es.generator"
-            include "element.type==component && ->es.generator->"
-            include "element.type==container && ->es.generator->"
+            include "element==->es.generator->"
+            include "->es.generator->"
+            include "*->*"
+            #include "element.type==component && ->es.generator->"
+            #include "element.type==container && ->es.generator->"
             autolayout lr
         }
 
@@ -249,6 +305,21 @@ workspace "Name" "Description" {
             include "element.parent==es.starter_relay"
             include "element.type==component && ->es.starter_relay->"
             include "element.type==container && ->es.starter_relay->"
+            autolayout lr
+        }
+
+        component es.ignition_relay_fuse {
+            include "element.parent==es.ignition_relay_fuse"
+            include "->es.ignition_relay_fuse->"
+            #include "element.type==component && ->es.ignition_relay_fuse->"
+            #include "element.type==container && ->es.ignition_relay_fuse->"
+            autolayout lr
+        }
+
+        component es.starter_relay_fuse {
+            include "element.parent==es.starter_relay_fuse"
+            include "element.type==component && ->es.starter_relay_fuse->"
+            include "element.type==container && ->es.starter_relay_fuse->"
             autolayout lr
         }
 
@@ -267,6 +338,7 @@ workspace "Name" "Description" {
 
             relationship "Relationship" {
                 style solid
+                routing Curved
             }
             relationship "relay_pwr" {
                 style dashed
@@ -282,7 +354,16 @@ workspace "Name" "Description" {
                 color #000000
             }
             relationship "50мм2" {
-                thickness 10
+                thickness 50
+            }
+            relationship "16мм2" {
+                thickness 16
+            }
+            relationship "6мм2" {
+                thickness 6
+            }
+            relationship "4мм2" {
+                thickness 4
             }
 
 
@@ -345,6 +426,19 @@ workspace "Name" "Description" {
                 description false
                 shape Box
                 background #0000bb
+            }
+            element "light_connector" {
+                description false
+                shape Box
+                background #0000bb
+            }
+            element "light" {
+                metadata false
+                description false
+                width 100
+                height 100
+                icon light.jpg
+                background #ffffff
             }
 
 

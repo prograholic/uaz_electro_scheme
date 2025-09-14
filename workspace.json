@@ -6,7 +6,7 @@
   "documentation" : { },
   "id" : 1,
   "lastModifiedAgent" : "structurizr-ui",
-  "lastModifiedDate" : "2025-09-14T13:28:58Z",
+  "lastModifiedDate" : "2025-09-14T16:32:21Z",
   "model" : {
     "softwareSystems" : [ {
       "containers" : [ {
@@ -27,7 +27,7 @@
         "relationships" : [ {
           "description" : "50 мм2",
           "destinationId" : "2",
-          "id" : "67",
+          "id" : "86",
           "sourceId" : "3",
           "tags" : "Relationship,50мм2"
         } ],
@@ -43,26 +43,26 @@
           "relationships" : [ {
             "description" : "50 мм2",
             "destinationId" : "8",
-            "id" : "70",
+            "id" : "89",
             "sourceId" : "5",
             "tags" : "Relationship,50мм2,red"
           }, {
             "description" : "50 мм2",
             "destinationId" : "7",
-            "id" : "71",
-            "linkedRelationshipId" : "70",
+            "id" : "90",
+            "linkedRelationshipId" : "89",
             "sourceId" : "5"
           }, {
             "description" : "50 мм2",
-            "destinationId" : "35",
-            "id" : "74",
+            "destinationId" : "40",
+            "id" : "93",
             "sourceId" : "5",
             "tags" : "Relationship,50мм2,red"
           }, {
             "description" : "50 мм2",
-            "destinationId" : "34",
-            "id" : "75",
-            "linkedRelationshipId" : "74",
+            "destinationId" : "39",
+            "id" : "94",
+            "linkedRelationshipId" : "93",
             "sourceId" : "5"
           } ],
           "tags" : "Element,Component,plus"
@@ -76,13 +76,14 @@
           "relationships" : [ {
             "description" : "50 мм2",
             "destinationId" : "3",
-            "id" : "68",
+            "id" : "87",
             "sourceId" : "6",
             "tags" : "Relationship,50мм2"
           } ],
           "tags" : "Element,Component,minus"
         } ],
         "documentation" : { },
+        "group" : "Система питания",
         "id" : "4",
         "name" : "Аккумулятор",
         "properties" : {
@@ -91,32 +92,32 @@
         "relationships" : [ {
           "description" : "50 мм2",
           "destinationId" : "3",
-          "id" : "69",
-          "linkedRelationshipId" : "68",
+          "id" : "88",
+          "linkedRelationshipId" : "87",
           "sourceId" : "4"
         }, {
           "description" : "50 мм2",
           "destinationId" : "8",
-          "id" : "72",
-          "linkedRelationshipId" : "70",
+          "id" : "91",
+          "linkedRelationshipId" : "89",
           "sourceId" : "4"
         }, {
           "description" : "50 мм2",
           "destinationId" : "7",
-          "id" : "73",
-          "linkedRelationshipId" : "70",
+          "id" : "92",
+          "linkedRelationshipId" : "89",
           "sourceId" : "4"
         }, {
           "description" : "50 мм2",
-          "destinationId" : "35",
-          "id" : "76",
-          "linkedRelationshipId" : "74",
+          "destinationId" : "40",
+          "id" : "95",
+          "linkedRelationshipId" : "93",
           "sourceId" : "4"
         }, {
           "description" : "50 мм2",
-          "destinationId" : "34",
-          "id" : "77",
-          "linkedRelationshipId" : "74",
+          "destinationId" : "39",
+          "id" : "96",
+          "linkedRelationshipId" : "93",
           "sourceId" : "4"
         } ],
         "tags" : "Element,Container"
@@ -129,31 +130,46 @@
             "structurizr.dsl.identifier" : "es.starter.plus"
           },
           "relationships" : [ {
-            "destinationId" : "29",
-            "id" : "83",
+            "description" : "16 мм2",
+            "destinationId" : "31",
+            "id" : "103",
             "sourceId" : "8",
-            "tags" : "Relationship"
+            "tags" : "Relationship,16мм2,red"
+          }, {
+            "description" : "16 мм2",
+            "destinationId" : "30",
+            "id" : "104",
+            "linkedRelationshipId" : "103",
+            "sourceId" : "8"
           } ],
           "tags" : "Element,Component,plus"
         }, {
           "documentation" : { },
           "id" : "9",
-          "name" : "Втяг",
+          "name" : "Втяг. 20А",
           "properties" : {
             "structurizr.dsl.identifier" : "es.starter.st"
           },
           "tags" : "Element,Component"
         } ],
         "documentation" : { },
+        "group" : "Система питания",
         "id" : "7",
         "name" : "Стартер",
         "properties" : {
           "structurizr.dsl.identifier" : "es.starter"
         },
         "relationships" : [ {
-          "destinationId" : "29",
-          "id" : "84",
-          "linkedRelationshipId" : "83",
+          "description" : "16 мм2",
+          "destinationId" : "31",
+          "id" : "105",
+          "linkedRelationshipId" : "103",
+          "sourceId" : "7"
+        }, {
+          "description" : "16 мм2",
+          "destinationId" : "30",
+          "id" : "106",
+          "linkedRelationshipId" : "103",
           "sourceId" : "7"
         } ],
         "tags" : "Element,Container,starter"
@@ -168,20 +184,35 @@
           "relationships" : [ {
             "description" : "50 мм2",
             "destinationId" : "8",
-            "id" : "79",
+            "id" : "99",
             "sourceId" : "11",
             "tags" : "Relationship,50мм2,red"
           }, {
             "description" : "50 мм2",
             "destinationId" : "7",
-            "id" : "80",
-            "linkedRelationshipId" : "79",
+            "id" : "100",
+            "linkedRelationshipId" : "99",
             "sourceId" : "11"
           } ],
           "tags" : "Element,Component,plus"
         }, {
           "documentation" : { },
           "id" : "12",
+          "name" : "-",
+          "properties" : {
+            "structurizr.dsl.identifier" : "es.generator.minus"
+          },
+          "relationships" : [ {
+            "description" : "50 мм2",
+            "destinationId" : "2",
+            "id" : "97",
+            "sourceId" : "12",
+            "tags" : "Relationship,50мм2"
+          } ],
+          "tags" : "Element,Component,minus"
+        }, {
+          "documentation" : { },
+          "id" : "13",
           "name" : "Возб",
           "properties" : {
             "structurizr.dsl.identifier" : "es.generator.v"
@@ -189,6 +220,7 @@
           "tags" : "Element,Component"
         } ],
         "documentation" : { },
+        "group" : "Система питания",
         "id" : "10",
         "name" : "Генератор",
         "properties" : {
@@ -197,304 +229,443 @@
         "relationships" : [ {
           "description" : "50 мм2",
           "destinationId" : "2",
-          "id" : "78",
-          "sourceId" : "10",
-          "tags" : "Relationship,50мм2"
+          "id" : "98",
+          "linkedRelationshipId" : "97",
+          "sourceId" : "10"
         }, {
           "description" : "50 мм2",
           "destinationId" : "8",
-          "id" : "81",
-          "linkedRelationshipId" : "79",
+          "id" : "101",
+          "linkedRelationshipId" : "99",
           "sourceId" : "10"
         }, {
           "description" : "50 мм2",
           "destinationId" : "7",
-          "id" : "82",
-          "linkedRelationshipId" : "79",
+          "id" : "102",
+          "linkedRelationshipId" : "99",
           "sourceId" : "10"
         } ],
         "tags" : "Element,Container,generator"
       }, {
         "components" : [ {
           "documentation" : { },
-          "id" : "14",
+          "id" : "15",
           "name" : "30",
           "properties" : {
             "structurizr.dsl.identifier" : "es.ignition_relay._30"
           },
           "relationships" : [ {
-            "destinationId" : "15",
-            "id" : "18",
-            "sourceId" : "14",
+            "destinationId" : "16",
+            "id" : "19",
+            "sourceId" : "15",
             "tags" : "Relationship,relay_pwr"
           } ],
           "tags" : "Element,Component,relay_30,relay_connector"
         }, {
           "documentation" : { },
-          "id" : "15",
+          "id" : "16",
           "name" : "87",
           "properties" : {
             "structurizr.dsl.identifier" : "es.ignition_relay._87"
           },
           "relationships" : [ {
-            "destinationId" : "30",
-            "id" : "95",
-            "sourceId" : "15",
-            "tags" : "Relationship"
+            "description" : "16 мм2",
+            "destinationId" : "34",
+            "id" : "123",
+            "sourceId" : "16",
+            "tags" : "Relationship,16мм2,red"
+          }, {
+            "description" : "16 мм2",
+            "destinationId" : "33",
+            "id" : "124",
+            "linkedRelationshipId" : "123",
+            "sourceId" : "16"
           } ],
           "tags" : "Element,Component,relay_87,relay_connector"
         }, {
           "documentation" : { },
-          "id" : "16",
+          "id" : "17",
           "name" : "86",
           "properties" : {
             "structurizr.dsl.identifier" : "es.ignition_relay._86"
           },
           "relationships" : [ {
             "destinationId" : "2",
-            "id" : "93",
-            "sourceId" : "16",
+            "id" : "121",
+            "sourceId" : "17",
             "tags" : "Relationship"
           } ],
           "tags" : "Element,Component,relay_86,relay_connector"
         }, {
           "documentation" : { },
-          "id" : "17",
+          "id" : "18",
           "name" : "85",
           "properties" : {
             "structurizr.dsl.identifier" : "es.ignition_relay._85"
           },
           "relationships" : [ {
-            "destinationId" : "16",
-            "id" : "19",
-            "sourceId" : "17",
+            "destinationId" : "17",
+            "id" : "20",
+            "sourceId" : "18",
             "tags" : "Relationship,relay_ctr"
           } ],
           "tags" : "Element,Component,relay_85,relay_connector"
         } ],
         "documentation" : { },
-        "id" : "13",
+        "group" : "Система зажигания",
+        "id" : "14",
         "name" : "Реле зажигания",
         "properties" : {
           "structurizr.dsl.identifier" : "es.ignition_relay"
         },
         "relationships" : [ {
           "destinationId" : "2",
-          "id" : "94",
-          "linkedRelationshipId" : "93",
-          "sourceId" : "13"
+          "id" : "122",
+          "linkedRelationshipId" : "121",
+          "sourceId" : "14"
         }, {
-          "destinationId" : "30",
-          "id" : "96",
-          "linkedRelationshipId" : "95",
-          "sourceId" : "13"
+          "description" : "16 мм2",
+          "destinationId" : "34",
+          "id" : "125",
+          "linkedRelationshipId" : "123",
+          "sourceId" : "14"
+        }, {
+          "description" : "16 мм2",
+          "destinationId" : "33",
+          "id" : "126",
+          "linkedRelationshipId" : "123",
+          "sourceId" : "14"
         } ],
         "tags" : "Element,Container,relay"
       }, {
         "components" : [ {
           "documentation" : { },
-          "id" : "21",
+          "id" : "22",
           "name" : "30",
           "properties" : {
             "structurizr.dsl.identifier" : "es.starter_relay._30"
           },
           "relationships" : [ {
-            "destinationId" : "22",
-            "id" : "26",
-            "sourceId" : "21",
-            "tags" : "Relationship,relay_pwr"
-          }, {
             "destinationId" : "23",
             "id" : "27",
-            "sourceId" : "21",
+            "sourceId" : "22",
+            "tags" : "Relationship,relay_pwr"
+          }, {
+            "destinationId" : "24",
+            "id" : "28",
+            "sourceId" : "22",
             "tags" : "Relationship,relay_pwr_default_connected"
           } ],
           "tags" : "Element,Component,relay_30,relay_connector"
         }, {
           "documentation" : { },
-          "id" : "22",
+          "id" : "23",
           "name" : "87",
           "properties" : {
             "structurizr.dsl.identifier" : "es.starter_relay._87"
           },
           "relationships" : [ {
+            "description" : "6 мм2",
             "destinationId" : "9",
-            "id" : "106",
-            "sourceId" : "22",
-            "tags" : "Relationship"
+            "id" : "141",
+            "sourceId" : "23",
+            "tags" : "Relationship,6мм2,black"
           }, {
+            "description" : "6 мм2",
             "destinationId" : "7",
-            "id" : "107",
-            "linkedRelationshipId" : "106",
-            "sourceId" : "22"
+            "id" : "142",
+            "linkedRelationshipId" : "141",
+            "sourceId" : "23"
           } ],
           "tags" : "Element,Component,relay_87,relay_connector"
         }, {
           "documentation" : { },
-          "id" : "23",
+          "id" : "24",
           "name" : "88",
           "properties" : {
             "structurizr.dsl.identifier" : "es.starter_relay._88"
           },
           "relationships" : [ {
-            "destinationId" : "40",
-            "id" : "110",
-            "sourceId" : "23",
-            "tags" : "Relationship"
+            "description" : "6 мм2",
+            "destinationId" : "46",
+            "id" : "145",
+            "sourceId" : "24",
+            "tags" : "Relationship,6мм2,black"
+          }, {
+            "description" : "6 мм2",
+            "destinationId" : "45",
+            "id" : "146",
+            "linkedRelationshipId" : "145",
+            "sourceId" : "24"
           } ],
           "tags" : "Element,Component,relay_88,relay_connector"
         }, {
           "documentation" : { },
-          "id" : "24",
+          "id" : "25",
           "name" : "86",
           "properties" : {
             "structurizr.dsl.identifier" : "es.starter_relay._86"
           },
           "relationships" : [ {
             "destinationId" : "2",
-            "id" : "104",
-            "sourceId" : "24",
+            "id" : "139",
+            "sourceId" : "25",
             "tags" : "Relationship"
           } ],
           "tags" : "Element,Component,relay_86,relay_connector"
         }, {
           "documentation" : { },
-          "id" : "25",
+          "id" : "26",
           "name" : "85",
           "properties" : {
             "structurizr.dsl.identifier" : "es.starter_relay._85"
           },
           "relationships" : [ {
-            "destinationId" : "24",
-            "id" : "28",
-            "sourceId" : "25",
+            "destinationId" : "25",
+            "id" : "29",
+            "sourceId" : "26",
             "tags" : "Relationship,relay_ctr"
           } ],
           "tags" : "Element,Component,relay_85,relay_connector"
         } ],
         "documentation" : { },
-        "id" : "20",
+        "group" : "Система зажигания",
+        "id" : "21",
         "name" : "Реле стартера",
         "properties" : {
           "structurizr.dsl.identifier" : "es.starter_relay"
         },
         "relationships" : [ {
           "destinationId" : "2",
-          "id" : "105",
-          "linkedRelationshipId" : "104",
-          "sourceId" : "20"
+          "id" : "140",
+          "linkedRelationshipId" : "139",
+          "sourceId" : "21"
         }, {
+          "description" : "6 мм2",
           "destinationId" : "9",
-          "id" : "108",
-          "linkedRelationshipId" : "106",
-          "sourceId" : "20"
+          "id" : "143",
+          "linkedRelationshipId" : "141",
+          "sourceId" : "21"
         }, {
+          "description" : "6 мм2",
           "destinationId" : "7",
-          "id" : "109",
-          "linkedRelationshipId" : "106",
-          "sourceId" : "20"
+          "id" : "144",
+          "linkedRelationshipId" : "141",
+          "sourceId" : "21"
         }, {
-          "destinationId" : "40",
-          "id" : "111",
-          "linkedRelationshipId" : "110",
-          "sourceId" : "20"
+          "description" : "6 мм2",
+          "destinationId" : "46",
+          "id" : "147",
+          "linkedRelationshipId" : "145",
+          "sourceId" : "21"
+        }, {
+          "description" : "6 мм2",
+          "destinationId" : "45",
+          "id" : "148",
+          "linkedRelationshipId" : "145",
+          "sourceId" : "21"
         } ],
-        "tags" : "Element,Container,relay5"
+        "tags" : "Element,Container,relay,relay5"
       }, {
+        "components" : [ {
+          "documentation" : { },
+          "id" : "31",
+          "name" : "+",
+          "properties" : {
+            "structurizr.dsl.identifier" : "es.ignition_relay_fuse.plus"
+          },
+          "tags" : "Element,Component,fuse_connector,plus"
+        }, {
+          "documentation" : { },
+          "id" : "32",
+          "name" : "-",
+          "properties" : {
+            "structurizr.dsl.identifier" : "es.ignition_relay_fuse.minus"
+          },
+          "relationships" : [ {
+            "destinationId" : "15",
+            "id" : "107",
+            "sourceId" : "32",
+            "tags" : "Relationship"
+          }, {
+            "destinationId" : "14",
+            "id" : "108",
+            "linkedRelationshipId" : "107",
+            "sourceId" : "32"
+          }, {
+            "destinationId" : "36",
+            "id" : "111",
+            "sourceId" : "32",
+            "tags" : "Relationship"
+          }, {
+            "destinationId" : "43",
+            "id" : "113",
+            "sourceId" : "32",
+            "tags" : "Relationship"
+          }, {
+            "description" : "4 мм2",
+            "destinationId" : "13",
+            "id" : "115",
+            "sourceId" : "32",
+            "tags" : "Relationship,4мм2,red"
+          }, {
+            "description" : "4 мм2",
+            "destinationId" : "10",
+            "id" : "116",
+            "linkedRelationshipId" : "115",
+            "sourceId" : "32"
+          } ],
+          "tags" : "Element,Component,fuse_connector,minus"
+        } ],
         "documentation" : { },
-        "id" : "29",
-        "name" : "Предохранитель для реле зажигания",
+        "group" : "Система зажигания",
+        "id" : "30",
+        "name" : "Предохранитель для реле зажигания. 80A",
         "properties" : {
           "structurizr.dsl.identifier" : "es.ignition_relay_fuse"
         },
         "relationships" : [ {
+          "destinationId" : "15",
+          "id" : "109",
+          "linkedRelationshipId" : "107",
+          "sourceId" : "30"
+        }, {
           "destinationId" : "14",
-          "id" : "85",
-          "sourceId" : "29",
-          "tags" : "Relationship"
+          "id" : "110",
+          "linkedRelationshipId" : "107",
+          "sourceId" : "30"
         }, {
+          "destinationId" : "36",
+          "id" : "112",
+          "linkedRelationshipId" : "111",
+          "sourceId" : "30"
+        }, {
+          "destinationId" : "43",
+          "id" : "114",
+          "linkedRelationshipId" : "113",
+          "sourceId" : "30"
+        }, {
+          "description" : "4 мм2",
           "destinationId" : "13",
-          "id" : "86",
-          "linkedRelationshipId" : "85",
-          "sourceId" : "29"
+          "id" : "117",
+          "linkedRelationshipId" : "115",
+          "sourceId" : "30"
         }, {
-          "destinationId" : "31",
-          "id" : "87",
-          "sourceId" : "29",
-          "tags" : "Relationship"
-        }, {
-          "destinationId" : "38",
-          "id" : "88",
-          "sourceId" : "29",
-          "tags" : "Relationship"
-        }, {
-          "destinationId" : "12",
-          "id" : "89",
-          "sourceId" : "29",
-          "tags" : "Relationship"
-        }, {
+          "description" : "4 мм2",
           "destinationId" : "10",
-          "id" : "90",
-          "linkedRelationshipId" : "89",
-          "sourceId" : "29"
+          "id" : "118",
+          "linkedRelationshipId" : "115",
+          "sourceId" : "30"
         } ],
         "tags" : "Element,Container,fuse"
       }, {
+        "components" : [ {
+          "documentation" : { },
+          "id" : "34",
+          "name" : "+",
+          "properties" : {
+            "structurizr.dsl.identifier" : "es.starter_relay_fuse.plus"
+          },
+          "tags" : "Element,Component,fuse_connector,plus"
+        }, {
+          "documentation" : { },
+          "id" : "35",
+          "name" : "-",
+          "properties" : {
+            "structurizr.dsl.identifier" : "es.starter_relay_fuse.minus"
+          },
+          "relationships" : [ {
+            "description" : "6 мм2",
+            "destinationId" : "22",
+            "id" : "127",
+            "sourceId" : "35",
+            "tags" : "Relationship,6мм2,black"
+          }, {
+            "description" : "6 мм2",
+            "destinationId" : "21",
+            "id" : "128",
+            "linkedRelationshipId" : "127",
+            "sourceId" : "35"
+          }, {
+            "description" : "4 мм2",
+            "destinationId" : "37",
+            "id" : "131",
+            "sourceId" : "35",
+            "tags" : "Relationship,4мм2,black"
+          }, {
+            "destinationId" : "42",
+            "id" : "133",
+            "sourceId" : "35",
+            "tags" : "Relationship"
+          }, {
+            "destinationId" : "38",
+            "id" : "135",
+            "sourceId" : "35",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component,fuse_connector,minus"
+        } ],
         "documentation" : { },
-        "id" : "30",
-        "name" : "Предохранитель для реле стартера",
+        "group" : "Система зажигания",
+        "id" : "33",
+        "name" : "Предохранитель для реле стартера. 80A",
         "properties" : {
           "structurizr.dsl.identifier" : "es.starter_relay_fuse"
         },
         "relationships" : [ {
+          "description" : "6 мм2",
+          "destinationId" : "22",
+          "id" : "129",
+          "linkedRelationshipId" : "127",
+          "sourceId" : "33"
+        }, {
+          "description" : "6 мм2",
           "destinationId" : "21",
-          "id" : "97",
-          "sourceId" : "30",
-          "tags" : "Relationship"
+          "id" : "130",
+          "linkedRelationshipId" : "127",
+          "sourceId" : "33"
         }, {
-          "destinationId" : "20",
-          "id" : "98",
-          "linkedRelationshipId" : "97",
-          "sourceId" : "30"
-        }, {
-          "destinationId" : "32",
-          "id" : "99",
-          "sourceId" : "30",
-          "tags" : "Relationship"
-        }, {
+          "description" : "4 мм2",
           "destinationId" : "37",
-          "id" : "100",
-          "sourceId" : "30",
-          "tags" : "Relationship"
+          "id" : "132",
+          "linkedRelationshipId" : "131",
+          "sourceId" : "33"
         }, {
-          "destinationId" : "33",
-          "id" : "101",
-          "sourceId" : "30",
-          "tags" : "Relationship"
+          "destinationId" : "42",
+          "id" : "134",
+          "linkedRelationshipId" : "133",
+          "sourceId" : "33"
+        }, {
+          "destinationId" : "38",
+          "id" : "136",
+          "linkedRelationshipId" : "135",
+          "sourceId" : "33"
         } ],
         "tags" : "Element,Container,fuse"
       }, {
         "documentation" : { },
-        "id" : "31",
+        "group" : "Система зажигания",
+        "id" : "36",
         "name" : "Выключатель зажигания",
         "properties" : {
           "structurizr.dsl.identifier" : "es.ignition_switch"
         },
         "relationships" : [ {
-          "destinationId" : "17",
-          "id" : "91",
-          "sourceId" : "31",
+          "destinationId" : "18",
+          "id" : "119",
+          "sourceId" : "36",
           "tags" : "Relationship"
         }, {
-          "destinationId" : "13",
-          "id" : "92",
-          "linkedRelationshipId" : "91",
-          "sourceId" : "31"
+          "destinationId" : "14",
+          "id" : "120",
+          "linkedRelationshipId" : "119",
+          "sourceId" : "36"
         } ],
         "tags" : "Element,Container,switch"
       }, {
         "documentation" : { },
-        "id" : "32",
+        "group" : "Система зажигания",
+        "id" : "37",
         "name" : "Система зажигания",
         "properties" : {
           "structurizr.dsl.identifier" : "es.ignition"
@@ -502,27 +673,28 @@
         "tags" : "Element,Container"
       }, {
         "documentation" : { },
-        "id" : "33",
+        "group" : "Система зажигания",
+        "id" : "38",
         "name" : "Кнопка Старт",
         "properties" : {
           "structurizr.dsl.identifier" : "es.start_button"
         },
         "relationships" : [ {
-          "destinationId" : "25",
-          "id" : "102",
-          "sourceId" : "33",
+          "destinationId" : "26",
+          "id" : "137",
+          "sourceId" : "38",
           "tags" : "Relationship"
         }, {
-          "destinationId" : "20",
-          "id" : "103",
-          "linkedRelationshipId" : "102",
-          "sourceId" : "33"
+          "destinationId" : "21",
+          "id" : "138",
+          "linkedRelationshipId" : "137",
+          "sourceId" : "38"
         } ],
         "tags" : "Element,Container,switch"
       }, {
         "components" : [ {
           "documentation" : { },
-          "id" : "35",
+          "id" : "40",
           "name" : "+",
           "properties" : {
             "structurizr.dsl.identifier" : "es.winch.plus"
@@ -530,7 +702,7 @@
           "tags" : "Element,Component,plus"
         }, {
           "documentation" : { },
-          "id" : "36",
+          "id" : "41",
           "name" : "-",
           "properties" : {
             "structurizr.dsl.identifier" : "es.winch.minus"
@@ -538,14 +710,14 @@
           "relationships" : [ {
             "description" : "50 мм2",
             "destinationId" : "2",
-            "id" : "113",
-            "sourceId" : "36",
+            "id" : "151",
+            "sourceId" : "41",
             "tags" : "Relationship,50мм2,black"
           } ],
           "tags" : "Element,Component,minus"
         } ],
         "documentation" : { },
-        "id" : "34",
+        "id" : "39",
         "name" : "Лебедка",
         "properties" : {
           "structurizr.dsl.identifier" : "es.winch"
@@ -553,14 +725,14 @@
         "relationships" : [ {
           "description" : "50 мм2",
           "destinationId" : "2",
-          "id" : "114",
-          "linkedRelationshipId" : "113",
-          "sourceId" : "34"
+          "id" : "152",
+          "linkedRelationshipId" : "151",
+          "sourceId" : "39"
         } ],
         "tags" : "Element,Container"
       }, {
         "documentation" : { },
-        "id" : "37",
+        "id" : "42",
         "name" : "прочие потребители от зажигания",
         "properties" : {
           "structurizr.dsl.identifier" : "es.other_from_ignition"
@@ -568,340 +740,532 @@
         "tags" : "Element,Container"
       }, {
         "documentation" : { },
-        "id" : "38",
+        "id" : "43",
         "name" : "прочие потребители от АКБ и генератора напрямую",
         "properties" : {
           "structurizr.dsl.identifier" : "es.other_from_akb_gen"
         },
         "relationships" : [ {
-          "destinationId" : "44",
-          "id" : "121",
-          "sourceId" : "38",
+          "destinationId" : "56",
+          "id" : "165",
+          "sourceId" : "43",
           "tags" : "Relationship"
         }, {
-          "destinationId" : "43",
-          "id" : "122",
-          "linkedRelationshipId" : "121",
-          "sourceId" : "38"
+          "destinationId" : "55",
+          "id" : "166",
+          "linkedRelationshipId" : "165",
+          "sourceId" : "43"
         }, {
-          "destinationId" : "53",
-          "id" : "133",
-          "sourceId" : "38",
+          "destinationId" : "69",
+          "id" : "183",
+          "sourceId" : "43",
           "tags" : "Relationship"
         }, {
-          "destinationId" : "52",
-          "id" : "134",
-          "linkedRelationshipId" : "133",
-          "sourceId" : "38"
+          "destinationId" : "68",
+          "id" : "184",
+          "linkedRelationshipId" : "183",
+          "sourceId" : "43"
         } ],
         "tags" : "Element,Container"
       }, {
         "documentation" : { },
-        "id" : "39",
+        "id" : "44",
         "name" : "Потребители управляющей линии от зажигания",
         "properties" : {
           "structurizr.dsl.identifier" : "es.control_line_from_ignition"
         },
         "relationships" : [ {
-          "destinationId" : "47",
-          "id" : "119",
-          "sourceId" : "39",
+          "destinationId" : "59",
+          "id" : "163",
+          "sourceId" : "44",
           "tags" : "Relationship"
         }, {
-          "destinationId" : "43",
-          "id" : "120",
-          "linkedRelationshipId" : "119",
-          "sourceId" : "39"
+          "destinationId" : "55",
+          "id" : "164",
+          "linkedRelationshipId" : "163",
+          "sourceId" : "44"
         }, {
-          "destinationId" : "56",
-          "id" : "131",
-          "sourceId" : "39",
+          "destinationId" : "72",
+          "id" : "181",
+          "sourceId" : "44",
           "tags" : "Relationship"
         }, {
-          "destinationId" : "52",
-          "id" : "132",
-          "linkedRelationshipId" : "131",
-          "sourceId" : "39"
+          "destinationId" : "68",
+          "id" : "182",
+          "linkedRelationshipId" : "181",
+          "sourceId" : "44"
         } ],
         "tags" : "Element,Container"
       }, {
+        "components" : [ {
+          "documentation" : { },
+          "id" : "46",
+          "name" : "+",
+          "properties" : {
+            "structurizr.dsl.identifier" : "es.control_line_from_ignition_fuse.plus"
+          },
+          "tags" : "Element,Component,fuse_connector,plus"
+        }, {
+          "documentation" : { },
+          "id" : "47",
+          "name" : "-",
+          "properties" : {
+            "structurizr.dsl.identifier" : "es.control_line_from_ignition_fuse.minus"
+          },
+          "relationships" : [ {
+            "destinationId" : "44",
+            "id" : "149",
+            "sourceId" : "47",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component,fuse_connector,minus"
+        } ],
         "documentation" : { },
-        "id" : "40",
-        "name" : "Предохранители потребителей управляющей линии от зажигания",
+        "id" : "45",
+        "name" : "Предохранитель потребителей управляющей линии от зажигания",
         "properties" : {
           "structurizr.dsl.identifier" : "es.control_line_from_ignition_fuse"
         },
         "relationships" : [ {
-          "destinationId" : "39",
-          "id" : "112",
-          "sourceId" : "40",
-          "tags" : "Relationship"
+          "destinationId" : "44",
+          "id" : "150",
+          "linkedRelationshipId" : "149",
+          "sourceId" : "45"
         } ],
         "tags" : "Element,Container,fuse"
       }, {
         "documentation" : { },
-        "id" : "41",
+        "id" : "48",
+        "name" : "Система подсветки приборов",
+        "properties" : {
+          "structurizr.dsl.identifier" : "es.internal_lighing"
+        },
+        "relationships" : [ {
+          "destinationId" : "84",
+          "id" : "198",
+          "sourceId" : "48",
+          "tags" : "Relationship"
+        }, {
+          "destinationId" : "83",
+          "id" : "199",
+          "linkedRelationshipId" : "198",
+          "sourceId" : "48"
+        } ],
+        "tags" : "Element,Container"
+      }, {
+        "components" : [ {
+          "documentation" : { },
+          "id" : "50",
+          "name" : "+",
+          "properties" : {
+            "structurizr.dsl.identifier" : "es.coolant_vent_1.plus"
+          },
+          "tags" : "Element,Component,plus"
+        }, {
+          "documentation" : { },
+          "id" : "51",
+          "name" : "-",
+          "properties" : {
+            "structurizr.dsl.identifier" : "es.coolant_vent_1.minus"
+          },
+          "relationships" : [ {
+            "destinationId" : "2",
+            "id" : "153",
+            "sourceId" : "51",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component,minus"
+        } ],
+        "documentation" : { },
+        "group" : "Система охлаждения",
+        "id" : "49",
         "name" : "Электровентилятор охлаждения ДВС 1",
         "properties" : {
           "structurizr.dsl.identifier" : "es.coolant_vent_1"
         },
         "relationships" : [ {
           "destinationId" : "2",
-          "id" : "115",
-          "sourceId" : "41",
-          "tags" : "Relationship"
+          "id" : "154",
+          "linkedRelationshipId" : "153",
+          "sourceId" : "49"
         } ],
         "tags" : "Element,Container,vent"
       }, {
+        "components" : [ {
+          "documentation" : { },
+          "id" : "53",
+          "name" : "+",
+          "properties" : {
+            "structurizr.dsl.identifier" : "es.coolant_vent_1_fuse.plus"
+          },
+          "tags" : "Element,Component,fuse_connector,plus"
+        }, {
+          "documentation" : { },
+          "id" : "54",
+          "name" : "-",
+          "properties" : {
+            "structurizr.dsl.identifier" : "es.coolant_vent_1_fuse.minus"
+          },
+          "relationships" : [ {
+            "destinationId" : "50",
+            "id" : "155",
+            "sourceId" : "54",
+            "tags" : "Relationship"
+          }, {
+            "destinationId" : "49",
+            "id" : "156",
+            "linkedRelationshipId" : "155",
+            "sourceId" : "54"
+          } ],
+          "tags" : "Element,Component,fuse_connector,minus"
+        } ],
         "documentation" : { },
-        "id" : "42",
+        "group" : "Система охлаждения",
+        "id" : "52",
         "name" : "Предохранитель вентилятора охлаждения ДВС 1",
         "properties" : {
           "structurizr.dsl.identifier" : "es.coolant_vent_1_fuse"
         },
         "relationships" : [ {
-          "destinationId" : "41",
-          "id" : "116",
-          "sourceId" : "42",
-          "tags" : "Relationship"
+          "destinationId" : "50",
+          "id" : "157",
+          "linkedRelationshipId" : "155",
+          "sourceId" : "52"
+        }, {
+          "destinationId" : "49",
+          "id" : "158",
+          "linkedRelationshipId" : "155",
+          "sourceId" : "52"
         } ],
         "tags" : "Element,Container,fuse"
       }, {
         "components" : [ {
           "documentation" : { },
-          "id" : "44",
+          "id" : "56",
           "name" : "30",
           "properties" : {
             "structurizr.dsl.identifier" : "es.coolant_vent_1_relay._30"
           },
           "relationships" : [ {
-            "destinationId" : "45",
-            "id" : "48",
-            "sourceId" : "44",
+            "destinationId" : "57",
+            "id" : "60",
+            "sourceId" : "56",
             "tags" : "Relationship,relay_pwr"
           } ],
           "tags" : "Element,Component,relay_30,relay_connector"
         }, {
           "documentation" : { },
-          "id" : "45",
+          "id" : "57",
           "name" : "87",
           "properties" : {
             "structurizr.dsl.identifier" : "es.coolant_vent_1_relay._87"
           },
           "relationships" : [ {
-            "destinationId" : "42",
-            "id" : "117",
-            "sourceId" : "45",
+            "destinationId" : "53",
+            "id" : "159",
+            "sourceId" : "57",
             "tags" : "Relationship"
+          }, {
+            "destinationId" : "52",
+            "id" : "160",
+            "linkedRelationshipId" : "159",
+            "sourceId" : "57"
           } ],
           "tags" : "Element,Component,relay_87,relay_connector"
         }, {
           "documentation" : { },
-          "id" : "46",
+          "id" : "58",
           "name" : "86",
           "properties" : {
             "structurizr.dsl.identifier" : "es.coolant_vent_1_relay._86"
           },
           "relationships" : [ {
-            "destinationId" : "62",
-            "id" : "123",
-            "sourceId" : "46",
+            "destinationId" : "78",
+            "id" : "167",
+            "sourceId" : "58",
             "tags" : "Relationship"
           }, {
-            "destinationId" : "60",
-            "id" : "124",
-            "linkedRelationshipId" : "123",
-            "sourceId" : "46"
+            "destinationId" : "76",
+            "id" : "168",
+            "linkedRelationshipId" : "167",
+            "sourceId" : "58"
           } ],
           "tags" : "Element,Component,relay_86,relay_connector"
         }, {
           "documentation" : { },
-          "id" : "47",
+          "id" : "59",
           "name" : "85",
           "properties" : {
             "structurizr.dsl.identifier" : "es.coolant_vent_1_relay._85"
           },
           "relationships" : [ {
-            "destinationId" : "46",
-            "id" : "49",
-            "sourceId" : "47",
+            "destinationId" : "58",
+            "id" : "61",
+            "sourceId" : "59",
             "tags" : "Relationship,relay_ctr"
           } ],
           "tags" : "Element,Component,relay_85,relay_connector"
         } ],
         "documentation" : { },
-        "id" : "43",
+        "group" : "Система охлаждения",
+        "id" : "55",
         "name" : "Реле электровентилятора охлаждения ДВС 1",
         "properties" : {
           "structurizr.dsl.identifier" : "es.coolant_vent_1_relay"
         },
         "relationships" : [ {
-          "destinationId" : "42",
-          "id" : "118",
-          "linkedRelationshipId" : "117",
-          "sourceId" : "43"
+          "destinationId" : "53",
+          "id" : "161",
+          "linkedRelationshipId" : "159",
+          "sourceId" : "55"
         }, {
-          "destinationId" : "62",
-          "id" : "125",
-          "linkedRelationshipId" : "123",
-          "sourceId" : "43"
+          "destinationId" : "52",
+          "id" : "162",
+          "linkedRelationshipId" : "159",
+          "sourceId" : "55"
         }, {
-          "destinationId" : "60",
-          "id" : "126",
-          "linkedRelationshipId" : "123",
-          "sourceId" : "43"
+          "destinationId" : "78",
+          "id" : "169",
+          "linkedRelationshipId" : "167",
+          "sourceId" : "55"
+        }, {
+          "destinationId" : "76",
+          "id" : "170",
+          "linkedRelationshipId" : "167",
+          "sourceId" : "55"
         } ],
         "tags" : "Element,Container,relay"
       }, {
+        "components" : [ {
+          "documentation" : { },
+          "id" : "63",
+          "name" : "+",
+          "properties" : {
+            "structurizr.dsl.identifier" : "es.coolant_vent_2.plus"
+          },
+          "tags" : "Element,Component,plus"
+        }, {
+          "documentation" : { },
+          "id" : "64",
+          "name" : "-",
+          "properties" : {
+            "structurizr.dsl.identifier" : "es.coolant_vent_2.minus"
+          },
+          "relationships" : [ {
+            "destinationId" : "2",
+            "id" : "171",
+            "sourceId" : "64",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component,minus"
+        } ],
         "documentation" : { },
-        "id" : "50",
+        "group" : "Система охлаждения",
+        "id" : "62",
         "name" : "Электровентилятор охлаждения ДВС 2",
         "properties" : {
           "structurizr.dsl.identifier" : "es.coolant_vent_2"
         },
         "relationships" : [ {
           "destinationId" : "2",
-          "id" : "127",
-          "sourceId" : "50",
-          "tags" : "Relationship"
+          "id" : "172",
+          "linkedRelationshipId" : "171",
+          "sourceId" : "62"
         } ],
         "tags" : "Element,Container,vent"
       }, {
+        "components" : [ {
+          "documentation" : { },
+          "id" : "66",
+          "name" : "+",
+          "properties" : {
+            "structurizr.dsl.identifier" : "es.coolant_vent_2_fuse.plus"
+          },
+          "tags" : "Element,Component,fuse_connector,plus"
+        }, {
+          "documentation" : { },
+          "id" : "67",
+          "name" : "-",
+          "properties" : {
+            "structurizr.dsl.identifier" : "es.coolant_vent_2_fuse.minus"
+          },
+          "relationships" : [ {
+            "destinationId" : "63",
+            "id" : "173",
+            "sourceId" : "67",
+            "tags" : "Relationship"
+          }, {
+            "destinationId" : "62",
+            "id" : "174",
+            "linkedRelationshipId" : "173",
+            "sourceId" : "67"
+          } ],
+          "tags" : "Element,Component,fuse_connector,minus"
+        } ],
         "documentation" : { },
-        "id" : "51",
+        "group" : "Система охлаждения",
+        "id" : "65",
         "name" : "Предохранитель вентилятора охлаждения ДВС 2",
         "properties" : {
           "structurizr.dsl.identifier" : "es.coolant_vent_2_fuse"
         },
         "relationships" : [ {
-          "destinationId" : "50",
-          "id" : "128",
-          "sourceId" : "51",
-          "tags" : "Relationship"
+          "destinationId" : "63",
+          "id" : "175",
+          "linkedRelationshipId" : "173",
+          "sourceId" : "65"
+        }, {
+          "destinationId" : "62",
+          "id" : "176",
+          "linkedRelationshipId" : "173",
+          "sourceId" : "65"
         } ],
         "tags" : "Element,Container,fuse"
       }, {
         "components" : [ {
           "documentation" : { },
-          "id" : "53",
+          "id" : "69",
           "name" : "30",
           "properties" : {
             "structurizr.dsl.identifier" : "es.coolant_vent_2_relay._30"
           },
           "relationships" : [ {
-            "destinationId" : "54",
-            "id" : "57",
-            "sourceId" : "53",
+            "destinationId" : "70",
+            "id" : "73",
+            "sourceId" : "69",
             "tags" : "Relationship,relay_pwr"
           } ],
           "tags" : "Element,Component,relay_30,relay_connector"
         }, {
           "documentation" : { },
-          "id" : "54",
+          "id" : "70",
           "name" : "87",
           "properties" : {
             "structurizr.dsl.identifier" : "es.coolant_vent_2_relay._87"
           },
           "relationships" : [ {
-            "destinationId" : "51",
-            "id" : "129",
-            "sourceId" : "54",
+            "destinationId" : "66",
+            "id" : "177",
+            "sourceId" : "70",
             "tags" : "Relationship"
+          }, {
+            "destinationId" : "65",
+            "id" : "178",
+            "linkedRelationshipId" : "177",
+            "sourceId" : "70"
           } ],
           "tags" : "Element,Component,relay_87,relay_connector"
         }, {
           "documentation" : { },
-          "id" : "55",
+          "id" : "71",
           "name" : "86",
           "properties" : {
             "structurizr.dsl.identifier" : "es.coolant_vent_2_relay._86"
           },
           "relationships" : [ {
-            "destinationId" : "62",
-            "id" : "135",
-            "sourceId" : "55",
+            "destinationId" : "78",
+            "id" : "185",
+            "sourceId" : "71",
             "tags" : "Relationship"
           }, {
-            "destinationId" : "60",
-            "id" : "136",
-            "linkedRelationshipId" : "135",
-            "sourceId" : "55"
+            "destinationId" : "76",
+            "id" : "186",
+            "linkedRelationshipId" : "185",
+            "sourceId" : "71"
           } ],
           "tags" : "Element,Component,relay_86,relay_connector"
         }, {
           "documentation" : { },
-          "id" : "56",
+          "id" : "72",
           "name" : "85",
           "properties" : {
             "structurizr.dsl.identifier" : "es.coolant_vent_2_relay._85"
           },
           "relationships" : [ {
-            "destinationId" : "55",
-            "id" : "58",
-            "sourceId" : "56",
+            "destinationId" : "71",
+            "id" : "74",
+            "sourceId" : "72",
             "tags" : "Relationship,relay_ctr"
           } ],
           "tags" : "Element,Component,relay_85,relay_connector"
         } ],
         "documentation" : { },
-        "id" : "52",
+        "group" : "Система охлаждения",
+        "id" : "68",
         "name" : "Реле электровентилятора охлаждения ДВС 2",
         "properties" : {
           "structurizr.dsl.identifier" : "es.coolant_vent_2_relay"
         },
         "relationships" : [ {
-          "destinationId" : "51",
-          "id" : "130",
-          "linkedRelationshipId" : "129",
-          "sourceId" : "52"
+          "destinationId" : "66",
+          "id" : "179",
+          "linkedRelationshipId" : "177",
+          "sourceId" : "68"
         }, {
-          "destinationId" : "62",
-          "id" : "137",
-          "linkedRelationshipId" : "135",
-          "sourceId" : "52"
+          "destinationId" : "65",
+          "id" : "180",
+          "linkedRelationshipId" : "177",
+          "sourceId" : "68"
         }, {
-          "destinationId" : "60",
-          "id" : "138",
-          "linkedRelationshipId" : "135",
-          "sourceId" : "52"
+          "destinationId" : "78",
+          "id" : "187",
+          "linkedRelationshipId" : "185",
+          "sourceId" : "68"
+        }, {
+          "destinationId" : "76",
+          "id" : "188",
+          "linkedRelationshipId" : "185",
+          "sourceId" : "68"
         } ],
         "tags" : "Element,Container,relay"
       }, {
         "documentation" : { },
-        "id" : "59",
+        "group" : "Система охлаждения",
+        "id" : "75",
         "name" : "Датчик включения электровентиляторов охлаждения ДВС",
         "properties" : {
           "structurizr.dsl.identifier" : "es.coolant_sensor"
         },
         "relationships" : [ {
           "destinationId" : "2",
-          "id" : "139",
-          "sourceId" : "59",
+          "id" : "189",
+          "sourceId" : "75",
           "tags" : "Relationship"
         }, {
-          "destinationId" : "61",
-          "id" : "140",
-          "sourceId" : "59",
+          "destinationId" : "77",
+          "id" : "190",
+          "sourceId" : "75",
           "tags" : "Relationship"
         }, {
-          "destinationId" : "60",
-          "id" : "141",
-          "linkedRelationshipId" : "140",
-          "sourceId" : "59"
+          "destinationId" : "76",
+          "id" : "191",
+          "linkedRelationshipId" : "190",
+          "sourceId" : "75"
         } ],
         "tags" : "Element,Container"
       }, {
         "components" : [ {
           "documentation" : { },
-          "id" : "61",
+          "id" : "77",
           "name" : "D",
           "properties" : {
             "structurizr.dsl.identifier" : "es.coolant_control_switch.d"
           },
+          "relationships" : [ {
+            "destinationId" : "85",
+            "id" : "202",
+            "sourceId" : "77",
+            "tags" : "Relationship"
+          }, {
+            "destinationId" : "83",
+            "id" : "203",
+            "linkedRelationshipId" : "202",
+            "sourceId" : "77"
+          } ],
           "tags" : "Element,Component"
         }, {
           "documentation" : { },
-          "id" : "62",
+          "id" : "78",
           "name" : "I",
           "properties" : {
             "structurizr.dsl.identifier" : "es.coolant_control_switch.i"
@@ -909,21 +1273,21 @@
           "tags" : "Element,Component"
         }, {
           "documentation" : { },
-          "id" : "63",
+          "id" : "79",
           "name" : "U",
           "properties" : {
             "structurizr.dsl.identifier" : "es.coolant_control_switch.u"
           },
           "relationships" : [ {
             "destinationId" : "2",
-            "id" : "142",
-            "sourceId" : "63",
+            "id" : "192",
+            "sourceId" : "79",
             "tags" : "Relationship"
           } ],
           "tags" : "Element,Component"
         }, {
           "documentation" : { },
-          "id" : "64",
+          "id" : "80",
           "name" : "V",
           "properties" : {
             "structurizr.dsl.identifier" : "es.coolant_control_switch.v"
@@ -931,7 +1295,7 @@
           "tags" : "Element,Component"
         }, {
           "documentation" : { },
-          "id" : "65",
+          "id" : "81",
           "name" : "L",
           "properties" : {
             "structurizr.dsl.identifier" : "es.coolant_control_switch.l"
@@ -939,7 +1303,7 @@
           "tags" : "Element,Component"
         }, {
           "documentation" : { },
-          "id" : "66",
+          "id" : "82",
           "name" : "H",
           "properties" : {
             "structurizr.dsl.identifier" : "es.coolant_control_switch.h"
@@ -947,18 +1311,88 @@
           "tags" : "Element,Component"
         } ],
         "documentation" : { },
-        "id" : "60",
+        "group" : "Система охлаждения",
+        "id" : "76",
         "name" : "Переключатель управления вентиляторами охлаждения ДВС",
         "properties" : {
           "structurizr.dsl.identifier" : "es.coolant_control_switch"
         },
         "relationships" : [ {
           "destinationId" : "2",
-          "id" : "143",
-          "linkedRelationshipId" : "142",
-          "sourceId" : "60"
+          "id" : "193",
+          "linkedRelationshipId" : "192",
+          "sourceId" : "76"
+        }, {
+          "destinationId" : "85",
+          "id" : "204",
+          "linkedRelationshipId" : "202",
+          "sourceId" : "76"
+        }, {
+          "destinationId" : "83",
+          "id" : "205",
+          "linkedRelationshipId" : "202",
+          "sourceId" : "76"
         } ],
         "tags" : "Element,Container,switch"
+      }, {
+        "components" : [ {
+          "documentation" : { },
+          "id" : "84",
+          "name" : "+",
+          "properties" : {
+            "structurizr.dsl.identifier" : "es.coolant_control_light.plus"
+          },
+          "relationships" : [ {
+            "destinationId" : "82",
+            "id" : "194",
+            "sourceId" : "84",
+            "tags" : "Relationship"
+          }, {
+            "destinationId" : "76",
+            "id" : "195",
+            "linkedRelationshipId" : "194",
+            "sourceId" : "84"
+          } ],
+          "tags" : "Element,Component,light_connector,plus"
+        }, {
+          "documentation" : { },
+          "id" : "85",
+          "name" : "-",
+          "properties" : {
+            "structurizr.dsl.identifier" : "es.coolant_control_light.minus"
+          },
+          "relationships" : [ {
+            "destinationId" : "2",
+            "id" : "200",
+            "sourceId" : "85",
+            "tags" : "Relationship"
+          } ],
+          "tags" : "Element,Component,light_connector,minus"
+        } ],
+        "documentation" : { },
+        "group" : "Система охлаждения",
+        "id" : "83",
+        "name" : "Подсветка переключателя управления вентиляторами охлаждения ДВС",
+        "properties" : {
+          "structurizr.dsl.identifier" : "es.coolant_control_light"
+        },
+        "relationships" : [ {
+          "destinationId" : "82",
+          "id" : "196",
+          "linkedRelationshipId" : "194",
+          "sourceId" : "83"
+        }, {
+          "destinationId" : "76",
+          "id" : "197",
+          "linkedRelationshipId" : "194",
+          "sourceId" : "83"
+        }, {
+          "destinationId" : "2",
+          "id" : "201",
+          "linkedRelationshipId" : "200",
+          "sourceId" : "83"
+        } ],
+        "tags" : "Element,Container,light"
       } ],
       "documentation" : { },
       "id" : "1",
@@ -972,10 +1406,77 @@
   },
   "name" : "Name",
   "properties" : {
-    "structurizr.dsl" : "d29ya3NwYWNlICJOYW1lIiAiRGVzY3JpcHRpb24iIHsKCiAgICAhaWRlbnRpZmllcnMgaGllcmFyY2hpY2FsCgogICAgbW9kZWwgewoKICAgICAgICBhcmNoZXR5cGVzIHsKICAgICAgICAgICAgcmVsYXkgPSBjb250YWluZXIgewogICAgICAgICAgICAgICAgdGFncyAicmVsYXkiCiAgICAgICAgICAgIH0KICAgICAgICB9CgogICAgICAgIGVzID0gc29mdHdhcmVTeXN0ZW0gItCt0LvQtdC60YLRgNC40YfQtdGB0LrQsNGPINGB0LjRgdGC0LXQvNCwINCj0JDQlyIgewogICAgICAgICAgICBncm91bmQgPSBjb250YWluZXIgItCc0LDRgdGB0LAgKNC60L7RgNC/0YPRgSkiIHsKICAgICAgICAgICAgICAgIHRhZ3MgImdyb3VuZCIKICAgICAgICAgICAgfQoKICAgICAgICAgICAgZ3JvdW5kX3N3aXRjaCA9IGNvbnRhaW5lciAi0KDQsNC30LzRi9C60LDRgtC10LvRjCDQvNCw0YHRgdGLIiB7CiAgICAgICAgICAgICAgICB0YWdzICJzd2l0Y2giCiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIGFrYiA9IGNvbnRhaW5lciAi0JDQutC60YPQvNGD0LvRj9GC0L7RgCIgewogICAgICAgICAgICAgICAgcGx1cyA9IGNvbXBvbmVudCAiKyIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgInBsdXMiCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICBtaW51cyA9IGNvbXBvbmVudCAiLSIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgIm1pbnVzIgogICAgICAgICAgICAgICAgfQogICAgICAgICAgICB9CgogICAgICAgICAgICBzdGFydGVyID0gY29udGFpbmVyICLQodGC0LDRgNGC0LXRgCIgewogICAgICAgICAgICAgICAgdGFncyAic3RhcnRlciIKICAgICAgICAgICAgICAgIHBsdXMgPSBjb21wb25lbnQgIisiIHsKICAgICAgICAgICAgICAgICAgICB0YWdzICJwbHVzIgogICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgc3QgPSBjb21wb25lbnQgItCS0YLRj9CzIgogICAgICAgICAgICB9CgogICAgICAgICAgICBnZW5lcmF0b3IgPSBjb250YWluZXIgItCT0LXQvdC10YDQsNGC0L7RgCIgewogICAgICAgICAgICAgICAgdGFncyAiZ2VuZXJhdG9yIgogICAgICAgICAgICAgICAgcGx1cyA9IGNvbXBvbmVudCAiKyIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgInBsdXMiCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICB2ID0gY29tcG9uZW50ICLQktC+0LfQsSIKICAgICAgICAgICAgfQogICAgICAgICAgICAKICAgICAgICAgICAgaWduaXRpb25fcmVsYXkgPSBjb250YWluZXIgItCg0LXQu9C1INC30LDQttC40LPQsNC90LjRjyIgewogICAgICAgICAgICAgICAgI3JlbGF5ID0gY29udGFpbmVyICLQoNC10LvQtSIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5IgogICAgICAgICAgICAgICAgICAgIF8zMCA9IGNvbXBvbmVudCAiMzAiIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXlfMzAscmVsYXlfY29ubmVjdG9yIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICBfODcgPSBjb21wb25lbnQgIjg3IiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5Xzg3LHJlbGF5X2Nvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgXzg2ID0gY29tcG9uZW50ICI4NiIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV84NixyZWxheV9jb25uZWN0b3IiCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIF84NSA9IGNvbXBvbmVudCAiODUiIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXlfODUscmVsYXlfY29ubmVjdG9yIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgIF8zMCAtPiBfODcgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV9wd3IiCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIF84NSAtPiBfODYgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV9jdHIiCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgI30KICAgICAgICAgICAgfQoKICAgICAgICAgICAgc3RhcnRlcl9yZWxheSA9IGNvbnRhaW5lciAi0KDQtdC70LUg0YHRgtCw0YDRgtC10YDQsCIgewogICAgICAgICAgICAgICAgdGFncyAicmVsYXk1IgogICAgICAgICAgICAgICAgXzMwID0gY29tcG9uZW50ICIzMCIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5XzMwLHJlbGF5X2Nvbm5lY3RvciIKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIF84NyA9IGNvbXBvbmVudCAiODciIHsKICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV84NyxyZWxheV9jb25uZWN0b3IiCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICBfODggPSBjb21wb25lbnQgIjg4IiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXlfODgscmVsYXlfY29ubmVjdG9yIgogICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgXzg2ID0gY29tcG9uZW50ICI4NiIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5Xzg2LHJlbGF5X2Nvbm5lY3RvciIKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIF84NSA9IGNvbXBvbmVudCAiODUiIHsKICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV84NSxyZWxheV9jb25uZWN0b3IiCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgIF8zMCAtPiBfODcgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5X3B3ciIKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIF8zMCAtPiBfODggewogICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5X3B3cl9kZWZhdWx0X2Nvbm5lY3RlZCIKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgXzg1IC0+IF84NiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXlfY3RyIgogICAgICAgICAgICAgICAgfQogICAgICAgICAgICB9CgogICAgICAgICAgICBpZ25pdGlvbl9yZWxheV9mdXNlID0gY29udGFpbmVyICLQn9GA0LXQtNC+0YXRgNCw0L3QuNGC0LXQu9GMINC00LvRjyDRgNC10LvQtSDQt9Cw0LbQuNCz0LDQvdC40Y8iIHsKICAgICAgICAgICAgICAgIHRhZ3MgImZ1c2UiCiAgICAgICAgICAgIH0KICAgICAgICAgICAgc3RhcnRlcl9yZWxheV9mdXNlID0gY29udGFpbmVyICLQn9GA0LXQtNC+0YXRgNCw0L3QuNGC0LXQu9GMINC00LvRjyDRgNC10LvQtSDRgdGC0LDRgNGC0LXRgNCwIiB7CiAgICAgICAgICAgICAgICB0YWdzICJmdXNlIgogICAgICAgICAgICB9CgogICAgICAgICAgICBpZ25pdGlvbl9zd2l0Y2ggPSBjb250YWluZXIgItCS0YvQutC70Y7Rh9Cw0YLQtdC70Ywg0LfQsNC20LjQs9Cw0L3QuNGPIiB7CiAgICAgICAgICAgICAgICB0YWdzICJzd2l0Y2giCiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIGlnbml0aW9uID0gY29udGFpbmVyICLQodC40YHRgtC10LzQsCDQt9Cw0LbQuNCz0LDQvdC40Y8iCgogICAgICAgICAgICBzdGFydF9idXR0b24gPSBjb250YWluZXIgItCa0L3QvtC/0LrQsCDQodGC0LDRgNGCIiB7CiAgICAgICAgICAgICAgICB0YWdzICJzd2l0Y2giCiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIHdpbmNoID0gY29udGFpbmVyICLQm9C10LHQtdC00LrQsCIgewogICAgICAgICAgICAgICAgcGx1cyA9IGNvbXBvbmVudCAiKyIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgInBsdXMiCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICBtaW51cyA9IGNvbXBvbmVudCAiLSIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgIm1pbnVzIgogICAgICAgICAgICAgICAgfQogICAgICAgICAgICB9CgogICAgICAgICAgICBvdGhlcl9mcm9tX2lnbml0aW9uID0gY29udGFpbmVyICLQv9GA0L7Rh9C40LUg0L/QvtGC0YDQtdCx0LjRgtC10LvQuCDQvtGCINC30LDQttC40LPQsNC90LjRjyIKICAgICAgICAgICAgb3RoZXJfZnJvbV9ha2JfZ2VuID0gY29udGFpbmVyICLQv9GA0L7Rh9C40LUg0L/QvtGC0YDQtdCx0LjRgtC10LvQuCDQvtGCINCQ0JrQkSDQuCDQs9C10L3QtdGA0LDRgtC+0YDQsCDQvdCw0L/RgNGP0LzRg9GOIgogICAgICAgICAgICBjb250cm9sX2xpbmVfZnJvbV9pZ25pdGlvbiA9IGNvbnRhaW5lciAi0J/QvtGC0YDQtdCx0LjRgtC10LvQuCDRg9C/0YDQsNCy0LvRj9GO0YnQtdC5INC70LjQvdC40Lgg0L7RgiDQt9Cw0LbQuNCz0LDQvdC40Y8iCiAgICAgICAgICAgIGNvbnRyb2xfbGluZV9mcm9tX2lnbml0aW9uX2Z1c2UgPSBjb250YWluZXIgItCf0YDQtdC00L7RhdGA0LDQvdC40YLQtdC70Lgg0L/QvtGC0YDQtdCx0LjRgtC10LvQtdC5INGD0L/RgNCw0LLQu9GP0Y7RidC10Lkg0LvQuNC90LjQuCDQvtGCINC30LDQttC40LPQsNC90LjRjyIgewogICAgICAgICAgICAgICAgdGFncyAiZnVzZSIKICAgICAgICAgICAgfQoKICAgICAgICAgICAgY29vbGFudF92ZW50XzEgPSBjb250YWluZXIgItCt0LvQtdC60YLRgNC+0LLQtdC90YLQuNC70Y/RgtC+0YAg0L7RhdC70LDQttC00LXQvdC40Y8g0JTQktChIDEiewogICAgICAgICAgICAgICAgdGFncyAidmVudCIKICAgICAgICAgICAgfQoKICAgICAgICAgICAgY29vbGFudF92ZW50XzFfZnVzZSA9IGNvbnRhaW5lciAi0J/RgNC10LTQvtGF0YDQsNC90LjRgtC10LvRjCDQstC10L3RgtC40LvRj9GC0L7RgNCwINC+0YXQu9Cw0LbQtNC10L3QuNGPINCU0JLQoSAxIiB7CiAgICAgICAgICAgICAgICB0YWdzICJmdXNlIgogICAgICAgICAgICB9CgogICAgICAgICAgICBjb29sYW50X3ZlbnRfMV9yZWxheSA9IGNvbnRhaW5lciAi0KDQtdC70LUg0Y3Qu9C10LrRgtGA0L7QstC10L3RgtC40LvRj9GC0L7RgNCwINC+0YXQu9Cw0LbQtNC10L3QuNGPINCU0JLQoSAxIiB7CiAgICAgICAgICAgICAgICAjcmVsYXkgPSBjb250YWluZXIgItCg0LXQu9C1IiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXkiCiAgICAgICAgICAgICAgICAgICAgXzMwID0gY29tcG9uZW50ICIzMCIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV8zMCxyZWxheV9jb25uZWN0b3IiCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIF84NyA9IGNvbXBvbmVudCAiODciIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXlfODcscmVsYXlfY29ubmVjdG9yIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICBfODYgPSBjb21wb25lbnQgIjg2IiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5Xzg2LHJlbGF5X2Nvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgXzg1ID0gY29tcG9uZW50ICI4NSIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV84NSxyZWxheV9jb25uZWN0b3IiCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgXzMwIC0+IF84NyB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5X3B3ciIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgXzg1IC0+IF84NiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5X2N0ciIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAjfQogICAgICAgICAgICB9CgogICAgICAgICAgICBjb29sYW50X3ZlbnRfMiA9IGNvbnRhaW5lciAi0K3Qu9C10LrRgtGA0L7QstC10L3RgtC40LvRj9GC0L7RgCDQvtGF0LvQsNC20LTQtdC90LjRjyDQlNCS0KEgMiJ7CiAgICAgICAgICAgICAgICB0YWdzICJ2ZW50IgogICAgICAgICAgICB9CgogICAgICAgICAgICBjb29sYW50X3ZlbnRfMl9mdXNlID0gY29udGFpbmVyICLQn9GA0LXQtNC+0YXRgNCw0L3QuNGC0LXQu9GMINCy0LXQvdGC0LjQu9GP0YLQvtGA0LAg0L7RhdC70LDQttC00LXQvdC40Y8g0JTQktChIDIiIHsKICAgICAgICAgICAgICAgIHRhZ3MgImZ1c2UiCiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIGNvb2xhbnRfdmVudF8yX3JlbGF5ID0gY29udGFpbmVyICLQoNC10LvQtSDRjdC70LXQutGC0YDQvtCy0LXQvdGC0LjQu9GP0YLQvtGA0LAg0L7RhdC70LDQttC00LXQvdC40Y8g0JTQktChIDIiIHsKICAgICAgICAgICAgICAgICNyZWxheSA9IGNvbnRhaW5lciAi0KDQtdC70LUiIHsKICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheSIKICAgICAgICAgICAgICAgICAgICBfMzAgPSBjb21wb25lbnQgIjMwIiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5XzMwLHJlbGF5X2Nvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgXzg3ID0gY29tcG9uZW50ICI4NyIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV84NyxyZWxheV9jb25uZWN0b3IiCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIF84NiA9IGNvbXBvbmVudCAiODYiIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXlfODYscmVsYXlfY29ubmVjdG9yIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICBfODUgPSBjb21wb25lbnQgIjg1IiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5Xzg1LHJlbGF5X2Nvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICBfMzAgLT4gXzg3IHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXlfcHdyIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICBfODUgLT4gXzg2IHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXlfY3RyIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICN9CiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIGNvb2xhbnRfc2Vuc29yID0gY29udGFpbmVyICLQlNCw0YLRh9C40Log0LLQutC70Y7Rh9C10L3QuNGPINGN0LvQtdC60YLRgNC+0LLQtdC90YLQuNC70Y/RgtC+0YDQvtCyINC+0YXQu9Cw0LbQtNC10L3QuNGPINCU0JLQoSIKCiAgICAgICAgICAgIGNvb2xhbnRfY29udHJvbF9zd2l0Y2ggPSBjb250YWluZXIgItCf0LXRgNC10LrQu9GO0YfQsNGC0LXQu9GMINGD0L/RgNCw0LLQu9C10L3QuNGPINCy0LXQvdGC0LjQu9GP0YLQvtGA0LDQvNC4INC+0YXQu9Cw0LbQtNC10L3QuNGPINCU0JLQoSIgewogICAgICAgICAgICAgICAgdGFncyAic3dpdGNoIgoKICAgICAgICAgICAgICAgIEQgPSBjb21wb25lbnQgIkQiCiAgICAgICAgICAgICAgICBJID0gY29tcG9uZW50ICJJIgogICAgICAgICAgICAgICAgVSA9IGNvbXBvbmVudCAiVSIKICAgICAgICAgICAgICAgIFYgPSBjb21wb25lbnQgIlYiCiAgICAgICAgICAgICAgICBMID0gY29tcG9uZW50ICJMIgogICAgICAgICAgICAgICAgSCA9IGNvbXBvbmVudCAiSCIKICAgICAgICAgICAgfQoKICAgICAgICAgICAgIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMKICAgICAgICAgICAgIyDQntC/0LjRgdCw0L3QuNC1INGB0L7QtdC00LjQvdC10L3QuNC5ICMKICAgICAgICAgICAgIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMKICAgIAogICAgICAgICAgICBncm91bmRfc3dpdGNoIC0+IGdyb3VuZCAiNTAg0LzQvDIiIHsKICAgICAgICAgICAgICAgIHRhZ3MgIjUw0LzQvDIiCiAgICAgICAgICAgIH0KICAgIAogICAgICAgICAgICBha2IubWludXMgLT4gZ3JvdW5kX3N3aXRjaCAiNTAg0LzQvDIiIHsKICAgICAgICAgICAgICAgIHRhZ3MgIjUw0LzQvDIiCiAgICAgICAgICAgIH0KICAgICAgICAgICAgYWtiLnBsdXMgLT4gc3RhcnRlci5wbHVzICI1MCDQvNC8MiIgewogICAgICAgICAgICAgICAgdGFncyAiNTDQvNC8MiIKICAgICAgICAgICAgICAgIHRhZ3MgInJlZCIKICAgICAgICAgICAgfQogICAgICAgICAgICBha2IucGx1cyAtPiB3aW5jaC5wbHVzICI1MCDQvNC8MiIgewogICAgICAgICAgICAgICAgdGFncyAiNTDQvNC8MiIKICAgICAgICAgICAgICAgIHRhZ3MgInJlZCIKICAgICAgICAgICAgfQoKICAgIAogICAgICAgICAgICBnZW5lcmF0b3IgLT4gZ3JvdW5kICI1MCDQvNC8MiIgewogICAgICAgICAgICAgICAgdGFncyAiNTDQvNC8MiIKICAgICAgICAgICAgfQogICAgICAgICAgICBnZW5lcmF0b3IucGx1cyAtPiBzdGFydGVyLnBsdXMgIjUwINC80LwyIiB7CiAgICAgICAgICAgICAgICB0YWdzICI1MNC80LwyIgogICAgICAgICAgICAgICAgdGFncyAicmVkIgogICAgICAgICAgICB9CiAgICAKICAgICAgICAgICAgc3RhcnRlci5wbHVzIC0+IGlnbml0aW9uX3JlbGF5X2Z1c2UKICAgIAogICAgICAgICAgICBpZ25pdGlvbl9yZWxheV9mdXNlIC0+IGlnbml0aW9uX3JlbGF5Ll8zMAogICAgICAgICAgICBpZ25pdGlvbl9yZWxheV9mdXNlIC0+IGlnbml0aW9uX3N3aXRjaAogICAgICAgICAgICBpZ25pdGlvbl9yZWxheV9mdXNlIC0+IG90aGVyX2Zyb21fYWtiX2dlbgogICAgICAgICAgICBpZ25pdGlvbl9yZWxheV9mdXNlIC0+IGdlbmVyYXRvci52CiAgICAKICAgICAgICAgICAgaWduaXRpb25fc3dpdGNoIC0+IGlnbml0aW9uX3JlbGF5Ll84NQogICAgICAgICAgICAKICAgICAgICAgICAgaWduaXRpb25fcmVsYXkuXzg2IC0+IGdyb3VuZAogICAgICAgICAgICBpZ25pdGlvbl9yZWxheS5fODcgLT4gc3RhcnRlcl9yZWxheV9mdXNlCiAgICAgICAgICAgIAogICAgICAgICAgICBzdGFydGVyX3JlbGF5X2Z1c2UgLT4gc3RhcnRlcl9yZWxheS5fMzAKICAgICAgICAgICAgc3RhcnRlcl9yZWxheV9mdXNlIC0+IGlnbml0aW9uCiAgICAgICAgICAgIHN0YXJ0ZXJfcmVsYXlfZnVzZSAtPiBvdGhlcl9mcm9tX2lnbml0aW9uCiAgICAgICAgICAgIHN0YXJ0ZXJfcmVsYXlfZnVzZSAtPiBzdGFydF9idXR0b24KICAgIAogICAgICAgICAgICBzdGFydF9idXR0b24gLT4gc3RhcnRlcl9yZWxheS5fODUKICAgIAogICAgICAgICAgICBzdGFydGVyX3JlbGF5Ll84NiAtPiBncm91bmQKICAgICAgICAgICAgc3RhcnRlcl9yZWxheS5fODcgLT4gc3RhcnRlci5zdAogICAgICAgICAgICBzdGFydGVyX3JlbGF5Ll84OCAtPiBjb250cm9sX2xpbmVfZnJvbV9pZ25pdGlvbl9mdXNlCiAgICAgICAgICAgIGNvbnRyb2xfbGluZV9mcm9tX2lnbml0aW9uX2Z1c2UgLT4gY29udHJvbF9saW5lX2Zyb21faWduaXRpb24KICAgICAgICAKICAgICAgICAgICAgd2luY2gubWludXMgLT4gZ3JvdW5kICI1MCDQvNC8MiIgewogICAgICAgICAgICAgICAgdGFncyAiNTDQvNC8MiIKICAgICAgICAgICAgICAgIHRhZ3MgImJsYWNrIgogICAgICAgICAgICB9CgogICAgICAgICAgICBjb29sYW50X3ZlbnRfMSAtPiBncm91bmQKICAgICAgICAgICAgY29vbGFudF92ZW50XzFfZnVzZSAtPiBjb29sYW50X3ZlbnRfMQogICAgICAgICAgICBjb29sYW50X3ZlbnRfMV9yZWxheS5fODcgLT4gY29vbGFudF92ZW50XzFfZnVzZQogICAgICAgICAgICBjb250cm9sX2xpbmVfZnJvbV9pZ25pdGlvbiAtPiBjb29sYW50X3ZlbnRfMV9yZWxheS5fODUKICAgICAgICAgICAgb3RoZXJfZnJvbV9ha2JfZ2VuIC0+IGNvb2xhbnRfdmVudF8xX3JlbGF5Ll8zMAogICAgICAgICAgICBjb29sYW50X3ZlbnRfMV9yZWxheS5fODYgLT4gY29vbGFudF9jb250cm9sX3N3aXRjaC5JCgogICAgICAgICAgICBjb29sYW50X3ZlbnRfMiAtPiBncm91bmQKICAgICAgICAgICAgY29vbGFudF92ZW50XzJfZnVzZSAtPiBjb29sYW50X3ZlbnRfMgogICAgICAgICAgICBjb29sYW50X3ZlbnRfMl9yZWxheS5fODcgLT4gY29vbGFudF92ZW50XzJfZnVzZQogICAgICAgICAgICBjb250cm9sX2xpbmVfZnJvbV9pZ25pdGlvbiAtPiBjb29sYW50X3ZlbnRfMl9yZWxheS5fODUKICAgICAgICAgICAgb3RoZXJfZnJvbV9ha2JfZ2VuIC0+IGNvb2xhbnRfdmVudF8yX3JlbGF5Ll8zMAogICAgICAgICAgICBjb29sYW50X3ZlbnRfMl9yZWxheS5fODYgLT4gY29vbGFudF9jb250cm9sX3N3aXRjaC5JCgogICAgICAgICAgICBjb29sYW50X3NlbnNvciAtPiBncm91bmQKICAgICAgICAgICAgY29vbGFudF9zZW5zb3IgLT4gY29vbGFudF9jb250cm9sX3N3aXRjaC5ECiAgICAgICAgICAgIGNvb2xhbnRfY29udHJvbF9zd2l0Y2guVSAtPiBncm91bmQKICAgICAgICAgICAgCiAgICAgICAgfQogICAgfQoKICAgIHZpZXdzIHsKCiAgICAgICAgIyMjIyMjIyMjIyMjIyMjIyMKICAgICAgICAjINCe0L/QuNGB0LDQvdC40LUg0LLRjNGO0YUgIwogICAgICAgICMjIyMjIyMjIyMjIyMjIyMjCiAgICAgICAgY29udGFpbmVyIGVzIGVzX3ZpZXcgItCe0LHRidC40Lkg0LLQuNC0INGN0LvQtdC60YLRgNC40YfQtdGB0LrQvtC5INGB0LjRgdGC0LXQvNGLIiB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgICAgICBhdXRvbGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICBjb21wb25lbnQgZXMuYWtiICBvdmVyYWxsX2NvbXBvbmVudF92aWV3ICLQntCx0YnQuNC5INCy0LjQtCDQstGB0LXRhSDQutC+0LzQv9C+0L3QtdC90YIiIHsKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC50eXBlPT1jb21wb25lbnQiCiAgICAgICAgICAgIGluY2x1ZGUgImVsZW1lbnQudHlwZT09Y29udGFpbmVyIgogICAgICAgICAgICBhdXRvbGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICBjb21wb25lbnQgZXMuYWtiIHsKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC5wYXJlbnQ9PWVzLmFrYiIKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC50eXBlPT1jb21wb25lbnQgJiYgLT5lcy5ha2ItPiIKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC50eXBlPT1jb250YWluZXIgJiYgLT5lcy5ha2ItPiIKICAgICAgICAgICAgYXV0b2xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgY29tcG9uZW50IGVzLnN0YXJ0ZXIgewogICAgICAgICAgICBpbmNsdWRlICJlbGVtZW50LnBhcmVudD09ZXMuc3RhcnRlciIKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC50eXBlPT1jb21wb25lbnQgJiYgLT5lcy5zdGFydGVyLT4iCiAgICAgICAgICAgIGluY2x1ZGUgImVsZW1lbnQudHlwZT09Y29udGFpbmVyICYmIC0+ZXMuc3RhcnRlci0+IgogICAgICAgICAgICBhdXRvbGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICBjb21wb25lbnQgZXMuZ2VuZXJhdG9yIHsKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC5wYXJlbnQ9PWVzLmdlbmVyYXRvciIKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC50eXBlPT1jb21wb25lbnQgJiYgLT5lcy5nZW5lcmF0b3ItPiIKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC50eXBlPT1jb250YWluZXIgJiYgLT5lcy5nZW5lcmF0b3ItPiIKICAgICAgICAgICAgYXV0b2xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgY29tcG9uZW50IGVzLmlnbml0aW9uX3JlbGF5IHsKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC5wYXJlbnQ9PWVzLmlnbml0aW9uX3JlbGF5IgogICAgICAgICAgICBpbmNsdWRlICJlbGVtZW50LnR5cGU9PWNvbXBvbmVudCAmJiAtPmVzLmlnbml0aW9uX3JlbGF5LT4iCiAgICAgICAgICAgIGluY2x1ZGUgImVsZW1lbnQudHlwZT09Y29udGFpbmVyICYmIC0+ZXMuaWduaXRpb25fcmVsYXktPiIKICAgICAgICAgICAgYXV0b2xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgY29tcG9uZW50IGVzLnN0YXJ0ZXJfcmVsYXkgewogICAgICAgICAgICBpbmNsdWRlICJlbGVtZW50LnBhcmVudD09ZXMuc3RhcnRlcl9yZWxheSIKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC50eXBlPT1jb21wb25lbnQgJiYgLT5lcy5zdGFydGVyX3JlbGF5LT4iCiAgICAgICAgICAgIGluY2x1ZGUgImVsZW1lbnQudHlwZT09Y29udGFpbmVyICYmIC0+ZXMuc3RhcnRlcl9yZWxheS0+IgogICAgICAgICAgICBhdXRvbGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICBjb21wb25lbnQgZXMud2luY2ggewogICAgICAgICAgICBpbmNsdWRlICJlbGVtZW50LnBhcmVudD09ZXMud2luY2giCiAgICAgICAgICAgIGluY2x1ZGUgImVsZW1lbnQudHlwZT09Y29tcG9uZW50ICYmIC0+ZXMud2luY2gtPiIKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC50eXBlPT1jb250YWluZXIgJiYgLT5lcy53aW5jaC0+IgogICAgICAgICAgICBhdXRvbGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICBzdHlsZXMgewoKICAgICAgICAgICAgIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMKICAgICAgICAgICAgIyDQntC/0LjRgdCw0L3QuNC1INGB0L7QtdC00LjQvdC10L3QuNC5ICMKICAgICAgICAgICAgIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMKCiAgICAgICAgICAgIHJlbGF0aW9uc2hpcCAiUmVsYXRpb25zaGlwIiB7CiAgICAgICAgICAgICAgICBzdHlsZSBzb2xpZAogICAgICAgICAgICB9CiAgICAgICAgICAgIHJlbGF0aW9uc2hpcCAicmVsYXlfcHdyIiB7CiAgICAgICAgICAgICAgICBzdHlsZSBkYXNoZWQKICAgICAgICAgICAgICAgIHRoaWNrbmVzcyAzCiAgICAgICAgICAgIH0KICAgICAgICAgICAgcmVsYXRpb25zaGlwICJyZWxheV9jdHIiIHsKICAgICAgICAgICAgICAgIHN0eWxlIGRvdHRlZAogICAgICAgICAgICB9CiAgICAgICAgICAgIHJlbGF0aW9uc2hpcCAicmVkIiB7CiAgICAgICAgICAgICAgICBjb2xvciAjZmYwMDAwCiAgICAgICAgICAgIH0KICAgICAgICAgICAgcmVsYXRpb25zaGlwICJibGFjayIgewogICAgICAgICAgICAgICAgY29sb3IgIzAwMDAwMAogICAgICAgICAgICB9CiAgICAgICAgICAgIHJlbGF0aW9uc2hpcCAiNTDQvNC8MiIgewogICAgICAgICAgICAgICAgdGhpY2tuZXNzIDEwCiAgICAgICAgICAgIH0KCgogICAgICAgICAgICAjIyMjIyMjIyMjIyMjIyMjIyMjIyMjCiAgICAgICAgICAgICMg0J7Qv9C40YHQsNC90LjQtSDRjdC70LXQvNC10L3RgtC+0LIgIwogICAgICAgICAgICAjIyMjIyMjIyMjIyMjIyMjIyMjIyMjCiAgICAgICAgICAgIGVsZW1lbnQgIkNvbXBvbmVudCIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjODA4MDgwCiAgICAgICAgICAgICAgICB3aWR0aCAxMDAKICAgICAgICAgICAgICAgIGhlaWdodCAxMDAKICAgICAgICAgICAgICAgIG1ldGFkYXRhIGZhbHNlCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiQ29udGFpbmVyIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMwNzczYWYKICAgICAgICAgICAgICAgIG1ldGFkYXRhIGZhbHNlCiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIGVsZW1lbnQgInZlbnQiIHsKICAgICAgICAgICAgICAgIHNoYXBlICJIZXhhZ29uIgogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjMDAwMDAwCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAic3RhcnRlciIgewogICAgICAgICAgICAgICAgaWNvbiAic3RhcnRlci5qcGciCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiZ2VuZXJhdG9yIiB7CiAgICAgICAgICAgICAgICBzaGFwZSBwaXBlCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAicGx1cyIgewogICAgICAgICAgICAgICAgaWNvbiAicGx1cy5wbmciCiAgICAgICAgICAgICAgICB3aWR0aCAxMDAKICAgICAgICAgICAgICAgIG1ldGFkYXRhIGZhbHNlCiAgICAgICAgICAgICAgICBkZXNjcmlwdGlvbiBmYWxzZQogICAgICAgICAgICAgICAgc2hhcGUgQ2lyY2xlCiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICNmZjZmNmYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJtaW51cyIgewogICAgICAgICAgICAgICAgaWNvbiAibWludXMucG5nIgogICAgICAgICAgICAgICAgd2lkdGggMTAwCiAgICAgICAgICAgICAgICBtZXRhZGF0YSBmYWxzZQogICAgICAgICAgICAgICAgZGVzY3JpcHRpb24gZmFsc2UKICAgICAgICAgICAgICAgIHNoYXBlIENpcmNsZQogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjNzI3MjcyCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAic3dpdGNoIiB7CiAgICAgICAgICAgICAgICBpY29uICJzd2l0Y2gucG5nIgogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjMDM4ODAzCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiZnVzZSIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjZmYwMDAwCiAgICAgICAgICAgICAgICBpY29uIGZ1c2UuanBlZwogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgInJlbGF5IiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMwMDAwYmIKICAgICAgICAgICAgICAgIGljb24gcmVsYXkuanBnCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAicmVsYXk1IiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMwMDAwYmIKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJyZWxheV9jb25uZWN0b3IiIHsKICAgICAgICAgICAgICAgIGRlc2NyaXB0aW9uIGZhbHNlCiAgICAgICAgICAgICAgICBzaGFwZSBCb3gKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzAwMDBiYgogICAgICAgICAgICB9CgoKICAgICAgICAgICAgZWxlbWVudCAiRWxlbWVudCIgewogICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIlBlcnNvbiIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjMDU1MjdkCiAgICAgICAgICAgICAgICBzaGFwZSBwZXJzb24KICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJTb2Z0d2FyZSBTeXN0ZW0iIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzA2NjI5NgogICAgICAgICAgICB9CiAgICAgICAgfQogICAgfQoKICAgIGNvbmZpZ3VyYXRpb24gewogICAgICAgIHNjb3BlIHNvZnR3YXJlc3lzdGVtCiAgICB9Cgp9"
+    "structurizr.dsl" : "d29ya3NwYWNlICJOYW1lIiAiRGVzY3JpcHRpb24iIHsKCiAgICAhaWRlbnRpZmllcnMgaGllcmFyY2hpY2FsCgogICAgbW9kZWwgewoKICAgICAgICBhcmNoZXR5cGVzIHsKICAgICAgICAgICAgcmVsYXkgPSBjb250YWluZXIgewogICAgICAgICAgICAgICAgdGFncyAicmVsYXkiCiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIGZ1c2UgPSBjb250YWluZXIgewogICAgICAgICAgICAgICAgdGFncyAiZnVzZSIKICAgICAgICAgICAgfQoKICAgICAgICAgICAgc3dpdGNoID0gY29udGFpbmVyIHsKICAgICAgICAgICAgICAgIHRhZ3MgInN3aXRjaCIKICAgICAgICAgICAgfQoKICAgICAgICAgICAgbGlnaHQgPSBjb250YWluZXIgewogICAgICAgICAgICAgICAgdGFncyAibGlnaHQiCiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIHBsdXMgPSBjb21wb25lbnQgewogICAgICAgICAgICAgICAgdGFncyAicGx1cyIKICAgICAgICAgICAgfQoKICAgICAgICAgICAgbWludXMgPSBjb21wb25lbnQgewogICAgICAgICAgICAgICAgdGFncyAibWludXMiCiAgICAgICAgICAgIH0KICAgICAgICB9CgogICAgICAgIGVzID0gc29mdHdhcmVTeXN0ZW0gItCt0LvQtdC60YLRgNC40YfQtdGB0LrQsNGPINGB0LjRgdGC0LXQvNCwINCj0JDQlyIgewoKICAgICAgICAgICAgZ3JvdW5kID0gY29udGFpbmVyICLQnNCw0YHRgdCwICjQutC+0YDQv9GD0YEpIiB7CiAgICAgICAgICAgICAgICB0YWdzICJncm91bmQiCiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIGdyb3VuZF9zd2l0Y2ggPSBzd2l0Y2ggItCg0LDQt9C80YvQutCw0YLQtdC70Ywg0LzQsNGB0YHRiyIKCiAgICAgICAgICAgIHBvd2VyX2dyb3VwID0gZ3JvdXAgItCh0LjRgdGC0LXQvNCwINC/0LjRgtCw0L3QuNGPIiB7CiAgICAgICAgICAgICAgICBha2IgPSBjb250YWluZXIgItCQ0LrQutGD0LzRg9C70Y/RgtC+0YAiIHsKICAgICAgICAgICAgICAgICAgICBwbHVzID0gcGx1cyAiKyIKICAgICAgICAgICAgICAgICAgICBtaW51cyA9IG1pbnVzICItIgogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIHN0YXJ0ZXIgPSBjb250YWluZXIgItCh0YLQsNGA0YLQtdGAIiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyAic3RhcnRlciIKICAgICAgICAgICAgICAgICAgICBwbHVzID0gcGx1cyAiKyIKICAgICAgICAgICAgICAgICAgICBzdCA9IGNvbXBvbmVudCAi0JLRgtGP0LMuIDIw0JAiIHsKICAgICAgICAgICAgICAgICAgICAgICAgIyDQmNC90YTQvtGA0LzQsNGG0LjRjyDQviDQvNC+0YnQvdC+0YHRgtC4OiBodHRwczovL2ZvcnVtLnVhemJ1a2EucnUvc2hvd3RocmVhZC5waHA/dD00MDcxOAogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICBnZW5lcmF0b3IgPSBjb250YWluZXIgItCT0LXQvdC10YDQsNGC0L7RgCIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgImdlbmVyYXRvciIKICAgICAgICAgICAgICAgICAgICBwbHVzID0gcGx1cyAiKyIKICAgICAgICAgICAgICAgICAgICBtaW51cyA9IG1pbnVzICItIgogICAgICAgICAgICAgICAgICAgIHYgPSBjb21wb25lbnQgItCS0L7Qt9CxIgogICAgICAgICAgICAgICAgfQogICAgICAgICAgICB9CgogICAgICAgICAgICBncm91cCAi0KHQuNGB0YLQtdC80LAg0LfQsNC20LjQs9Cw0L3QuNGPIiB7CiAgICAgICAgICAgICAgICBpZ25pdGlvbl9yZWxheSA9IHJlbGF5ICLQoNC10LvQtSDQt9Cw0LbQuNCz0LDQvdC40Y8iIHsKICAgICAgICAgICAgICAgICAgICAjcmVsYXkgPSBjb250YWluZXIgItCg0LXQu9C1IiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5IgogICAgICAgICAgICAgICAgICAgICAgICBfMzAgPSBjb21wb25lbnQgIjMwIiB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV8zMCxyZWxheV9jb25uZWN0b3IiCiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgXzg3ID0gY29tcG9uZW50ICI4NyIgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXlfODcscmVsYXlfY29ubmVjdG9yIgogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIF84NiA9IGNvbXBvbmVudCAiODYiIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5Xzg2LHJlbGF5X2Nvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICBfODUgPSBjb21wb25lbnQgIjg1IiB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV84NSxyZWxheV9jb25uZWN0b3IiCiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgXzMwIC0+IF84NyB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV9wd3IiCiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgXzg1IC0+IF84NiB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV9jdHIiCiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAjfQogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIHN0YXJ0ZXJfcmVsYXkgPSByZWxheSAi0KDQtdC70LUg0YHRgtCw0YDRgtC10YDQsCIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5NSIKICAgICAgICAgICAgICAgICAgICBfMzAgPSBjb21wb25lbnQgIjMwIiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5XzMwLHJlbGF5X2Nvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgXzg3ID0gY29tcG9uZW50ICI4NyIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV84NyxyZWxheV9jb25uZWN0b3IiCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIF84OCA9IGNvbXBvbmVudCAiODgiIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXlfODgscmVsYXlfY29ubmVjdG9yIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICBfODYgPSBjb21wb25lbnQgIjg2IiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5Xzg2LHJlbGF5X2Nvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgXzg1ID0gY29tcG9uZW50ICI4NSIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV84NSxyZWxheV9jb25uZWN0b3IiCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgIF8zMCAtPiBfODcgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV9wd3IiCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIF8zMCAtPiBfODggewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV9wd3JfZGVmYXVsdF9jb25uZWN0ZWQiCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgIF84NSAtPiBfODYgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV9jdHIiCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIGlnbml0aW9uX3JlbGF5X2Z1c2UgPSBmdXNlICLQn9GA0LXQtNC+0YXRgNCw0L3QuNGC0LXQu9GMINC00LvRjyDRgNC10LvQtSDQt9Cw0LbQuNCz0LDQvdC40Y8uIDgwQSIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgImZ1c2UiCiAgICAgICAgICAgICAgICAgICAgcGx1cyA9IGNvbXBvbmVudCAiKyIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJmdXNlX2Nvbm5lY3RvcixwbHVzIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICBtaW51cyA9IGNvbXBvbmVudCAiLSIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJmdXNlX2Nvbm5lY3RvcixtaW51cyIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICBzdGFydGVyX3JlbGF5X2Z1c2UgPSBmdXNlICLQn9GA0LXQtNC+0YXRgNCw0L3QuNGC0LXQu9GMINC00LvRjyDRgNC10LvQtSDRgdGC0LDRgNGC0LXRgNCwLiA4MEEiIHsKICAgICAgICAgICAgICAgICAgICB0YWdzICJmdXNlIgogICAgICAgICAgICAgICAgICAgIHBsdXMgPSBjb21wb25lbnQgIisiIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAiZnVzZV9jb25uZWN0b3IscGx1cyIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgbWludXMgPSBjb21wb25lbnQgIi0iIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAiZnVzZV9jb25uZWN0b3IsbWludXMiCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIGlnbml0aW9uX3N3aXRjaCA9IHN3aXRjaCAi0JLRi9C60LvRjtGH0LDRgtC10LvRjCDQt9Cw0LbQuNCz0LDQvdC40Y8iCgogICAgICAgICAgICAgICAgaWduaXRpb24gPSBjb250YWluZXIgItCh0LjRgdGC0LXQvNCwINC30LDQttC40LPQsNC90LjRjyIKCiAgICAgICAgICAgICAgICBzdGFydF9idXR0b24gPSBzd2l0Y2ggItCa0L3QvtC/0LrQsCDQodGC0LDRgNGCIgogICAgICAgICAgICB9CgogICAgICAgICAgICB3aW5jaCA9IGNvbnRhaW5lciAi0JvQtdCx0LXQtNC60LAiIHsKICAgICAgICAgICAgICAgIHBsdXMgPSBwbHVzICIrIgogICAgICAgICAgICAgICAgbWludXMgPSBtaW51cyAiLSIKICAgICAgICAgICAgfQoKICAgICAgICAgICAgb3RoZXJfZnJvbV9pZ25pdGlvbiA9IGNvbnRhaW5lciAi0L/RgNC+0YfQuNC1INC/0L7RgtGA0LXQsdC40YLQtdC70Lgg0L7RgiDQt9Cw0LbQuNCz0LDQvdC40Y8iCiAgICAgICAgICAgIG90aGVyX2Zyb21fYWtiX2dlbiA9IGNvbnRhaW5lciAi0L/RgNC+0YfQuNC1INC/0L7RgtGA0LXQsdC40YLQtdC70Lgg0L7RgiDQkNCa0JEg0Lgg0LPQtdC90LXRgNCw0YLQvtGA0LAg0L3QsNC/0YDRj9C80YPRjiIKICAgICAgICAgICAgY29udHJvbF9saW5lX2Zyb21faWduaXRpb24gPSBjb250YWluZXIgItCf0L7RgtGA0LXQsdC40YLQtdC70Lgg0YPQv9GA0LDQstC70Y/RjtGJ0LXQuSDQu9C40L3QuNC4INC+0YIg0LfQsNC20LjQs9Cw0L3QuNGPIgogICAgICAgICAgICBjb250cm9sX2xpbmVfZnJvbV9pZ25pdGlvbl9mdXNlID0gZnVzZSAi0J/RgNC10LTQvtGF0YDQsNC90LjRgtC10LvRjCDQv9C+0YLRgNC10LHQuNGC0LXQu9C10Lkg0YPQv9GA0LDQstC70Y/RjtGJ0LXQuSDQu9C40L3QuNC4INC+0YIg0LfQsNC20LjQs9Cw0L3QuNGPIiB7CiAgICAgICAgICAgICAgICB0YWdzICJmdXNlIgogICAgICAgICAgICAgICAgcGx1cyA9IGNvbXBvbmVudCAiKyIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgImZ1c2VfY29ubmVjdG9yLHBsdXMiCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICBtaW51cyA9IGNvbXBvbmVudCAiLSIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgImZ1c2VfY29ubmVjdG9yLG1pbnVzIgogICAgICAgICAgICAgICAgfQogICAgICAgICAgICB9CgogICAgICAgICAgICBpbnRlcm5hbF9saWdoaW5nID0gY29udGFpbmVyICLQodC40YHRgtC10LzQsCDQv9C+0LTRgdCy0LXRgtC60Lgg0L/RgNC40LHQvtGA0L7QsiIKCiAgICAgICAgICAgIGdyb3VwICLQodC40YHRgtC10LzQsCDQvtGF0LvQsNC20LTQtdC90LjRjyIgewoKICAgICAgICAgICAgICAgIGNvb2xhbnRfdmVudF8xID0gY29udGFpbmVyICLQrdC70LXQutGC0YDQvtCy0LXQvdGC0LjQu9GP0YLQvtGAINC+0YXQu9Cw0LbQtNC10L3QuNGPINCU0JLQoSAxInsKICAgICAgICAgICAgICAgICAgICB0YWdzICJ2ZW50IgogICAgICAgICAgICAgICAgICAgIHBsdXMgPSBwbHVzICIrIgogICAgICAgICAgICAgICAgICAgIG1pbnVzID0gbWludXMgIi0iCiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgY29vbGFudF92ZW50XzFfZnVzZSA9IGZ1c2UgItCf0YDQtdC00L7RhdGA0LDQvdC40YLQtdC70Ywg0LLQtdC90YLQuNC70Y/RgtC+0YDQsCDQvtGF0LvQsNC20LTQtdC90LjRjyDQlNCS0KEgMSIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgImZ1c2UiCiAgICAgICAgICAgICAgICAgICAgcGx1cyA9IGNvbXBvbmVudCAiKyIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJmdXNlX2Nvbm5lY3RvcixwbHVzIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICBtaW51cyA9IGNvbXBvbmVudCAiLSIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJmdXNlX2Nvbm5lY3RvcixtaW51cyIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgY29vbGFudF92ZW50XzFfcmVsYXkgPSByZWxheSAi0KDQtdC70LUg0Y3Qu9C10LrRgtGA0L7QstC10L3RgtC40LvRj9GC0L7RgNCwINC+0YXQu9Cw0LbQtNC10L3QuNGPINCU0JLQoSAxIiB7CiAgICAgICAgICAgICAgICAgICAgI3JlbGF5ID0gY29udGFpbmVyICLQoNC10LvQtSIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheSIKICAgICAgICAgICAgICAgICAgICAgICAgXzMwID0gY29tcG9uZW50ICIzMCIgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXlfMzAscmVsYXlfY29ubmVjdG9yIgogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIF84NyA9IGNvbXBvbmVudCAiODciIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5Xzg3LHJlbGF5X2Nvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICBfODYgPSBjb21wb25lbnQgIjg2IiB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV84NixyZWxheV9jb25uZWN0b3IiCiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgXzg1ID0gY29tcG9uZW50ICI4NSIgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXlfODUscmVsYXlfY29ubmVjdG9yIgogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgIF8zMCAtPiBfODcgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXlfcHdyIgogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIF84NSAtPiBfODYgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXlfY3RyIgogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgI30KICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICBjb29sYW50X3ZlbnRfMiA9IGNvbnRhaW5lciAi0K3Qu9C10LrRgtGA0L7QstC10L3RgtC40LvRj9GC0L7RgCDQvtGF0LvQsNC20LTQtdC90LjRjyDQlNCS0KEgMiJ7CiAgICAgICAgICAgICAgICAgICAgdGFncyAidmVudCIKICAgICAgICAgICAgICAgICAgICBwbHVzID0gcGx1cyAiKyIKICAgICAgICAgICAgICAgICAgICBtaW51cyA9IG1pbnVzICItIgogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIGNvb2xhbnRfdmVudF8yX2Z1c2UgPSBmdXNlICLQn9GA0LXQtNC+0YXRgNCw0L3QuNGC0LXQu9GMINCy0LXQvdGC0LjQu9GP0YLQvtGA0LAg0L7RhdC70LDQttC00LXQvdC40Y8g0JTQktChIDIiIHsKICAgICAgICAgICAgICAgICAgICB0YWdzICJmdXNlIgogICAgICAgICAgICAgICAgICAgIHBsdXMgPSBjb21wb25lbnQgIisiIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAiZnVzZV9jb25uZWN0b3IscGx1cyIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgbWludXMgPSBjb21wb25lbnQgIi0iIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAiZnVzZV9jb25uZWN0b3IsbWludXMiCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIGNvb2xhbnRfdmVudF8yX3JlbGF5ID0gcmVsYXkgItCg0LXQu9C1INGN0LvQtdC60YLRgNC+0LLQtdC90YLQuNC70Y/RgtC+0YDQsCDQvtGF0LvQsNC20LTQtdC90LjRjyDQlNCS0KEgMiIgewogICAgICAgICAgICAgICAgICAgICNyZWxheSA9IGNvbnRhaW5lciAi0KDQtdC70LUiIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXkiCiAgICAgICAgICAgICAgICAgICAgICAgIF8zMCA9IGNvbXBvbmVudCAiMzAiIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5XzMwLHJlbGF5X2Nvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICBfODcgPSBjb21wb25lbnQgIjg3IiB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV84NyxyZWxheV9jb25uZWN0b3IiCiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgXzg2ID0gY29tcG9uZW50ICI4NiIgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXlfODYscmVsYXlfY29ubmVjdG9yIgogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIF84NSA9IGNvbXBvbmVudCAiODUiIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5Xzg1LHJlbGF5X2Nvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICBfMzAgLT4gXzg3IHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5X3B3ciIKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICBfODUgLT4gXzg2IHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5X2N0ciIKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICN9CiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgY29vbGFudF9zZW5zb3IgPSBjb250YWluZXIgItCU0LDRgtGH0LjQuiDQstC60LvRjtGH0LXQvdC40Y8g0Y3Qu9C10LrRgtGA0L7QstC10L3RgtC40LvRj9GC0L7RgNC+0LIg0L7RhdC70LDQttC00LXQvdC40Y8g0JTQktChIgoKICAgICAgICAgICAgICAgIGNvb2xhbnRfY29udHJvbF9zd2l0Y2ggPSBzd2l0Y2ggItCf0LXRgNC10LrQu9GO0YfQsNGC0LXQu9GMINGD0L/RgNCw0LLQu9C10L3QuNGPINCy0LXQvdGC0LjQu9GP0YLQvtGA0LDQvNC4INC+0YXQu9Cw0LbQtNC10L3QuNGPINCU0JLQoSIgewogICAgICAgICAgICAgICAgICAgIEQgPSBjb21wb25lbnQgIkQiCiAgICAgICAgICAgICAgICAgICAgSSA9IGNvbXBvbmVudCAiSSIKICAgICAgICAgICAgICAgICAgICBVID0gY29tcG9uZW50ICJVIgogICAgICAgICAgICAgICAgICAgIFYgPSBjb21wb25lbnQgIlYiCiAgICAgICAgICAgICAgICAgICAgTCA9IGNvbXBvbmVudCAiTCIKICAgICAgICAgICAgICAgICAgICBIID0gY29tcG9uZW50ICJIIgogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIGNvb2xhbnRfY29udHJvbF9saWdodCA9IGxpZ2h0ICLQn9C+0LTRgdCy0LXRgtC60LAg0L/QtdGA0LXQutC70Y7Rh9Cw0YLQtdC70Y8g0YPQv9GA0LDQstC70LXQvdC40Y8g0LLQtdC90YLQuNC70Y/RgtC+0YDQsNC80Lgg0L7RhdC70LDQttC00LXQvdC40Y8g0JTQktChIiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyAibGlnaHQiCiAgICAgICAgICAgICAgICAgICAgcGx1cyA9IGNvbXBvbmVudCAiKyIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJsaWdodF9jb25uZWN0b3IscGx1cyIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgbWludXMgPSBjb21wb25lbnQgIi0iIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAibGlnaHRfY29ubmVjdG9yLG1pbnVzIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgfQoKICAgICAgICAgICAgIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMKICAgICAgICAgICAgIyDQntC/0LjRgdCw0L3QuNC1INGB0L7QtdC00LjQvdC10L3QuNC5ICMKICAgICAgICAgICAgIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMKICAgIAogICAgICAgICAgICBncm91bmRfc3dpdGNoIC0+IGdyb3VuZCAiNTAg0LzQvDIiIHsKICAgICAgICAgICAgICAgIHRhZ3MgIjUw0LzQvDIiCiAgICAgICAgICAgIH0KICAgIAogICAgICAgICAgICBha2IubWludXMgLT4gZ3JvdW5kX3N3aXRjaCAiNTAg0LzQvDIiIHsKICAgICAgICAgICAgICAgIHRhZ3MgIjUw0LzQvDIiCiAgICAgICAgICAgIH0KICAgICAgICAgICAgYWtiLnBsdXMgLT4gc3RhcnRlci5wbHVzICI1MCDQvNC8MiIgewogICAgICAgICAgICAgICAgdGFncyAiNTDQvNC8MiIKICAgICAgICAgICAgICAgIHRhZ3MgInJlZCIKICAgICAgICAgICAgfQogICAgICAgICAgICBha2IucGx1cyAtPiB3aW5jaC5wbHVzICI1MCDQvNC8MiIgewogICAgICAgICAgICAgICAgdGFncyAiNTDQvNC8MiIKICAgICAgICAgICAgICAgIHRhZ3MgInJlZCIKICAgICAgICAgICAgfQoKICAgIAogICAgICAgICAgICBnZW5lcmF0b3IubWludXMgLT4gZ3JvdW5kICI1MCDQvNC8MiIgewogICAgICAgICAgICAgICAgdGFncyAiNTDQvNC8MiIKICAgICAgICAgICAgfQogICAgICAgICAgICBnZW5lcmF0b3IucGx1cyAtPiBzdGFydGVyLnBsdXMgIjUwINC80LwyIiB7CiAgICAgICAgICAgICAgICB0YWdzICI1MNC80LwyIgogICAgICAgICAgICAgICAgdGFncyAicmVkIgogICAgICAgICAgICB9CiAgICAKICAgICAgICAgICAgc3RhcnRlci5wbHVzIC0+IGlnbml0aW9uX3JlbGF5X2Z1c2UucGx1cyAiMTYg0LzQvDIiIHsKICAgICAgICAgICAgICAgIHRhZ3MgIjE20LzQvDIiCiAgICAgICAgICAgICAgICB0YWdzICJyZWQiCiAgICAgICAgICAgIH0KICAgIAogICAgICAgICAgICBpZ25pdGlvbl9yZWxheV9mdXNlLm1pbnVzIC0+IGlnbml0aW9uX3JlbGF5Ll8zMAogICAgICAgICAgICBpZ25pdGlvbl9yZWxheV9mdXNlLm1pbnVzIC0+IGlnbml0aW9uX3N3aXRjaAogICAgICAgICAgICBpZ25pdGlvbl9yZWxheV9mdXNlLm1pbnVzIC0+IG90aGVyX2Zyb21fYWtiX2dlbgogICAgICAgICAgICBpZ25pdGlvbl9yZWxheV9mdXNlLm1pbnVzIC0+IGdlbmVyYXRvci52ICI0INC80LwyIiB7CiAgICAgICAgICAgICAgICB0YWdzICI00LzQvDIiCiAgICAgICAgICAgICAgICB0YWdzICJyZWQiCiAgICAgICAgICAgIH0KICAgIAogICAgICAgICAgICBpZ25pdGlvbl9zd2l0Y2ggLT4gaWduaXRpb25fcmVsYXkuXzg1CiAgICAgICAgICAgIAogICAgICAgICAgICBpZ25pdGlvbl9yZWxheS5fODYgLT4gZ3JvdW5kCiAgICAgICAgICAgIGlnbml0aW9uX3JlbGF5Ll84NyAtPiBzdGFydGVyX3JlbGF5X2Z1c2UucGx1cyAiMTYg0LzQvDIiIHsKICAgICAgICAgICAgICAgIHRhZ3MgIjE20LzQvDIiCiAgICAgICAgICAgICAgICB0YWdzICJyZWQiCiAgICAgICAgICAgIH0KICAgICAgICAgICAgCiAgICAgICAgICAgIHN0YXJ0ZXJfcmVsYXlfZnVzZS5taW51cyAtPiBzdGFydGVyX3JlbGF5Ll8zMCAiNiDQvNC8MiIgewogICAgICAgICAgICAgICAgdGFncyAiNtC80LwyIgogICAgICAgICAgICAgICAgdGFncyAiYmxhY2siCiAgICAgICAgICAgIH0KICAgICAgICAgICAgc3RhcnRlcl9yZWxheV9mdXNlLm1pbnVzIC0+IGlnbml0aW9uICI0INC80LwyIiB7CiAgICAgICAgICAgICAgICB0YWdzICI00LzQvDIiCiAgICAgICAgICAgICAgICB0YWdzICJibGFjayIKICAgICAgICAgICAgfQogICAgICAgICAgICBzdGFydGVyX3JlbGF5X2Z1c2UubWludXMgLT4gb3RoZXJfZnJvbV9pZ25pdGlvbgogICAgICAgICAgICBzdGFydGVyX3JlbGF5X2Z1c2UubWludXMgLT4gc3RhcnRfYnV0dG9uCiAgICAKICAgICAgICAgICAgc3RhcnRfYnV0dG9uIC0+IHN0YXJ0ZXJfcmVsYXkuXzg1CiAgICAKICAgICAgICAgICAgc3RhcnRlcl9yZWxheS5fODYgLT4gZ3JvdW5kCiAgICAgICAgICAgIHN0YXJ0ZXJfcmVsYXkuXzg3IC0+IHN0YXJ0ZXIuc3QgIjYg0LzQvDIiIHsKICAgICAgICAgICAgICAgIHRhZ3MgIjbQvNC8MiIKICAgICAgICAgICAgICAgIHRhZ3MgImJsYWNrIgogICAgICAgICAgICB9CiAgICAgICAgICAgIHN0YXJ0ZXJfcmVsYXkuXzg4IC0+IGNvbnRyb2xfbGluZV9mcm9tX2lnbml0aW9uX2Z1c2UucGx1cyAiNiDQvNC8MiIgewogICAgICAgICAgICAgICAgdGFncyAiNtC80LwyIgogICAgICAgICAgICAgICAgdGFncyAiYmxhY2siCiAgICAgICAgICAgIH0KICAgICAgICAgICAgY29udHJvbF9saW5lX2Zyb21faWduaXRpb25fZnVzZS5taW51cyAtPiBjb250cm9sX2xpbmVfZnJvbV9pZ25pdGlvbgogICAgICAgIAogICAgICAgICAgICB3aW5jaC5taW51cyAtPiBncm91bmQgIjUwINC80LwyIiB7CiAgICAgICAgICAgICAgICB0YWdzICI1MNC80LwyIgogICAgICAgICAgICAgICAgdGFncyAiYmxhY2siCiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIGNvb2xhbnRfdmVudF8xLm1pbnVzIC0+IGdyb3VuZAogICAgICAgICAgICBjb29sYW50X3ZlbnRfMV9mdXNlLm1pbnVzIC0+IGNvb2xhbnRfdmVudF8xLnBsdXMKICAgICAgICAgICAgY29vbGFudF92ZW50XzFfcmVsYXkuXzg3IC0+IGNvb2xhbnRfdmVudF8xX2Z1c2UucGx1cwogICAgICAgICAgICBjb250cm9sX2xpbmVfZnJvbV9pZ25pdGlvbiAtPiBjb29sYW50X3ZlbnRfMV9yZWxheS5fODUKICAgICAgICAgICAgb3RoZXJfZnJvbV9ha2JfZ2VuIC0+IGNvb2xhbnRfdmVudF8xX3JlbGF5Ll8zMAogICAgICAgICAgICBjb29sYW50X3ZlbnRfMV9yZWxheS5fODYgLT4gY29vbGFudF9jb250cm9sX3N3aXRjaC5JCgogICAgICAgICAgICBjb29sYW50X3ZlbnRfMi5taW51cyAtPiBncm91bmQKICAgICAgICAgICAgY29vbGFudF92ZW50XzJfZnVzZS5taW51cyAtPiBjb29sYW50X3ZlbnRfMi5wbHVzCiAgICAgICAgICAgIGNvb2xhbnRfdmVudF8yX3JlbGF5Ll84NyAtPiBjb29sYW50X3ZlbnRfMl9mdXNlLnBsdXMKICAgICAgICAgICAgY29udHJvbF9saW5lX2Zyb21faWduaXRpb24gLT4gY29vbGFudF92ZW50XzJfcmVsYXkuXzg1CiAgICAgICAgICAgIG90aGVyX2Zyb21fYWtiX2dlbiAtPiBjb29sYW50X3ZlbnRfMl9yZWxheS5fMzAKICAgICAgICAgICAgY29vbGFudF92ZW50XzJfcmVsYXkuXzg2IC0+IGNvb2xhbnRfY29udHJvbF9zd2l0Y2guSQoKICAgICAgICAgICAgY29vbGFudF9zZW5zb3IgLT4gZ3JvdW5kCiAgICAgICAgICAgIGNvb2xhbnRfc2Vuc29yIC0+IGNvb2xhbnRfY29udHJvbF9zd2l0Y2guRAogICAgICAgICAgICBjb29sYW50X2NvbnRyb2xfc3dpdGNoLlUgLT4gZ3JvdW5kCiAgICAgICAgICAgIGNvb2xhbnRfY29udHJvbF9saWdodC5wbHVzIC0+IGNvb2xhbnRfY29udHJvbF9zd2l0Y2guSAogICAgICAgICAgICBpbnRlcm5hbF9saWdoaW5nIC0+IGNvb2xhbnRfY29udHJvbF9saWdodC5wbHVzCiAgICAgICAgICAgIGNvb2xhbnRfY29udHJvbF9saWdodC5taW51cyAtPiBncm91bmQKICAgICAgICAgICAgY29vbGFudF9jb250cm9sX3N3aXRjaC5EIC0+IGNvb2xhbnRfY29udHJvbF9saWdodC5taW51cwogICAgICAgIH0KICAgIH0KCiAgICB2aWV3cyB7CgogICAgICAgICMjIyMjIyMjIyMjIyMjIyMjCiAgICAgICAgIyDQntC/0LjRgdCw0L3QuNC1INCy0YzRjtGFICMKICAgICAgICAjIyMjIyMjIyMjIyMjIyMjIwogICAgICAgIGNvbnRhaW5lciBlcyBlc192aWV3ICLQntCx0YnQuNC5INCy0LjQtCDRjdC70LXQutGC0YDQuNGH0LXRgdC60L7QuSDRgdC40YHRgtC10LzRiyIgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgYXV0b2xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgY29tcG9uZW50IGVzLmFrYiBwb3dlcl9zeXN0ZW1fdmlldyAi0KHQuNGB0YLQtdC80LAg0L/QuNGC0LDQvdC40Y8iIHsKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC50eXBlPT1jb21wb25lbnQgJiYgZWxlbWVudD09LT5lcy5wb3dlcl9ncm91cC0+IgogICAgICAgICAgICBpbmNsdWRlICJlbGVtZW50LnR5cGU9PWNvbnRhaW5lciAmJiBlbGVtZW50PT0tPmVzLnBvd2VyX2dyb3VwLT4iCiAgICAgICAgICAgICNpbmNsdWRlICJlbGVtZW50LnR5cGU9PWNvbXBvbmVudCIKICAgICAgICAgICAgI2luY2x1ZGUgImVsZW1lbnQudHlwZT09Y29udGFpbmVyIgogICAgICAgICAgICBhdXRvbGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICBjb21wb25lbnQgZXMuYWtiIG92ZXJhbGxfY29tcG9uZW50X3ZpZXcgItCe0LHRidC40Lkg0LLQuNC0INCy0YHQtdGFINC60L7QvNC/0L7QvdC10L3RgiIgewogICAgICAgICAgICBpbmNsdWRlICJlbGVtZW50LnR5cGU9PWNvbXBvbmVudCIKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC50eXBlPT1jb250YWluZXIiCiAgICAgICAgICAgIGF1dG9sYXlvdXQgbHIKICAgICAgICB9CgogICAgICAgIGNvbXBvbmVudCBlcy5ha2IgewogICAgICAgICAgICBpbmNsdWRlICJlbGVtZW50LnBhcmVudD09ZXMuYWtiIgogICAgICAgICAgICBpbmNsdWRlICJlbGVtZW50LnR5cGU9PWNvbXBvbmVudCAmJiAtPmVzLmFrYi0+IgogICAgICAgICAgICBpbmNsdWRlICJlbGVtZW50LnR5cGU9PWNvbnRhaW5lciAmJiAtPmVzLmFrYi0+IgogICAgICAgICAgICBhdXRvbGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICBjb21wb25lbnQgZXMuc3RhcnRlciB7CiAgICAgICAgICAgIGluY2x1ZGUgImVsZW1lbnQucGFyZW50PT1lcy5zdGFydGVyIgogICAgICAgICAgICBpbmNsdWRlICJlbGVtZW50LnR5cGU9PWNvbXBvbmVudCAmJiAtPmVzLnN0YXJ0ZXItPiIKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC50eXBlPT1jb250YWluZXIgJiYgLT5lcy5zdGFydGVyLT4iCiAgICAgICAgICAgIGF1dG9sYXlvdXQgbHIKICAgICAgICB9CgogICAgICAgIGNvbXBvbmVudCBlcy5nZW5lcmF0b3IgewogICAgICAgICAgICBpbmNsdWRlICJlbGVtZW50LnBhcmVudD09ZXMuZ2VuZXJhdG9yIgogICAgICAgICAgICBpbmNsdWRlICJlbGVtZW50PT0tPmVzLmdlbmVyYXRvci0+IgogICAgICAgICAgICBpbmNsdWRlICItPmVzLmdlbmVyYXRvci0+IgogICAgICAgICAgICBpbmNsdWRlICIqLT4qIgogICAgICAgICAgICAjaW5jbHVkZSAiZWxlbWVudC50eXBlPT1jb21wb25lbnQgJiYgLT5lcy5nZW5lcmF0b3ItPiIKICAgICAgICAgICAgI2luY2x1ZGUgImVsZW1lbnQudHlwZT09Y29udGFpbmVyICYmIC0+ZXMuZ2VuZXJhdG9yLT4iCiAgICAgICAgICAgIGF1dG9sYXlvdXQgbHIKICAgICAgICB9CgogICAgICAgIGNvbXBvbmVudCBlcy5pZ25pdGlvbl9yZWxheSB7CiAgICAgICAgICAgIGluY2x1ZGUgImVsZW1lbnQucGFyZW50PT1lcy5pZ25pdGlvbl9yZWxheSIKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC50eXBlPT1jb21wb25lbnQgJiYgLT5lcy5pZ25pdGlvbl9yZWxheS0+IgogICAgICAgICAgICBpbmNsdWRlICJlbGVtZW50LnR5cGU9PWNvbnRhaW5lciAmJiAtPmVzLmlnbml0aW9uX3JlbGF5LT4iCiAgICAgICAgICAgIGF1dG9sYXlvdXQgbHIKICAgICAgICB9CgogICAgICAgIGNvbXBvbmVudCBlcy5zdGFydGVyX3JlbGF5IHsKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC5wYXJlbnQ9PWVzLnN0YXJ0ZXJfcmVsYXkiCiAgICAgICAgICAgIGluY2x1ZGUgImVsZW1lbnQudHlwZT09Y29tcG9uZW50ICYmIC0+ZXMuc3RhcnRlcl9yZWxheS0+IgogICAgICAgICAgICBpbmNsdWRlICJlbGVtZW50LnR5cGU9PWNvbnRhaW5lciAmJiAtPmVzLnN0YXJ0ZXJfcmVsYXktPiIKICAgICAgICAgICAgYXV0b2xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgY29tcG9uZW50IGVzLmlnbml0aW9uX3JlbGF5X2Z1c2UgewogICAgICAgICAgICBpbmNsdWRlICJlbGVtZW50LnBhcmVudD09ZXMuaWduaXRpb25fcmVsYXlfZnVzZSIKICAgICAgICAgICAgaW5jbHVkZSAiLT5lcy5pZ25pdGlvbl9yZWxheV9mdXNlLT4iCiAgICAgICAgICAgICNpbmNsdWRlICJlbGVtZW50LnR5cGU9PWNvbXBvbmVudCAmJiAtPmVzLmlnbml0aW9uX3JlbGF5X2Z1c2UtPiIKICAgICAgICAgICAgI2luY2x1ZGUgImVsZW1lbnQudHlwZT09Y29udGFpbmVyICYmIC0+ZXMuaWduaXRpb25fcmVsYXlfZnVzZS0+IgogICAgICAgICAgICBhdXRvbGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICBjb21wb25lbnQgZXMuc3RhcnRlcl9yZWxheV9mdXNlIHsKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC5wYXJlbnQ9PWVzLnN0YXJ0ZXJfcmVsYXlfZnVzZSIKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC50eXBlPT1jb21wb25lbnQgJiYgLT5lcy5zdGFydGVyX3JlbGF5X2Z1c2UtPiIKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC50eXBlPT1jb250YWluZXIgJiYgLT5lcy5zdGFydGVyX3JlbGF5X2Z1c2UtPiIKICAgICAgICAgICAgYXV0b2xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgY29tcG9uZW50IGVzLndpbmNoIHsKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC5wYXJlbnQ9PWVzLndpbmNoIgogICAgICAgICAgICBpbmNsdWRlICJlbGVtZW50LnR5cGU9PWNvbXBvbmVudCAmJiAtPmVzLndpbmNoLT4iCiAgICAgICAgICAgIGluY2x1ZGUgImVsZW1lbnQudHlwZT09Y29udGFpbmVyICYmIC0+ZXMud2luY2gtPiIKICAgICAgICAgICAgYXV0b2xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgc3R5bGVzIHsKCiAgICAgICAgICAgICMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjCiAgICAgICAgICAgICMg0J7Qv9C40YHQsNC90LjQtSDRgdC+0LXQtNC40L3QtdC90LjQuSAjCiAgICAgICAgICAgICMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjCgogICAgICAgICAgICByZWxhdGlvbnNoaXAgIlJlbGF0aW9uc2hpcCIgewogICAgICAgICAgICAgICAgc3R5bGUgc29saWQKICAgICAgICAgICAgICAgIHJvdXRpbmcgQ3VydmVkCiAgICAgICAgICAgIH0KICAgICAgICAgICAgcmVsYXRpb25zaGlwICJyZWxheV9wd3IiIHsKICAgICAgICAgICAgICAgIHN0eWxlIGRhc2hlZAogICAgICAgICAgICAgICAgdGhpY2tuZXNzIDMKICAgICAgICAgICAgfQogICAgICAgICAgICByZWxhdGlvbnNoaXAgInJlbGF5X2N0ciIgewogICAgICAgICAgICAgICAgc3R5bGUgZG90dGVkCiAgICAgICAgICAgIH0KICAgICAgICAgICAgcmVsYXRpb25zaGlwICJyZWQiIHsKICAgICAgICAgICAgICAgIGNvbG9yICNmZjAwMDAKICAgICAgICAgICAgfQogICAgICAgICAgICByZWxhdGlvbnNoaXAgImJsYWNrIiB7CiAgICAgICAgICAgICAgICBjb2xvciAjMDAwMDAwCiAgICAgICAgICAgIH0KICAgICAgICAgICAgcmVsYXRpb25zaGlwICI1MNC80LwyIiB7CiAgICAgICAgICAgICAgICB0aGlja25lc3MgNTAKICAgICAgICAgICAgfQogICAgICAgICAgICByZWxhdGlvbnNoaXAgIjE20LzQvDIiIHsKICAgICAgICAgICAgICAgIHRoaWNrbmVzcyAxNgogICAgICAgICAgICB9CiAgICAgICAgICAgIHJlbGF0aW9uc2hpcCAiNtC80LwyIiB7CiAgICAgICAgICAgICAgICB0aGlja25lc3MgNgogICAgICAgICAgICB9CiAgICAgICAgICAgIHJlbGF0aW9uc2hpcCAiNNC80LwyIiB7CiAgICAgICAgICAgICAgICB0aGlja25lc3MgNAogICAgICAgICAgICB9CgoKICAgICAgICAgICAgIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwogICAgICAgICAgICAjINCe0L/QuNGB0LDQvdC40LUg0Y3Qu9C10LzQtdC90YLQvtCyICMKICAgICAgICAgICAgIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwogICAgICAgICAgICBlbGVtZW50ICJDb21wb25lbnQiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzgwODA4MAogICAgICAgICAgICAgICAgd2lkdGggMTAwCiAgICAgICAgICAgICAgICBoZWlnaHQgMTAwCiAgICAgICAgICAgICAgICBtZXRhZGF0YSBmYWxzZQogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIkNvbnRhaW5lciIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjMDc3M2FmCiAgICAgICAgICAgICAgICBtZXRhZGF0YSBmYWxzZQogICAgICAgICAgICB9CgogICAgICAgICAgICBlbGVtZW50ICJ2ZW50IiB7CiAgICAgICAgICAgICAgICBzaGFwZSAiSGV4YWdvbiIKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzAwMDAwMAogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgInN0YXJ0ZXIiIHsKICAgICAgICAgICAgICAgIGljb24gInN0YXJ0ZXIuanBnIgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgImdlbmVyYXRvciIgewogICAgICAgICAgICAgICAgc2hhcGUgcGlwZQogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgInBsdXMiIHsKICAgICAgICAgICAgICAgIGljb24gInBsdXMucG5nIgogICAgICAgICAgICAgICAgd2lkdGggMTAwCiAgICAgICAgICAgICAgICBtZXRhZGF0YSBmYWxzZQogICAgICAgICAgICAgICAgZGVzY3JpcHRpb24gZmFsc2UKICAgICAgICAgICAgICAgIHNoYXBlIENpcmNsZQogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjZmY2ZjZmCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAibWludXMiIHsKICAgICAgICAgICAgICAgIGljb24gIm1pbnVzLnBuZyIKICAgICAgICAgICAgICAgIHdpZHRoIDEwMAogICAgICAgICAgICAgICAgbWV0YWRhdGEgZmFsc2UKICAgICAgICAgICAgICAgIGRlc2NyaXB0aW9uIGZhbHNlCiAgICAgICAgICAgICAgICBzaGFwZSBDaXJjbGUKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzcyNzI3MgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgInN3aXRjaCIgewogICAgICAgICAgICAgICAgaWNvbiAic3dpdGNoLnBuZyIKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzAzODgwMwogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgImZ1c2UiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgI2ZmMDAwMAogICAgICAgICAgICAgICAgaWNvbiBmdXNlLmpwZWcKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJyZWxheSIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjMDAwMGJiCiAgICAgICAgICAgICAgICBpY29uIHJlbGF5LmpwZwogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgInJlbGF5NSIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjMDAwMGJiCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAicmVsYXlfY29ubmVjdG9yIiB7CiAgICAgICAgICAgICAgICBkZXNjcmlwdGlvbiBmYWxzZQogICAgICAgICAgICAgICAgc2hhcGUgQm94CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMwMDAwYmIKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJsaWdodF9jb25uZWN0b3IiIHsKICAgICAgICAgICAgICAgIGRlc2NyaXB0aW9uIGZhbHNlCiAgICAgICAgICAgICAgICBzaGFwZSBCb3gKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzAwMDBiYgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgImxpZ2h0IiB7CiAgICAgICAgICAgICAgICBtZXRhZGF0YSBmYWxzZQogICAgICAgICAgICAgICAgZGVzY3JpcHRpb24gZmFsc2UKICAgICAgICAgICAgICAgIHdpZHRoIDEwMAogICAgICAgICAgICAgICAgaGVpZ2h0IDEwMAogICAgICAgICAgICAgICAgaWNvbiBsaWdodC5qcGcKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgI2ZmZmZmZgogICAgICAgICAgICB9CgoKICAgICAgICAgICAgZWxlbWVudCAiRWxlbWVudCIgewogICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIlBlcnNvbiIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjMDU1MjdkCiAgICAgICAgICAgICAgICBzaGFwZSBwZXJzb24KICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJTb2Z0d2FyZSBTeXN0ZW0iIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzA2NjI5NgogICAgICAgICAgICB9CiAgICAgICAgfQogICAgfQoKICAgIGNvbmZpZ3VyYXRpb24gewogICAgICAgIHNjb3BlIHNvZnR3YXJlc3lzdGVtCiAgICB9Cgp9"
   },
   "views" : {
     "componentViews" : [ {
+      "automaticLayout" : {
+        "applied" : true,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "containerId" : "4",
+      "description" : "Система питания",
+      "dimensions" : {
+        "height" : 1920,
+        "width" : 2472
+      },
+      "elements" : [ {
+        "id" : "2",
+        "x" : 950,
+        "y" : 1372
+      }, {
+        "id" : "3",
+        "x" : 200,
+        "y" : 1372
+      }, {
+        "id" : "5",
+        "x" : 375,
+        "y" : 972
+      }, {
+        "id" : "8",
+        "x" : 1125,
+        "y" : 572
+      }, {
+        "id" : "11",
+        "x" : 375,
+        "y" : 572
+      }, {
+        "id" : "23",
+        "x" : 375,
+        "y" : 172
+      }, {
+        "id" : "31",
+        "x" : 1700,
+        "y" : 572
+      }, {
+        "id" : "32",
+        "x" : 1700,
+        "y" : 972
+      }, {
+        "id" : "40",
+        "x" : 1125,
+        "y" : 972
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "power_system_view",
+      "order" : 2,
+      "relationships" : [ {
+        "id" : "103"
+      }, {
+        "id" : "86"
+      }, {
+        "id" : "89"
+      }, {
+        "id" : "93"
+      }, {
+        "id" : "99"
+      } ]
+    }, {
       "automaticLayout" : {
         "applied" : false,
         "edgeSeparation" : 0,
@@ -1020,7 +1521,7 @@
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "14",
+        "id" : "13",
         "x" : 0,
         "y" : 0
       }, {
@@ -1036,7 +1537,7 @@
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "21",
+        "id" : "18",
         "x" : 0,
         "y" : 0
       }, {
@@ -1056,11 +1557,7 @@
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "29",
-        "x" : 0,
-        "y" : 0
-      }, {
-        "id" : "30",
+        "id" : "26",
         "x" : 0,
         "y" : 0
       }, {
@@ -1072,7 +1569,7 @@
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "33",
+        "id" : "34",
         "x" : 0,
         "y" : 0
       }, {
@@ -1092,10 +1589,6 @@
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "39",
-        "x" : 0,
-        "y" : 0
-      }, {
         "id" : "40",
         "x" : 0,
         "y" : 0
@@ -1108,11 +1601,11 @@
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "44",
+        "id" : "43",
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "45",
+        "id" : "44",
         "x" : 0,
         "y" : 0
       }, {
@@ -1121,6 +1614,10 @@
         "y" : 0
       }, {
         "id" : "47",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "48",
         "x" : 0,
         "y" : 0
       }, {
@@ -1140,23 +1637,19 @@
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "55",
-        "x" : 0,
-        "y" : 0
-      }, {
         "id" : "56",
         "x" : 0,
         "y" : 0
       }, {
+        "id" : "57",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "58",
+        "x" : 0,
+        "y" : 0
+      }, {
         "id" : "59",
-        "x" : 0,
-        "y" : 0
-      }, {
-        "id" : "61",
-        "x" : 0,
-        "y" : 0
-      }, {
-        "id" : "62",
         "x" : 0,
         "y" : 0
       }, {
@@ -1168,39 +1661,79 @@
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "65",
+        "id" : "66",
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "66",
+        "id" : "67",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "69",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "70",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "71",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "72",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "75",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "77",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "78",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "79",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "80",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "81",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "82",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "84",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "85",
         "x" : 0,
         "y" : 0
       } ],
       "externalContainerBoundariesVisible" : false,
       "key" : "overall_component_view",
-      "order" : 2,
+      "order" : 3,
       "relationships" : [ {
-        "id" : "100"
+        "id" : "103"
       }, {
-        "id" : "101"
+        "id" : "107"
       }, {
-        "id" : "102"
-      }, {
-        "id" : "104"
-      }, {
-        "id" : "106"
-      }, {
-        "id" : "110"
-      }, {
-        "id" : "112"
+        "id" : "111"
       }, {
         "id" : "113"
       }, {
         "id" : "115"
-      }, {
-        "id" : "116"
-      }, {
-        "id" : "117"
       }, {
         "id" : "119"
       }, {
@@ -1210,65 +1743,87 @@
       }, {
         "id" : "127"
       }, {
-        "id" : "128"
-      }, {
-        "id" : "129"
-      }, {
         "id" : "131"
       }, {
         "id" : "133"
       }, {
         "id" : "135"
       }, {
+        "id" : "137"
+      }, {
         "id" : "139"
       }, {
-        "id" : "140"
+        "id" : "141"
       }, {
-        "id" : "142"
+        "id" : "145"
       }, {
-        "id" : "18"
+        "id" : "149"
+      }, {
+        "id" : "151"
+      }, {
+        "id" : "153"
+      }, {
+        "id" : "155"
+      }, {
+        "id" : "159"
+      }, {
+        "id" : "163"
+      }, {
+        "id" : "165"
+      }, {
+        "id" : "167"
+      }, {
+        "id" : "171"
+      }, {
+        "id" : "173"
+      }, {
+        "id" : "177"
+      }, {
+        "id" : "181"
+      }, {
+        "id" : "183"
+      }, {
+        "id" : "185"
+      }, {
+        "id" : "189"
       }, {
         "id" : "19"
       }, {
-        "id" : "26"
+        "id" : "190"
+      }, {
+        "id" : "192"
+      }, {
+        "id" : "194"
+      }, {
+        "id" : "198"
+      }, {
+        "id" : "20"
+      }, {
+        "id" : "200"
+      }, {
+        "id" : "202"
       }, {
         "id" : "27"
       }, {
         "id" : "28"
       }, {
-        "id" : "48"
+        "id" : "29"
       }, {
-        "id" : "49"
+        "id" : "60"
       }, {
-        "id" : "57"
+        "id" : "61"
       }, {
-        "id" : "58"
-      }, {
-        "id" : "67"
-      }, {
-        "id" : "68"
-      }, {
-        "id" : "70"
+        "id" : "73"
       }, {
         "id" : "74"
       }, {
-        "id" : "79"
-      }, {
-        "id" : "83"
-      }, {
-        "id" : "85"
+        "id" : "86"
       }, {
         "id" : "87"
       }, {
-        "id" : "88"
-      }, {
         "id" : "89"
       }, {
-        "id" : "91"
-      }, {
         "id" : "93"
-      }, {
-        "id" : "95"
       }, {
         "id" : "97"
       }, {
@@ -1302,20 +1857,20 @@
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "35",
+        "id" : "40",
         "x" : 0,
         "y" : 0
       } ],
       "externalContainerBoundariesVisible" : false,
       "generatedKey" : true,
       "key" : "Component-001",
-      "order" : 3,
+      "order" : 4,
       "relationships" : [ {
-        "id" : "68"
+        "id" : "87"
       }, {
-        "id" : "70"
+        "id" : "89"
       }, {
-        "id" : "74"
+        "id" : "93"
       } ]
     }, {
       "automaticLayout" : {
@@ -1345,26 +1900,26 @@
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "22",
+        "id" : "23",
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "29",
+        "id" : "31",
         "x" : 0,
         "y" : 0
       } ],
       "externalContainerBoundariesVisible" : false,
       "generatedKey" : true,
       "key" : "Component-002",
-      "order" : 4,
+      "order" : 5,
       "relationships" : [ {
-        "id" : "106"
+        "id" : "103"
       }, {
-        "id" : "70"
+        "id" : "141"
       }, {
-        "id" : "79"
+        "id" : "89"
       }, {
-        "id" : "83"
+        "id" : "99"
       } ]
     }, {
       "automaticLayout" : {
@@ -1382,7 +1937,7 @@
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "8",
+        "id" : "7",
         "x" : 0,
         "y" : 0
       }, {
@@ -1394,20 +1949,26 @@
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "29",
+        "id" : "13",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "30",
         "x" : 0,
         "y" : 0
       } ],
       "externalContainerBoundariesVisible" : false,
       "generatedKey" : true,
       "key" : "Component-003",
-      "order" : 5,
+      "order" : 6,
       "relationships" : [ {
-        "id" : "79"
+        "id" : "100"
       }, {
-        "id" : "83"
+        "id" : "106"
       }, {
-        "id" : "89"
+        "id" : "117"
+      }, {
+        "id" : "97"
       } ]
     }, {
       "automaticLayout" : {
@@ -1419,13 +1980,9 @@
         "rankSeparation" : 300,
         "vertices" : false
       },
-      "containerId" : "13",
+      "containerId" : "14",
       "elements" : [ {
         "id" : "2",
-        "x" : 0,
-        "y" : 0
-      }, {
-        "id" : "14",
         "x" : 0,
         "y" : 0
       }, {
@@ -1441,122 +1998,40 @@
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "29",
+        "id" : "18",
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "30",
+        "id" : "32",
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "31",
+        "id" : "34",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "36",
         "x" : 0,
         "y" : 0
       } ],
       "externalContainerBoundariesVisible" : false,
       "generatedKey" : true,
       "key" : "Component-004",
-      "order" : 6,
+      "order" : 7,
       "relationships" : [ {
-        "id" : "18"
+        "id" : "107"
+      }, {
+        "id" : "111"
+      }, {
+        "id" : "119"
+      }, {
+        "id" : "121"
+      }, {
+        "id" : "123"
       }, {
         "id" : "19"
       }, {
-        "id" : "85"
-      }, {
-        "id" : "87"
-      }, {
-        "id" : "91"
-      }, {
-        "id" : "93"
-      }, {
-        "id" : "95"
-      } ]
-    }, {
-      "automaticLayout" : {
-        "applied" : true,
-        "edgeSeparation" : 0,
-        "implementation" : "Graphviz",
-        "nodeSeparation" : 300,
-        "rankDirection" : "LeftRight",
-        "rankSeparation" : 300,
-        "vertices" : false
-      },
-      "containerId" : "20",
-      "dimensions" : {
-        "height" : 1820,
-        "width" : 3150
-      },
-      "elements" : [ {
-        "id" : "2",
-        "x" : 2499,
-        "y" : 585
-      }, {
-        "id" : "9",
-        "x" : 2674,
-        "y" : 185
-      }, {
-        "id" : "21",
-        "x" : 1699,
-        "y" : 1189
-      }, {
-        "id" : "22",
-        "x" : 2099,
-        "y" : 985
-      }, {
-        "id" : "23",
-        "x" : 2099,
-        "y" : 1385
-      }, {
-        "id" : "24",
-        "x" : 2099,
-        "y" : 585
-      }, {
-        "id" : "25",
-        "x" : 1699,
-        "y" : 585
-      }, {
-        "id" : "30",
-        "x" : 199,
-        "y" : 789
-      }, {
-        "id" : "33",
-        "x" : 949,
-        "y" : 485
-      }, {
-        "id" : "40",
-        "x" : 2499,
-        "y" : 1285
-      } ],
-      "externalContainerBoundariesVisible" : false,
-      "generatedKey" : true,
-      "key" : "Component-005",
-      "order" : 7,
-      "relationships" : [ {
-        "id" : "101"
-      }, {
-        "id" : "102"
-      }, {
-        "id" : "104"
-      }, {
-        "id" : "106",
-        "vertices" : [ {
-          "x" : 2303,
-          "y" : 835
-        }, {
-          "x" : 2499,
-          "y" : 435
-        } ]
-      }, {
-        "id" : "110"
-      }, {
-        "id" : "26"
-      }, {
-        "id" : "27"
-      }, {
-        "id" : "28"
-      }, {
-        "id" : "97"
+        "id" : "20"
       } ]
     }, {
       "automaticLayout" : {
@@ -1568,7 +2043,196 @@
         "rankSeparation" : 300,
         "vertices" : false
       },
-      "containerId" : "34",
+      "containerId" : "21",
+      "elements" : [ {
+        "id" : "2",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "9",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "22",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "23",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "24",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "25",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "26",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "35",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "38",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "46",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "generatedKey" : true,
+      "key" : "Component-005",
+      "order" : 8,
+      "relationships" : [ {
+        "id" : "127"
+      }, {
+        "id" : "135"
+      }, {
+        "id" : "137"
+      }, {
+        "id" : "139"
+      }, {
+        "id" : "141"
+      }, {
+        "id" : "145"
+      }, {
+        "id" : "27"
+      }, {
+        "id" : "28"
+      }, {
+        "id" : "29"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "containerId" : "30",
+      "elements" : [ {
+        "id" : "7",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "10",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "14",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "31",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "32",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "36",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "43",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "generatedKey" : true,
+      "key" : "Component-006",
+      "order" : 9,
+      "relationships" : [ {
+        "id" : "102"
+      }, {
+        "id" : "105"
+      }, {
+        "id" : "108"
+      }, {
+        "id" : "111"
+      }, {
+        "id" : "113"
+      }, {
+        "id" : "116"
+      }, {
+        "id" : "120"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "containerId" : "33",
+      "elements" : [ {
+        "id" : "16",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "22",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "34",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "35",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "37",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "38",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "42",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "generatedKey" : true,
+      "key" : "Component-007",
+      "order" : 10,
+      "relationships" : [ {
+        "id" : "123"
+      }, {
+        "id" : "127"
+      }, {
+        "id" : "131"
+      }, {
+        "id" : "133"
+      }, {
+        "id" : "135"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Graphviz",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : false
+      },
+      "containerId" : "39",
       "elements" : [ {
         "id" : "2",
         "x" : 0,
@@ -1578,27 +2242,27 @@
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "35",
+        "id" : "40",
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "36",
+        "id" : "41",
         "x" : 0,
         "y" : 0
       } ],
       "externalContainerBoundariesVisible" : false,
       "generatedKey" : true,
-      "key" : "Component-006",
-      "order" : 8,
+      "key" : "Component-008",
+      "order" : 11,
       "relationships" : [ {
-        "id" : "113"
+        "id" : "151"
       }, {
-        "id" : "74"
+        "id" : "93"
       } ]
     } ],
     "configuration" : {
       "branding" : { },
-      "lastSavedView" : "Component-005",
+      "lastSavedView" : "power_system_view",
       "metadataSymbols" : "SquareBrackets",
       "styles" : {
         "elements" : [ {
@@ -1658,6 +2322,19 @@
           "shape" : "Box",
           "tag" : "relay_connector"
         }, {
+          "background" : "#0000bb",
+          "description" : false,
+          "shape" : "Box",
+          "tag" : "light_connector"
+        }, {
+          "background" : "#ffffff",
+          "description" : false,
+          "height" : 100,
+          "icon" : "data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAF/AdgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiql9f2emWj3d/dQWttHjfNPII0XJwMsTgckD8aALdFefa38Z/A2i+en9rfb7iHb+5sYzLvzj7r8RnAOT83YjrxXIan+0jpEPlf2VoF9dZz5n2uZINvTGNvmZ756YwOvYA9wor5z1H9pHUZbZV0zw7aW04bLPc3LTqV9AqhDnOOcnvxzxmf8NHeL/8AoG6H/wB+Jf8A47QB9P0V82ad+0frkVwx1PRNOuYNh2pbPJA27IwSzF+OvGO/X127L9pS0ku0W/8ADM8FtzvkgvBK68cYUooPOB94dfwoA94ory7TPj34Hv8AzTcz32m7MbftVqW8zOenlF+mO+OvGea7/TNd0nWzL/ZOrWN/5IHmfZLhJdmc4ztJxnB/KgDSooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiisDxR4t0Xwhpj3+sXqQgIzRQBh5s5GPljXPzHkewzkkDmgDfrjfF3xM8L+DN0WpX3m3q/wDLlagSTfwnkZAThg3zEZHTNeL638VPGvxB1iTR/B9vdWtqz/u0s1IuGTcoDyyA/uxuxkqVADEMWHJ2vBv7PP8Aqr3xdeejf2faN/unEkn/AH0pC/UPQBiaj8c/G3iO/Wx8M6elm8jhoYraD7VcMApLKdwIYdW4QEADng5g034J+OPFUkeq63eJavcOnmvqMzy3Rj2rhioB5C8bWZT8uDivo/R9D0vw9p6WGkWMFnbLg7IVxuOANzHqzYAyxyTjmtOgDx/RP2efC9j5Emq3d9qcybvMTcIIZM5A+VfnGMj+PqPTiuv0z4WeB9J837N4asX83G77WpucYz080tt69sZ4z0rsaKAM3TNC0nRDL/ZWlWNh5wHmfZLdIt+M4ztAzjJ/OtKiigCpfWFpqdo9pf2sN1ayY3wzxh0bByMqeDyAfwrAvvhz4M1C0e1m8MaUkb4y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wH8aNQ/0K8utVFtcfupjPrQePY3Db1EhJXB5ABOOxqSD9nPxQ1xEtzqmjxwlwJHjeV2Ve5C7ACQO2Rn1HWgD2nU/in4H0nyvtPiWxfzc7fsjG5xjGc+UG29e+M846V55rX7R+nJbgaFol1NOyP8APfMsSxtj5TtQtvHPIyvTrzwad+zbpsdwW1PxFd3MGzCpbW6wMGyOSzFxjGeMenPFeh6Z8LPA+k+b9m8NWL+bjd9rU3OMZ6eaW29e2M8Z6UAeDS678Ufiu8409Lr7AEeN4bFvs1tgqoZGZmG8nIO1mY/McAAmu68I/s86fZ7bnxVefb5uf9EtWaOEfeHL8O3VTxswRj5hXuFFAFSxsLTTLRLSwtYbW1jzshgjCIuTk4UcDkk/jVuiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/Z",
+          "metadata" : false,
+          "tag" : "light",
+          "width" : 100
+        }, {
           "color" : "#ffffff",
           "tag" : "Element"
         }, {
@@ -1669,6 +2346,7 @@
           "tag" : "Software System"
         } ],
         "relationships" : [ {
+          "routing" : "Curved",
           "style" : "Solid",
           "tag" : "Relationship"
         }, {
@@ -1686,7 +2364,16 @@
           "tag" : "black"
         }, {
           "tag" : "50мм2",
-          "thickness" : 10
+          "thickness" : 50
+        }, {
+          "tag" : "16мм2",
+          "thickness" : 16
+        }, {
+          "tag" : "6мм2",
+          "thickness" : 6
+        }, {
+          "tag" : "4мм2",
+          "thickness" : 4
         } ]
       },
       "terminology" : { }
@@ -1723,15 +2410,11 @@
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "13",
+        "id" : "14",
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "20",
-        "x" : 0,
-        "y" : 0
-      }, {
-        "id" : "29",
+        "id" : "21",
         "x" : 0,
         "y" : 0
       }, {
@@ -1739,19 +2422,11 @@
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "31",
-        "x" : 0,
-        "y" : 0
-      }, {
-        "id" : "32",
-        "x" : 0,
-        "y" : 0
-      }, {
         "id" : "33",
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "34",
+        "id" : "36",
         "x" : 0,
         "y" : 0
       }, {
@@ -1767,14 +2442,6 @@
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "40",
-        "x" : 0,
-        "y" : 0
-      }, {
-        "id" : "41",
-        "x" : 0,
-        "y" : 0
-      }, {
         "id" : "42",
         "x" : 0,
         "y" : 0
@@ -1783,11 +2450,19 @@
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "50",
+        "id" : "44",
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "51",
+        "id" : "45",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "48",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "49",
         "x" : 0,
         "y" : 0
       }, {
@@ -1795,11 +2470,31 @@
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "59",
+        "id" : "55",
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "60",
+        "id" : "62",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "65",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "68",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "75",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "76",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "83",
         "x" : 0,
         "y" : 0
       } ],
@@ -1807,25 +2502,15 @@
       "key" : "es_view",
       "order" : 1,
       "relationships" : [ {
-        "id" : "100"
+        "id" : "102"
       }, {
-        "id" : "101"
+        "id" : "106"
       }, {
-        "id" : "103"
-      }, {
-        "id" : "105"
-      }, {
-        "id" : "109"
-      }, {
-        "id" : "111"
+        "id" : "110"
       }, {
         "id" : "112"
       }, {
         "id" : "114"
-      }, {
-        "id" : "115"
-      }, {
-        "id" : "116"
       }, {
         "id" : "118"
       }, {
@@ -1835,55 +2520,73 @@
       }, {
         "id" : "126"
       }, {
-        "id" : "127"
-      }, {
-        "id" : "128"
-      }, {
         "id" : "130"
       }, {
         "id" : "132"
       }, {
         "id" : "134"
       }, {
+        "id" : "136"
+      }, {
         "id" : "138"
       }, {
-        "id" : "139"
+        "id" : "140"
       }, {
-        "id" : "141"
+        "id" : "144"
       }, {
-        "id" : "143"
+        "id" : "148"
       }, {
-        "id" : "67"
+        "id" : "150"
       }, {
-        "id" : "69"
+        "id" : "152"
       }, {
-        "id" : "73"
+        "id" : "154"
       }, {
-        "id" : "77"
+        "id" : "158"
       }, {
-        "id" : "78"
+        "id" : "162"
       }, {
-        "id" : "82"
+        "id" : "164"
       }, {
-        "id" : "84"
+        "id" : "166"
+      }, {
+        "id" : "170"
+      }, {
+        "id" : "172"
+      }, {
+        "id" : "176"
+      }, {
+        "id" : "180"
+      }, {
+        "id" : "182"
+      }, {
+        "id" : "184"
+      }, {
+        "id" : "188"
+      }, {
+        "id" : "189"
+      }, {
+        "id" : "191"
+      }, {
+        "id" : "193"
+      }, {
+        "id" : "197"
+      }, {
+        "id" : "199"
+      }, {
+        "id" : "201"
+      }, {
+        "id" : "205"
       }, {
         "id" : "86"
       }, {
-        "id" : "87"
-      }, {
         "id" : "88"
       }, {
-        "id" : "90"
-      }, {
         "id" : "92"
-      }, {
-        "id" : "94"
       }, {
         "id" : "96"
       }, {
         "id" : "98"
-      }, {
-        "id" : "99"
       } ],
       "softwareSystemId" : "1"
     } ]
