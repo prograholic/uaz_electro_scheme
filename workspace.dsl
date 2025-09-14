@@ -210,7 +210,7 @@ workspace "Name" "Description" {
             starter_relay_fuse.out -> other_from_ignition
             starter_relay_fuse.out -> start_button.in
     
-            start_button -> starter_relay._85
+            start_button.out -> starter_relay._85
     
             starter_relay._86 -> ground
             starter_relay._87 -> starter.st "6 мм2" {
@@ -332,6 +332,7 @@ workspace "Name" "Description" {
 
             relationship "Relationship" {
                 style solid
+                #Direct|Orthogonal|Curved
                 routing Curved
             }
             relationship "relay_pwr" {
