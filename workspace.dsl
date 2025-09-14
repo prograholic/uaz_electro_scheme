@@ -36,7 +36,9 @@ workspace "Name" "Description" {
                 tags "ground"
             }
 
-            ground_switch = switch "Размыкатель массы"
+            ground_switch = switch "Размыкатель массы" {
+                !include switch.dsl
+            }
 
             power_group = group "Система питания" {
                 akb = container "Аккумулятор" {
@@ -76,11 +78,15 @@ workspace "Name" "Description" {
                     !include fuse.dsl
                 }
 
-                ignition_switch = switch "Выключатель зажигания"
+                ignition_switch = switch "Выключатель зажигания" {
+                    !include switch.dsl
+                }
 
                 ignition = container "Система зажигания"
 
-                start_button = switch "Кнопка Старт"
+                start_button = switch "Кнопка Старт" {
+                    !include switch.dsl
+                }
             }
 
             winch = container "Лебедка" {
@@ -147,11 +153,11 @@ workspace "Name" "Description" {
             # Описание соединений #
             #######################
     
-            ground_switch -> ground "50 мм2" {
+            ground_switch.out -> ground "50 мм2" {
                 tags "50мм2"
             }
     
-            akb.minus -> ground_switch "50 мм2" {
+            akb.minus -> ground_switch.in "50 мм2" {
                 tags "50мм2"
             }
             akb.plus -> starter.plus "50 мм2" {
@@ -172,37 +178,37 @@ workspace "Name" "Description" {
                 tags "red"
             }
     
-            starter.plus -> ignition_relay_fuse.plus "16 мм2" {
+            starter.plus -> ignition_relay_fuse.in "16 мм2" {
                 tags "16мм2"
                 tags "red"
             }
     
-            ignition_relay_fuse.minus -> ignition_relay._30
-            ignition_relay_fuse.minus -> ignition_switch
-            ignition_relay_fuse.minus -> other_from_akb_gen
-            ignition_relay_fuse.minus -> generator.v "4 мм2" {
+            ignition_relay_fuse.out -> ignition_relay._30
+            ignition_relay_fuse.out -> ignition_switch.in
+            ignition_relay_fuse.out -> other_from_akb_gen
+            ignition_relay_fuse.out -> generator.v "4 мм2" {
                 tags "4мм2"
                 tags "red"
             }
     
-            ignition_switch -> ignition_relay._85
+            ignition_switch.out -> ignition_relay._85
             
             ignition_relay._86 -> ground
-            ignition_relay._87 -> starter_relay_fuse.plus "16 мм2" {
+            ignition_relay._87 -> starter_relay_fuse.in "16 мм2" {
                 tags "16мм2"
                 tags "red"
             }
             
-            starter_relay_fuse.minus -> starter_relay._30 "6 мм2" {
+            starter_relay_fuse.out -> starter_relay._30 "6 мм2" {
                 tags "6мм2"
                 tags "black"
             }
-            starter_relay_fuse.minus -> ignition "4 мм2" {
+            starter_relay_fuse.out -> ignition "4 мм2" {
                 tags "4мм2"
                 tags "black"
             }
-            starter_relay_fuse.minus -> other_from_ignition
-            starter_relay_fuse.minus -> start_button
+            starter_relay_fuse.out -> other_from_ignition
+            starter_relay_fuse.out -> start_button.in
     
             start_button -> starter_relay._85
     
@@ -211,11 +217,11 @@ workspace "Name" "Description" {
                 tags "6мм2"
                 tags "black"
             }
-            starter_relay._88 -> control_line_from_ignition_fuse.plus "6 мм2" {
+            starter_relay._88 -> control_line_from_ignition_fuse.in "6 мм2" {
                 tags "6мм2"
                 tags "black"
             }
-            control_line_from_ignition_fuse.minus -> control_line_from_ignition
+            control_line_from_ignition_fuse.out -> control_line_from_ignition
         
             winch.minus -> ground "50 мм2" {
                 tags "50мм2"
@@ -223,15 +229,15 @@ workspace "Name" "Description" {
             }
 
             coolant_vent_1.minus -> ground
-            coolant_vent_1_fuse.minus -> coolant_vent_1.plus
-            coolant_vent_1_relay._87 -> coolant_vent_1_fuse.plus
+            coolant_vent_1_fuse.out -> coolant_vent_1.plus
+            coolant_vent_1_relay._87 -> coolant_vent_1_fuse.in
             control_line_from_ignition -> coolant_vent_1_relay._85
             other_from_akb_gen -> coolant_vent_1_relay._30
             coolant_vent_1_relay._86 -> coolant_control_switch.I
 
             coolant_vent_2.minus -> ground
-            coolant_vent_2_fuse.minus -> coolant_vent_2.plus
-            coolant_vent_2_relay._87 -> coolant_vent_2_fuse.plus
+            coolant_vent_2_fuse.out -> coolant_vent_2.plus
+            coolant_vent_2_relay._87 -> coolant_vent_2_fuse.in
             control_line_from_ignition -> coolant_vent_2_relay._85
             other_from_akb_gen -> coolant_vent_2_relay._30
             coolant_vent_2_relay._86 -> coolant_control_switch.I
@@ -253,14 +259,6 @@ workspace "Name" "Description" {
         #################
         container es es_view "Общий вид электрической системы" {
             include *
-            autolayout lr
-        }
-
-        component es.akb power_system_view "Система питания" {
-            include "element.type==component && element==->es.power_group->"
-            include "element.type==container && element==->es.power_group->"
-            #include "element.type==component"
-            #include "element.type==container"
             autolayout lr
         }
 
@@ -286,11 +284,8 @@ workspace "Name" "Description" {
 
         component es.generator {
             include "element.parent==es.generator"
-            include "element==->es.generator->"
-            include "->es.generator->"
-            include "*->*"
-            #include "element.type==component && ->es.generator->"
-            #include "element.type==container && ->es.generator->"
+            include "element.type==component && ->es.generator->"
+            include "element.type==container && ->es.generator->"
             autolayout lr
         }
 
@@ -310,9 +305,8 @@ workspace "Name" "Description" {
 
         component es.ignition_relay_fuse {
             include "element.parent==es.ignition_relay_fuse"
-            include "->es.ignition_relay_fuse->"
-            #include "element.type==component && ->es.ignition_relay_fuse->"
-            #include "element.type==container && ->es.ignition_relay_fuse->"
+            include "element.type==component && ->es.ignition_relay_fuse->"
+            include "element.type==container && ->es.ignition_relay_fuse->"
             autolayout lr
         }
 
@@ -409,6 +403,8 @@ workspace "Name" "Description" {
             }
             element "switch" {
                 icon "switch.png"
+                width 100
+                height 100
                 background #038803
             }
             element "fuse" {
@@ -422,12 +418,7 @@ workspace "Name" "Description" {
             element "relay5" {
                 background #0000bb
             }
-            element "relay_connector" {
-                description false
-                shape Box
-                background #0000bb
-            }
-            element "light_connector" {
+            element "connector" {
                 description false
                 shape Box
                 background #0000bb

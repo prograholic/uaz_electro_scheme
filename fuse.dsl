@@ -1,7 +1,7 @@
 tags "fuse"
-plus = component "+" {
-    tags "fuse_connector,plus"
+in = component "in" {
+    tags "fuse_connector,in,connector"
 }
-minus = component "-" {
-    tags "fuse_connector,minus"
+out = component "out" {
+    tags "fuse_connector,out,connector"
 }
