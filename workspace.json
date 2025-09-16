@@ -6,7 +6,7 @@
   "documentation" : { },
   "id" : 1,
   "lastModifiedAgent" : "structurizr-ui",
-  "lastModifiedDate" : "2025-09-14T17:00:12Z",
+  "lastModifiedDate" : "2025-09-16T05:06:01Z",
   "model" : {
     "softwareSystems" : [ {
       "containers" : [ {
@@ -78,13 +78,13 @@
             "sourceId" : "7"
           }, {
             "description" : "50 мм2",
-            "destinationId" : "46",
+            "destinationId" : "47",
             "id" : "102",
             "sourceId" : "7",
             "tags" : "Relationship,50мм2,red"
           }, {
             "description" : "50 мм2",
-            "destinationId" : "45",
+            "destinationId" : "46",
             "id" : "103",
             "linkedRelationshipId" : "102",
             "sourceId" : "7"
@@ -145,13 +145,13 @@
           "sourceId" : "6"
         }, {
           "description" : "50 мм2",
-          "destinationId" : "46",
+          "destinationId" : "47",
           "id" : "104",
           "linkedRelationshipId" : "102",
           "sourceId" : "6"
         }, {
           "description" : "50 мм2",
-          "destinationId" : "45",
+          "destinationId" : "46",
           "id" : "105",
           "linkedRelationshipId" : "102",
           "sourceId" : "6"
@@ -305,13 +305,13 @@
             "structurizr.dsl.identifier" : "es.ignition_relay._87"
           },
           "relationships" : [ {
-            "description" : "16 мм2",
+            "description" : "6 мм2",
             "destinationId" : "36",
             "id" : "136",
             "sourceId" : "18",
-            "tags" : "Relationship,16мм2,red"
+            "tags" : "Relationship,6мм2,black"
           }, {
-            "description" : "16 мм2",
+            "description" : "6 мм2",
             "destinationId" : "35",
             "id" : "137",
             "linkedRelationshipId" : "136",
@@ -326,10 +326,11 @@
             "structurizr.dsl.identifier" : "es.ignition_relay._86"
           },
           "relationships" : [ {
+            "description" : "0.75 мм2",
             "destinationId" : "2",
             "id" : "134",
             "sourceId" : "19",
-            "tags" : "Relationship"
+            "tags" : "Relationship,0.75мм2,black"
           } ],
           "tags" : "Element,Component,relay_86,relay_connector,connector"
         }, {
@@ -355,18 +356,19 @@
           "structurizr.dsl.identifier" : "es.ignition_relay"
         },
         "relationships" : [ {
+          "description" : "0.75 мм2",
           "destinationId" : "2",
           "id" : "135",
           "linkedRelationshipId" : "134",
           "sourceId" : "16"
         }, {
-          "description" : "16 мм2",
+          "description" : "6 мм2",
           "destinationId" : "36",
           "id" : "138",
           "linkedRelationshipId" : "136",
           "sourceId" : "16"
         }, {
-          "description" : "16 мм2",
+          "description" : "6 мм2",
           "destinationId" : "35",
           "id" : "139",
           "linkedRelationshipId" : "136",
@@ -519,30 +521,35 @@
             "structurizr.dsl.identifier" : "es.ignition_relay_fuse.out"
           },
           "relationships" : [ {
+            "description" : "16 мм2",
             "destinationId" : "17",
             "id" : "116",
             "sourceId" : "34",
-            "tags" : "Relationship"
+            "tags" : "Relationship,16мм2,red"
           }, {
+            "description" : "16 мм2",
             "destinationId" : "16",
             "id" : "117",
             "linkedRelationshipId" : "116",
             "sourceId" : "34"
           }, {
+            "description" : "0.75 мм2",
             "destinationId" : "39",
             "id" : "120",
             "sourceId" : "34",
-            "tags" : "Relationship"
+            "tags" : "Relationship,0.75мм2,red"
           }, {
+            "description" : "0.75 мм2",
             "destinationId" : "38",
             "id" : "121",
             "linkedRelationshipId" : "120",
             "sourceId" : "34"
           }, {
+            "description" : "16 мм2",
             "destinationId" : "49",
             "id" : "124",
             "sourceId" : "34",
-            "tags" : "Relationship"
+            "tags" : "Relationship,16мм2,red"
           }, {
             "description" : "4 мм2",
             "destinationId" : "15",
@@ -561,31 +568,36 @@
         "documentation" : { },
         "group" : "Система зажигания",
         "id" : "32",
-        "name" : "Предохранитель для реле зажигания. 80A",
+        "name" : "Прд реле зажигания. 80A",
         "properties" : {
           "structurizr.dsl.identifier" : "es.ignition_relay_fuse"
         },
         "relationships" : [ {
+          "description" : "16 мм2",
           "destinationId" : "17",
           "id" : "118",
           "linkedRelationshipId" : "116",
           "sourceId" : "32"
         }, {
+          "description" : "16 мм2",
           "destinationId" : "16",
           "id" : "119",
           "linkedRelationshipId" : "116",
           "sourceId" : "32"
         }, {
+          "description" : "0.75 мм2",
           "destinationId" : "39",
           "id" : "122",
           "linkedRelationshipId" : "120",
           "sourceId" : "32"
         }, {
+          "description" : "0.75 мм2",
           "destinationId" : "38",
           "id" : "123",
           "linkedRelationshipId" : "120",
           "sourceId" : "32"
         }, {
+          "description" : "16 мм2",
           "destinationId" : "49",
           "id" : "125",
           "linkedRelationshipId" : "124",
@@ -634,22 +646,25 @@
             "sourceId" : "37"
           }, {
             "description" : "4 мм2",
-            "destinationId" : "41",
+            "destinationId" : "42",
             "id" : "144",
             "sourceId" : "37",
             "tags" : "Relationship,4мм2,black"
           }, {
-            "destinationId" : "48",
-            "id" : "146",
-            "sourceId" : "37",
-            "tags" : "Relationship"
+            "description" : "4 мм2",
+            "destinationId" : "41",
+            "id" : "145",
+            "linkedRelationshipId" : "144",
+            "sourceId" : "37"
           }, {
-            "destinationId" : "43",
+            "description" : "0.75 мм2",
+            "destinationId" : "44",
             "id" : "148",
             "sourceId" : "37",
-            "tags" : "Relationship"
+            "tags" : "Relationship,0.75мм2,red"
           }, {
-            "destinationId" : "42",
+            "description" : "0.75 мм2",
+            "destinationId" : "43",
             "id" : "149",
             "linkedRelationshipId" : "148",
             "sourceId" : "37"
@@ -659,7 +674,7 @@
         "documentation" : { },
         "group" : "Система зажигания",
         "id" : "35",
-        "name" : "Предохранитель для реле стартера. 80A",
+        "name" : "Прд реле стартера. 80A",
         "properties" : {
           "structurizr.dsl.identifier" : "es.starter_relay_fuse"
         },
@@ -677,22 +692,25 @@
           "sourceId" : "35"
         }, {
           "description" : "4 мм2",
-          "destinationId" : "41",
-          "id" : "145",
+          "destinationId" : "42",
+          "id" : "146",
           "linkedRelationshipId" : "144",
           "sourceId" : "35"
         }, {
-          "destinationId" : "48",
+          "description" : "4 мм2",
+          "destinationId" : "41",
           "id" : "147",
-          "linkedRelationshipId" : "146",
+          "linkedRelationshipId" : "144",
           "sourceId" : "35"
         }, {
-          "destinationId" : "43",
+          "description" : "0.75 мм2",
+          "destinationId" : "44",
           "id" : "150",
           "linkedRelationshipId" : "148",
           "sourceId" : "35"
         }, {
-          "destinationId" : "42",
+          "description" : "0.75 мм2",
+          "destinationId" : "43",
           "id" : "151",
           "linkedRelationshipId" : "148",
           "sourceId" : "35"
@@ -715,11 +733,13 @@
             "structurizr.dsl.identifier" : "es.ignition_switch.out"
           },
           "relationships" : [ {
+            "description" : "0.75 мм2",
             "destinationId" : "20",
             "id" : "130",
             "sourceId" : "40",
-            "tags" : "Relationship"
+            "tags" : "Relationship,0.75мм2,red"
           }, {
+            "description" : "0.75 мм2",
             "destinationId" : "16",
             "id" : "131",
             "linkedRelationshipId" : "130",
@@ -735,11 +755,13 @@
           "structurizr.dsl.identifier" : "es.ignition_switch"
         },
         "relationships" : [ {
+          "description" : "0.75 мм2",
           "destinationId" : "20",
           "id" : "132",
           "linkedRelationshipId" : "130",
           "sourceId" : "38"
         }, {
+          "description" : "0.75 мм2",
           "destinationId" : "16",
           "id" : "133",
           "linkedRelationshipId" : "130",
@@ -747,6 +769,15 @@
         } ],
         "tags" : "Element,Container,switch"
       }, {
+        "components" : [ {
+          "documentation" : { },
+          "id" : "42",
+          "name" : "in",
+          "properties" : {
+            "structurizr.dsl.identifier" : "es.ignition.in"
+          },
+          "tags" : "Element,Component,ignition_connector,in,connector"
+        } ],
         "documentation" : { },
         "group" : "Система зажигания",
         "id" : "41",
@@ -758,7 +789,7 @@
       }, {
         "components" : [ {
           "documentation" : { },
-          "id" : "43",
+          "id" : "44",
           "name" : "in",
           "properties" : {
             "structurizr.dsl.identifier" : "es.start_button.in"
@@ -766,47 +797,51 @@
           "tags" : "Element,Component,switch_connector,in,connector"
         }, {
           "documentation" : { },
-          "id" : "44",
+          "id" : "45",
           "name" : "out",
           "properties" : {
             "structurizr.dsl.identifier" : "es.start_button.out"
           },
           "relationships" : [ {
+            "description" : "0.75 мм2",
             "destinationId" : "28",
             "id" : "152",
-            "sourceId" : "44",
-            "tags" : "Relationship"
+            "sourceId" : "45",
+            "tags" : "Relationship,0.75мм2,red"
           }, {
+            "description" : "0.75 мм2",
             "destinationId" : "23",
             "id" : "153",
             "linkedRelationshipId" : "152",
-            "sourceId" : "44"
+            "sourceId" : "45"
           } ],
           "tags" : "Element,Component,switch_connector,out,connector"
         } ],
         "documentation" : { },
         "group" : "Система зажигания",
-        "id" : "42",
+        "id" : "43",
         "name" : "Кнопка Старт",
         "properties" : {
           "structurizr.dsl.identifier" : "es.start_button"
         },
         "relationships" : [ {
+          "description" : "0.75 мм2",
           "destinationId" : "28",
           "id" : "154",
           "linkedRelationshipId" : "152",
-          "sourceId" : "42"
+          "sourceId" : "43"
         }, {
+          "description" : "0.75 мм2",
           "destinationId" : "23",
           "id" : "155",
           "linkedRelationshipId" : "152",
-          "sourceId" : "42"
+          "sourceId" : "43"
         } ],
         "tags" : "Element,Container,switch"
       }, {
         "components" : [ {
           "documentation" : { },
-          "id" : "46",
+          "id" : "47",
           "name" : "+",
           "properties" : {
             "structurizr.dsl.identifier" : "es.winch.plus"
@@ -814,7 +849,7 @@
           "tags" : "Element,Component,plus"
         }, {
           "documentation" : { },
-          "id" : "47",
+          "id" : "48",
           "name" : "-",
           "properties" : {
             "structurizr.dsl.identifier" : "es.winch.minus"
@@ -823,13 +858,13 @@
             "description" : "50 мм2",
             "destinationId" : "2",
             "id" : "168",
-            "sourceId" : "47",
+            "sourceId" : "48",
             "tags" : "Relationship,50мм2,black"
           } ],
           "tags" : "Element,Component,minus"
         } ],
         "documentation" : { },
-        "id" : "45",
+        "id" : "46",
         "name" : "Лебедка",
         "properties" : {
           "structurizr.dsl.identifier" : "es.winch"
@@ -839,16 +874,8 @@
           "destinationId" : "2",
           "id" : "169",
           "linkedRelationshipId" : "168",
-          "sourceId" : "45"
+          "sourceId" : "46"
         } ],
-        "tags" : "Element,Container"
-      }, {
-        "documentation" : { },
-        "id" : "48",
-        "name" : "прочие потребители от зажигания",
-        "properties" : {
-          "structurizr.dsl.identifier" : "es.other_from_ignition"
-        },
         "tags" : "Element,Container"
       }, {
         "documentation" : { },
@@ -858,24 +885,28 @@
           "structurizr.dsl.identifier" : "es.other_from_akb_gen"
         },
         "relationships" : [ {
-          "destinationId" : "62",
+          "description" : "6 мм2",
+          "destinationId" : "59",
           "id" : "182",
           "sourceId" : "49",
-          "tags" : "Relationship"
+          "tags" : "Relationship,6мм2,blue"
         }, {
-          "destinationId" : "61",
+          "description" : "6 мм2",
+          "destinationId" : "58",
           "id" : "183",
           "linkedRelationshipId" : "182",
           "sourceId" : "49"
         }, {
-          "destinationId" : "75",
-          "id" : "200",
+          "description" : "6 мм2",
+          "destinationId" : "72",
+          "id" : "194",
           "sourceId" : "49",
-          "tags" : "Relationship"
+          "tags" : "Relationship,6мм2,blue"
         }, {
-          "destinationId" : "74",
-          "id" : "201",
-          "linkedRelationshipId" : "200",
+          "description" : "6 мм2",
+          "destinationId" : "71",
+          "id" : "195",
+          "linkedRelationshipId" : "194",
           "sourceId" : "49"
         } ],
         "tags" : "Element,Container"
@@ -898,13 +929,13 @@
           "sourceId" : "50"
         }, {
           "destinationId" : "78",
-          "id" : "198",
+          "id" : "196",
           "sourceId" : "50",
           "tags" : "Relationship"
         }, {
           "destinationId" : "74",
-          "id" : "199",
-          "linkedRelationshipId" : "198",
+          "id" : "197",
+          "linkedRelationshipId" : "196",
           "sourceId" : "50"
         } ],
         "tags" : "Element,Container"
@@ -950,7 +981,7 @@
         "id" : "54",
         "name" : "Система подсветки приборов",
         "properties" : {
-          "structurizr.dsl.identifier" : "es.internal_lighing"
+          "structurizr.dsl.identifier" : "es.internal_lighting"
         },
         "relationships" : [ {
           "destinationId" : "90",
@@ -991,7 +1022,7 @@
         "documentation" : { },
         "group" : "Система охлаждения",
         "id" : "55",
-        "name" : "Электровентилятор охлаждения ДВС 1",
+        "name" : "Э-вент охл ДВС 1",
         "properties" : {
           "structurizr.dsl.identifier" : "es.coolant_vent_1"
         },
@@ -1019,12 +1050,14 @@
             "structurizr.dsl.identifier" : "es.coolant_vent_1_fuse.out"
           },
           "relationships" : [ {
-            "destinationId" : "56",
+            "description" : "6 мм2",
+            "destinationId" : "62",
             "id" : "172",
             "sourceId" : "60",
-            "tags" : "Relationship"
+            "tags" : "Relationship,6мм2,blue"
           }, {
-            "destinationId" : "55",
+            "description" : "6 мм2",
+            "destinationId" : "61",
             "id" : "173",
             "linkedRelationshipId" : "172",
             "sourceId" : "60"
@@ -1034,17 +1067,19 @@
         "documentation" : { },
         "group" : "Система охлаждения",
         "id" : "58",
-        "name" : "Предохранитель вентилятора охлаждения ДВС 1",
+        "name" : "Прд э-вент охл ДВС 1. 20А",
         "properties" : {
           "structurizr.dsl.identifier" : "es.coolant_vent_1_fuse"
         },
         "relationships" : [ {
-          "destinationId" : "56",
+          "description" : "6 мм2",
+          "destinationId" : "62",
           "id" : "174",
           "linkedRelationshipId" : "172",
           "sourceId" : "58"
         }, {
-          "destinationId" : "55",
+          "description" : "6 мм2",
+          "destinationId" : "61",
           "id" : "175",
           "linkedRelationshipId" : "172",
           "sourceId" : "58"
@@ -1073,12 +1108,14 @@
             "structurizr.dsl.identifier" : "es.coolant_vent_1_relay._87"
           },
           "relationships" : [ {
-            "destinationId" : "59",
+            "description" : "6 мм2",
+            "destinationId" : "56",
             "id" : "176",
             "sourceId" : "63",
-            "tags" : "Relationship"
+            "tags" : "Relationship,6мм2,blue"
           }, {
-            "destinationId" : "58",
+            "description" : "6 мм2",
+            "destinationId" : "55",
             "id" : "177",
             "linkedRelationshipId" : "176",
             "sourceId" : "63"
@@ -1121,17 +1158,19 @@
         "documentation" : { },
         "group" : "Система охлаждения",
         "id" : "61",
-        "name" : "Реле электровентилятора охлаждения ДВС 1",
+        "name" : "Реле э-вент охл ДВС 1",
         "properties" : {
           "structurizr.dsl.identifier" : "es.coolant_vent_1_relay"
         },
         "relationships" : [ {
-          "destinationId" : "59",
+          "description" : "6 мм2",
+          "destinationId" : "56",
           "id" : "178",
           "linkedRelationshipId" : "176",
           "sourceId" : "61"
         }, {
-          "destinationId" : "58",
+          "description" : "6 мм2",
+          "destinationId" : "55",
           "id" : "179",
           "linkedRelationshipId" : "176",
           "sourceId" : "61"
@@ -1174,7 +1213,7 @@
         "documentation" : { },
         "group" : "Система охлаждения",
         "id" : "68",
-        "name" : "Электровентилятор охлаждения ДВС 2",
+        "name" : "Э-вент охл ДВС 2",
         "properties" : {
           "structurizr.dsl.identifier" : "es.coolant_vent_2"
         },
@@ -1202,14 +1241,16 @@
             "structurizr.dsl.identifier" : "es.coolant_vent_2_fuse.out"
           },
           "relationships" : [ {
-            "destinationId" : "69",
-            "id" : "190",
+            "description" : "6 мм2",
+            "destinationId" : "75",
+            "id" : "198",
             "sourceId" : "73",
-            "tags" : "Relationship"
+            "tags" : "Relationship,6мм2,blue"
           }, {
-            "destinationId" : "68",
-            "id" : "191",
-            "linkedRelationshipId" : "190",
+            "description" : "6 мм2",
+            "destinationId" : "74",
+            "id" : "199",
+            "linkedRelationshipId" : "198",
             "sourceId" : "73"
           } ],
           "tags" : "Element,Component,fuse_connector,out,connector"
@@ -1217,19 +1258,21 @@
         "documentation" : { },
         "group" : "Система охлаждения",
         "id" : "71",
-        "name" : "Предохранитель вентилятора охлаждения ДВС 2",
+        "name" : "Прд э-вент охл ДВС 2. 20А",
         "properties" : {
           "structurizr.dsl.identifier" : "es.coolant_vent_2_fuse"
         },
         "relationships" : [ {
-          "destinationId" : "69",
-          "id" : "192",
-          "linkedRelationshipId" : "190",
+          "description" : "6 мм2",
+          "destinationId" : "75",
+          "id" : "200",
+          "linkedRelationshipId" : "198",
           "sourceId" : "71"
         }, {
-          "destinationId" : "68",
-          "id" : "193",
-          "linkedRelationshipId" : "190",
+          "description" : "6 мм2",
+          "destinationId" : "74",
+          "id" : "201",
+          "linkedRelationshipId" : "198",
           "sourceId" : "71"
         } ],
         "tags" : "Element,Container,fuse"
@@ -1256,14 +1299,16 @@
             "structurizr.dsl.identifier" : "es.coolant_vent_2_relay._87"
           },
           "relationships" : [ {
-            "destinationId" : "72",
-            "id" : "194",
+            "description" : "6 мм2",
+            "destinationId" : "69",
+            "id" : "190",
             "sourceId" : "76",
-            "tags" : "Relationship"
+            "tags" : "Relationship,6мм2,blue"
           }, {
-            "destinationId" : "71",
-            "id" : "195",
-            "linkedRelationshipId" : "194",
+            "description" : "6 мм2",
+            "destinationId" : "68",
+            "id" : "191",
+            "linkedRelationshipId" : "190",
             "sourceId" : "76"
           } ],
           "tags" : "Element,Component,relay_87,relay_connector,connector"
@@ -1304,19 +1349,21 @@
         "documentation" : { },
         "group" : "Система охлаждения",
         "id" : "74",
-        "name" : "Реле электровентилятора охлаждения ДВС 2",
+        "name" : "Реле э-вент охл ДВС 2",
         "properties" : {
           "structurizr.dsl.identifier" : "es.coolant_vent_2_relay"
         },
         "relationships" : [ {
-          "destinationId" : "72",
-          "id" : "196",
-          "linkedRelationshipId" : "194",
+          "description" : "6 мм2",
+          "destinationId" : "69",
+          "id" : "192",
+          "linkedRelationshipId" : "190",
           "sourceId" : "74"
         }, {
-          "destinationId" : "71",
-          "id" : "197",
-          "linkedRelationshipId" : "194",
+          "description" : "6 мм2",
+          "destinationId" : "68",
+          "id" : "193",
+          "linkedRelationshipId" : "190",
           "sourceId" : "74"
         }, {
           "destinationId" : "84",
@@ -1334,7 +1381,7 @@
         "documentation" : { },
         "group" : "Система охлаждения",
         "id" : "81",
-        "name" : "Датчик включения электровентиляторов охлаждения ДВС",
+        "name" : "Датчик вкл э-вент охл ДВС",
         "properties" : {
           "structurizr.dsl.identifier" : "es.coolant_sensor"
         },
@@ -1425,7 +1472,7 @@
         "documentation" : { },
         "group" : "Система охлаждения",
         "id" : "82",
-        "name" : "Переключатель управления вентиляторами охлаждения ДВС",
+        "name" : "Переключатель упр э-вент охл ДВС",
         "properties" : {
           "structurizr.dsl.identifier" : "es.coolant_control_switch"
         },
@@ -1484,7 +1531,7 @@
         "documentation" : { },
         "group" : "Система охлаждения",
         "id" : "89",
-        "name" : "Подсветка переключателя управления вентиляторами охлаждения ДВС",
+        "name" : "Подсветка упр э-вент охл ДВС",
         "properties" : {
           "structurizr.dsl.identifier" : "es.coolant_control_light"
         },
@@ -1518,7 +1565,7 @@
   },
   "name" : "Name",
   "properties" : {
-    "structurizr.dsl" : "d29ya3NwYWNlICJOYW1lIiAiRGVzY3JpcHRpb24iIHsKCiAgICAhaWRlbnRpZmllcnMgaGllcmFyY2hpY2FsCgogICAgbW9kZWwgewoKICAgICAgICBhcmNoZXR5cGVzIHsKICAgICAgICAgICAgcmVsYXkgPSBjb250YWluZXIgewogICAgICAgICAgICAgICAgdGFncyAicmVsYXkiCiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIGZ1c2UgPSBjb250YWluZXIgewogICAgICAgICAgICAgICAgdGFncyAiZnVzZSIKICAgICAgICAgICAgfQoKICAgICAgICAgICAgc3dpdGNoID0gY29udGFpbmVyIHsKICAgICAgICAgICAgICAgIHRhZ3MgInN3aXRjaCIKICAgICAgICAgICAgfQoKICAgICAgICAgICAgbGlnaHQgPSBjb250YWluZXIgewogICAgICAgICAgICAgICAgdGFncyAibGlnaHQiCiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIHBsdXMgPSBjb21wb25lbnQgewogICAgICAgICAgICAgICAgdGFncyAicGx1cyIKICAgICAgICAgICAgfQoKICAgICAgICAgICAgbWludXMgPSBjb21wb25lbnQgewogICAgICAgICAgICAgICAgdGFncyAibWludXMiCiAgICAgICAgICAgIH0KICAgICAgICB9CgogICAgICAgIGVzID0gc29mdHdhcmVTeXN0ZW0gItCt0LvQtdC60YLRgNC40YfQtdGB0LrQsNGPINGB0LjRgdGC0LXQvNCwINCj0JDQlyIgewoKICAgICAgICAgICAgZ3JvdW5kID0gY29udGFpbmVyICLQnNCw0YHRgdCwICjQutC+0YDQv9GD0YEpIiB7CiAgICAgICAgICAgICAgICB0YWdzICJncm91bmQiCiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIGdyb3VuZF9zd2l0Y2ggPSBzd2l0Y2ggItCg0LDQt9C80YvQutCw0YLQtdC70Ywg0LzQsNGB0YHRiyIgewogICAgICAgICAgICAgICAgdGFncyAic3dpdGNoIgogICAgICAgICAgICAgICAgaW4gPSBjb21wb25lbnQgImluIiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyAic3dpdGNoX2Nvbm5lY3Rvcixpbixjb25uZWN0b3IiCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICBvdXQgPSBjb21wb25lbnQgIm91dCIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgInN3aXRjaF9jb25uZWN0b3Isb3V0LGNvbm5lY3RvciIKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgfQoKICAgICAgICAgICAgcG93ZXJfZ3JvdXAgPSBncm91cCAi0KHQuNGB0YLQtdC80LAg0L/QuNGC0LDQvdC40Y8iIHsKICAgICAgICAgICAgICAgIGFrYiA9IGNvbnRhaW5lciAi0JDQutC60YPQvNGD0LvRj9GC0L7RgCIgewogICAgICAgICAgICAgICAgICAgIHBsdXMgPSBwbHVzICIrIgogICAgICAgICAgICAgICAgICAgIG1pbnVzID0gbWludXMgIi0iCiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgc3RhcnRlciA9IGNvbnRhaW5lciAi0KHRgtCw0YDRgtC10YAiIHsKICAgICAgICAgICAgICAgICAgICB0YWdzICJzdGFydGVyIgogICAgICAgICAgICAgICAgICAgIHBsdXMgPSBwbHVzICIrIgogICAgICAgICAgICAgICAgICAgIHN0ID0gY29tcG9uZW50ICLQktGC0Y/Qsy4gMjDQkCIgewogICAgICAgICAgICAgICAgICAgICAgICAjINCY0L3RhNC+0YDQvNCw0YbQuNGPINC+INC80L7RidC90L7RgdGC0Lg6IGh0dHBzOi8vZm9ydW0udWF6YnVrYS5ydS9zaG93dGhyZWFkLnBocD90PTQwNzE4CiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIGdlbmVyYXRvciA9IGNvbnRhaW5lciAi0JPQtdC90LXRgNCw0YLQvtGAIiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyAiZ2VuZXJhdG9yIgogICAgICAgICAgICAgICAgICAgIHBsdXMgPSBwbHVzICIrIgogICAgICAgICAgICAgICAgICAgIG1pbnVzID0gbWludXMgIi0iCiAgICAgICAgICAgICAgICAgICAgdiA9IGNvbXBvbmVudCAi0JLQvtC30LEiCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIGdyb3VwICLQodC40YHRgtC10LzQsCDQt9Cw0LbQuNCz0LDQvdC40Y8iIHsKICAgICAgICAgICAgICAgIGlnbml0aW9uX3JlbGF5ID0gcmVsYXkgItCg0LXQu9C1INC30LDQttC40LPQsNC90LjRjyIgewogICAgICAgICAgICAgICAgICAgICNyZWxheSA9IGNvbnRhaW5lciAi0KDQtdC70LUiIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXkiCiAgICAgICAgICAgICAgICAgICAgICAgIF8zMCA9IGNvbXBvbmVudCAiMzAiIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5XzMwLHJlbGF5X2Nvbm5lY3Rvcixjb25uZWN0b3IiCiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgXzg3ID0gY29tcG9uZW50ICI4NyIgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXlfODcscmVsYXlfY29ubmVjdG9yLGNvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICBfODYgPSBjb21wb25lbnQgIjg2IiB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV84NixyZWxheV9jb25uZWN0b3IsY29ubmVjdG9yIgogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIF84NSA9IGNvbXBvbmVudCAiODUiIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5Xzg1LHJlbGF5X2Nvbm5lY3Rvcixjb25uZWN0b3IiCiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgXzMwIC0+IF84NyB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV9wd3IiCiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgXzg1IC0+IF84NiB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV9jdHIiCiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAjfQogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIHN0YXJ0ZXJfcmVsYXkgPSByZWxheSAi0KDQtdC70LUg0YHRgtCw0YDRgtC10YDQsCIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5NSIKICAgICAgICAgICAgICAgICAgICBfMzAgPSBjb21wb25lbnQgIjMwIiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5XzMwLHJlbGF5X2Nvbm5lY3Rvcixjb25uZWN0b3IiCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIF84NyA9IGNvbXBvbmVudCAiODciIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXlfODcscmVsYXlfY29ubmVjdG9yLGNvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgXzg4ID0gY29tcG9uZW50ICI4OCIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV84OCxyZWxheV9jb25uZWN0b3IsY29ubmVjdG9yIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICBfODYgPSBjb21wb25lbnQgIjg2IiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5Xzg2LHJlbGF5X2Nvbm5lY3Rvcixjb25uZWN0b3IiCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIF84NSA9IGNvbXBvbmVudCAiODUiIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXlfODUscmVsYXlfY29ubmVjdG9yLGNvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgXzMwIC0+IF84NyB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5X3B3ciIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgXzMwIC0+IF84OCB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5X3B3cl9kZWZhdWx0X2Nvbm5lY3RlZCIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgXzg1IC0+IF84NiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5X2N0ciIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgaWduaXRpb25fcmVsYXlfZnVzZSA9IGZ1c2UgItCf0YDQtdC00L7RhdGA0LDQvdC40YLQtdC70Ywg0LTQu9GPINGA0LXQu9C1INC30LDQttC40LPQsNC90LjRjy4gODBBIiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyAiZnVzZSIKICAgICAgICAgICAgICAgICAgICBpbiA9IGNvbXBvbmVudCAiaW4iIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAiZnVzZV9jb25uZWN0b3IsaW4sY29ubmVjdG9yIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICBvdXQgPSBjb21wb25lbnQgIm91dCIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJmdXNlX2Nvbm5lY3RvcixvdXQsY29ubmVjdG9yIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIHN0YXJ0ZXJfcmVsYXlfZnVzZSA9IGZ1c2UgItCf0YDQtdC00L7RhdGA0LDQvdC40YLQtdC70Ywg0LTQu9GPINGA0LXQu9C1INGB0YLQsNGA0YLQtdGA0LAuIDgwQSIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgImZ1c2UiCiAgICAgICAgICAgICAgICAgICAgaW4gPSBjb21wb25lbnQgImluIiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgImZ1c2VfY29ubmVjdG9yLGluLGNvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgb3V0ID0gY29tcG9uZW50ICJvdXQiIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAiZnVzZV9jb25uZWN0b3Isb3V0LGNvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgaWduaXRpb25fc3dpdGNoID0gc3dpdGNoICLQktGL0LrQu9GO0YfQsNGC0LXQu9GMINC30LDQttC40LPQsNC90LjRjyIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgInN3aXRjaCIKICAgICAgICAgICAgICAgICAgICBpbiA9IGNvbXBvbmVudCAiaW4iIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAic3dpdGNoX2Nvbm5lY3Rvcixpbixjb25uZWN0b3IiCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIG91dCA9IGNvbXBvbmVudCAib3V0IiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInN3aXRjaF9jb25uZWN0b3Isb3V0LGNvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgaWduaXRpb24gPSBjb250YWluZXIgItCh0LjRgdGC0LXQvNCwINC30LDQttC40LPQsNC90LjRjyIKCiAgICAgICAgICAgICAgICBzdGFydF9idXR0b24gPSBzd2l0Y2ggItCa0L3QvtC/0LrQsCDQodGC0LDRgNGCIiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyAic3dpdGNoIgogICAgICAgICAgICAgICAgICAgIGluID0gY29tcG9uZW50ICJpbiIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJzd2l0Y2hfY29ubmVjdG9yLGluLGNvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgb3V0ID0gY29tcG9uZW50ICJvdXQiIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAic3dpdGNoX2Nvbm5lY3RvcixvdXQsY29ubmVjdG9yIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgfQoKICAgICAgICAgICAgd2luY2ggPSBjb250YWluZXIgItCb0LXQsdC10LTQutCwIiB7CiAgICAgICAgICAgICAgICBwbHVzID0gcGx1cyAiKyIKICAgICAgICAgICAgICAgIG1pbnVzID0gbWludXMgIi0iCiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIG90aGVyX2Zyb21faWduaXRpb24gPSBjb250YWluZXIgItC/0YDQvtGH0LjQtSDQv9C+0YLRgNC10LHQuNGC0LXQu9C4INC+0YIg0LfQsNC20LjQs9Cw0L3QuNGPIgogICAgICAgICAgICBvdGhlcl9mcm9tX2FrYl9nZW4gPSBjb250YWluZXIgItC/0YDQvtGH0LjQtSDQv9C+0YLRgNC10LHQuNGC0LXQu9C4INC+0YIg0JDQmtCRINC4INCz0LXQvdC10YDQsNGC0L7RgNCwINC90LDQv9GA0Y/QvNGD0Y4iCiAgICAgICAgICAgIGNvbnRyb2xfbGluZV9mcm9tX2lnbml0aW9uID0gY29udGFpbmVyICLQn9C+0YLRgNC10LHQuNGC0LXQu9C4INGD0L/RgNCw0LLQu9GP0Y7RidC10Lkg0LvQuNC90LjQuCDQvtGCINC30LDQttC40LPQsNC90LjRjyIKICAgICAgICAgICAgY29udHJvbF9saW5lX2Zyb21faWduaXRpb25fZnVzZSA9IGZ1c2UgItCf0YDQtdC00L7RhdGA0LDQvdC40YLQtdC70Ywg0L/QvtGC0YDQtdCx0LjRgtC10LvQtdC5INGD0L/RgNCw0LLQu9GP0Y7RidC10Lkg0LvQuNC90LjQuCDQvtGCINC30LDQttC40LPQsNC90LjRjyIgewogICAgICAgICAgICAgICAgdGFncyAiZnVzZSIKICAgICAgICAgICAgICAgIGluID0gY29tcG9uZW50ICJpbiIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgImZ1c2VfY29ubmVjdG9yLGluLGNvbm5lY3RvciIKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIG91dCA9IGNvbXBvbmVudCAib3V0IiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyAiZnVzZV9jb25uZWN0b3Isb3V0LGNvbm5lY3RvciIKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgfQoKICAgICAgICAgICAgaW50ZXJuYWxfbGlnaGluZyA9IGNvbnRhaW5lciAi0KHQuNGB0YLQtdC80LAg0L/QvtC00YHQstC10YLQutC4INC/0YDQuNCx0L7RgNC+0LIiCgogICAgICAgICAgICBncm91cCAi0KHQuNGB0YLQtdC80LAg0L7RhdC70LDQttC00LXQvdC40Y8iIHsKCiAgICAgICAgICAgICAgICBjb29sYW50X3ZlbnRfMSA9IGNvbnRhaW5lciAi0K3Qu9C10LrRgtGA0L7QstC10L3RgtC40LvRj9GC0L7RgCDQvtGF0LvQsNC20LTQtdC90LjRjyDQlNCS0KEgMSJ7CiAgICAgICAgICAgICAgICAgICAgdGFncyAidmVudCIKICAgICAgICAgICAgICAgICAgICBwbHVzID0gcGx1cyAiKyIKICAgICAgICAgICAgICAgICAgICBtaW51cyA9IG1pbnVzICItIgogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIGNvb2xhbnRfdmVudF8xX2Z1c2UgPSBmdXNlICLQn9GA0LXQtNC+0YXRgNCw0L3QuNGC0LXQu9GMINCy0LXQvdGC0LjQu9GP0YLQvtGA0LAg0L7RhdC70LDQttC00LXQvdC40Y8g0JTQktChIDEiIHsKICAgICAgICAgICAgICAgICAgICB0YWdzICJmdXNlIgogICAgICAgICAgICAgICAgICAgIGluID0gY29tcG9uZW50ICJpbiIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJmdXNlX2Nvbm5lY3Rvcixpbixjb25uZWN0b3IiCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIG91dCA9IGNvbXBvbmVudCAib3V0IiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgImZ1c2VfY29ubmVjdG9yLG91dCxjb25uZWN0b3IiCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIGNvb2xhbnRfdmVudF8xX3JlbGF5ID0gcmVsYXkgItCg0LXQu9C1INGN0LvQtdC60YLRgNC+0LLQtdC90YLQuNC70Y/RgtC+0YDQsCDQvtGF0LvQsNC20LTQtdC90LjRjyDQlNCS0KEgMSIgewogICAgICAgICAgICAgICAgICAgICNyZWxheSA9IGNvbnRhaW5lciAi0KDQtdC70LUiIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXkiCiAgICAgICAgICAgICAgICAgICAgICAgIF8zMCA9IGNvbXBvbmVudCAiMzAiIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5XzMwLHJlbGF5X2Nvbm5lY3Rvcixjb25uZWN0b3IiCiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgXzg3ID0gY29tcG9uZW50ICI4NyIgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXlfODcscmVsYXlfY29ubmVjdG9yLGNvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICBfODYgPSBjb21wb25lbnQgIjg2IiB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV84NixyZWxheV9jb25uZWN0b3IsY29ubmVjdG9yIgogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIF84NSA9IGNvbXBvbmVudCAiODUiIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5Xzg1LHJlbGF5X2Nvbm5lY3Rvcixjb25uZWN0b3IiCiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgXzMwIC0+IF84NyB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV9wd3IiCiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgXzg1IC0+IF84NiB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV9jdHIiCiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAjfQogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIGNvb2xhbnRfdmVudF8yID0gY29udGFpbmVyICLQrdC70LXQutGC0YDQvtCy0LXQvdGC0LjQu9GP0YLQvtGAINC+0YXQu9Cw0LbQtNC10L3QuNGPINCU0JLQoSAyInsKICAgICAgICAgICAgICAgICAgICB0YWdzICJ2ZW50IgogICAgICAgICAgICAgICAgICAgIHBsdXMgPSBwbHVzICIrIgogICAgICAgICAgICAgICAgICAgIG1pbnVzID0gbWludXMgIi0iCiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgY29vbGFudF92ZW50XzJfZnVzZSA9IGZ1c2UgItCf0YDQtdC00L7RhdGA0LDQvdC40YLQtdC70Ywg0LLQtdC90YLQuNC70Y/RgtC+0YDQsCDQvtGF0LvQsNC20LTQtdC90LjRjyDQlNCS0KEgMiIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgImZ1c2UiCiAgICAgICAgICAgICAgICAgICAgaW4gPSBjb21wb25lbnQgImluIiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgImZ1c2VfY29ubmVjdG9yLGluLGNvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgb3V0ID0gY29tcG9uZW50ICJvdXQiIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAiZnVzZV9jb25uZWN0b3Isb3V0LGNvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgY29vbGFudF92ZW50XzJfcmVsYXkgPSByZWxheSAi0KDQtdC70LUg0Y3Qu9C10LrRgtGA0L7QstC10L3RgtC40LvRj9GC0L7RgNCwINC+0YXQu9Cw0LbQtNC10L3QuNGPINCU0JLQoSAyIiB7CiAgICAgICAgICAgICAgICAgICAgI3JlbGF5ID0gY29udGFpbmVyICLQoNC10LvQtSIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheSIKICAgICAgICAgICAgICAgICAgICAgICAgXzMwID0gY29tcG9uZW50ICIzMCIgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXlfMzAscmVsYXlfY29ubmVjdG9yLGNvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICBfODcgPSBjb21wb25lbnQgIjg3IiB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV84NyxyZWxheV9jb25uZWN0b3IsY29ubmVjdG9yIgogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIF84NiA9IGNvbXBvbmVudCAiODYiIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5Xzg2LHJlbGF5X2Nvbm5lY3Rvcixjb25uZWN0b3IiCiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgXzg1ID0gY29tcG9uZW50ICI4NSIgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXlfODUscmVsYXlfY29ubmVjdG9yLGNvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICBfMzAgLT4gXzg3IHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5X3B3ciIKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICBfODUgLT4gXzg2IHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5X2N0ciIKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICN9CiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgY29vbGFudF9zZW5zb3IgPSBjb250YWluZXIgItCU0LDRgtGH0LjQuiDQstC60LvRjtGH0LXQvdC40Y8g0Y3Qu9C10LrRgtGA0L7QstC10L3RgtC40LvRj9GC0L7RgNC+0LIg0L7RhdC70LDQttC00LXQvdC40Y8g0JTQktChIgoKICAgICAgICAgICAgICAgIGNvb2xhbnRfY29udHJvbF9zd2l0Y2ggPSBzd2l0Y2ggItCf0LXRgNC10LrQu9GO0YfQsNGC0LXQu9GMINGD0L/RgNCw0LLQu9C10L3QuNGPINCy0LXQvdGC0LjQu9GP0YLQvtGA0LDQvNC4INC+0YXQu9Cw0LbQtNC10L3QuNGPINCU0JLQoSIgewogICAgICAgICAgICAgICAgICAgIEQgPSBjb21wb25lbnQgIkQiCiAgICAgICAgICAgICAgICAgICAgSSA9IGNvbXBvbmVudCAiSSIKICAgICAgICAgICAgICAgICAgICBVID0gY29tcG9uZW50ICJVIgogICAgICAgICAgICAgICAgICAgIFYgPSBjb21wb25lbnQgIlYiCiAgICAgICAgICAgICAgICAgICAgTCA9IGNvbXBvbmVudCAiTCIKICAgICAgICAgICAgICAgICAgICBIID0gY29tcG9uZW50ICJIIgogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIGNvb2xhbnRfY29udHJvbF9saWdodCA9IGxpZ2h0ICLQn9C+0LTRgdCy0LXRgtC60LAg0L/QtdGA0LXQutC70Y7Rh9Cw0YLQtdC70Y8g0YPQv9GA0LDQstC70LXQvdC40Y8g0LLQtdC90YLQuNC70Y/RgtC+0YDQsNC80Lgg0L7RhdC70LDQttC00LXQvdC40Y8g0JTQktChIiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyAibGlnaHQiCiAgICAgICAgICAgICAgICAgICAgcGx1cyA9IGNvbXBvbmVudCAiKyIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJsaWdodF9jb25uZWN0b3IscGx1cyxjb25uZWN0b3IiCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIG1pbnVzID0gY29tcG9uZW50ICItIiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgImxpZ2h0X2Nvbm5lY3RvcixtaW51cyxjb25uZWN0b3IiCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgfQogICAgICAgICAgICB9CgogICAgICAgICAgICAjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwogICAgICAgICAgICAjINCe0L/QuNGB0LDQvdC40LUg0YHQvtC10LTQuNC90LXQvdC40LkgIwogICAgICAgICAgICAjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwogICAgCiAgICAgICAgICAgIGdyb3VuZF9zd2l0Y2gub3V0IC0+IGdyb3VuZCAiNTAg0LzQvDIiIHsKICAgICAgICAgICAgICAgIHRhZ3MgIjUw0LzQvDIiCiAgICAgICAgICAgIH0KICAgIAogICAgICAgICAgICBha2IubWludXMgLT4gZ3JvdW5kX3N3aXRjaC5pbiAiNTAg0LzQvDIiIHsKICAgICAgICAgICAgICAgIHRhZ3MgIjUw0LzQvDIiCiAgICAgICAgICAgIH0KICAgICAgICAgICAgYWtiLnBsdXMgLT4gc3RhcnRlci5wbHVzICI1MCDQvNC8MiIgewogICAgICAgICAgICAgICAgdGFncyAiNTDQvNC8MiIKICAgICAgICAgICAgICAgIHRhZ3MgInJlZCIKICAgICAgICAgICAgfQogICAgICAgICAgICBha2IucGx1cyAtPiB3aW5jaC5wbHVzICI1MCDQvNC8MiIgewogICAgICAgICAgICAgICAgdGFncyAiNTDQvNC8MiIKICAgICAgICAgICAgICAgIHRhZ3MgInJlZCIKICAgICAgICAgICAgfQoKICAgIAogICAgICAgICAgICBnZW5lcmF0b3IubWludXMgLT4gZ3JvdW5kICI1MCDQvNC8MiIgewogICAgICAgICAgICAgICAgdGFncyAiNTDQvNC8MiIKICAgICAgICAgICAgfQogICAgICAgICAgICBnZW5lcmF0b3IucGx1cyAtPiBzdGFydGVyLnBsdXMgIjUwINC80LwyIiB7CiAgICAgICAgICAgICAgICB0YWdzICI1MNC80LwyIgogICAgICAgICAgICAgICAgdGFncyAicmVkIgogICAgICAgICAgICB9CiAgICAKICAgICAgICAgICAgc3RhcnRlci5wbHVzIC0+IGlnbml0aW9uX3JlbGF5X2Z1c2UuaW4gIjE2INC80LwyIiB7CiAgICAgICAgICAgICAgICB0YWdzICIxNtC80LwyIgogICAgICAgICAgICAgICAgdGFncyAicmVkIgogICAgICAgICAgICB9CiAgICAKICAgICAgICAgICAgaWduaXRpb25fcmVsYXlfZnVzZS5vdXQgLT4gaWduaXRpb25fcmVsYXkuXzMwCiAgICAgICAgICAgIGlnbml0aW9uX3JlbGF5X2Z1c2Uub3V0IC0+IGlnbml0aW9uX3N3aXRjaC5pbgogICAgICAgICAgICBpZ25pdGlvbl9yZWxheV9mdXNlLm91dCAtPiBvdGhlcl9mcm9tX2FrYl9nZW4KICAgICAgICAgICAgaWduaXRpb25fcmVsYXlfZnVzZS5vdXQgLT4gZ2VuZXJhdG9yLnYgIjQg0LzQvDIiIHsKICAgICAgICAgICAgICAgIHRhZ3MgIjTQvNC8MiIKICAgICAgICAgICAgICAgIHRhZ3MgInJlZCIKICAgICAgICAgICAgfQogICAgCiAgICAgICAgICAgIGlnbml0aW9uX3N3aXRjaC5vdXQgLT4gaWduaXRpb25fcmVsYXkuXzg1CiAgICAgICAgICAgIAogICAgICAgICAgICBpZ25pdGlvbl9yZWxheS5fODYgLT4gZ3JvdW5kCiAgICAgICAgICAgIGlnbml0aW9uX3JlbGF5Ll84NyAtPiBzdGFydGVyX3JlbGF5X2Z1c2UuaW4gIjE2INC80LwyIiB7CiAgICAgICAgICAgICAgICB0YWdzICIxNtC80LwyIgogICAgICAgICAgICAgICAgdGFncyAicmVkIgogICAgICAgICAgICB9CiAgICAgICAgICAgIAogICAgICAgICAgICBzdGFydGVyX3JlbGF5X2Z1c2Uub3V0IC0+IHN0YXJ0ZXJfcmVsYXkuXzMwICI2INC80LwyIiB7CiAgICAgICAgICAgICAgICB0YWdzICI20LzQvDIiCiAgICAgICAgICAgICAgICB0YWdzICJibGFjayIKICAgICAgICAgICAgfQogICAgICAgICAgICBzdGFydGVyX3JlbGF5X2Z1c2Uub3V0IC0+IGlnbml0aW9uICI0INC80LwyIiB7CiAgICAgICAgICAgICAgICB0YWdzICI00LzQvDIiCiAgICAgICAgICAgICAgICB0YWdzICJibGFjayIKICAgICAgICAgICAgfQogICAgICAgICAgICBzdGFydGVyX3JlbGF5X2Z1c2Uub3V0IC0+IG90aGVyX2Zyb21faWduaXRpb24KICAgICAgICAgICAgc3RhcnRlcl9yZWxheV9mdXNlLm91dCAtPiBzdGFydF9idXR0b24uaW4KICAgIAogICAgICAgICAgICBzdGFydF9idXR0b24ub3V0IC0+IHN0YXJ0ZXJfcmVsYXkuXzg1CiAgICAKICAgICAgICAgICAgc3RhcnRlcl9yZWxheS5fODYgLT4gZ3JvdW5kCiAgICAgICAgICAgIHN0YXJ0ZXJfcmVsYXkuXzg3IC0+IHN0YXJ0ZXIuc3QgIjYg0LzQvDIiIHsKICAgICAgICAgICAgICAgIHRhZ3MgIjbQvNC8MiIKICAgICAgICAgICAgICAgIHRhZ3MgImJsYWNrIgogICAgICAgICAgICB9CiAgICAgICAgICAgIHN0YXJ0ZXJfcmVsYXkuXzg4IC0+IGNvbnRyb2xfbGluZV9mcm9tX2lnbml0aW9uX2Z1c2UuaW4gIjYg0LzQvDIiIHsKICAgICAgICAgICAgICAgIHRhZ3MgIjbQvNC8MiIKICAgICAgICAgICAgICAgIHRhZ3MgImJsYWNrIgogICAgICAgICAgICB9CiAgICAgICAgICAgIGNvbnRyb2xfbGluZV9mcm9tX2lnbml0aW9uX2Z1c2Uub3V0IC0+IGNvbnRyb2xfbGluZV9mcm9tX2lnbml0aW9uCiAgICAgICAgCiAgICAgICAgICAgIHdpbmNoLm1pbnVzIC0+IGdyb3VuZCAiNTAg0LzQvDIiIHsKICAgICAgICAgICAgICAgIHRhZ3MgIjUw0LzQvDIiCiAgICAgICAgICAgICAgICB0YWdzICJibGFjayIKICAgICAgICAgICAgfQoKICAgICAgICAgICAgY29vbGFudF92ZW50XzEubWludXMgLT4gZ3JvdW5kCiAgICAgICAgICAgIGNvb2xhbnRfdmVudF8xX2Z1c2Uub3V0IC0+IGNvb2xhbnRfdmVudF8xLnBsdXMKICAgICAgICAgICAgY29vbGFudF92ZW50XzFfcmVsYXkuXzg3IC0+IGNvb2xhbnRfdmVudF8xX2Z1c2UuaW4KICAgICAgICAgICAgY29udHJvbF9saW5lX2Zyb21faWduaXRpb24gLT4gY29vbGFudF92ZW50XzFfcmVsYXkuXzg1CiAgICAgICAgICAgIG90aGVyX2Zyb21fYWtiX2dlbiAtPiBjb29sYW50X3ZlbnRfMV9yZWxheS5fMzAKICAgICAgICAgICAgY29vbGFudF92ZW50XzFfcmVsYXkuXzg2IC0+IGNvb2xhbnRfY29udHJvbF9zd2l0Y2guSQoKICAgICAgICAgICAgY29vbGFudF92ZW50XzIubWludXMgLT4gZ3JvdW5kCiAgICAgICAgICAgIGNvb2xhbnRfdmVudF8yX2Z1c2Uub3V0IC0+IGNvb2xhbnRfdmVudF8yLnBsdXMKICAgICAgICAgICAgY29vbGFudF92ZW50XzJfcmVsYXkuXzg3IC0+IGNvb2xhbnRfdmVudF8yX2Z1c2UuaW4KICAgICAgICAgICAgY29udHJvbF9saW5lX2Zyb21faWduaXRpb24gLT4gY29vbGFudF92ZW50XzJfcmVsYXkuXzg1CiAgICAgICAgICAgIG90aGVyX2Zyb21fYWtiX2dlbiAtPiBjb29sYW50X3ZlbnRfMl9yZWxheS5fMzAKICAgICAgICAgICAgY29vbGFudF92ZW50XzJfcmVsYXkuXzg2IC0+IGNvb2xhbnRfY29udHJvbF9zd2l0Y2guSQoKICAgICAgICAgICAgY29vbGFudF9zZW5zb3IgLT4gZ3JvdW5kCiAgICAgICAgICAgIGNvb2xhbnRfc2Vuc29yIC0+IGNvb2xhbnRfY29udHJvbF9zd2l0Y2guRAogICAgICAgICAgICBjb29sYW50X2NvbnRyb2xfc3dpdGNoLlUgLT4gZ3JvdW5kCiAgICAgICAgICAgIGNvb2xhbnRfY29udHJvbF9saWdodC5wbHVzIC0+IGNvb2xhbnRfY29udHJvbF9zd2l0Y2guSAogICAgICAgICAgICBpbnRlcm5hbF9saWdoaW5nIC0+IGNvb2xhbnRfY29udHJvbF9saWdodC5wbHVzCiAgICAgICAgICAgIGNvb2xhbnRfY29udHJvbF9saWdodC5taW51cyAtPiBncm91bmQKICAgICAgICAgICAgY29vbGFudF9jb250cm9sX3N3aXRjaC5EIC0+IGNvb2xhbnRfY29udHJvbF9saWdodC5taW51cwogICAgICAgIH0KICAgIH0KCiAgICB2aWV3cyB7CgogICAgICAgICMjIyMjIyMjIyMjIyMjIyMjCiAgICAgICAgIyDQntC/0LjRgdCw0L3QuNC1INCy0YzRjtGFICMKICAgICAgICAjIyMjIyMjIyMjIyMjIyMjIwogICAgICAgIGNvbnRhaW5lciBlcyBlc192aWV3ICLQntCx0YnQuNC5INCy0LjQtCDRjdC70LXQutGC0YDQuNGH0LXRgdC60L7QuSDRgdC40YHRgtC10LzRiyIgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgYXV0b2xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgY29tcG9uZW50IGVzLmFrYiBvdmVyYWxsX2NvbXBvbmVudF92aWV3ICLQntCx0YnQuNC5INCy0LjQtCDQstGB0LXRhSDQutC+0LzQv9C+0L3QtdC90YIiIHsKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC50eXBlPT1jb21wb25lbnQiCiAgICAgICAgICAgIGluY2x1ZGUgImVsZW1lbnQudHlwZT09Y29udGFpbmVyIgogICAgICAgICAgICBhdXRvbGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICBjb21wb25lbnQgZXMuYWtiIHsKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC5wYXJlbnQ9PWVzLmFrYiIKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC50eXBlPT1jb21wb25lbnQgJiYgLT5lcy5ha2ItPiIKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC50eXBlPT1jb250YWluZXIgJiYgLT5lcy5ha2ItPiIKICAgICAgICAgICAgYXV0b2xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgY29tcG9uZW50IGVzLnN0YXJ0ZXIgewogICAgICAgICAgICBpbmNsdWRlICJlbGVtZW50LnBhcmVudD09ZXMuc3RhcnRlciIKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC50eXBlPT1jb21wb25lbnQgJiYgLT5lcy5zdGFydGVyLT4iCiAgICAgICAgICAgIGluY2x1ZGUgImVsZW1lbnQudHlwZT09Y29udGFpbmVyICYmIC0+ZXMuc3RhcnRlci0+IgogICAgICAgICAgICBhdXRvbGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICBjb21wb25lbnQgZXMuZ2VuZXJhdG9yIHsKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC5wYXJlbnQ9PWVzLmdlbmVyYXRvciIKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC50eXBlPT1jb21wb25lbnQgJiYgLT5lcy5nZW5lcmF0b3ItPiIKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC50eXBlPT1jb250YWluZXIgJiYgLT5lcy5nZW5lcmF0b3ItPiIKICAgICAgICAgICAgYXV0b2xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgY29tcG9uZW50IGVzLmlnbml0aW9uX3JlbGF5IHsKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC5wYXJlbnQ9PWVzLmlnbml0aW9uX3JlbGF5IgogICAgICAgICAgICBpbmNsdWRlICJlbGVtZW50LnR5cGU9PWNvbXBvbmVudCAmJiAtPmVzLmlnbml0aW9uX3JlbGF5LT4iCiAgICAgICAgICAgIGluY2x1ZGUgImVsZW1lbnQudHlwZT09Y29udGFpbmVyICYmIC0+ZXMuaWduaXRpb25fcmVsYXktPiIKICAgICAgICAgICAgYXV0b2xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgY29tcG9uZW50IGVzLnN0YXJ0ZXJfcmVsYXkgewogICAgICAgICAgICBpbmNsdWRlICJlbGVtZW50LnBhcmVudD09ZXMuc3RhcnRlcl9yZWxheSIKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC50eXBlPT1jb21wb25lbnQgJiYgLT5lcy5zdGFydGVyX3JlbGF5LT4iCiAgICAgICAgICAgIGluY2x1ZGUgImVsZW1lbnQudHlwZT09Y29udGFpbmVyICYmIC0+ZXMuc3RhcnRlcl9yZWxheS0+IgogICAgICAgICAgICBhdXRvbGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICBjb21wb25lbnQgZXMuaWduaXRpb25fcmVsYXlfZnVzZSB7CiAgICAgICAgICAgIGluY2x1ZGUgImVsZW1lbnQucGFyZW50PT1lcy5pZ25pdGlvbl9yZWxheV9mdXNlIgogICAgICAgICAgICBpbmNsdWRlICJlbGVtZW50LnR5cGU9PWNvbXBvbmVudCAmJiAtPmVzLmlnbml0aW9uX3JlbGF5X2Z1c2UtPiIKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC50eXBlPT1jb250YWluZXIgJiYgLT5lcy5pZ25pdGlvbl9yZWxheV9mdXNlLT4iCiAgICAgICAgICAgIGF1dG9sYXlvdXQgbHIKICAgICAgICB9CgogICAgICAgIGNvbXBvbmVudCBlcy5zdGFydGVyX3JlbGF5X2Z1c2UgewogICAgICAgICAgICBpbmNsdWRlICJlbGVtZW50LnBhcmVudD09ZXMuc3RhcnRlcl9yZWxheV9mdXNlIgogICAgICAgICAgICBpbmNsdWRlICJlbGVtZW50LnR5cGU9PWNvbXBvbmVudCAmJiAtPmVzLnN0YXJ0ZXJfcmVsYXlfZnVzZS0+IgogICAgICAgICAgICBpbmNsdWRlICJlbGVtZW50LnR5cGU9PWNvbnRhaW5lciAmJiAtPmVzLnN0YXJ0ZXJfcmVsYXlfZnVzZS0+IgogICAgICAgICAgICBhdXRvbGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICBjb21wb25lbnQgZXMud2luY2ggewogICAgICAgICAgICBpbmNsdWRlICJlbGVtZW50LnBhcmVudD09ZXMud2luY2giCiAgICAgICAgICAgIGluY2x1ZGUgImVsZW1lbnQudHlwZT09Y29tcG9uZW50ICYmIC0+ZXMud2luY2gtPiIKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC50eXBlPT1jb250YWluZXIgJiYgLT5lcy53aW5jaC0+IgogICAgICAgICAgICBhdXRvbGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICBzdHlsZXMgewoKICAgICAgICAgICAgIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMKICAgICAgICAgICAgIyDQntC/0LjRgdCw0L3QuNC1INGB0L7QtdC00LjQvdC10L3QuNC5ICMKICAgICAgICAgICAgIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMKCiAgICAgICAgICAgIHJlbGF0aW9uc2hpcCAiUmVsYXRpb25zaGlwIiB7CiAgICAgICAgICAgICAgICBzdHlsZSBzb2xpZAogICAgICAgICAgICAgICAgI0RpcmVjdHxPcnRob2dvbmFsfEN1cnZlZAogICAgICAgICAgICAgICAgcm91dGluZyBDdXJ2ZWQKICAgICAgICAgICAgfQogICAgICAgICAgICByZWxhdGlvbnNoaXAgInJlbGF5X3B3ciIgewogICAgICAgICAgICAgICAgc3R5bGUgZGFzaGVkCiAgICAgICAgICAgICAgICB0aGlja25lc3MgMwogICAgICAgICAgICB9CiAgICAgICAgICAgIHJlbGF0aW9uc2hpcCAicmVsYXlfY3RyIiB7CiAgICAgICAgICAgICAgICBzdHlsZSBkb3R0ZWQKICAgICAgICAgICAgfQogICAgICAgICAgICByZWxhdGlvbnNoaXAgInJlZCIgewogICAgICAgICAgICAgICAgY29sb3IgI2ZmMDAwMAogICAgICAgICAgICB9CiAgICAgICAgICAgIHJlbGF0aW9uc2hpcCAiYmxhY2siIHsKICAgICAgICAgICAgICAgIGNvbG9yICMwMDAwMDAKICAgICAgICAgICAgfQogICAgICAgICAgICByZWxhdGlvbnNoaXAgIjUw0LzQvDIiIHsKICAgICAgICAgICAgICAgIHRoaWNrbmVzcyA1MAogICAgICAgICAgICB9CiAgICAgICAgICAgIHJlbGF0aW9uc2hpcCAiMTbQvNC8MiIgewogICAgICAgICAgICAgICAgdGhpY2tuZXNzIDE2CiAgICAgICAgICAgIH0KICAgICAgICAgICAgcmVsYXRpb25zaGlwICI20LzQvDIiIHsKICAgICAgICAgICAgICAgIHRoaWNrbmVzcyA2CiAgICAgICAgICAgIH0KICAgICAgICAgICAgcmVsYXRpb25zaGlwICI00LzQvDIiIHsKICAgICAgICAgICAgICAgIHRoaWNrbmVzcyA0CiAgICAgICAgICAgIH0KCgogICAgICAgICAgICAjIyMjIyMjIyMjIyMjIyMjIyMjIyMjCiAgICAgICAgICAgICMg0J7Qv9C40YHQsNC90LjQtSDRjdC70LXQvNC10L3RgtC+0LIgIwogICAgICAgICAgICAjIyMjIyMjIyMjIyMjIyMjIyMjIyMjCiAgICAgICAgICAgIGVsZW1lbnQgIkNvbXBvbmVudCIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjODA4MDgwCiAgICAgICAgICAgICAgICB3aWR0aCAxMDAKICAgICAgICAgICAgICAgIGhlaWdodCAxMDAKICAgICAgICAgICAgICAgIG1ldGFkYXRhIGZhbHNlCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiQ29udGFpbmVyIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMwNzczYWYKICAgICAgICAgICAgICAgIG1ldGFkYXRhIGZhbHNlCiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIGVsZW1lbnQgInZlbnQiIHsKICAgICAgICAgICAgICAgIHNoYXBlICJIZXhhZ29uIgogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjMDAwMDAwCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAic3RhcnRlciIgewogICAgICAgICAgICAgICAgaWNvbiAic3RhcnRlci5qcGciCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiZ2VuZXJhdG9yIiB7CiAgICAgICAgICAgICAgICBzaGFwZSBwaXBlCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAicGx1cyIgewogICAgICAgICAgICAgICAgaWNvbiAicGx1cy5wbmciCiAgICAgICAgICAgICAgICB3aWR0aCAxMDAKICAgICAgICAgICAgICAgIG1ldGFkYXRhIGZhbHNlCiAgICAgICAgICAgICAgICBkZXNjcmlwdGlvbiBmYWxzZQogICAgICAgICAgICAgICAgc2hhcGUgQ2lyY2xlCiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICNmZjZmNmYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJtaW51cyIgewogICAgICAgICAgICAgICAgaWNvbiAibWludXMucG5nIgogICAgICAgICAgICAgICAgd2lkdGggMTAwCiAgICAgICAgICAgICAgICBtZXRhZGF0YSBmYWxzZQogICAgICAgICAgICAgICAgZGVzY3JpcHRpb24gZmFsc2UKICAgICAgICAgICAgICAgIHNoYXBlIENpcmNsZQogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjNzI3MjcyCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAic3dpdGNoIiB7CiAgICAgICAgICAgICAgICBpY29uICJzd2l0Y2gucG5nIgogICAgICAgICAgICAgICAgd2lkdGggMTAwCiAgICAgICAgICAgICAgICBoZWlnaHQgMTAwCiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMwMzg4MDMKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJmdXNlIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICNmZjAwMDAKICAgICAgICAgICAgICAgIGljb24gZnVzZS5qcGVnCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAicmVsYXkiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzAwMDBiYgogICAgICAgICAgICAgICAgaWNvbiByZWxheS5qcGcKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJyZWxheTUiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzAwMDBiYgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgImNvbm5lY3RvciIgewogICAgICAgICAgICAgICAgZGVzY3JpcHRpb24gZmFsc2UKICAgICAgICAgICAgICAgIHNoYXBlIEJveAogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjMDAwMGJiCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAibGlnaHQiIHsKICAgICAgICAgICAgICAgIG1ldGFkYXRhIGZhbHNlCiAgICAgICAgICAgICAgICBkZXNjcmlwdGlvbiBmYWxzZQogICAgICAgICAgICAgICAgd2lkdGggMTAwCiAgICAgICAgICAgICAgICBoZWlnaHQgMTAwCiAgICAgICAgICAgICAgICBpY29uIGxpZ2h0LmpwZwogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjZmZmZmZmCiAgICAgICAgICAgIH0KCgogICAgICAgICAgICBlbGVtZW50ICJFbGVtZW50IiB7CiAgICAgICAgICAgICAgICBjb2xvciAjZmZmZmZmCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiUGVyc29uIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMwNTUyN2QKICAgICAgICAgICAgICAgIHNoYXBlIHBlcnNvbgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIlNvZnR3YXJlIFN5c3RlbSIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjMDY2Mjk2CiAgICAgICAgICAgIH0KICAgICAgICB9CiAgICB9CgogICAgY29uZmlndXJhdGlvbiB7CiAgICAgICAgc2NvcGUgc29mdHdhcmVzeXN0ZW0KICAgIH0KCn0="
+    "structurizr.dsl" : "d29ya3NwYWNlICJOYW1lIiAiRGVzY3JpcHRpb24iIHsKCiAgICAhaWRlbnRpZmllcnMgaGllcmFyY2hpY2FsCgogICAgbW9kZWwgewoKICAgICAgICBhcmNoZXR5cGVzIHsKICAgICAgICAgICAgcmVsYXkgPSBjb250YWluZXIgewogICAgICAgICAgICAgICAgdGFncyAicmVsYXkiCiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIGZ1c2UgPSBjb250YWluZXIgewogICAgICAgICAgICAgICAgdGFncyAiZnVzZSIKICAgICAgICAgICAgfQoKICAgICAgICAgICAgc3dpdGNoID0gY29udGFpbmVyIHsKICAgICAgICAgICAgICAgIHRhZ3MgInN3aXRjaCIKICAgICAgICAgICAgfQoKICAgICAgICAgICAgbGlnaHQgPSBjb250YWluZXIgewogICAgICAgICAgICAgICAgdGFncyAibGlnaHQiCiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIHBsdXMgPSBjb21wb25lbnQgewogICAgICAgICAgICAgICAgdGFncyAicGx1cyIKICAgICAgICAgICAgfQoKICAgICAgICAgICAgbWludXMgPSBjb21wb25lbnQgewogICAgICAgICAgICAgICAgdGFncyAibWludXMiCiAgICAgICAgICAgIH0KICAgICAgICB9CgogICAgICAgIGVzID0gc29mdHdhcmVTeXN0ZW0gItCt0LvQtdC60YLRgNC40YfQtdGB0LrQsNGPINGB0LjRgdGC0LXQvNCwINCj0JDQlyIgewoKICAgICAgICAgICAgZ3JvdW5kID0gY29udGFpbmVyICLQnNCw0YHRgdCwICjQutC+0YDQv9GD0YEpIiB7CiAgICAgICAgICAgICAgICB0YWdzICJncm91bmQiCiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIGdyb3VuZF9zd2l0Y2ggPSBzd2l0Y2ggItCg0LDQt9C80YvQutCw0YLQtdC70Ywg0LzQsNGB0YHRiyIgewogICAgICAgICAgICAgICAgdGFncyAic3dpdGNoIgogICAgICAgICAgICAgICAgaW4gPSBjb21wb25lbnQgImluIiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyAic3dpdGNoX2Nvbm5lY3Rvcixpbixjb25uZWN0b3IiCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICBvdXQgPSBjb21wb25lbnQgIm91dCIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgInN3aXRjaF9jb25uZWN0b3Isb3V0LGNvbm5lY3RvciIKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgfQoKICAgICAgICAgICAgcG93ZXJfZ3JvdXAgPSBncm91cCAi0KHQuNGB0YLQtdC80LAg0L/QuNGC0LDQvdC40Y8iIHsKICAgICAgICAgICAgICAgIGFrYiA9IGNvbnRhaW5lciAi0JDQutC60YPQvNGD0LvRj9GC0L7RgCIgewogICAgICAgICAgICAgICAgICAgIHBsdXMgPSBwbHVzICIrIgogICAgICAgICAgICAgICAgICAgIG1pbnVzID0gbWludXMgIi0iCiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgc3RhcnRlciA9IGNvbnRhaW5lciAi0KHRgtCw0YDRgtC10YAiIHsKICAgICAgICAgICAgICAgICAgICB0YWdzICJzdGFydGVyIgogICAgICAgICAgICAgICAgICAgIHBsdXMgPSBwbHVzICIrIgogICAgICAgICAgICAgICAgICAgIHN0ID0gY29tcG9uZW50ICLQktGC0Y/Qsy4gMjDQkCIgewogICAgICAgICAgICAgICAgICAgICAgICAjINCY0L3RhNC+0YDQvNCw0YbQuNGPINC+INC80L7RidC90L7RgdGC0Lg6IGh0dHBzOi8vZm9ydW0udWF6YnVrYS5ydS9zaG93dGhyZWFkLnBocD90PTQwNzE4CiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIGdlbmVyYXRvciA9IGNvbnRhaW5lciAi0JPQtdC90LXRgNCw0YLQvtGAIiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyAiZ2VuZXJhdG9yIgogICAgICAgICAgICAgICAgICAgIHBsdXMgPSBwbHVzICIrIgogICAgICAgICAgICAgICAgICAgIG1pbnVzID0gbWludXMgIi0iCiAgICAgICAgICAgICAgICAgICAgdiA9IGNvbXBvbmVudCAi0JLQvtC30LEiCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIGdyb3VwICLQodC40YHRgtC10LzQsCDQt9Cw0LbQuNCz0LDQvdC40Y8iIHsKICAgICAgICAgICAgICAgIGlnbml0aW9uX3JlbGF5ID0gcmVsYXkgItCg0LXQu9C1INC30LDQttC40LPQsNC90LjRjyIgewogICAgICAgICAgICAgICAgICAgICNyZWxheSA9IGNvbnRhaW5lciAi0KDQtdC70LUiIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXkiCiAgICAgICAgICAgICAgICAgICAgICAgIF8zMCA9IGNvbXBvbmVudCAiMzAiIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5XzMwLHJlbGF5X2Nvbm5lY3Rvcixjb25uZWN0b3IiCiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgXzg3ID0gY29tcG9uZW50ICI4NyIgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXlfODcscmVsYXlfY29ubmVjdG9yLGNvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICBfODYgPSBjb21wb25lbnQgIjg2IiB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV84NixyZWxheV9jb25uZWN0b3IsY29ubmVjdG9yIgogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIF84NSA9IGNvbXBvbmVudCAiODUiIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5Xzg1LHJlbGF5X2Nvbm5lY3Rvcixjb25uZWN0b3IiCiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgXzMwIC0+IF84NyB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV9wd3IiCiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgXzg1IC0+IF84NiB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV9jdHIiCiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAjfQogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIHN0YXJ0ZXJfcmVsYXkgPSByZWxheSAi0KDQtdC70LUg0YHRgtCw0YDRgtC10YDQsCIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5NSIKICAgICAgICAgICAgICAgICAgICBfMzAgPSBjb21wb25lbnQgIjMwIiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5XzMwLHJlbGF5X2Nvbm5lY3Rvcixjb25uZWN0b3IiCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIF84NyA9IGNvbXBvbmVudCAiODciIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXlfODcscmVsYXlfY29ubmVjdG9yLGNvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgXzg4ID0gY29tcG9uZW50ICI4OCIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV84OCxyZWxheV9jb25uZWN0b3IsY29ubmVjdG9yIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICBfODYgPSBjb21wb25lbnQgIjg2IiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5Xzg2LHJlbGF5X2Nvbm5lY3Rvcixjb25uZWN0b3IiCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIF84NSA9IGNvbXBvbmVudCAiODUiIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXlfODUscmVsYXlfY29ubmVjdG9yLGNvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgXzMwIC0+IF84NyB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5X3B3ciIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgXzMwIC0+IF84OCB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5X3B3cl9kZWZhdWx0X2Nvbm5lY3RlZCIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgXzg1IC0+IF84NiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5X2N0ciIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgaWduaXRpb25fcmVsYXlfZnVzZSA9IGZ1c2UgItCf0YDQtCDRgNC10LvQtSDQt9Cw0LbQuNCz0LDQvdC40Y8uIDgwQSIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgImZ1c2UiCiAgICAgICAgICAgICAgICAgICAgaW4gPSBjb21wb25lbnQgImluIiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgImZ1c2VfY29ubmVjdG9yLGluLGNvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgb3V0ID0gY29tcG9uZW50ICJvdXQiIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAiZnVzZV9jb25uZWN0b3Isb3V0LGNvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICBzdGFydGVyX3JlbGF5X2Z1c2UgPSBmdXNlICLQn9GA0LQg0YDQtdC70LUg0YHRgtCw0YDRgtC10YDQsC4gODBBIiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyAiZnVzZSIKICAgICAgICAgICAgICAgICAgICBpbiA9IGNvbXBvbmVudCAiaW4iIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAiZnVzZV9jb25uZWN0b3IsaW4sY29ubmVjdG9yIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICBvdXQgPSBjb21wb25lbnQgIm91dCIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJmdXNlX2Nvbm5lY3RvcixvdXQsY29ubmVjdG9yIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICBpZ25pdGlvbl9zd2l0Y2ggPSBzd2l0Y2ggItCS0YvQutC70Y7Rh9Cw0YLQtdC70Ywg0LfQsNC20LjQs9Cw0L3QuNGPIiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyAic3dpdGNoIgogICAgICAgICAgICAgICAgICAgIGluID0gY29tcG9uZW50ICJpbiIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJzd2l0Y2hfY29ubmVjdG9yLGluLGNvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgb3V0ID0gY29tcG9uZW50ICJvdXQiIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAic3dpdGNoX2Nvbm5lY3RvcixvdXQsY29ubmVjdG9yIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICBpZ25pdGlvbiA9IGNvbnRhaW5lciAi0KHQuNGB0YLQtdC80LAg0LfQsNC20LjQs9Cw0L3QuNGPIiB7CiAgICAgICAgICAgICAgICAgICAgaW4gPSBjb21wb25lbnQgImluIiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgImlnbml0aW9uX2Nvbm5lY3Rvcixpbixjb25uZWN0b3IiCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIHN0YXJ0X2J1dHRvbiA9IHN3aXRjaCAi0JrQvdC+0L/QutCwINCh0YLQsNGA0YIiIHsKICAgICAgICAgICAgICAgICAgICB0YWdzICJzd2l0Y2giCiAgICAgICAgICAgICAgICAgICAgaW4gPSBjb21wb25lbnQgImluIiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInN3aXRjaF9jb25uZWN0b3IsaW4sY29ubmVjdG9yIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICBvdXQgPSBjb21wb25lbnQgIm91dCIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJzd2l0Y2hfY29ubmVjdG9yLG91dCxjb25uZWN0b3IiCiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgfQogICAgICAgICAgICB9CgogICAgICAgICAgICB3aW5jaCA9IGNvbnRhaW5lciAi0JvQtdCx0LXQtNC60LAiIHsKICAgICAgICAgICAgICAgIHBsdXMgPSBwbHVzICIrIgogICAgICAgICAgICAgICAgbWludXMgPSBtaW51cyAiLSIKICAgICAgICAgICAgfQoKICAgICAgICAgICAgb3RoZXJfZnJvbV9ha2JfZ2VuID0gY29udGFpbmVyICLQv9GA0L7Rh9C40LUg0L/QvtGC0YDQtdCx0LjRgtC10LvQuCDQvtGCINCQ0JrQkSDQuCDQs9C10L3QtdGA0LDRgtC+0YDQsCDQvdCw0L/RgNGP0LzRg9GOIgogICAgICAgICAgICBjb250cm9sX2xpbmVfZnJvbV9pZ25pdGlvbiA9IGNvbnRhaW5lciAi0J/QvtGC0YDQtdCx0LjRgtC10LvQuCDRg9C/0YDQsNCy0LvRj9GO0YnQtdC5INC70LjQvdC40Lgg0L7RgiDQt9Cw0LbQuNCz0LDQvdC40Y8iCiAgICAgICAgICAgIGNvbnRyb2xfbGluZV9mcm9tX2lnbml0aW9uX2Z1c2UgPSBmdXNlICLQn9GA0LXQtNC+0YXRgNCw0L3QuNGC0LXQu9GMINC/0L7RgtGA0LXQsdC40YLQtdC70LXQuSDRg9C/0YDQsNCy0LvRj9GO0YnQtdC5INC70LjQvdC40Lgg0L7RgiDQt9Cw0LbQuNCz0LDQvdC40Y8iIHsKICAgICAgICAgICAgICAgIHRhZ3MgImZ1c2UiCiAgICAgICAgICAgICAgICBpbiA9IGNvbXBvbmVudCAiaW4iIHsKICAgICAgICAgICAgICAgICAgICB0YWdzICJmdXNlX2Nvbm5lY3Rvcixpbixjb25uZWN0b3IiCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICBvdXQgPSBjb21wb25lbnQgIm91dCIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgImZ1c2VfY29ubmVjdG9yLG91dCxjb25uZWN0b3IiCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIGludGVybmFsX2xpZ2h0aW5nID0gY29udGFpbmVyICLQodC40YHRgtC10LzQsCDQv9C+0LTRgdCy0LXRgtC60Lgg0L/RgNC40LHQvtGA0L7QsiIKCiAgICAgICAgICAgIGdyb3VwICLQodC40YHRgtC10LzQsCDQvtGF0LvQsNC20LTQtdC90LjRjyIgewoKICAgICAgICAgICAgICAgIGNvb2xhbnRfdmVudF8xID0gY29udGFpbmVyICLQrS3QstC10L3RgiDQvtGF0Lsg0JTQktChIDEiewogICAgICAgICAgICAgICAgICAgIHRhZ3MgInZlbnQiCiAgICAgICAgICAgICAgICAgICAgcGx1cyA9IHBsdXMgIisiCiAgICAgICAgICAgICAgICAgICAgbWludXMgPSBtaW51cyAiLSIKICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICBjb29sYW50X3ZlbnRfMV9mdXNlID0gZnVzZSAi0J/RgNC0INGNLdCy0LXQvdGCINC+0YXQuyDQlNCS0KEgMS4gMjDQkCIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgImZ1c2UiCiAgICAgICAgICAgICAgICAgICAgaW4gPSBjb21wb25lbnQgImluIiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgImZ1c2VfY29ubmVjdG9yLGluLGNvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgb3V0ID0gY29tcG9uZW50ICJvdXQiIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAiZnVzZV9jb25uZWN0b3Isb3V0LGNvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgY29vbGFudF92ZW50XzFfcmVsYXkgPSByZWxheSAi0KDQtdC70LUg0Y0t0LLQtdC90YIg0L7RhdC7INCU0JLQoSAxIiB7CiAgICAgICAgICAgICAgICAgICAgI3JlbGF5ID0gY29udGFpbmVyICLQoNC10LvQtSIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheSIKICAgICAgICAgICAgICAgICAgICAgICAgXzMwID0gY29tcG9uZW50ICIzMCIgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXlfMzAscmVsYXlfY29ubmVjdG9yLGNvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICBfODcgPSBjb21wb25lbnQgIjg3IiB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV84NyxyZWxheV9jb25uZWN0b3IsY29ubmVjdG9yIgogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIF84NiA9IGNvbXBvbmVudCAiODYiIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5Xzg2LHJlbGF5X2Nvbm5lY3Rvcixjb25uZWN0b3IiCiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgXzg1ID0gY29tcG9uZW50ICI4NSIgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXlfODUscmVsYXlfY29ubmVjdG9yLGNvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgICAgICAgICBfMzAgLT4gXzg3IHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5X3B3ciIKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICBfODUgLT4gXzg2IHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5X2N0ciIKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICN9CiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgY29vbGFudF92ZW50XzIgPSBjb250YWluZXIgItCtLdCy0LXQvdGCINC+0YXQuyDQlNCS0KEgMiJ7CiAgICAgICAgICAgICAgICAgICAgdGFncyAidmVudCIKICAgICAgICAgICAgICAgICAgICBwbHVzID0gcGx1cyAiKyIKICAgICAgICAgICAgICAgICAgICBtaW51cyA9IG1pbnVzICItIgogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIGNvb2xhbnRfdmVudF8yX2Z1c2UgPSBmdXNlICLQn9GA0LQg0Y0t0LLQtdC90YIg0L7RhdC7INCU0JLQoSAyLiAyMNCQIiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyAiZnVzZSIKICAgICAgICAgICAgICAgICAgICBpbiA9IGNvbXBvbmVudCAiaW4iIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAiZnVzZV9jb25uZWN0b3IsaW4sY29ubmVjdG9yIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICBvdXQgPSBjb21wb25lbnQgIm91dCIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJmdXNlX2Nvbm5lY3RvcixvdXQsY29ubmVjdG9yIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICBjb29sYW50X3ZlbnRfMl9yZWxheSA9IHJlbGF5ICLQoNC10LvQtSDRjS3QstC10L3RgiDQvtGF0Lsg0JTQktChIDIiIHsKICAgICAgICAgICAgICAgICAgICAjcmVsYXkgPSBjb250YWluZXIgItCg0LXQu9C1IiB7CiAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5IgogICAgICAgICAgICAgICAgICAgICAgICBfMzAgPSBjb21wb25lbnQgIjMwIiB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV8zMCxyZWxheV9jb25uZWN0b3IsY29ubmVjdG9yIgogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIF84NyA9IGNvbXBvbmVudCAiODciIHsKICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRhZ3MgInJlbGF5Xzg3LHJlbGF5X2Nvbm5lY3Rvcixjb25uZWN0b3IiCiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgXzg2ID0gY29tcG9uZW50ICI4NiIgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXlfODYscmVsYXlfY29ubmVjdG9yLGNvbm5lY3RvciIKICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICBfODUgPSBjb21wb25lbnQgIjg1IiB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJyZWxheV84NSxyZWxheV9jb25uZWN0b3IsY29ubmVjdG9yIgogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAgICAgICAgIF8zMCAtPiBfODcgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXlfcHdyIgogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIF84NSAtPiBfODYgewogICAgICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAicmVsYXlfY3RyIgogICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgI30KICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICBjb29sYW50X3NlbnNvciA9IGNvbnRhaW5lciAi0JTQsNGC0YfQuNC6INCy0LrQuyDRjS3QstC10L3RgiDQvtGF0Lsg0JTQktChIgoKICAgICAgICAgICAgICAgIGNvb2xhbnRfY29udHJvbF9zd2l0Y2ggPSBzd2l0Y2ggItCf0LXRgNC10LrQu9GO0YfQsNGC0LXQu9GMINGD0L/RgCDRjS3QstC10L3RgiDQvtGF0Lsg0JTQktChIiB7CiAgICAgICAgICAgICAgICAgICAgRCA9IGNvbXBvbmVudCAiRCIKICAgICAgICAgICAgICAgICAgICBJID0gY29tcG9uZW50ICJJIgogICAgICAgICAgICAgICAgICAgIFUgPSBjb21wb25lbnQgIlUiCiAgICAgICAgICAgICAgICAgICAgViA9IGNvbXBvbmVudCAiViIKICAgICAgICAgICAgICAgICAgICBMID0gY29tcG9uZW50ICJMIgogICAgICAgICAgICAgICAgICAgIEggPSBjb21wb25lbnQgIkgiCiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgY29vbGFudF9jb250cm9sX2xpZ2h0ID0gbGlnaHQgItCf0L7QtNGB0LLQtdGC0LrQsCDRg9C/0YAg0Y0t0LLQtdC90YIg0L7RhdC7INCU0JLQoSIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgImxpZ2h0IgogICAgICAgICAgICAgICAgICAgIHBsdXMgPSBjb21wb25lbnQgIisiIHsKICAgICAgICAgICAgICAgICAgICAgICAgdGFncyAibGlnaHRfY29ubmVjdG9yLHBsdXMsY29ubmVjdG9yIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICBtaW51cyA9IGNvbXBvbmVudCAiLSIgewogICAgICAgICAgICAgICAgICAgICAgICB0YWdzICJsaWdodF9jb25uZWN0b3IsbWludXMsY29ubmVjdG9yIgogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgfQoKICAgICAgICAgICAgIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMKICAgICAgICAgICAgIyDQntC/0LjRgdCw0L3QuNC1INGB0L7QtdC00LjQvdC10L3QuNC5ICMKICAgICAgICAgICAgIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMKICAgIAogICAgICAgICAgICBncm91bmRfc3dpdGNoLm91dCAtPiBncm91bmQgIjUwINC80LwyIiB7CiAgICAgICAgICAgICAgICB0YWdzICI1MNC80LwyIgogICAgICAgICAgICB9CiAgICAKICAgICAgICAgICAgYWtiLm1pbnVzIC0+IGdyb3VuZF9zd2l0Y2guaW4gIjUwINC80LwyIiB7CiAgICAgICAgICAgICAgICB0YWdzICI1MNC80LwyIgogICAgICAgICAgICB9CiAgICAgICAgICAgIGFrYi5wbHVzIC0+IHN0YXJ0ZXIucGx1cyAiNTAg0LzQvDIiIHsKICAgICAgICAgICAgICAgIHRhZ3MgIjUw0LzQvDIscmVkIgogICAgICAgICAgICB9CiAgICAgICAgICAgIGFrYi5wbHVzIC0+IHdpbmNoLnBsdXMgIjUwINC80LwyIiB7CiAgICAgICAgICAgICAgICB0YWdzICI1MNC80LwyLHJlZCIKICAgICAgICAgICAgfQoKICAgIAogICAgICAgICAgICBnZW5lcmF0b3IubWludXMgLT4gZ3JvdW5kICI1MCDQvNC8MiIgewogICAgICAgICAgICAgICAgdGFncyAiNTDQvNC8MiIKICAgICAgICAgICAgfQogICAgICAgICAgICBnZW5lcmF0b3IucGx1cyAtPiBzdGFydGVyLnBsdXMgIjUwINC80LwyIiB7CiAgICAgICAgICAgICAgICB0YWdzICI1MNC80LwyLHJlZCIKICAgICAgICAgICAgfQogICAgCiAgICAgICAgICAgIHN0YXJ0ZXIucGx1cyAtPiBpZ25pdGlvbl9yZWxheV9mdXNlLmluICIxNiDQvNC8MiIgewogICAgICAgICAgICAgICAgdGFncyAiMTbQvNC8MixyZWQiCiAgICAgICAgICAgIH0KICAgIAogICAgICAgICAgICBpZ25pdGlvbl9yZWxheV9mdXNlLm91dCAtPiBpZ25pdGlvbl9yZWxheS5fMzAgIjE2INC80LwyIiB7CiAgICAgICAgICAgICAgICB0YWdzICIxNtC80LwyLHJlZCIKICAgICAgICAgICAgfQogICAgICAgICAgICBpZ25pdGlvbl9yZWxheV9mdXNlLm91dCAtPiBpZ25pdGlvbl9zd2l0Y2guaW4gIjAuNzUg0LzQvDIiIHsKICAgICAgICAgICAgICAgIHRhZ3MgIjAuNzXQvNC8MixyZWQiCiAgICAgICAgICAgIH0KICAgICAgICAgICAgaWduaXRpb25fcmVsYXlfZnVzZS5vdXQgLT4gb3RoZXJfZnJvbV9ha2JfZ2VuICIxNiDQvNC8MiIgewogICAgICAgICAgICAgICAgdGFncyAiMTbQvNC8MixyZWQiCiAgICAgICAgICAgIH0KICAgICAgICAgICAgaWduaXRpb25fcmVsYXlfZnVzZS5vdXQgLT4gZ2VuZXJhdG9yLnYgIjQg0LzQvDIiIHsKICAgICAgICAgICAgICAgIHRhZ3MgIjTQvNC8MixyZWQiCiAgICAgICAgICAgIH0KICAgIAogICAgICAgICAgICBpZ25pdGlvbl9zd2l0Y2gub3V0IC0+IGlnbml0aW9uX3JlbGF5Ll84NSAiMC43NSDQvNC8MiIgewogICAgICAgICAgICAgICAgdGFncyAiMC43NdC80LwyLHJlZCIKICAgICAgICAgICAgfQogICAgICAgICAgICAKICAgICAgICAgICAgaWduaXRpb25fcmVsYXkuXzg2IC0+IGdyb3VuZCAiMC43NSDQvNC8MiIgewogICAgICAgICAgICAgICAgdGFncyAiMC43NdC80LwyLGJsYWNrIgogICAgICAgICAgICB9CiAgICAgICAgICAgIGlnbml0aW9uX3JlbGF5Ll84NyAtPiBzdGFydGVyX3JlbGF5X2Z1c2UuaW4gIjYg0LzQvDIiIHsKICAgICAgICAgICAgICAgIHRhZ3MgIjbQvNC8MixibGFjayIKICAgICAgICAgICAgfQogICAgICAgICAgICAKICAgICAgICAgICAgc3RhcnRlcl9yZWxheV9mdXNlLm91dCAtPiBzdGFydGVyX3JlbGF5Ll8zMCAiNiDQvNC8MiIgewogICAgICAgICAgICAgICAgdGFncyAiNtC80LwyLGJsYWNrIgogICAgICAgICAgICB9CiAgICAgICAgICAgIHN0YXJ0ZXJfcmVsYXlfZnVzZS5vdXQgLT4gaWduaXRpb24uaW4gIjQg0LzQvDIiIHsKICAgICAgICAgICAgICAgIHRhZ3MgIjTQvNC8MixibGFjayIKICAgICAgICAgICAgfQogICAgICAgICAgICBzdGFydGVyX3JlbGF5X2Z1c2Uub3V0IC0+IHN0YXJ0X2J1dHRvbi5pbiAiMC43NSDQvNC8MiIgewogICAgICAgICAgICAgICAgdGFncyAiMC43NdC80LwyLHJlZCIKICAgICAgICAgICAgfQogICAgCiAgICAgICAgICAgIHN0YXJ0X2J1dHRvbi5vdXQgLT4gc3RhcnRlcl9yZWxheS5fODUgIjAuNzUg0LzQvDIiIHsKICAgICAgICAgICAgICAgIHRhZ3MgIjAuNzXQvNC8MixyZWQiCiAgICAgICAgICAgIH0KICAgIAogICAgICAgICAgICBzdGFydGVyX3JlbGF5Ll84NiAtPiBncm91bmQKICAgICAgICAgICAgc3RhcnRlcl9yZWxheS5fODcgLT4gc3RhcnRlci5zdCAiNiDQvNC8MiIgewogICAgICAgICAgICAgICAgdGFncyAiNtC80LwyLGJsYWNrIgogICAgICAgICAgICB9CiAgICAgICAgICAgIHN0YXJ0ZXJfcmVsYXkuXzg4IC0+IGNvbnRyb2xfbGluZV9mcm9tX2lnbml0aW9uX2Z1c2UuaW4gIjYg0LzQvDIiIHsKICAgICAgICAgICAgICAgIHRhZ3MgIjbQvNC8MixibGFjayIKICAgICAgICAgICAgfQogICAgICAgICAgICBjb250cm9sX2xpbmVfZnJvbV9pZ25pdGlvbl9mdXNlLm91dCAtPiBjb250cm9sX2xpbmVfZnJvbV9pZ25pdGlvbgogICAgICAgIAogICAgICAgICAgICB3aW5jaC5taW51cyAtPiBncm91bmQgIjUwINC80LwyIiB7CiAgICAgICAgICAgICAgICB0YWdzICI1MNC80LwyLGJsYWNrIgogICAgICAgICAgICB9CgogICAgICAgICAgICBjb29sYW50X3ZlbnRfMS5taW51cyAtPiBncm91bmQKICAgICAgICAgICAgY29vbGFudF92ZW50XzFfZnVzZS5vdXQgLT4gY29vbGFudF92ZW50XzFfcmVsYXkuXzMwICI2INC80LwyIiB7CiAgICAgICAgICAgICAgICB0YWdzICI20LzQvDIsYmx1ZSIKICAgICAgICAgICAgfQogICAgICAgICAgICBjb29sYW50X3ZlbnRfMV9yZWxheS5fODcgLT4gY29vbGFudF92ZW50XzEucGx1cyAiNiDQvNC8MiIgewogICAgICAgICAgICAgICAgdGFncyAiNtC80LwyLGJsdWUiCiAgICAgICAgICAgIH0KICAgICAgICAgICAgY29udHJvbF9saW5lX2Zyb21faWduaXRpb24gLT4gY29vbGFudF92ZW50XzFfcmVsYXkuXzg1CiAgICAgICAgICAgIG90aGVyX2Zyb21fYWtiX2dlbiAtPiBjb29sYW50X3ZlbnRfMV9mdXNlLmluICI2INC80LwyIiB7CiAgICAgICAgICAgICAgICB0YWdzICI20LzQvDIsYmx1ZSIKICAgICAgICAgICAgfQogICAgICAgICAgICBjb29sYW50X3ZlbnRfMV9yZWxheS5fODYgLT4gY29vbGFudF9jb250cm9sX3N3aXRjaC5JCgogICAgICAgICAgICBjb29sYW50X3ZlbnRfMi5taW51cyAtPiBncm91bmQKICAgICAgICAgICAgY29vbGFudF92ZW50XzJfcmVsYXkuXzg3IC0+IGNvb2xhbnRfdmVudF8yLnBsdXMgIjYg0LzQvDIiIHsKICAgICAgICAgICAgICAgIHRhZ3MgIjbQvNC8MixibHVlIgogICAgICAgICAgICB9CiAgICAgICAgICAgIG90aGVyX2Zyb21fYWtiX2dlbiAtPiBjb29sYW50X3ZlbnRfMl9mdXNlLmluICI2INC80LwyIiB7CiAgICAgICAgICAgICAgICB0YWdzICI20LzQvDIsYmx1ZSIKICAgICAgICAgICAgfQogICAgICAgICAgICBjb250cm9sX2xpbmVfZnJvbV9pZ25pdGlvbiAtPiBjb29sYW50X3ZlbnRfMl9yZWxheS5fODUKICAgICAgICAgICAgY29vbGFudF92ZW50XzJfZnVzZS5vdXQgLT4gY29vbGFudF92ZW50XzJfcmVsYXkuXzMwICI2INC80LwyIiB7CiAgICAgICAgICAgICAgICB0YWdzICI20LzQvDIsYmx1ZSIKICAgICAgICAgICAgfQogICAgICAgICAgICBjb29sYW50X3ZlbnRfMl9yZWxheS5fODYgLT4gY29vbGFudF9jb250cm9sX3N3aXRjaC5JCgogICAgICAgICAgICBjb29sYW50X3NlbnNvciAtPiBncm91bmQKICAgICAgICAgICAgY29vbGFudF9zZW5zb3IgLT4gY29vbGFudF9jb250cm9sX3N3aXRjaC5ECiAgICAgICAgICAgIGNvb2xhbnRfY29udHJvbF9zd2l0Y2guVSAtPiBncm91bmQKICAgICAgICAgICAgY29vbGFudF9jb250cm9sX2xpZ2h0LnBsdXMgLT4gY29vbGFudF9jb250cm9sX3N3aXRjaC5ICiAgICAgICAgICAgIGludGVybmFsX2xpZ2h0aW5nIC0+IGNvb2xhbnRfY29udHJvbF9saWdodC5wbHVzCiAgICAgICAgICAgIGNvb2xhbnRfY29udHJvbF9saWdodC5taW51cyAtPiBncm91bmQKICAgICAgICAgICAgY29vbGFudF9jb250cm9sX3N3aXRjaC5EIC0+IGNvb2xhbnRfY29udHJvbF9saWdodC5taW51cwogICAgICAgIH0KICAgIH0KCiAgICB2aWV3cyB7CgogICAgICAgICMjIyMjIyMjIyMjIyMjIyMjCiAgICAgICAgIyDQntC/0LjRgdCw0L3QuNC1INCy0YzRjtGFICMKICAgICAgICAjIyMjIyMjIyMjIyMjIyMjIwogICAgICAgIGNvbnRhaW5lciBlcyBlc192aWV3ICLQntCx0YnQuNC5INCy0LjQtCDRjdC70LXQutGC0YDQuNGH0LXRgdC60L7QuSDRgdC40YHRgtC10LzRiyIgewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgYXV0b2xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgY29tcG9uZW50IGVzLmFrYiBvdmVyYWxsX2NvbXBvbmVudF92aWV3ICLQntCx0YnQuNC5INCy0LjQtCDQstGB0LXRhSDQutC+0LzQv9C+0L3QtdC90YIiIHsKICAgICAgICAgICAgaW5jbHVkZSAiZWxlbWVudC50eXBlPT1jb21wb25lbnQiCiAgICAgICAgICAgIGluY2x1ZGUgImVsZW1lbnQudHlwZT09Y29udGFpbmVyIgogICAgICAgICAgICBhdXRvbGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICAhc2NyaXB0IGFsbF9jb21wb25lbnRzX3ZpZXcuZ3Jvb3Z5CgogICAgICAgIHN0eWxlcyB7CgogICAgICAgICAgICAjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwogICAgICAgICAgICAjINCe0L/QuNGB0LDQvdC40LUg0YHQvtC10LTQuNC90LXQvdC40LkgIwogICAgICAgICAgICAjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwoKICAgICAgICAgICAgcmVsYXRpb25zaGlwICJSZWxhdGlvbnNoaXAiIHsKICAgICAgICAgICAgICAgIHN0eWxlIHNvbGlkCiAgICAgICAgICAgICAgICAjRGlyZWN0fE9ydGhvZ29uYWx8Q3VydmVkCiAgICAgICAgICAgICAgICByb3V0aW5nIEN1cnZlZAogICAgICAgICAgICB9CiAgICAgICAgICAgIHJlbGF0aW9uc2hpcCAicmVsYXlfcHdyIiB7CiAgICAgICAgICAgICAgICBzdHlsZSBkYXNoZWQKICAgICAgICAgICAgICAgIHRoaWNrbmVzcyAzCiAgICAgICAgICAgIH0KICAgICAgICAgICAgcmVsYXRpb25zaGlwICJyZWxheV9jdHIiIHsKICAgICAgICAgICAgICAgIHN0eWxlIGRvdHRlZAogICAgICAgICAgICB9CiAgICAgICAgICAgIHJlbGF0aW9uc2hpcCAicmVkIiB7CiAgICAgICAgICAgICAgICBjb2xvciAjZmYwMDAwCiAgICAgICAgICAgIH0KICAgICAgICAgICAgcmVsYXRpb25zaGlwICJibGFjayIgewogICAgICAgICAgICAgICAgY29sb3IgIzAwMDAwMAogICAgICAgICAgICB9CiAgICAgICAgICAgIHJlbGF0aW9uc2hpcCAiYmx1ZSIgewogICAgICAgICAgICAgICAgY29sb3IgIzAwMDBmZgogICAgICAgICAgICB9CiAgICAgICAgICAgIHJlbGF0aW9uc2hpcCAiNTDQvNC8MiIgewogICAgICAgICAgICAgICAgdGhpY2tuZXNzIDUwCiAgICAgICAgICAgIH0KICAgICAgICAgICAgcmVsYXRpb25zaGlwICIxNtC80LwyIiB7CiAgICAgICAgICAgICAgICB0aGlja25lc3MgMTYKICAgICAgICAgICAgfQogICAgICAgICAgICByZWxhdGlvbnNoaXAgIjbQvNC8MiIgewogICAgICAgICAgICAgICAgdGhpY2tuZXNzIDYKICAgICAgICAgICAgfQogICAgICAgICAgICByZWxhdGlvbnNoaXAgIjTQvNC8MiIgewogICAgICAgICAgICAgICAgdGhpY2tuZXNzIDQKICAgICAgICAgICAgfQogICAgICAgICAgICByZWxhdGlvbnNoaXAgIjAuNzXQvNC8MiIgewogICAgICAgICAgICAgICAgdGhpY2tuZXNzIDEKICAgICAgICAgICAgfQoKCiAgICAgICAgICAgICMjIyMjIyMjIyMjIyMjIyMjIyMjIyMKICAgICAgICAgICAgIyDQntC/0LjRgdCw0L3QuNC1INGN0LvQtdC80LXQvdGC0L7QsiAjCiAgICAgICAgICAgICMjIyMjIyMjIyMjIyMjIyMjIyMjIyMKICAgICAgICAgICAgZWxlbWVudCAiQ29tcG9uZW50IiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICM4MDgwODAKICAgICAgICAgICAgICAgIHdpZHRoIDEwMAogICAgICAgICAgICAgICAgaGVpZ2h0IDEwMAogICAgICAgICAgICAgICAgbWV0YWRhdGEgZmFsc2UKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJDb250YWluZXIiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzA3NzNhZgogICAgICAgICAgICAgICAgbWV0YWRhdGEgZmFsc2UKICAgICAgICAgICAgfQoKICAgICAgICAgICAgZWxlbWVudCAidmVudCIgewogICAgICAgICAgICAgICAgc2hhcGUgIkhleGFnb24iCiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMwMDAwMDAKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJzdGFydGVyIiB7CiAgICAgICAgICAgICAgICBpY29uICJzdGFydGVyLmpwZyIKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJnZW5lcmF0b3IiIHsKICAgICAgICAgICAgICAgIHNoYXBlIHBpcGUKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJwbHVzIiB7CiAgICAgICAgICAgICAgICBpY29uICJwbHVzLnBuZyIKICAgICAgICAgICAgICAgIHdpZHRoIDEwMAogICAgICAgICAgICAgICAgbWV0YWRhdGEgZmFsc2UKICAgICAgICAgICAgICAgIGRlc2NyaXB0aW9uIGZhbHNlCiAgICAgICAgICAgICAgICBzaGFwZSBDaXJjbGUKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgI2ZmNmY2ZgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIm1pbnVzIiB7CiAgICAgICAgICAgICAgICBpY29uICJtaW51cy5wbmciCiAgICAgICAgICAgICAgICB3aWR0aCAxMDAKICAgICAgICAgICAgICAgIG1ldGFkYXRhIGZhbHNlCiAgICAgICAgICAgICAgICBkZXNjcmlwdGlvbiBmYWxzZQogICAgICAgICAgICAgICAgc2hhcGUgQ2lyY2xlCiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICM3MjcyNzIKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJzd2l0Y2giIHsKICAgICAgICAgICAgICAgIGljb24gInN3aXRjaC5wbmciCiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMwMzg4MDMKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJmdXNlIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICNmZjAwMDAKICAgICAgICAgICAgICAgIGljb24gZnVzZS5qcGVnCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAicmVsYXkiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzAwMDBiYgogICAgICAgICAgICAgICAgaWNvbiByZWxheS5qcGcKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJyZWxheTUiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzAwMDBiYgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgImNvbm5lY3RvciIgewogICAgICAgICAgICAgICAgZGVzY3JpcHRpb24gZmFsc2UKICAgICAgICAgICAgICAgIHNoYXBlIEJveAogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjMDAwMGJiCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAibGlnaHQiIHsKICAgICAgICAgICAgICAgIG1ldGFkYXRhIGZhbHNlCiAgICAgICAgICAgICAgICBkZXNjcmlwdGlvbiBmYWxzZQogICAgICAgICAgICAgICAgI3dpZHRoIDEwMAogICAgICAgICAgICAgICAgI2hlaWdodCAxMDAKICAgICAgICAgICAgICAgIGNvbG9yICMwMDAwMDAKICAgICAgICAgICAgICAgIGljb24gbGlnaHQuanBnCiAgICAgICAgICAgICAgICBzaGFwZSBDaXJjbGUKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgI2ZmZmZmZgogICAgICAgICAgICB9CgoKICAgICAgICAgICAgZWxlbWVudCAiRWxlbWVudCIgewogICAgICAgICAgICAgICAgY29sb3IgI2ZmZmZmZgogICAgICAgICAgICB9CiAgICAgICAgICAgIGVsZW1lbnQgIlBlcnNvbiIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjMDU1MjdkCiAgICAgICAgICAgICAgICBzaGFwZSBwZXJzb24KICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJTb2Z0d2FyZSBTeXN0ZW0iIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgIzA2NjI5NgogICAgICAgICAgICB9CiAgICAgICAgfQogICAgfQoKICAgIGNvbmZpZ3VyYXRpb24gewogICAgICAgIHNjb3BlIHNvZnR3YXJlc3lzdGVtCiAgICB9Cgp9"
   },
   "views" : {
     "componentViews" : [ {
@@ -1534,253 +1581,249 @@
       "containerId" : "6",
       "description" : "Общий вид всех компонент",
       "dimensions" : {
-        "height" : 9558,
-        "width" : 5586
+        "height" : 9540,
+        "width" : 5396
       },
       "elements" : [ {
         "id" : "2",
-        "x" : 4870,
-        "y" : 5500
+        "x" : 4745,
+        "y" : 5438
       }, {
         "id" : "4",
-        "x" : 4470,
-        "y" : 7808
+        "x" : 4345,
+        "y" : 7701
       }, {
         "id" : "5",
-        "x" : 4470,
-        "y" : 8208
+        "x" : 4345,
+        "y" : 8101
       }, {
         "id" : "7",
-        "x" : 1370,
-        "y" : 7112
+        "x" : 1295,
+        "y" : 7005
       }, {
         "id" : "8",
-        "x" : 1370,
-        "y" : 7512
+        "x" : 1295,
+        "y" : 7405
       }, {
         "id" : "10",
-        "x" : 1770,
-        "y" : 3125
+        "x" : 1870,
+        "y" : 4693
       }, {
         "id" : "11",
-        "x" : 1770,
-        "y" : 3525
+        "x" : 1870,
+        "y" : 5093
       }, {
         "id" : "13",
-        "x" : 1370,
-        "y" : 1583
+        "x" : 1295,
+        "y" : 2988
       }, {
         "id" : "14",
-        "x" : 1370,
-        "y" : 1183
+        "x" : 1295,
+        "y" : 2588
       }, {
         "id" : "15",
-        "x" : 1370,
-        "y" : 1983
+        "x" : 1295,
+        "y" : 3388
       }, {
         "id" : "17",
-        "x" : 1370,
-        "y" : 783
+        "x" : 1295,
+        "y" : 1180
       }, {
         "id" : "18",
-        "x" : 1770,
-        "y" : 783
+        "x" : 1870,
+        "y" : 1180
       }, {
         "id" : "19",
-        "x" : 1770,
-        "y" : 383
+        "x" : 1870,
+        "y" : 1580
       }, {
         "id" : "20",
-        "x" : 1370,
-        "y" : 383
+        "x" : 1295,
+        "y" : 1580
       }, {
         "id" : "24",
-        "x" : 795,
-        "y" : 3600
+        "x" : 895,
+        "y" : 5197
       }, {
         "id" : "25",
-        "x" : 1370,
-        "y" : 3600
+        "x" : 1295,
+        "y" : 5197
       }, {
         "id" : "26",
-        "x" : 1370,
-        "y" : 4000
+        "x" : 1295,
+        "y" : 5597
       }, {
         "id" : "27",
-        "x" : 1370,
-        "y" : 4400
+        "x" : 1295,
+        "y" : 5997
       }, {
         "id" : "28",
-        "x" : 795,
-        "y" : 4200
+        "x" : 895,
+        "y" : 5797
       }, {
         "id" : "33",
-        "x" : 795,
-        "y" : 2862
+        "x" : 895,
+        "y" : 3788
       }, {
         "id" : "34",
-        "x" : 795,
-        "y" : 2462
+        "x" : 895,
+        "y" : 3388
       }, {
         "id" : "36",
-        "x" : 220,
-        "y" : 1562
+        "x" : 495,
+        "y" : 1609
       }, {
         "id" : "37",
-        "x" : 220,
-        "y" : 1962
+        "x" : 495,
+        "y" : 1209
       }, {
         "id" : "39",
-        "x" : 795,
-        "y" : 833
+        "x" : 1295,
+        "y" : 4188
       }, {
         "id" : "40",
-        "x" : 795,
-        "y" : 433
+        "x" : 1295,
+        "y" : 3788
       }, {
-        "id" : "41",
-        "x" : 620,
-        "y" : 1262
-      }, {
-        "id" : "43",
-        "x" : 220,
-        "y" : 3167
+        "id" : "42",
+        "x" : 895,
+        "y" : 172
       }, {
         "id" : "44",
-        "x" : 220,
-        "y" : 3567
+        "x" : 495,
+        "y" : 4268
       }, {
-        "id" : "46",
-        "x" : 4470,
-        "y" : 7008
+        "id" : "45",
+        "x" : 495,
+        "y" : 4668
       }, {
         "id" : "47",
-        "x" : 4470,
-        "y" : 7408
+        "x" : 4345,
+        "y" : 6901
       }, {
         "id" : "48",
-        "x" : 620,
-        "y" : 1862
+        "x" : 4345,
+        "y" : 7301
       }, {
         "id" : "49",
-        "x" : 2170,
-        "y" : 2958
+        "x" : 1695,
+        "y" : 1984
       }, {
         "id" : "50",
-        "x" : 2170,
-        "y" : 4158
+        "x" : 2445,
+        "y" : 3176
       }, {
         "id" : "52",
-        "x" : 1770,
-        "y" : 3954
+        "x" : 1870,
+        "y" : 5493
       }, {
         "id" : "53",
-        "x" : 1770,
-        "y" : 4354
+        "x" : 1870,
+        "y" : 5893
       }, {
         "id" : "54",
-        "x" : 3720,
-        "y" : 8508
+        "x" : 3595,
+        "y" : 8401
       }, {
         "id" : "56",
-        "x" : 4470,
-        "y" : 2400
+        "x" : 4345,
+        "y" : 1076
       }, {
         "id" : "57",
-        "x" : 4470,
-        "y" : 2800
+        "x" : 4345,
+        "y" : 1476
       }, {
         "id" : "59",
-        "x" : 3895,
-        "y" : 2621
+        "x" : 2620,
+        "y" : 1180
       }, {
         "id" : "60",
-        "x" : 3895,
-        "y" : 3021
+        "x" : 2620,
+        "y" : 1580
       }, {
         "id" : "62",
-        "x" : 2920,
-        "y" : 3058
+        "x" : 3195,
+        "y" : 1476
       }, {
         "id" : "63",
-        "x" : 3320,
-        "y" : 3058
+        "x" : 3770,
+        "y" : 1476
       }, {
         "id" : "64",
-        "x" : 3320,
-        "y" : 3458
+        "x" : 3770,
+        "y" : 1876
       }, {
         "id" : "65",
-        "x" : 2920,
-        "y" : 3458
+        "x" : 3195,
+        "y" : 1876
       }, {
         "id" : "69",
-        "x" : 4470,
-        "y" : 5600
+        "x" : 4345,
+        "y" : 4884
       }, {
         "id" : "70",
-        "x" : 4470,
-        "y" : 6000
+        "x" : 4345,
+        "y" : 5284
       }, {
         "id" : "72",
-        "x" : 3895,
-        "y" : 4942
+        "x" : 2620,
+        "y" : 2230
       }, {
         "id" : "73",
-        "x" : 3895,
-        "y" : 5342
+        "x" : 2620,
+        "y" : 2630
       }, {
         "id" : "75",
-        "x" : 2920,
-        "y" : 3858
+        "x" : 3195,
+        "y" : 2876
       }, {
         "id" : "76",
-        "x" : 3320,
-        "y" : 3858
+        "x" : 3770,
+        "y" : 2876
       }, {
         "id" : "77",
-        "x" : 3320,
-        "y" : 4258
+        "x" : 3770,
+        "y" : 3276
       }, {
         "id" : "78",
-        "x" : 2920,
-        "y" : 4258
+        "x" : 3195,
+        "y" : 3276
       }, {
         "id" : "81",
-        "x" : 3720,
-        "y" : 1946
+        "x" : 3595,
+        "y" : 2276
       }, {
         "id" : "83",
-        "x" : 4470,
-        "y" : 3200
+        "x" : 4345,
+        "y" : 2276
       }, {
         "id" : "84",
-        "x" : 4470,
-        "y" : 3600
+        "x" : 4345,
+        "y" : 1876
       }, {
         "id" : "85",
-        "x" : 4470,
-        "y" : 5200
+        "x" : 4345,
+        "y" : 3876
       }, {
         "id" : "86",
-        "x" : 4470,
-        "y" : 4400
+        "x" : 4345,
+        "y" : 3076
       }, {
         "id" : "87",
-        "x" : 4470,
-        "y" : 4800
+        "x" : 4345,
+        "y" : 3476
       }, {
         "id" : "88",
-        "x" : 4470,
-        "y" : 4000
+        "x" : 4345,
+        "y" : 2676
       }, {
         "id" : "90",
-        "x" : 4470,
-        "y" : 8608
+        "x" : 4345,
+        "y" : 8501
       }, {
         "id" : "91",
-        "x" : 4470,
-        "y" : 9008
+        "x" : 4345,
+        "y" : 8901
       } ],
       "externalContainerBoundariesVisible" : false,
       "key" : "overall_component_view",
@@ -1788,238 +1831,271 @@
       "relationships" : [ {
         "id" : "102",
         "vertices" : [ {
-          "x" : 2391,
-          "y" : 7162
+          "x" : 2666,
+          "y" : 7055
         }, {
-          "x" : 3374,
-          "y" : 7162
+          "x" : 3250,
+          "y" : 7055
         } ]
       }, {
         "id" : "106",
         "vertices" : [ {
-          "x" : 2391,
-          "y" : 1337
-        }, {
-          "x" : 3949,
-          "y" : 1337
-        }, {
-          "x" : 4674,
-          "y" : 1967
+          "x" : 4241,
+          "y" : 5563
         } ]
       }, {
         "id" : "108",
         "vertices" : [ {
-          "x" : 1574,
-          "y" : 1833
+          "x" : 1500,
+          "y" : 3238
+        }, {
+          "x" : 1695,
+          "y" : 4468
         } ]
       }, {
-        "id" : "112"
+        "id" : "112",
+        "vertices" : [ {
+          "x" : 1191,
+          "y" : 4468
+        } ]
       }, {
         "id" : "116",
         "vertices" : [ {
-          "x" : 1070,
-          "y" : 2312
-        }, {
-          "x" : 1266,
-          "y" : 1004
+          "x" : 1191,
+          "y" : 1430
         } ]
       }, {
         "id" : "120",
         "vertices" : [ {
-          "x" : 620,
-          "y" : 2312
+          "x" : 1100,
+          "y" : 3638
         }, {
-          "x" : 522,
-          "y" : 2162
-        }, {
-          "x" : 522,
-          "y" : 1262
-        }, {
-          "x" : 620,
-          "y" : 1112
+          "x" : 1191,
+          "y" : 4038
         } ]
       }, {
         "id" : "124",
         "vertices" : [ {
-          "x" : 1974,
-          "y" : 2946
+          "x" : 1191,
+          "y" : 2409
         } ]
       }, {
         "id" : "126"
       }, {
-        "id" : "130"
+        "id" : "130",
+        "vertices" : [ {
+          "x" : 1191,
+          "y" : 3668
+        }, {
+          "x" : 1145,
+          "y" : 3518
+        }, {
+          "x" : 1145,
+          "y" : 2055
+        }, {
+          "x" : 1191,
+          "y" : 1905
+        } ]
       }, {
         "id" : "134",
         "vertices" : [ {
-          "x" : 2966,
-          "y" : 579
+          "x" : 2145,
+          "y" : 1430
         }, {
-          "x" : 3949,
-          "y" : 579
+          "x" : 2445,
+          "y" : 1001
         }, {
-          "x" : 4674,
-          "y" : 1108
+          "x" : 3241,
+          "y" : 622
+        }, {
+          "x" : 3825,
+          "y" : 622
+        }, {
+          "x" : 4550,
+          "y" : 897
         } ]
       }, {
         "id" : "136",
         "vertices" : [ {
-          "x" : 1666,
-          "y" : 633
+          "x" : 1500,
+          "y" : 1030
         }, {
-          "x" : 1574,
-          "y" : 233
-        }, {
-          "x" : 1266,
-          "y" : 233
-        }, {
-          "x" : 620,
-          "y" : 254
+          "x" : 1191,
+          "y" : 1030
         } ]
       }, {
         "id" : "140",
         "vertices" : [ {
-          "x" : 620,
-          "y" : 3142
+          "x" : 700,
+          "y" : 1459
+        }, {
+          "x" : 791,
+          "y" : 4068
         } ]
       }, {
-        "id" : "144"
-      }, {
-        "id" : "146"
+        "id" : "144",
+        "vertices" : [ {
+          "x" : 791,
+          "y" : 497
+        } ]
       }, {
         "id" : "148",
         "vertices" : [ {
-          "x" : 270,
-          "y" : 2414
+          "x" : 241,
+          "y" : 1609
         }, {
-          "x" : 270,
-          "y" : 2815
+          "x" : 241,
+          "y" : 1738
         } ]
       }, {
-        "id" : "152"
+        "id" : "152",
+        "vertices" : [ {
+          "x" : 791,
+          "y" : 5447
+        } ]
       }, {
         "id" : "156",
         "vertices" : [ {
-          "x" : 2391,
-          "y" : 6554
+          "x" : 1695,
+          "y" : 6172
         }, {
-          "x" : 3949,
-          "y" : 6554
+          "x" : 2666,
+          "y" : 6447
         }, {
-          "x" : 4674,
-          "y" : 6279
+          "x" : 3825,
+          "y" : 6447
+        }, {
+          "x" : 4550,
+          "y" : 6068
         } ]
       }, {
         "id" : "158"
       }, {
         "id" : "162"
       }, {
-        "id" : "166"
+        "id" : "166",
+        "vertices" : [ {
+          "x" : 2145,
+          "y" : 5743
+        } ]
       }, {
         "id" : "168",
         "vertices" : [ {
-          "x" : 4674,
-          "y" : 7258
+          "x" : 4550,
+          "y" : 7151
         } ]
       }, {
         "id" : "170",
         "vertices" : [ {
-          "x" : 4674,
-          "y" : 3021
+          "x" : 4550,
+          "y" : 1697
         } ]
       }, {
-        "id" : "172",
-        "vertices" : [ {
-          "x" : 4170,
-          "y" : 2871
-        } ]
+        "id" : "172"
       }, {
         "id" : "176"
       }, {
         "id" : "180",
         "vertices" : [ {
-          "x" : 2816,
-          "y" : 3679
+          "x" : 2895,
+          "y" : 2909
         } ]
       }, {
-        "id" : "182"
+        "id" : "182",
+        "vertices" : [ {
+          "x" : 2145,
+          "y" : 1859
+        }, {
+          "x" : 2445,
+          "y" : 1430
+        } ]
       }, {
         "id" : "184"
       }, {
         "id" : "188"
       }, {
-        "id" : "190"
-      }, {
-        "id" : "194",
+        "id" : "190",
         "vertices" : [ {
-          "x" : 3524,
-          "y" : 4108
+          "x" : 4045,
+          "y" : 3126
+        }, {
+          "x" : 4241,
+          "y" : 4659
         } ]
+      }, {
+        "id" : "194"
+      }, {
+        "id" : "196"
       }, {
         "id" : "198"
       }, {
-        "id" : "200",
+        "id" : "202",
         "vertices" : [ {
-          "x" : 2816,
-          "y" : 3737
+          "x" : 4045,
+          "y" : 3126
+        }, {
+          "x" : 4241,
+          "y" : 2126
         } ]
-      }, {
-        "id" : "202"
       }, {
         "id" : "206",
         "vertices" : [ {
-          "x" : 4674,
-          "y" : 2221
-        } ]
-      }, {
-        "id" : "207",
-        "vertices" : [ {
-          "x" : 4170,
-          "y" : 2442
+          "x" : 4045,
+          "y" : 2697
         }, {
-          "x" : 4366,
-          "y" : 3079
+          "x" : 4241,
+          "y" : 4155
+        }, {
+          "x" : 4550,
+          "y" : 4705
         } ]
       }, {
-        "id" : "209"
+        "id" : "207"
+      }, {
+        "id" : "209",
+        "vertices" : [ {
+          "x" : 4550,
+          "y" : 4201
+        } ]
       }, {
         "id" : "21"
       }, {
         "id" : "211",
         "vertices" : [ {
-          "x" : 4366,
-          "y" : 8487
+          "x" : 4241,
+          "y" : 8380
         }, {
-          "x" : 4268,
-          "y" : 8337
+          "x" : 4143,
+          "y" : 8230
         }, {
-          "x" : 4268,
-          "y" : 4400
+          "x" : 4143,
+          "y" : 3076
         }, {
-          "x" : 4366,
-          "y" : 4250
+          "x" : 4241,
+          "y" : 2926
         } ]
       }, {
         "id" : "215"
       }, {
         "id" : "217",
         "vertices" : [ {
-          "x" : 4674,
-          "y" : 8858
+          "x" : 4550,
+          "y" : 8751
         } ]
       }, {
         "id" : "219",
         "vertices" : [ {
-          "x" : 4366,
-          "y" : 3450
+          "x" : 4241,
+          "y" : 2526
         }, {
-          "x" : 4268,
-          "y" : 3600
+          "x" : 4143,
+          "y" : 2676
         }, {
-          "x" : 4268,
-          "y" : 8708
+          "x" : 4143,
+          "y" : 8601
         }, {
-          "x" : 4366,
-          "y" : 8858
+          "x" : 4241,
+          "y" : 8751
         } ]
       }, {
         "id" : "22"
@@ -2040,34 +2116,77 @@
       }, {
         "id" : "92",
         "vertices" : [ {
-          "x" : 4674,
-          "y" : 8058
+          "x" : 4550,
+          "y" : 7951
         } ]
       }, {
         "id" : "94",
         "vertices" : [ {
-          "x" : 2391,
-          "y" : 7812
+          "x" : 2666,
+          "y" : 7705
         }, {
-          "x" : 3374,
-          "y" : 7812
+          "x" : 3250,
+          "y" : 7705
         } ]
       }, {
         "id" : "98",
         "vertices" : [ {
-          "x" : 1666,
-          "y" : 3375
+          "x" : 1500,
+          "y" : 6276
+        }, {
+          "x" : 1695,
+          "y" : 4943
         } ]
       } ]
     }, {
       "automaticLayout" : {
         "applied" : false,
         "edgeSeparation" : 0,
-        "implementation" : "Graphviz",
+        "implementation" : "Dagre",
         "nodeSeparation" : 300,
         "rankDirection" : "LeftRight",
         "rankSeparation" : 300,
-        "vertices" : false
+        "vertices" : true
+      },
+      "containerId" : "3",
+      "dimensions" : {
+        "height" : 1020,
+        "width" : 2120
+      },
+      "elements" : [ {
+        "id" : "2",
+        "x" : 1470,
+        "y" : 485
+      }, {
+        "id" : "4",
+        "x" : 920,
+        "y" : 185
+      }, {
+        "id" : "5",
+        "x" : 920,
+        "y" : 585
+      }, {
+        "id" : "8",
+        "x" : 220,
+        "y" : 185
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "Размыкатель массы_direct_neighbours",
+      "order" : 3,
+      "relationships" : [ {
+        "id" : "92"
+      }, {
+        "id" : "94"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Dagre",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : true
       },
       "containerId" : "6",
       "elements" : [ {
@@ -2087,14 +2206,13 @@
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "46",
+        "id" : "47",
         "x" : 0,
         "y" : 0
       } ],
       "externalContainerBoundariesVisible" : false,
-      "generatedKey" : true,
-      "key" : "Component-001",
-      "order" : 3,
+      "key" : "Аккумулятор_direct_neighbours",
+      "order" : 4,
       "relationships" : [ {
         "id" : "102"
       }, {
@@ -2106,60 +2224,71 @@
       "automaticLayout" : {
         "applied" : false,
         "edgeSeparation" : 0,
-        "implementation" : "Graphviz",
+        "implementation" : "Dagre",
         "nodeSeparation" : 300,
         "rankDirection" : "LeftRight",
         "rankSeparation" : 300,
-        "vertices" : false
+        "vertices" : true
       },
       "containerId" : "9",
+      "dimensions" : {
+        "height" : 1491,
+        "width" : 2193
+      },
       "elements" : [ {
         "id" : "7",
-        "x" : 0,
-        "y" : 0
+        "x" : 219,
+        "y" : 625
       }, {
         "id" : "10",
-        "x" : 0,
-        "y" : 0
+        "x" : 919,
+        "y" : 405
       }, {
         "id" : "11",
-        "x" : 0,
-        "y" : 0
+        "x" : 919,
+        "y" : 1065
       }, {
         "id" : "13",
-        "x" : 0,
-        "y" : 0
+        "x" : 219,
+        "y" : 185
       }, {
         "id" : "25",
-        "x" : 0,
-        "y" : 0
+        "x" : 219,
+        "y" : 1065
       }, {
         "id" : "33",
-        "x" : 0,
-        "y" : 0
+        "x" : 1619,
+        "y" : 405
       } ],
       "externalContainerBoundariesVisible" : false,
-      "generatedKey" : true,
-      "key" : "Component-002",
-      "order" : 4,
+      "key" : "Стартер_direct_neighbours",
+      "order" : 5,
       "relationships" : [ {
-        "id" : "108"
+        "id" : "108",
+        "vertices" : [ {
+          "x" : 769,
+          "y" : 235
+        } ]
       }, {
         "id" : "112"
       }, {
         "id" : "158"
       }, {
-        "id" : "98"
+        "id" : "98",
+        "vertices" : [ {
+          "x" : 769,
+          "y" : 675
+        } ]
       } ]
     }, {
       "automaticLayout" : {
         "applied" : false,
         "edgeSeparation" : 0,
-        "implementation" : "Graphviz",
+        "implementation" : "Dagre",
         "nodeSeparation" : 300,
         "rankDirection" : "LeftRight",
         "rankSeparation" : 300,
-        "vertices" : false
+        "vertices" : true
       },
       "containerId" : "12",
       "elements" : [ {
@@ -2188,9 +2317,8 @@
         "y" : 0
       } ],
       "externalContainerBoundariesVisible" : false,
-      "generatedKey" : true,
-      "key" : "Component-003",
-      "order" : 5,
+      "key" : "Генератор_direct_neighbours",
+      "order" : 6,
       "relationships" : [ {
         "id" : "106"
       }, {
@@ -2202,50 +2330,53 @@
       "automaticLayout" : {
         "applied" : false,
         "edgeSeparation" : 0,
-        "implementation" : "Graphviz",
+        "implementation" : "Dagre",
         "nodeSeparation" : 300,
         "rankDirection" : "LeftRight",
         "rankSeparation" : 300,
-        "vertices" : false
+        "vertices" : true
       },
       "containerId" : "16",
+      "dimensions" : {
+        "height" : 1211,
+        "width" : 2746
+      },
       "elements" : [ {
         "id" : "2",
-        "x" : 0,
-        "y" : 0
+        "x" : 2019,
+        "y" : 165
       }, {
         "id" : "17",
-        "x" : 0,
-        "y" : 0
+        "x" : 919,
+        "y" : 785
       }, {
         "id" : "18",
-        "x" : 0,
-        "y" : 0
+        "x" : 1319,
+        "y" : 785
       }, {
         "id" : "19",
-        "x" : 0,
-        "y" : 0
+        "x" : 1319,
+        "y" : 265
       }, {
         "id" : "20",
-        "x" : 0,
-        "y" : 0
+        "x" : 919,
+        "y" : 265
       }, {
         "id" : "34",
-        "x" : 0,
-        "y" : 0
+        "x" : 219,
+        "y" : 785
       }, {
         "id" : "36",
-        "x" : 0,
-        "y" : 0
+        "x" : 2194,
+        "y" : 785
       }, {
         "id" : "40",
-        "x" : 0,
-        "y" : 0
+        "x" : 219,
+        "y" : 265
       } ],
       "externalContainerBoundariesVisible" : false,
-      "generatedKey" : true,
-      "key" : "Component-004",
-      "order" : 6,
+      "key" : "Реле зажигания_direct_neighbours",
+      "order" : 7,
       "relationships" : [ {
         "id" : "116"
       }, {
@@ -2263,58 +2394,61 @@
       "automaticLayout" : {
         "applied" : false,
         "edgeSeparation" : 0,
-        "implementation" : "Graphviz",
+        "implementation" : "Dagre",
         "nodeSeparation" : 300,
         "rankDirection" : "LeftRight",
         "rankSeparation" : 300,
-        "vertices" : false
+        "vertices" : true
       },
       "containerId" : "23",
+      "dimensions" : {
+        "height" : 1651,
+        "width" : 3257
+      },
       "elements" : [ {
         "id" : "2",
-        "x" : 0,
-        "y" : 0
+        "x" : 2019,
+        "y" : 165
       }, {
         "id" : "11",
-        "x" : 0,
-        "y" : 0
+        "x" : 2194,
+        "y" : 785
       }, {
         "id" : "24",
-        "x" : 0,
-        "y" : 0
+        "x" : 919,
+        "y" : 1005
       }, {
         "id" : "25",
-        "x" : 0,
-        "y" : 0
+        "x" : 1319,
+        "y" : 785
       }, {
         "id" : "26",
-        "x" : 0,
-        "y" : 0
+        "x" : 1319,
+        "y" : 1225
       }, {
         "id" : "27",
-        "x" : 0,
-        "y" : 0
+        "x" : 1319,
+        "y" : 265
       }, {
         "id" : "28",
-        "x" : 0,
-        "y" : 0
+        "x" : 919,
+        "y" : 265
       }, {
         "id" : "37",
-        "x" : 0,
-        "y" : 0
+        "x" : 219,
+        "y" : 1005
       }, {
-        "id" : "44",
-        "x" : 0,
-        "y" : 0
+        "id" : "45",
+        "x" : 219,
+        "y" : 265
       }, {
         "id" : "52",
-        "x" : 0,
-        "y" : 0
+        "x" : 2194,
+        "y" : 1225
       } ],
       "externalContainerBoundariesVisible" : false,
-      "generatedKey" : true,
-      "key" : "Component-005",
-      "order" : 7,
+      "key" : "Реле стартера_direct_neighbours",
+      "order" : 8,
       "relationships" : [ {
         "id" : "140"
       }, {
@@ -2326,9 +2460,17 @@
       }, {
         "id" : "162"
       }, {
-        "id" : "29"
+        "id" : "29",
+        "vertices" : [ {
+          "x" : 1169,
+          "y" : 835
+        } ]
       }, {
-        "id" : "30"
+        "id" : "30",
+        "vertices" : [ {
+          "x" : 1169,
+          "y" : 1275
+        } ]
       }, {
         "id" : "31"
       } ]
@@ -2336,11 +2478,11 @@
       "automaticLayout" : {
         "applied" : false,
         "edgeSeparation" : 0,
-        "implementation" : "Graphviz",
+        "implementation" : "Dagre",
         "nodeSeparation" : 300,
         "rankDirection" : "LeftRight",
         "rankSeparation" : 300,
-        "vertices" : false
+        "vertices" : true
       },
       "containerId" : "32",
       "elements" : [ {
@@ -2373,9 +2515,8 @@
         "y" : 0
       } ],
       "externalContainerBoundariesVisible" : false,
-      "generatedKey" : true,
-      "key" : "Component-006",
-      "order" : 8,
+      "key" : "Прд реле зажигания. 80A_direct_neighbours",
+      "order" : 9,
       "relationships" : [ {
         "id" : "112"
       }, {
@@ -2391,11 +2532,11 @@
       "automaticLayout" : {
         "applied" : false,
         "edgeSeparation" : 0,
-        "implementation" : "Graphviz",
+        "implementation" : "Dagre",
         "nodeSeparation" : 300,
         "rankDirection" : "LeftRight",
         "rankSeparation" : 300,
-        "vertices" : false
+        "vertices" : true
       },
       "containerId" : "35",
       "elements" : [ {
@@ -2415,22 +2556,17 @@
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "41",
+        "id" : "42",
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "43",
-        "x" : 0,
-        "y" : 0
-      }, {
-        "id" : "48",
+        "id" : "44",
         "x" : 0,
         "y" : 0
       } ],
       "externalContainerBoundariesVisible" : false,
-      "generatedKey" : true,
-      "key" : "Component-007",
-      "order" : 9,
+      "key" : "Прд реле стартера. 80A_direct_neighbours",
+      "order" : 10,
       "relationships" : [ {
         "id" : "136"
       }, {
@@ -2438,21 +2574,121 @@
       }, {
         "id" : "144"
       }, {
-        "id" : "146"
-      }, {
         "id" : "148"
       } ]
     }, {
       "automaticLayout" : {
         "applied" : false,
         "edgeSeparation" : 0,
-        "implementation" : "Graphviz",
+        "implementation" : "Dagre",
         "nodeSeparation" : 300,
         "rankDirection" : "LeftRight",
         "rankSeparation" : 300,
-        "vertices" : false
+        "vertices" : true
       },
-      "containerId" : "45",
+      "containerId" : "38",
+      "elements" : [ {
+        "id" : "20",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "34",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "39",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "40",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "Выключатель зажигания_direct_neighbours",
+      "order" : 11,
+      "relationships" : [ {
+        "id" : "120"
+      }, {
+        "id" : "130"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Dagre",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : true
+      },
+      "containerId" : "41",
+      "dimensions" : {
+        "height" : 611,
+        "width" : 1344
+      },
+      "elements" : [ {
+        "id" : "37",
+        "x" : 220,
+        "y" : 185
+      }, {
+        "id" : "42",
+        "x" : 920,
+        "y" : 185
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "Система зажигания_direct_neighbours",
+      "order" : 12,
+      "relationships" : [ {
+        "id" : "144"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Dagre",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : true
+      },
+      "containerId" : "43",
+      "elements" : [ {
+        "id" : "28",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "37",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "44",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "45",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "Кнопка Старт_direct_neighbours",
+      "order" : 13,
+      "relationships" : [ {
+        "id" : "148"
+      }, {
+        "id" : "152"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Dagre",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : true
+      },
+      "containerId" : "46",
       "elements" : [ {
         "id" : "2",
         "x" : 0,
@@ -2462,22 +2698,1141 @@
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "46",
+        "id" : "47",
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "47",
+        "id" : "48",
         "x" : 0,
         "y" : 0
       } ],
       "externalContainerBoundariesVisible" : false,
-      "generatedKey" : true,
-      "key" : "Component-008",
-      "order" : 10,
+      "key" : "Лебедка_direct_neighbours",
+      "order" : 14,
       "relationships" : [ {
         "id" : "102"
       }, {
         "id" : "168"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Dagre",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : true
+      },
+      "containerId" : "51",
+      "dimensions" : {
+        "height" : 1020,
+        "width" : 2120
+      },
+      "elements" : [ {
+        "id" : "26",
+        "x" : 220,
+        "y" : 185
+      }, {
+        "id" : "50",
+        "x" : 1470,
+        "y" : 485
+      }, {
+        "id" : "52",
+        "x" : 920,
+        "y" : 185
+      }, {
+        "id" : "53",
+        "x" : 920,
+        "y" : 585
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "Предохранитель потребителей управляющей линии от зажигания_direct_neighbours",
+      "order" : 15,
+      "relationships" : [ {
+        "id" : "162"
+      }, {
+        "id" : "166"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Dagre",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : true
+      },
+      "containerId" : "55",
+      "dimensions" : {
+        "height" : 1020,
+        "width" : 2120
+      },
+      "elements" : [ {
+        "id" : "2",
+        "x" : 1470,
+        "y" : 485
+      }, {
+        "id" : "56",
+        "x" : 920,
+        "y" : 185
+      }, {
+        "id" : "57",
+        "x" : 920,
+        "y" : 585
+      }, {
+        "id" : "63",
+        "x" : 220,
+        "y" : 185
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "Э-вент охл ДВС 1_direct_neighbours",
+      "order" : 16,
+      "relationships" : [ {
+        "id" : "170"
+      }, {
+        "id" : "176"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Dagre",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : true
+      },
+      "containerId" : "58",
+      "elements" : [ {
+        "id" : "49",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "59",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "60",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "62",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "Прд э-вент охл ДВС 1. 20А_direct_neighbours",
+      "order" : 17,
+      "relationships" : [ {
+        "id" : "172"
+      }, {
+        "id" : "182"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Dagre",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : true
+      },
+      "containerId" : "61",
+      "dimensions" : {
+        "height" : 1140,
+        "width" : 3025
+      },
+      "elements" : [ {
+        "id" : "50",
+        "x" : 199,
+        "y" : 605
+      }, {
+        "id" : "56",
+        "x" : 2349,
+        "y" : 185
+      }, {
+        "id" : "60",
+        "x" : 374,
+        "y" : 185
+      }, {
+        "id" : "62",
+        "x" : 1249,
+        "y" : 185
+      }, {
+        "id" : "63",
+        "x" : 1649,
+        "y" : 185
+      }, {
+        "id" : "64",
+        "x" : 1649,
+        "y" : 705
+      }, {
+        "id" : "65",
+        "x" : 1249,
+        "y" : 705
+      }, {
+        "id" : "84",
+        "x" : 2349,
+        "y" : 705
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "Реле э-вент охл ДВС 1_direct_neighbours",
+      "order" : 18,
+      "relationships" : [ {
+        "id" : "172"
+      }, {
+        "id" : "176"
+      }, {
+        "id" : "180"
+      }, {
+        "id" : "184"
+      }, {
+        "id" : "66"
+      }, {
+        "id" : "67"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Dagre",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : true
+      },
+      "containerId" : "68",
+      "dimensions" : {
+        "height" : 1020,
+        "width" : 2120
+      },
+      "elements" : [ {
+        "id" : "2",
+        "x" : 1470,
+        "y" : 485
+      }, {
+        "id" : "69",
+        "x" : 920,
+        "y" : 185
+      }, {
+        "id" : "70",
+        "x" : 920,
+        "y" : 585
+      }, {
+        "id" : "76",
+        "x" : 220,
+        "y" : 185
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "Э-вент охл ДВС 2_direct_neighbours",
+      "order" : 19,
+      "relationships" : [ {
+        "id" : "188"
+      }, {
+        "id" : "190"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Dagre",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : true
+      },
+      "containerId" : "71",
+      "dimensions" : {
+        "height" : 1091,
+        "width" : 2301
+      },
+      "elements" : [ {
+        "id" : "49",
+        "x" : 199,
+        "y" : 165
+      }, {
+        "id" : "72",
+        "x" : 1099,
+        "y" : 265
+      }, {
+        "id" : "73",
+        "x" : 1099,
+        "y" : 665
+      }, {
+        "id" : "75",
+        "x" : 1799,
+        "y" : 665
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "Прд э-вент охл ДВС 2. 20А_direct_neighbours",
+      "order" : 20,
+      "relationships" : [ {
+        "id" : "194"
+      }, {
+        "id" : "198"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Dagre",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : true
+      },
+      "containerId" : "74",
+      "dimensions" : {
+        "height" : 1140,
+        "width" : 3025
+      },
+      "elements" : [ {
+        "id" : "50",
+        "x" : 199,
+        "y" : 605
+      }, {
+        "id" : "69",
+        "x" : 2349,
+        "y" : 185
+      }, {
+        "id" : "73",
+        "x" : 374,
+        "y" : 185
+      }, {
+        "id" : "75",
+        "x" : 1249,
+        "y" : 185
+      }, {
+        "id" : "76",
+        "x" : 1649,
+        "y" : 185
+      }, {
+        "id" : "77",
+        "x" : 1649,
+        "y" : 705
+      }, {
+        "id" : "78",
+        "x" : 1249,
+        "y" : 705
+      }, {
+        "id" : "84",
+        "x" : 2349,
+        "y" : 705
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "Реле э-вент охл ДВС 2_direct_neighbours",
+      "order" : 21,
+      "relationships" : [ {
+        "id" : "190"
+      }, {
+        "id" : "196"
+      }, {
+        "id" : "198"
+      }, {
+        "id" : "202"
+      }, {
+        "id" : "79"
+      }, {
+        "id" : "80"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Dagre",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : true
+      },
+      "containerId" : "82",
+      "elements" : [ {
+        "id" : "2",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "64",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "77",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "81",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "83",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "84",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "85",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "86",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "87",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "88",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "90",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "91",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "Переключатель упр э-вент охл ДВС_direct_neighbours",
+      "order" : 22,
+      "relationships" : [ {
+        "id" : "184"
+      }, {
+        "id" : "202"
+      }, {
+        "id" : "206"
+      }, {
+        "id" : "207"
+      }, {
+        "id" : "209"
+      }, {
+        "id" : "211"
+      }, {
+        "id" : "217"
+      }, {
+        "id" : "219"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Dagre",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : true
+      },
+      "containerId" : "89",
+      "elements" : [ {
+        "id" : "2",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "54",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "83",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "88",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "90",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "91",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "Подсветка упр э-вент охл ДВС_direct_neighbours",
+      "order" : 23,
+      "relationships" : [ {
+        "id" : "211"
+      }, {
+        "id" : "215"
+      }, {
+        "id" : "217"
+      }, {
+        "id" : "219"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Dagre",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : true
+      },
+      "containerId" : "16",
+      "dimensions" : {
+        "height" : 7150,
+        "width" : 3607
+      },
+      "elements" : [ {
+        "id" : "2",
+        "x" : 2369,
+        "y" : 344
+      }, {
+        "id" : "10",
+        "x" : 219,
+        "y" : 964
+      }, {
+        "id" : "11",
+        "x" : 2544,
+        "y" : 964
+      }, {
+        "id" : "15",
+        "x" : 944,
+        "y" : 1404
+      }, {
+        "id" : "17",
+        "x" : 944,
+        "y" : 2244
+      }, {
+        "id" : "18",
+        "x" : 1669,
+        "y" : 2244
+      }, {
+        "id" : "19",
+        "x" : 1669,
+        "y" : 1844
+      }, {
+        "id" : "20",
+        "x" : 944,
+        "y" : 1844
+      }, {
+        "id" : "24",
+        "x" : 944,
+        "y" : 5644
+      }, {
+        "id" : "25",
+        "x" : 1669,
+        "y" : 5444
+      }, {
+        "id" : "26",
+        "x" : 1669,
+        "y" : 5844
+      }, {
+        "id" : "27",
+        "x" : 1669,
+        "y" : 5044
+      }, {
+        "id" : "28",
+        "x" : 944,
+        "y" : 5044
+      }, {
+        "id" : "33",
+        "x" : 944,
+        "y" : 3284
+      }, {
+        "id" : "34",
+        "x" : 219,
+        "y" : 3284
+      }, {
+        "id" : "36",
+        "x" : 2544,
+        "y" : 6284
+      }, {
+        "id" : "37",
+        "x" : 219,
+        "y" : 6284
+      }, {
+        "id" : "39",
+        "x" : 944,
+        "y" : 3724
+      }, {
+        "id" : "40",
+        "x" : 219,
+        "y" : 3724
+      }, {
+        "id" : "42",
+        "x" : 944,
+        "y" : 4164
+      }, {
+        "id" : "44",
+        "x" : 944,
+        "y" : 4604
+      }, {
+        "id" : "45",
+        "x" : 219,
+        "y" : 4604
+      }, {
+        "id" : "49",
+        "x" : 769,
+        "y" : 2664
+      }, {
+        "id" : "52",
+        "x" : 2544,
+        "y" : 6724
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "Система зажигания_group",
+      "order" : 24,
+      "relationships" : [ {
+        "id" : "112",
+        "vertices" : [ {
+          "x" : 619,
+          "y" : 1014
+        } ]
+      }, {
+        "id" : "116",
+        "vertices" : [ {
+          "x" : 469,
+          "y" : 3249
+        }, {
+          "x" : 619,
+          "y" : 3249
+        } ]
+      }, {
+        "id" : "120",
+        "vertices" : [ {
+          "x" : 469,
+          "y" : 3439
+        }, {
+          "x" : 619,
+          "y" : 3439
+        } ]
+      }, {
+        "id" : "124",
+        "vertices" : [ {
+          "x" : 469,
+          "y" : 3419
+        }, {
+          "x" : 619,
+          "y" : 3419
+        } ]
+      }, {
+        "id" : "126",
+        "vertices" : [ {
+          "x" : 469,
+          "y" : 3229
+        }, {
+          "x" : 619,
+          "y" : 3229
+        } ]
+      }, {
+        "id" : "130",
+        "vertices" : [ {
+          "x" : 619,
+          "y" : 3774
+        } ]
+      }, {
+        "id" : "134",
+        "vertices" : [ {
+          "x" : 1919,
+          "y" : 1894
+        }, {
+          "x" : 2069,
+          "y" : 484
+        }, {
+          "x" : 2219,
+          "y" : 484
+        } ]
+      }, {
+        "id" : "136",
+        "vertices" : [ {
+          "x" : 1919,
+          "y" : 2294
+        }, {
+          "x" : 2069,
+          "y" : 6334
+        } ]
+      }, {
+        "id" : "140",
+        "vertices" : [ {
+          "x" : 469,
+          "y" : 6439
+        }, {
+          "x" : 619,
+          "y" : 6439
+        } ]
+      }, {
+        "id" : "144",
+        "vertices" : [ {
+          "x" : 469,
+          "y" : 6229
+        }, {
+          "x" : 619,
+          "y" : 6229
+        } ]
+      }, {
+        "id" : "148",
+        "vertices" : [ {
+          "x" : 619,
+          "y" : 6334
+        } ]
+      }, {
+        "id" : "152",
+        "vertices" : [ {
+          "x" : 619,
+          "y" : 4654
+        } ]
+      }, {
+        "id" : "156",
+        "vertices" : [ {
+          "x" : 1919,
+          "y" : 5094
+        }, {
+          "x" : 2069,
+          "y" : 639
+        }, {
+          "x" : 2219,
+          "y" : 639
+        } ]
+      }, {
+        "id" : "158",
+        "vertices" : [ {
+          "x" : 1919,
+          "y" : 5494
+        }, {
+          "x" : 2069,
+          "y" : 1014
+        } ]
+      }, {
+        "id" : "162",
+        "vertices" : [ {
+          "x" : 1919,
+          "y" : 5894
+        }, {
+          "x" : 2069,
+          "y" : 6774
+        } ]
+      }, {
+        "id" : "21"
+      }, {
+        "id" : "22"
+      }, {
+        "id" : "29",
+        "vertices" : [ {
+          "x" : 1369,
+          "y" : 5494
+        } ]
+      }, {
+        "id" : "30",
+        "vertices" : [ {
+          "x" : 1369,
+          "y" : 5894
+        } ]
+      }, {
+        "id" : "31"
+      } ]
+    }, {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Dagre",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : true
+      },
+      "containerId" : "6",
+      "dimensions" : {
+        "height" : 3922,
+        "width" : 2690
+      },
+      "elements" : [ {
+        "id" : "2",
+        "x" : 1470,
+        "y" : 2344
+      }, {
+        "id" : "4",
+        "x" : 1645,
+        "y" : 624
+      }, {
+        "id" : "7",
+        "x" : 770,
+        "y" : 204
+      }, {
+        "id" : "8",
+        "x" : 770,
+        "y" : 664
+      }, {
+        "id" : "10",
+        "x" : 1645,
+        "y" : 1064
+      }, {
+        "id" : "11",
+        "x" : 1645,
+        "y" : 1924
+      }, {
+        "id" : "13",
+        "x" : 770,
+        "y" : 1114
+      }, {
+        "id" : "14",
+        "x" : 770,
+        "y" : 1774
+      }, {
+        "id" : "15",
+        "x" : 770,
+        "y" : 2174
+      }, {
+        "id" : "25",
+        "x" : 770,
+        "y" : 2614
+      }, {
+        "id" : "33",
+        "x" : 2370,
+        "y" : 3344
+      }, {
+        "id" : "34",
+        "x" : 220,
+        "y" : 3344
+      }, {
+        "id" : "47",
+        "x" : 1645,
+        "y" : 184
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "Система питания_group",
+      "order" : 25,
+      "relationships" : [ {
+        "id" : "102",
+        "vertices" : [ {
+          "x" : 1020,
+          "y" : 234
+        } ]
+      }, {
+        "id" : "106",
+        "vertices" : [ {
+          "x" : 1170,
+          "y" : 1824
+        }, {
+          "x" : 1320,
+          "y" : 2494
+        } ]
+      }, {
+        "id" : "108",
+        "vertices" : [ {
+          "x" : 1320,
+          "y" : 1164
+        } ]
+      }, {
+        "id" : "112",
+        "vertices" : [ {
+          "x" : 2070,
+          "y" : 1114
+        }, {
+          "x" : 2220,
+          "y" : 3394
+        } ]
+      }, {
+        "id" : "126",
+        "vertices" : [ {
+          "x" : 620,
+          "y" : 3394
+        } ]
+      }, {
+        "id" : "158",
+        "vertices" : [ {
+          "x" : 1170,
+          "y" : 2664
+        }, {
+          "x" : 1320,
+          "y" : 1974
+        } ]
+      }, {
+        "id" : "94",
+        "vertices" : [ {
+          "x" : 1170,
+          "y" : 714
+        }, {
+          "x" : 1320,
+          "y" : 674
+        } ]
+      }, {
+        "id" : "98",
+        "vertices" : [ {
+          "x" : 1020,
+          "y" : 504
+        }, {
+          "x" : 1170,
+          "y" : 504
+        }, {
+          "x" : 1320,
+          "y" : 1029
+        } ]
+      } ]
+    }, {
+      "automaticLayout" : {
+        "applied" : false,
+        "edgeSeparation" : 0,
+        "implementation" : "Dagre",
+        "nodeSeparation" : 300,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 300,
+        "vertices" : true
+      },
+      "containerId" : "55",
+      "dimensions" : {
+        "height" : 5898,
+        "width" : 5850
+      },
+      "elements" : [ {
+        "id" : "2",
+        "x" : 5199,
+        "y" : 1040
+      }, {
+        "id" : "49",
+        "x" : 199,
+        "y" : 3805
+      }, {
+        "id" : "50",
+        "x" : 1099,
+        "y" : 2680
+      }, {
+        "id" : "54",
+        "x" : 2149,
+        "y" : 165
+      }, {
+        "id" : "56",
+        "x" : 4099,
+        "y" : 3460
+      }, {
+        "id" : "57",
+        "x" : 4099,
+        "y" : 3860
+      }, {
+        "id" : "59",
+        "x" : 1274,
+        "y" : 3300
+      }, {
+        "id" : "60",
+        "x" : 1274,
+        "y" : 3700
+      }, {
+        "id" : "62",
+        "x" : 2324,
+        "y" : 3020
+      }, {
+        "id" : "63",
+        "x" : 3224,
+        "y" : 3020
+      }, {
+        "id" : "64",
+        "x" : 3224,
+        "y" : 2330
+      }, {
+        "id" : "65",
+        "x" : 2324,
+        "y" : 2330
+      }, {
+        "id" : "69",
+        "x" : 4099,
+        "y" : 4835
+      }, {
+        "id" : "70",
+        "x" : 4099,
+        "y" : 5235
+      }, {
+        "id" : "72",
+        "x" : 1274,
+        "y" : 4435
+      }, {
+        "id" : "73",
+        "x" : 1274,
+        "y" : 4835
+      }, {
+        "id" : "75",
+        "x" : 2324,
+        "y" : 4835
+      }, {
+        "id" : "76",
+        "x" : 3224,
+        "y" : 4835
+      }, {
+        "id" : "77",
+        "x" : 3224,
+        "y" : 3460
+      }, {
+        "id" : "78",
+        "x" : 2324,
+        "y" : 3460
+      }, {
+        "id" : "81",
+        "x" : 3049,
+        "y" : 685
+      }, {
+        "id" : "83",
+        "x" : 4099,
+        "y" : 1270
+      }, {
+        "id" : "84",
+        "x" : 4099,
+        "y" : 3015
+      }, {
+        "id" : "85",
+        "x" : 4099,
+        "y" : 1670
+      }, {
+        "id" : "86",
+        "x" : 4099,
+        "y" : 2070
+      }, {
+        "id" : "87",
+        "x" : 4099,
+        "y" : 2470
+      }, {
+        "id" : "88",
+        "x" : 4099,
+        "y" : 870
+      }, {
+        "id" : "90",
+        "x" : 3224,
+        "y" : 265
+      }, {
+        "id" : "91",
+        "x" : 4649,
+        "y" : 265
+      } ],
+      "externalContainerBoundariesVisible" : false,
+      "key" : "Система охлаждения_group",
+      "order" : 26,
+      "relationships" : [ {
+        "id" : "170",
+        "vertices" : [ {
+          "x" : 5049,
+          "y" : 3910
+        } ]
+      }, {
+        "id" : "172",
+        "vertices" : [ {
+          "x" : 1849,
+          "y" : 3750
+        }, {
+          "x" : 1999,
+          "y" : 3070
+        } ]
+      }, {
+        "id" : "176",
+        "vertices" : [ {
+          "x" : 3799,
+          "y" : 3070
+        }, {
+          "x" : 3949,
+          "y" : 3510
+        } ]
+      }, {
+        "id" : "180",
+        "vertices" : [ {
+          "x" : 1699,
+          "y" : 2380
+        } ]
+      }, {
+        "id" : "182",
+        "vertices" : [ {
+          "x" : 799,
+          "y" : 3350
+        } ]
+      }, {
+        "id" : "184",
+        "vertices" : [ {
+          "x" : 3949,
+          "y" : 2380
+        } ]
+      }, {
+        "id" : "188",
+        "vertices" : [ {
+          "x" : 5049,
+          "y" : 5285
+        } ]
+      }, {
+        "id" : "190"
+      }, {
+        "id" : "194",
+        "vertices" : [ {
+          "x" : 799,
+          "y" : 4485
+        } ]
+      }, {
+        "id" : "196",
+        "vertices" : [ {
+          "x" : 1699,
+          "y" : 2975
+        }, {
+          "x" : 1849,
+          "y" : 2975
+        }, {
+          "x" : 1999,
+          "y" : 3510
+        } ]
+      }, {
+        "id" : "198"
+      }, {
+        "id" : "202",
+        "vertices" : [ {
+          "x" : 3799,
+          "y" : 3510
+        }, {
+          "x" : 3949,
+          "y" : 3165
+        } ]
+      }, {
+        "id" : "206",
+        "vertices" : [ {
+          "x" : 3649,
+          "y" : 690
+        }, {
+          "x" : 5049,
+          "y" : 690
+        } ]
+      }, {
+        "id" : "207",
+        "vertices" : [ {
+          "x" : 3649,
+          "y" : 1320
+        } ]
+      }, {
+        "id" : "209",
+        "vertices" : [ {
+          "x" : 5049,
+          "y" : 1720
+        } ]
+      }, {
+        "id" : "211",
+        "vertices" : [ {
+          "x" : 3949,
+          "y" : 315
+        } ]
+      }, {
+        "id" : "215"
+      }, {
+        "id" : "217",
+        "vertices" : [ {
+          "x" : 5049,
+          "y" : 315
+        } ]
+      }, {
+        "id" : "219",
+        "vertices" : [ {
+          "x" : 4349,
+          "y" : 1320
+        }, {
+          "x" : 4499,
+          "y" : 315
+        } ]
+      }, {
+        "id" : "66"
+      }, {
+        "id" : "67"
+      }, {
+        "id" : "79"
+      }, {
+        "id" : "80"
       } ]
     } ],
     "configuration" : {
@@ -2523,10 +3878,8 @@
           "width" : 100
         }, {
           "background" : "#038803",
-          "height" : 100,
           "icon" : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJMAAAB8CAYAAABt94JCAAAB9ElEQVR4Xu3Sy47VMBRFwfz/T4PEgMe5Dep2LyB2qqQ9iTKwrXV9gcg1P8AqMZERExkxkRETGTGRERMZMZERExkxkRETGTGRERMZMZERExkxkRETGTGRERMZMZERExkxkRETGTGRERMZMZERExkxkRETGTGRERMZMZERExkxkRETGTGRERMZMd3IdV3ft6M9T32In+N5a7vZ78Sbm8H8abvZ78QbmpG8d7vZ78QbmFGsbEd7nvqGZgwr293+N/iPZgwrO8lZt/kHZgwrO9W5N4vMEFb3BM+45QfNEFb2RM+89RtmDCt7use+wAxhdfzwqNeYIayM3zv+dWYMK+N9jnupGcLq+LgjXm2GsDI+b9tXnDGsjNZWLzpjWBl/z7fXnQ9+2nYzz3/XTdf84YTtbN7l7htnf/1hx51i3uvuG2d//WGXnWje8e775ey7XeAJ5p3vuun1CywSExkxkRETGTGRERMZMZERExkxkRETGTGRERMZMZERExkxkRETGTGRERMZMZERExkxkRETGTGRERMZMZERExkxkRETGTGRERMZMZERExkxkRETGTGRERMZMZERExkxkRETGTGRERMZMZERExkxkRETGTGRERMZMZERExkxkRETGTGRERMZMZERExkxkRETGTGRERMZMZERExkxkfkK3eoaADvmdXYAAAAASUVORK5CYII=",
-          "tag" : "switch",
-          "width" : 100
+          "tag" : "switch"
         }, {
           "background" : "#ff0000",
           "icon" : "data:image/jpeg;base64,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ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooor/9k=",
@@ -2545,12 +3898,12 @@
           "tag" : "connector"
         }, {
           "background" : "#ffffff",
+          "color" : "#000000",
           "description" : false,
-          "height" : 100,
           "icon" : "data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAF/AdgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiql9f2emWj3d/dQWttHjfNPII0XJwMsTgckD8aALdFefa38Z/A2i+en9rfb7iHb+5sYzLvzj7r8RnAOT83YjrxXIan+0jpEPlf2VoF9dZz5n2uZINvTGNvmZ756YwOvYA9wor5z1H9pHUZbZV0zw7aW04bLPc3LTqV9AqhDnOOcnvxzxmf8NHeL/8AoG6H/wB+Jf8A47QB9P0V82ad+0frkVwx1PRNOuYNh2pbPJA27IwSzF+OvGO/X127L9pS0ku0W/8ADM8FtzvkgvBK68cYUooPOB94dfwoA94ory7TPj34Hv8AzTcz32m7MbftVqW8zOenlF+mO+OvGea7/TNd0nWzL/ZOrWN/5IHmfZLhJdmc4ztJxnB/KgDSooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiisDxR4t0Xwhpj3+sXqQgIzRQBh5s5GPljXPzHkewzkkDmgDfrjfF3xM8L+DN0WpX3m3q/wDLlagSTfwnkZAThg3zEZHTNeL638VPGvxB1iTR/B9vdWtqz/u0s1IuGTcoDyyA/uxuxkqVADEMWHJ2vBv7PP8Aqr3xdeejf2faN/unEkn/AH0pC/UPQBiaj8c/G3iO/Wx8M6elm8jhoYraD7VcMApLKdwIYdW4QEADng5g034J+OPFUkeq63eJavcOnmvqMzy3Rj2rhioB5C8bWZT8uDivo/R9D0vw9p6WGkWMFnbLg7IVxuOANzHqzYAyxyTjmtOgDx/RP2efC9j5Emq3d9qcybvMTcIIZM5A+VfnGMj+PqPTiuv0z4WeB9J837N4asX83G77WpucYz080tt69sZ4z0rsaKAM3TNC0nRDL/ZWlWNh5wHmfZLdIt+M4ztAzjJ/OtKiigCpfWFpqdo9pf2sN1ayY3wzxh0bByMqeDyAfwrAvvhz4M1C0e1m8MaUkb4y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wH8aNQ/0K8utVFtcfupjPrQePY3Db1EhJXB5ABOOxqSD9nPxQ1xEtzqmjxwlwJHjeV2Ve5C7ACQO2Rn1HWgD2nU/in4H0nyvtPiWxfzc7fsjG5xjGc+UG29e+M846V55rX7R+nJbgaFol1NOyP8APfMsSxtj5TtQtvHPIyvTrzwad+zbpsdwW1PxFd3MGzCpbW6wMGyOSzFxjGeMenPFeh6Z8LPA+k+b9m8NWL+bjd9rU3OMZ6eaW29e2M8Z6UAeDS678Ufiu8409Lr7AEeN4bFvs1tgqoZGZmG8nIO1mY/McAAmu68I/s86fZ7bnxVefb5uf9EtWaOEfeHL8O3VTxswRj5hXuFFAFSxsLTTLRLSwtYbW1jzshgjCIuTk4UcDkk/jVuiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/Z",
           "metadata" : false,
-          "tag" : "light",
-          "width" : 100
+          "shape" : "Circle",
+          "tag" : "light"
         }, {
           "color" : "#ffffff",
           "tag" : "Element"
@@ -2580,6 +3933,9 @@
           "color" : "#000000",
           "tag" : "black"
         }, {
+          "color" : "#0000ff",
+          "tag" : "blue"
+        }, {
           "tag" : "50мм2",
           "thickness" : 50
         }, {
@@ -2591,6 +3947,9 @@
         }, {
           "tag" : "4мм2",
           "thickness" : 4
+        }, {
+          "tag" : "0.75мм2",
+          "thickness" : 1
         } ]
       },
       "terminology" : { }
@@ -2651,15 +4010,11 @@
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "42",
+        "id" : "43",
         "x" : 0,
         "y" : 0
       }, {
-        "id" : "45",
-        "x" : 0,
-        "y" : 0
-      }, {
-        "id" : "48",
+        "id" : "46",
         "x" : 0,
         "y" : 0
       }, {
@@ -2745,8 +4100,6 @@
       }, {
         "id" : "143"
       }, {
-        "id" : "145"
-      }, {
         "id" : "147"
       }, {
         "id" : "151"
@@ -2779,9 +4132,9 @@
       }, {
         "id" : "193"
       }, {
-        "id" : "197"
+        "id" : "195"
       }, {
-        "id" : "199"
+        "id" : "197"
       }, {
         "id" : "201"
       }, {
