@@ -28,13 +28,33 @@ workspace "Name" "Description" {
             minus = component {
                 tags "minus"
             }
+            ground = container {
+                tags "ground"
+            }
         }
 
         es = softwareSystem "Электрическая система УАЗ" {
 
-            ground = container "Масса (корпус)" {
-                tags "ground"
-            }
+            g0 = ground "g0"
+            g1 = ground "g1"
+            g2 = ground "g2"
+            g3 = ground "g3"
+            g4 = ground "g4"
+            g5 = ground "g5"
+            g6 = ground "g6"
+            g7 = ground "g7"
+            g8 = ground "g8"
+            g9 = ground "g9"
+            g10 = ground "g10"
+            g11 = ground "g11"
+            g12 = ground "g12"
+            g13 = ground "g13"
+            g14 = ground "g14"
+            g15 = ground "g15"
+            g16 = ground "g16"
+            g17 = ground "g17"
+            g18 = ground "g18"
+
 
             ground_switch = switch "Размыкатель массы" {
                 !include switch.dsl
@@ -152,16 +172,71 @@ workspace "Name" "Description" {
                 }
             }
 
+
+            group "Ближний/дальний свет" {
+                left_low_beam = light "Левый ближний свет" {
+                    !include light.dsl
+                }
+                left_high_beam = light "Левый дальний свет" {
+                    !include light.dsl
+                }
+                front_left_side_light = light "Передний левый габарит" {
+                    !include light.dsl
+                }
+
+                right_low_beam = light "Правый ближний свет" {
+                    !include light.dsl
+                }
+                right_high_beam = light "Правый дальний свет" {
+                    !include light.dsl
+                }
+                front_right_side_light = light "Передний правый габарит" {
+                    !include light.dsl
+                }
+
+                rear_left_side_light = light "Задний левый габарит" {
+                    !include light.dsl
+                }
+                rear_right_side_light = light "Задний правый габарит" {
+                    !include light.dsl
+                }
+                number_plate_light = light "Подсветка номера" {
+                    !include light.dsl
+                }
+
+                low_beam_relay = relay "Реле ближнего света" {
+                    !include relay.dsl
+                }
+                high_beam_relay = relay "Реле дальнего света" {
+                    !include relay.dsl
+                }
+                side_light_relay = relay "Реле габаритов" {
+                    !include relay.dsl
+                }
+                
+                low_beam_relay_fuse = fuse "Прд. ближн света" {
+                    !include fuse.dsl
+                }
+                high_beam_relay_fuse = fuse "Прд. дальн света" {
+                    !include fuse.dsl
+                }
+                side_light_relay_fuse = fuse "Прд. габаритов" {
+                    !include fuse.dsl
+                }
+            }
+
             #######################
             # Описание соединений #
             #######################
     
-            ground_switch.out -> ground "50 мм2" {
-                tags "50мм2"
+            # Система питания
+
+            ground_switch.out -> g0 "50 мм2" {
+                tags "50мм2,red"
             }
     
             akb.minus -> ground_switch.in "50 мм2" {
-                tags "50мм2"
+                tags "50мм2,red"
             }
             akb.plus -> starter.plus "50 мм2" {
                 tags "50мм2,red"
@@ -170,9 +245,10 @@ workspace "Name" "Description" {
                 tags "50мм2,red"
             }
 
-    
-            generator.minus -> ground "50 мм2" {
-                tags "50мм2"
+            # Система зажигания
+
+            generator.minus -> g1 "50 мм2" {
+                tags "50мм2,red"
             }
             generator.plus -> starter.plus "50 мм2" {
                 tags "50мм2,red"
@@ -185,8 +261,8 @@ workspace "Name" "Description" {
             ignition_relay_fuse.out -> ignition_relay._30 "16 мм2" {
                 tags "16мм2,red"
             }
-            ignition_relay_fuse.out -> ignition_switch.in "0.75 мм2" {
-                tags "0.75мм2,red"
+            ignition_relay_fuse.out -> ignition_switch.in "0.5 мм2" {
+                tags "0.5мм2,red"
             }
             ignition_relay_fuse.out -> other_from_akb_gen "16 мм2" {
                 tags "16мм2,red"
@@ -195,12 +271,12 @@ workspace "Name" "Description" {
                 tags "4мм2,red"
             }
     
-            ignition_switch.out -> ignition_relay._85 "0.75 мм2" {
-                tags "0.75мм2,red"
+            ignition_switch.out -> ignition_relay._85 "0.5 мм2" {
+                tags "0.5мм2,red"
             }
             
-            ignition_relay._86 -> ground "0.75 мм2" {
-                tags "0.75мм2,black"
+            ignition_relay._86 -> g2 "0.5 мм2" {
+                tags "0.5мм2,black"
             }
             ignition_relay._87 -> starter_relay_fuse.in "6 мм2" {
                 tags "6мм2,black"
@@ -212,15 +288,15 @@ workspace "Name" "Description" {
             starter_relay_fuse.out -> ignition.in "4 мм2" {
                 tags "4мм2,black"
             }
-            starter_relay_fuse.out -> start_button.in "0.75 мм2" {
-                tags "0.75мм2,red"
+            starter_relay_fuse.out -> start_button.in "0.5 мм2" {
+                tags "0.5мм2,red"
             }
     
-            start_button.out -> starter_relay._85 "0.75 мм2" {
-                tags "0.75мм2,red"
+            start_button.out -> starter_relay._85 "0.5 мм2" {
+                tags "0.5мм2,red"
             }
     
-            starter_relay._86 -> ground
+            starter_relay._86 -> g3
             starter_relay._87 -> starter.st "6 мм2" {
                 tags "6мм2,black"
             }
@@ -228,12 +304,16 @@ workspace "Name" "Description" {
                 tags "6мм2,black"
             }
             control_line_from_ignition_fuse.out -> control_line_from_ignition
+
+            # Лебедка
         
-            winch.minus -> ground "50 мм2" {
+            winch.minus -> g4 "50 мм2" {
                 tags "50мм2,black"
             }
 
-            coolant_vent_1.minus -> ground
+            # Электровентиляторы охлаждения ДВС
+
+            coolant_vent_1.minus -> g5
             coolant_vent_1_fuse.out -> coolant_vent_1_relay._30 "6 мм2" {
                 tags "6мм2,blue"
             }
@@ -246,7 +326,7 @@ workspace "Name" "Description" {
             }
             coolant_vent_1_relay._86 -> coolant_control_switch.I
 
-            coolant_vent_2.minus -> ground
+            coolant_vent_2.minus -> g6
             coolant_vent_2_relay._87 -> coolant_vent_2.plus "6 мм2" {
                 tags "6мм2,blue"
             }
@@ -259,13 +339,47 @@ workspace "Name" "Description" {
             }
             coolant_vent_2_relay._86 -> coolant_control_switch.I
 
-            coolant_sensor -> ground
+            coolant_sensor -> g7
             coolant_sensor -> coolant_control_switch.D
-            coolant_control_switch.U -> ground
+            coolant_control_switch.U -> g8
             coolant_control_light.plus -> coolant_control_switch.H
             internal_lighting -> coolant_control_light.plus
-            coolant_control_light.minus -> ground
+            coolant_control_light.minus -> g9
             coolant_control_switch.D -> coolant_control_light.minus
+
+            # Ближний/дальний свет
+            left_low_beam.minus -> g10
+            right_low_beam.minus -> g11
+            low_beam_relay._87 -> left_low_beam.plus
+            low_beam_relay._87 -> right_low_beam.plus
+            low_beam_relay_fuse.out -> low_beam_relay._30
+            other_from_akb_gen -> low_beam_relay_fuse.in
+
+            left_high_beam.minus -> g12
+            right_high_beam.minus -> g13
+            high_beam_relay._87 -> left_high_beam.plus
+            high_beam_relay._87 -> right_high_beam.plus
+            high_beam_relay_fuse.out -> high_beam_relay._30
+            other_from_akb_gen -> high_beam_relay_fuse.in
+
+            front_left_side_light.minus -> g14
+            front_right_side_light.minus -> g15
+            rear_left_side_light.minus -> g16
+            rear_right_side_light.minus -> g17
+            number_plate_light.minus -> g18
+
+
+            
+            side_light_relay._87 -> front_left_side_light.plus
+            side_light_relay._87 -> front_right_side_light.plus
+            side_light_relay._87 -> rear_left_side_light.plus
+            side_light_relay._87 -> rear_right_side_light.plus
+            side_light_relay._87 -> number_plate_light.plus
+
+
+
+            side_light_relay_fuse.out -> side_light_relay._30
+            other_from_akb_gen -> side_light_relay_fuse.in
         }
     }
 
@@ -323,10 +437,16 @@ workspace "Name" "Description" {
             relationship "6мм2" {
                 thickness 6
             }
-            relationship "4мм2" {
-                thickness 4
+            relationship "2.5мм2" {
+                thickness 3
+            }
+            relationship "1.5мм2" {
+                thickness 2
             }
             relationship "0.75мм2" {
+                thickness 1
+            }
+            relationship "0.5мм2" {
                 thickness 1
             }
 
@@ -401,6 +521,17 @@ workspace "Name" "Description" {
                 shape Circle
                 background #ffffff
             }
+            element "ground" {
+                metadata false
+                description false
+                width 100
+                height 100
+                color #000000
+                icon ground.png
+                shape Circle
+                background #ffffff
+                fontSize 1
+            }
 
 
             element "Element" {
@@ -417,7 +548,7 @@ workspace "Name" "Description" {
     }
 
     configuration {
-        scope softwaresystem
+        scope none
     }
 
 }
