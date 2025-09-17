@@ -99,9 +99,11 @@ workspace "Name" "Description" {
                 }
 
                 ignition_relay_fuse = fuse "Прд реле зажигания. 80A" {
+                    tags "80А"
                     !include fuse.dsl
                 }
                 starter_relay_fuse = fuse "Прд реле стартера. 80A" {
+                    tags "80А"
                     !include fuse.dsl
                 }
 
@@ -135,25 +137,27 @@ workspace "Name" "Description" {
             internal_lighting = container "Система подсветки приборов"
 
             group "Система охлаждения" {
-
-                coolant_vent_1 = container "Э-вент охл ДВС 1"{
-                    tags "vent"
-                    plus = plus "+"
-                    minus = minus "-"
+                group "Вентиляторы" {
+                    coolant_vent_1 = container "Э-вент охл ДВС 1"{
+                        tags "vent"
+                        plus = plus "+"
+                        minus = minus "-"
+                    }
+                    coolant_vent_2 = container "Э-вент охл ДВС 2"{
+                        tags "vent"
+                        plus = plus "+"
+                        minus = minus "-"
+                    }
                 }
 
+
                 coolant_vent_1_fuse = fuse "Прд э-вент охл ДВС 1. 20А" {
+                    tags "20А"
                     !include fuse.dsl
                 }
 
                 coolant_vent_1_relay = relay "Реле э-вент охл ДВС 1" {
                     !include relay.dsl
-                }
-
-                coolant_vent_2 = container "Э-вент охл ДВС 2"{
-                    tags "vent"
-                    plus = plus "+"
-                    minus = minus "-"
                 }
 
                 coolant_vent_2_fuse = fuse "Прд э-вент охл ДВС 2. 20А" {
@@ -329,7 +333,9 @@ workspace "Name" "Description" {
                 tags "0.5мм2,red"
             }
     
-            starter_relay._86 -> g3
+            starter_relay._86 -> g3 "0.5 мм2" {
+                tags "0.5мм2,black"
+            }
             starter_relay._87 -> starter.st "6 мм2" {
                 tags "6мм2,black"
             }
@@ -346,68 +352,114 @@ workspace "Name" "Description" {
 
             # Электровентиляторы охлаждения ДВС
 
-            coolant_vent_1.minus -> g5
+            coolant_vent_1.minus -> g5 "6 мм2" {
+                tags "6мм2,black"
+            }
             coolant_vent_1_fuse.out -> coolant_vent_1_relay._30 "6 мм2" {
                 tags "6мм2,blue"
             }
             coolant_vent_1_relay._87 -> coolant_vent_1.plus "6 мм2" {
                 tags "6мм2,blue"
             }
-            control_line_from_ignition -> coolant_vent_1_relay._85
+            control_line_from_ignition -> coolant_vent_1_relay._85 "0.5 мм2" {
+                tags "0.5мм2,yellow"
+            }
             other_from_akb_gen -> coolant_vent_1_fuse.in "6 мм2" {
                 tags "6мм2,blue"
             }
-            coolant_vent_1_relay._86 -> coolant_control_switch.I
+            coolant_vent_1_relay._86 -> coolant_control_switch.I "0.5 мм2" {
+                tags "0.5мм2,yellow"
+            }
 
-            coolant_vent_2.minus -> g6
+            coolant_vent_2.minus -> g6 "6 мм2" {
+                tags "6мм2,black"
+            }
             coolant_vent_2_relay._87 -> coolant_vent_2.plus "6 мм2" {
                 tags "6мм2,blue"
             }
             other_from_akb_gen -> coolant_vent_2_fuse.in "6 мм2" {
                 tags "6мм2,blue"
             }
-            control_line_from_ignition -> coolant_vent_2_relay._85
+            control_line_from_ignition -> coolant_vent_2_relay._85 "0.5 мм2" {
+                tags "0.5мм2,yellow"
+            }
             coolant_vent_2_fuse.out -> coolant_vent_2_relay._30 "6 мм2" {
                 tags "6мм2,blue"
             }
-            coolant_vent_2_relay._86 -> coolant_control_switch.I
+            coolant_vent_2_relay._86 -> coolant_control_switch.I "0.5 мм2" {
+                tags "0.5мм2,yellow"
+            }
 
             coolant_sensor.out -> g7
-            coolant_sensor.in -> coolant_control_switch.D
+            coolant_sensor.in -> coolant_control_switch.D "0.5 мм2" {
+                tags "0.5мм2,green"
+            }
             coolant_control_switch.U -> g8
-            coolant_control_light.plus -> coolant_control_switch.H
-            internal_lighting -> coolant_control_light.plus
-            coolant_control_light.minus -> g9
-            coolant_control_switch.D -> coolant_control_light.minus
+            coolant_control_light.plus -> coolant_control_switch.H "0.5 мм2" {
+                tags "0.5мм2,brown"
+            }
+            internal_lighting -> coolant_control_light.plus "0.5 мм2" {
+                tags "0.5мм2,brown"
+            }
+            coolant_control_light.minus -> g9 "0.5 мм2" {
+                tags "0.5мм2,black"
+            }
+            coolant_control_switch.D -> coolant_control_light.minus "0.5 мм2" {
+                tags "0.5мм2,black"
+            }
 
             # Ближний/дальний свет
-            left_low_beam.minus -> g10
-            right_low_beam.minus -> g11
+            left_low_beam.minus -> g10 "1.5 мм2" {
+                tags "1.5мм2,black"
+            }
+            right_low_beam.minus -> g11 "1.5 мм2" {
+                tags "1.5мм2,black"
+            }
             low_beam_relay._87 -> left_low_beam_fuse.in
-            left_low_beam_fuse.out -> left_low_beam.plus
+            left_low_beam_fuse.out -> left_low_beam.plus "1.5 мм2" {
+                tags "1.5мм2,white"
+            }
             low_beam_relay._87 -> right_low_beam_fuse.in
             right_low_beam_fuse.out -> right_low_beam.plus
             low_beam_relay_fuse.out -> low_beam_relay._30
             other_from_akb_gen -> low_beam_relay_fuse.in
 
-            left_high_beam.minus -> g12
-            right_high_beam.minus -> g13
+            left_high_beam.minus -> g12 "1.5 мм2" {
+                tags "1.5мм2,black"
+            }
+            right_high_beam.minus -> g13 "1.5 мм2" {
+                tags "1.5мм2,black"
+            }
             high_beam_relay._87 -> left_high_beam_fuse.in
-            left_high_beam_fuse.out -> left_high_beam.plus
+            left_high_beam_fuse.out -> left_high_beam.plus "1.5 мм2" {
+                tags "1.5мм2,green"
+            }
             high_beam_relay._87 -> right_high_beam_fuse.in
             right_high_beam_fuse.out -> right_high_beam.plus
             high_beam_relay_fuse.out -> high_beam_relay._30
             other_from_akb_gen -> high_beam_relay_fuse.in
 
-            front_left_side_light.minus -> g14
-            front_right_side_light.minus -> g15
-            rear_left_side_light.minus -> g16
-            rear_right_side_light.minus -> g17
-            number_plate_light.minus -> g18
+            front_left_side_light.minus -> g14 "1.5 мм2" {
+                tags "1.5мм2,black"
+            }
+            front_right_side_light.minus -> g15 "1.5 мм2" {
+                tags "1.5мм2,black"
+            }
+            rear_left_side_light.minus -> g16 "1.5 мм2" {
+                tags "1.5мм2,black"
+            }
+            rear_right_side_light.minus -> g17 "1.5 мм2" {
+                tags "1.5мм2,black"
+            }
+            number_plate_light.minus -> g18 "1.5 мм2" {
+                tags "1.5мм2,black"
+            }
 
 
             side_light_relay._87 -> side_light_fuse.in
-            side_light_fuse.out -> front_left_side_light.plus
+            side_light_fuse.out -> front_left_side_light.plus "1.5 мм2" {
+                tags "1.5мм2,brown"
+            }
             side_light_fuse.out -> front_right_side_light.plus
             side_light_fuse.out -> rear_left_side_light.plus
             side_light_fuse.out -> rear_right_side_light.plus
@@ -421,6 +473,9 @@ workspace "Name" "Description" {
     }
 
     views {
+        properties {
+            "structurizr.sort" "created"
+        }
 
         #################
         # Описание вьюх #
@@ -464,6 +519,18 @@ workspace "Name" "Description" {
             }
             relationship "blue" {
                 color #0000ff
+            }
+            relationship "green" {
+                color #00b300
+            }
+            relationship "brown" {
+                color #977400
+            }
+            relationship "yellow" {
+                color #ffff00
+            }
+            relationship "white" {
+                color #fdf4d7
             }
             relationship "50мм2" {
                 thickness 50

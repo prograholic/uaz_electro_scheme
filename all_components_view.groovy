@@ -1,6 +1,37 @@
 all_views = workspace.getViews()
 
 
+// Create group views
+groups = new HashMap<String, ArrayList<com.structurizr.model.Container>>()
+workspace.model.getSoftwareSystems().each { ss ->
+    println("Software system: " + ss.getName())
+    ss.getContainers().each { container ->
+        groupName = container.getGroup()
+        if (groupName != null) {
+            if (!groups.containsKey(groupName)) {
+                groups.put(groupName, new ArrayList<com.structurizr.model.Container>())
+            }
+
+            groups.get(groupName).add(container)
+        }
+    }
+}
+
+groups.each {
+    println("Group: " + it.key)
+    view = workspace.views.createComponentView(it.value[0], it.key + "_group", "")
+    view.enableAutomaticLayout(com.structurizr.view.AutomaticLayout.RankDirection.LeftRight)
+    it.value.each { container ->
+        container.getComponents().each {component ->
+            view.add(component, true)
+            view.addNearestNeighbours(component, com.structurizr.model.Component.class)
+            view.addNearestNeighbours(component, com.structurizr.model.Container.class)
+        }
+
+    }
+}
+
+
 // Create component views
 workspace.model.getSoftwareSystems().each {
     ss = it
@@ -29,36 +60,5 @@ workspace.views.views.findAll {it instanceof com.structurizr.view.ComponentView 
         componentView.addNearestNeighbours(component, com.structurizr.model.Component.class)
         componentView.addNearestNeighbours(component, com.structurizr.model.Container.class)
         println("  Add [" + component.getName() + "] to view")
-    }
-}
-
-
-// Create group views
-groups = new HashMap<String, ArrayList<com.structurizr.model.Container>>()
-workspace.model.getSoftwareSystems().each { ss ->
-    println("Software system: " + ss.getName())
-    ss.getContainers().each { container ->
-        groupName = container.getGroup()
-        if (groupName != null) {
-            if (!groups.containsKey(groupName)) {
-                groups.put(groupName, new ArrayList<com.structurizr.model.Container>())
-            }
-
-            groups.get(groupName).add(container)
-        }
-    }
-}
-
-groups.each {
-    println("Group: " + it.key)
-    view = workspace.views.createComponentView(it.value[0], it.key + "_group", "")
-    view.enableAutomaticLayout(com.structurizr.view.AutomaticLayout.RankDirection.LeftRight)
-    it.value.each { container ->
-        container.getComponents().each {component ->
-            view.add(component, true)
-            view.addNearestNeighbours(component, com.structurizr.model.Component.class)
-            view.addNearestNeighbours(component, com.structurizr.model.Container.class)
-        }
-
     }
 }
