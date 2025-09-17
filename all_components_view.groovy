@@ -9,7 +9,7 @@ workspace.model.getSoftwareSystems().each {
         println("  Container: " + container.getName())
         if (container.getComponents().size() > 0) {
             componentView = workspace.views.createComponentView(container, container.getName() + "_direct_neighbours", "")
-            componentView.enableAutomaticLayout(com.structurizr.view.AutomaticLayout.RankDirection.LeftRight, 300, 300, 0, true)
+            componentView.enableAutomaticLayout(com.structurizr.view.AutomaticLayout.RankDirection.LeftRight)
         }
     }
 }
@@ -52,7 +52,7 @@ workspace.model.getSoftwareSystems().each { ss ->
 groups.each {
     println("Group: " + it.key)
     view = workspace.views.createComponentView(it.value[0], it.key + "_group", "")
-    view.enableAutomaticLayout(com.structurizr.view.AutomaticLayout.RankDirection.LeftRight, 300, 300, 0, true)
+    view.enableAutomaticLayout(com.structurizr.view.AutomaticLayout.RankDirection.LeftRight)
     it.value.each { container ->
         container.getComponents().each {component ->
             view.add(component, true)

@@ -1,7 +1,7 @@
 tags "light"
 plus = component "+" {
-    tags "light_connector,plus,connector"
+    tags "connector,plus,light_connector"
 }
 minus = component "-" {
-    tags "light_connector,minus,connector"
+    tags "connector,minus,light_connector"
 }

@@ -1,16 +1,16 @@
 #relay = container "Реле" {
     tags "relay"
     _30 = component "30" {
-        tags "relay_30,relay_connector,connector"
+        tags "connector,relay_connector,relay_30"
     }
     _87 = component "87" {
-        tags "relay_87,relay_connector,connector"
+        tags "connector,relay_connector,relay_87"
     }
     _86 = component "86" {
-        tags "relay_86,relay_connector,connector"
+        tags "connector,relay_connector,relay_86"
     }
     _85 = component "85" {
-        tags "relay_85,relay_connector,connector"
+        tags "connector,relay_connector,relay_85"
     }
 
     _30 -> _87 {

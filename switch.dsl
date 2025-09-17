@@ -1,7 +1,7 @@
 tags "switch"
 in = component "in" {
-    tags "switch_connector,in,connector"
+    tags "connector,in,switch_connector"
 }
 out = component "out" {
-    tags "switch_connector,out,connector"
+    tags "connector,out,switch_connector"
 }

@@ -3,6 +3,9 @@ workspace "Name" "Description" {
     !identifiers hierarchical
 
     model {
+        properties {
+            "structurizr.groupSeparator" "/"
+        }
 
         archetypes {
             relay = container {
@@ -30,6 +33,9 @@ workspace "Name" "Description" {
             }
             ground = container {
                 tags "ground"
+            }
+            sensor = container {
+                tags "sensor"
             }
         }
 
@@ -62,6 +68,7 @@ workspace "Name" "Description" {
 
             power_group = group "Система питания" {
                 akb = container "Аккумулятор" {
+                    tags "akb"
                     plus = plus "+"
                     minus = minus "-"
                 }
@@ -114,6 +121,7 @@ workspace "Name" "Description" {
             }
 
             winch = container "Лебедка" {
+                tags "winch"
                 plus = plus "+"
                 minus = minus "-"
             }
@@ -156,7 +164,9 @@ workspace "Name" "Description" {
                     !include relay.dsl
                 }
 
-                coolant_sensor = container "Датчик вкл э-вент охл ДВС"
+                coolant_sensor = sensor "Датчик вкл э-вент охл ДВС" {
+                    !include sensor.dsl
+                }
 
                 coolant_control_switch = switch "Переключатель упр э-вент охл ДВС" {
                     D = component "D"
@@ -173,35 +183,42 @@ workspace "Name" "Description" {
             }
 
 
-            group "Ближний/дальний свет" {
-                left_low_beam = light "Левый ближний свет" {
-                    !include light.dsl
-                }
-                left_high_beam = light "Левый дальний свет" {
-                    !include light.dsl
-                }
-                front_left_side_light = light "Передний левый габарит" {
-                    !include light.dsl
+            group "Ближний,дальний свет" {
+                group "Передний блок фар" {
+                    group "Левая фара" {
+                        left_low_beam = light "Левый ближний свет" {
+                            !include light.dsl
+                        }
+                        left_high_beam = light "Левый дальний свет" {
+                            !include light.dsl
+                        }
+                        front_left_side_light = light "Передний левый габарит" {
+                            !include light.dsl
+                        }
+                    }
+                    group "Правая фара" {
+                        right_low_beam = light "Правый ближний свет" {
+                            !include light.dsl
+                        }
+                        right_high_beam = light "Правый дальний свет" {
+                            !include light.dsl
+                        }
+                        front_right_side_light = light "Передний правый габарит" {
+                            !include light.dsl
+                        }
+                    }
                 }
 
-                right_low_beam = light "Правый ближний свет" {
-                    !include light.dsl
-                }
-                right_high_beam = light "Правый дальний свет" {
-                    !include light.dsl
-                }
-                front_right_side_light = light "Передний правый габарит" {
-                    !include light.dsl
-                }
-
-                rear_left_side_light = light "Задний левый габарит" {
-                    !include light.dsl
-                }
-                rear_right_side_light = light "Задний правый габарит" {
-                    !include light.dsl
-                }
-                number_plate_light = light "Подсветка номера" {
-                    !include light.dsl
+                group "Задний блок фар" {
+                    rear_left_side_light = light "Задний левый габарит" {
+                        !include light.dsl
+                    }
+                    rear_right_side_light = light "Задний правый габарит" {
+                        !include light.dsl
+                    }
+                    number_plate_light = light "Подсветка номера" {
+                        !include light.dsl
+                    }
                 }
 
                 low_beam_relay = relay "Реле ближнего света" {
@@ -214,13 +231,29 @@ workspace "Name" "Description" {
                     !include relay.dsl
                 }
                 
-                low_beam_relay_fuse = fuse "Прд. ближн света" {
+                low_beam_relay_fuse = fuse "Прд. реле ближн света" {
                     !include fuse.dsl
                 }
-                high_beam_relay_fuse = fuse "Прд. дальн света" {
+                high_beam_relay_fuse = fuse "Прд. реле дальн света" {
                     !include fuse.dsl
                 }
-                side_light_relay_fuse = fuse "Прд. габаритов" {
+                side_light_relay_fuse = fuse "Прд. реле габаритов" {
+                    !include fuse.dsl
+                }
+
+                left_low_beam_fuse = fuse "Прд. ближн света (лев)" {
+                    !include fuse.dsl
+                }
+                right_low_beam_fuse = fuse "Прд. ближн света (прав)" {
+                    !include fuse.dsl
+                }
+                left_high_beam_fuse = fuse "Прд. дальн света (лев)" {
+                    !include fuse.dsl
+                }
+                right_high_beam_fuse = fuse "Прд. дальн света (прав)" {
+                    !include fuse.dsl
+                }
+                side_light_fuse = fuse "Прд. габаритов" {
                     !include fuse.dsl
                 }
             }
@@ -339,8 +372,8 @@ workspace "Name" "Description" {
             }
             coolant_vent_2_relay._86 -> coolant_control_switch.I
 
-            coolant_sensor -> g7
-            coolant_sensor -> coolant_control_switch.D
+            coolant_sensor.out -> g7
+            coolant_sensor.in -> coolant_control_switch.D
             coolant_control_switch.U -> g8
             coolant_control_light.plus -> coolant_control_switch.H
             internal_lighting -> coolant_control_light.plus
@@ -350,15 +383,19 @@ workspace "Name" "Description" {
             # Ближний/дальний свет
             left_low_beam.minus -> g10
             right_low_beam.minus -> g11
-            low_beam_relay._87 -> left_low_beam.plus
-            low_beam_relay._87 -> right_low_beam.plus
+            low_beam_relay._87 -> left_low_beam_fuse.in
+            left_low_beam_fuse.out -> left_low_beam.plus
+            low_beam_relay._87 -> right_low_beam_fuse.in
+            right_low_beam_fuse.out -> right_low_beam.plus
             low_beam_relay_fuse.out -> low_beam_relay._30
             other_from_akb_gen -> low_beam_relay_fuse.in
 
             left_high_beam.minus -> g12
             right_high_beam.minus -> g13
-            high_beam_relay._87 -> left_high_beam.plus
-            high_beam_relay._87 -> right_high_beam.plus
+            high_beam_relay._87 -> left_high_beam_fuse.in
+            left_high_beam_fuse.out -> left_high_beam.plus
+            high_beam_relay._87 -> right_high_beam_fuse.in
+            right_high_beam_fuse.out -> right_high_beam.plus
             high_beam_relay_fuse.out -> high_beam_relay._30
             other_from_akb_gen -> high_beam_relay_fuse.in
 
@@ -369,12 +406,12 @@ workspace "Name" "Description" {
             number_plate_light.minus -> g18
 
 
-            
-            side_light_relay._87 -> front_left_side_light.plus
-            side_light_relay._87 -> front_right_side_light.plus
-            side_light_relay._87 -> rear_left_side_light.plus
-            side_light_relay._87 -> rear_right_side_light.plus
-            side_light_relay._87 -> number_plate_light.plus
+            side_light_relay._87 -> side_light_fuse.in
+            side_light_fuse.out -> front_left_side_light.plus
+            side_light_fuse.out -> front_right_side_light.plus
+            side_light_fuse.out -> rear_left_side_light.plus
+            side_light_fuse.out -> rear_right_side_light.plus
+            side_light_fuse.out -> number_plate_light.plus
 
 
 
@@ -463,17 +500,41 @@ workspace "Name" "Description" {
             element "Container" {
                 background #0773af
                 metadata false
+                fontSize 1
             }
-
+            element "connector" {
+                description false
+                shape Box
+                background #0000bb
+            }
             element "vent" {
                 shape "Hexagon"
+                width 150
+                fontSize 1
                 background #000000
+            }
+            element "akb" {
+                icon akb.jpg
+                background #ffc400
             }
             element "starter" {
                 icon "starter.jpg"
+                shape pipe
+                height 150
+                width 300
+                background #808080
             }
             element "generator" {
                 shape pipe
+                height 150
+                width 300
+                background #ae03fd
+            }
+            element "winch" {
+                shape pipe
+                height 150
+                fontSize 40
+                background #8b3301
             }
             element "plus" {
                 icon "plus.png"
@@ -481,7 +542,7 @@ workspace "Name" "Description" {
                 metadata false
                 description false
                 shape Circle
-                background #ff6f6f
+                background #ffffff
             }
             element "minus" {
                 icon "minus.png"
@@ -489,37 +550,42 @@ workspace "Name" "Description" {
                 metadata false
                 description false
                 shape Circle
-                background #727272
+                background #ffffff
             }
             element "switch" {
                 icon "switch.png"
+                height 100
+                width 300
                 background #038803
             }
             element "fuse" {
                 background #ff0000
+                height 100
                 icon fuse.jpeg
             }
             element "relay" {
                 background #0000bb
+                height 100
+                width 100
                 icon relay.jpg
             }
             element "relay5" {
                 background #0000bb
             }
-            element "connector" {
-                description false
-                shape Box
-                background #0000bb
-            }
             element "light" {
                 metadata false
                 description false
-                #width 100
-                #height 100
-                color #000000
+                width 150
                 icon light.jpg
                 shape Circle
-                background #ffffff
+                background #808080
+            }
+            element "sensor" {
+                metadata false
+                description false
+                width 150
+                height 150
+                background #865515
             }
             element "ground" {
                 metadata false
@@ -530,7 +596,6 @@ workspace "Name" "Description" {
                 icon ground.png
                 shape Circle
                 background #ffffff
-                fontSize 1
             }
 
 
