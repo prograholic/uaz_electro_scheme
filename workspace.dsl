@@ -102,8 +102,8 @@ workspace "Name" "Description" {
                     tags "80А"
                     !include fuse.dsl
                 }
-                starter_relay_fuse = fuse "Прд реле стартера. 80A" {
-                    tags "80А"
+                starter_relay_fuse = fuse "Прд реле стартера. 20A" {
+                    tags "20А"
                     !include fuse.dsl
                 }
 
