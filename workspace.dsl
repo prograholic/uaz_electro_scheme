@@ -263,11 +263,11 @@ workspace "Name" "Description" {
             # Система питания
 
             ground_switch.out -> g0 "50 мм2" {
-                tags "50мм2,red"
+                tags "50мм2,black"
             }
     
             akb.minus -> ground_switch.in "50 мм2" {
-                tags "50мм2,red"
+                tags "50мм2,black"
             }
             akb.plus -> starter.plus "50 мм2" {
                 tags "50мм2,red"
@@ -303,18 +303,18 @@ workspace "Name" "Description" {
             }
     
             ignition_switch.out -> ignition_relay._85 "0.5 мм2" {
-                tags "0.5мм2,red"
+                tags "0.5мм2,green"
             }
             
             ignition_relay._86 -> g2 "0.5 мм2" {
                 tags "0.5мм2,black"
             }
             ignition_relay._87 -> starter_relay_fuse.in "6 мм2" {
-                tags "6мм2,black"
+                tags "6мм2,red"
             }
             
             starter_relay_fuse.out -> starter_relay._30 "6 мм2" {
-                tags "6мм2,black"
+                tags "6мм2,blue"
             }
             starter_relay_fuse.out -> ignition.in "4 мм2" {
                 tags "4мм2,black"
@@ -324,14 +324,14 @@ workspace "Name" "Description" {
             }
     
             start_button.out -> starter_relay._85 "0.5 мм2" {
-                tags "0.5мм2,red"
+                tags "0.5мм2,green"
             }
     
             starter_relay._86 -> g3 "0.5 мм2" {
                 tags "0.5мм2,black"
             }
             starter_relay._87 -> starter.st "6 мм2" {
-                tags "6мм2,black"
+                tags "6мм2,red"
             }
             starter_relay._88 -> control_line_from_ignition_fuse.in "6 мм2" {
                 tags "6мм2,black"
@@ -353,16 +353,16 @@ workspace "Name" "Description" {
                 tags "6мм2,blue"
             }
             coolant_vent_1_relay._87 -> coolant_vent_1.plus "6 мм2" {
-                tags "6мм2,blue"
+                tags "6мм2,green"
             }
             control_line_from_ignition -> coolant_vent_1_relay._85 "0.5 мм2" {
                 tags "0.5мм2,yellow"
             }
             other_from_akb_gen -> coolant_vent_1_fuse.in "6 мм2" {
-                tags "6мм2,blue"
+                tags "6мм2,brown"
             }
             coolant_vent_1_relay._86 -> coolant_control_switch.I "0.5 мм2" {
-                tags "0.5мм2,yellow"
+                tags "0.5мм2,brown"
             }
 
             coolant_vent_2.minus -> g5 "6 мм2" {
@@ -372,7 +372,7 @@ workspace "Name" "Description" {
                 tags "6мм2,blue"
             }
             other_from_akb_gen -> coolant_vent_2_fuse.in "6 мм2" {
-                tags "6мм2,blue"
+                tags "6мм2,yellow"
             }
             control_line_from_ignition -> coolant_vent_2_relay._85 "0.5 мм2" {
                 tags "0.5мм2,yellow"
@@ -386,11 +386,11 @@ workspace "Name" "Description" {
 
             coolant_sensor.out -> g7
             coolant_sensor.in -> coolant_control_switch.D "0.5 мм2" {
-                tags "0.5мм2,green"
+                tags "0.5мм2,white"
             }
             coolant_control_switch.U -> g8
             coolant_control_light.plus -> coolant_control_switch.H "0.5 мм2" {
-                tags "0.5мм2,brown"
+                tags "0.5мм2,red"
             }
             internal_lighting -> coolant_control_light.plus "0.5 мм2" {
                 tags "0.5мм2,brown"
@@ -399,7 +399,7 @@ workspace "Name" "Description" {
                 tags "0.5мм2,black"
             }
             coolant_control_switch.D -> coolant_control_light.minus "0.5 мм2" {
-                tags "0.5мм2,black"
+                tags "0.5мм2,green"
             }
 
             # Ближний/дальний свет
@@ -409,14 +409,24 @@ workspace "Name" "Description" {
             right_low_beam.minus -> g11 "1.5 мм2" {
                 tags "1.5мм2,black"
             }
-            low_beam_relay._87 -> left_low_beam_fuse.in
+            low_beam_relay._87 -> left_low_beam_fuse.in "1.5 мм2" {
+                tags "1.5мм2,green"
+            }
             left_low_beam_fuse.out -> left_low_beam.plus "1.5 мм2" {
                 tags "1.5мм2,white"
             }
-            low_beam_relay._87 -> right_low_beam_fuse.in
-            right_low_beam_fuse.out -> right_low_beam.plus
-            low_beam_relay_fuse.out -> low_beam_relay._30
-            other_from_akb_gen -> low_beam_relay_fuse.in
+            low_beam_relay._87 -> right_low_beam_fuse.in "1.5 мм2" {
+                tags "1.5мм2,blue"
+            }
+            right_low_beam_fuse.out -> right_low_beam.plus "1.5 мм2" {
+                tags "1.5мм2,yellow"
+            }
+            low_beam_relay_fuse.out -> low_beam_relay._30 "2.5 мм2" {
+                tags "2.5мм2,brown"
+            }
+            other_from_akb_gen -> low_beam_relay_fuse.in "2.5 мм2" {
+                tags "2.5мм2,red"
+            }
 
             left_high_beam.minus -> g10 "1.5 мм2" {
                 tags "1.5мм2,black"
@@ -424,16 +434,24 @@ workspace "Name" "Description" {
             right_high_beam.minus -> g11 "1.5 мм2" {
                 tags "1.5мм2,black"
             }
-            high_beam_relay._87 -> left_high_beam_fuse.in
+            high_beam_relay._87 -> left_high_beam_fuse.in "1.5 мм2" {
+                tags "1.5мм2,white"
+            }
             left_high_beam_fuse.out -> left_high_beam.plus "1.5 мм2" {
                 tags "1.5мм2,green"
             }
             high_beam_relay._87 -> right_high_beam_fuse.in "1.5 мм2" {
                 tags "1.5мм2,brown"
             }
-            right_high_beam_fuse.out -> right_high_beam.plus
-            high_beam_relay_fuse.out -> high_beam_relay._30
-            other_from_akb_gen -> high_beam_relay_fuse.in
+            right_high_beam_fuse.out -> right_high_beam.plus "1.5 мм2" {
+                tags "1.5мм2,red"
+            }
+            high_beam_relay_fuse.out -> high_beam_relay._30 "2.5 мм2" {
+                tags "2.5мм2,green"
+            }
+            other_from_akb_gen -> high_beam_relay_fuse.in "2.5 мм2" {
+                tags "2.5мм2,yellow"
+            }
 
             front_left_side_light.minus -> g10 "1.5 мм2" {
                 tags "1.5мм2,black"
@@ -452,16 +470,30 @@ workspace "Name" "Description" {
             }
 
 
-            side_light_relay._87 -> side_light_fuse.in
+            side_light_relay._87 -> side_light_fuse.in "1.5 мм2" {
+                tags "1.5мм2,red"
+            }
             side_light_fuse.out -> front_left_side_light.plus "1.5 мм2" {
                 tags "1.5мм2,brown"
             }
-            side_light_fuse.out -> front_right_side_light.plus
-            side_light_fuse.out -> rear_left_side_light.plus
-            side_light_fuse.out -> rear_right_side_light.plus
-            side_light_fuse.out -> number_plate_light.plus
-            side_light_relay_fuse.out -> side_light_relay._30
-            other_from_akb_gen -> side_light_relay_fuse.in
+            side_light_fuse.out -> front_right_side_light.plus "1.5 мм2" {
+                tags "1.5мм2,green"
+            }
+            side_light_fuse.out -> rear_left_side_light.plus "1.5 мм2" {
+                tags "1.5мм2,blue"
+            }
+            side_light_fuse.out -> rear_right_side_light.plus "1.5 мм2" {
+                tags "1.5мм2,yellow"
+            }
+            side_light_fuse.out -> number_plate_light.plus "1.5 мм2" {
+                tags "1.5мм2,white"
+            }
+            side_light_relay_fuse.out -> side_light_relay._30 "1.5 мм2" {
+                tags "1.5мм2,red"
+            }
+            other_from_akb_gen -> side_light_relay_fuse.in "1.5 мм2" {
+                tags "1.5мм2,brown"
+            }
         }
     }
 
@@ -533,6 +565,9 @@ workspace "Name" "Description" {
             }
             relationship "6мм2" {
                 thickness 50
+            }
+            relationship "4мм2" {
+                thickness 40
             }
             relationship "2.5мм2" {
                 thickness 25
