@@ -40,33 +40,11 @@ workspace "Name" "Description" {
         }
 
         es = softwareSystem "Электрическая система УАЗ" {
-
-            g0 = ground "g0"
-            g1 = ground "g1"
-            g2 = ground "g2"
-            g3 = ground "g3"
-            g4 = ground "g4"
-            g5 = ground "g5"
-            g6 = ground "g6"
-            g7 = ground "g7"
-            g8 = ground "g8"
-            g9 = ground "g9"
-            g10 = ground "g10"
-            g11 = ground "g11"
-            g12 = ground "g12"
-            g13 = ground "g13"
-            g14 = ground "g14"
-            g15 = ground "g15"
-            g16 = ground "g16"
-            g17 = ground "g17"
-            g18 = ground "g18"
-
-
-            ground_switch = switch "Размыкатель массы" {
-                !include switch.dsl
-            }
-
-            power_group = group "Система питания" {
+            power_group = group "Подкапотное пространство" {
+                ground_switch = switch "Размыкатель массы" {
+                    !include switch.dsl
+                }
+                g0 = ground "g0"
                 akb = container "Аккумулятор" {
                     tags "akb"
                     plus = plus "+"
@@ -87,29 +65,7 @@ workspace "Name" "Description" {
                     minus = minus "-"
                     v = component "Возб"
                 }
-            }
-
-            group "Система зажигания" {
-                ignition_relay = relay "Реле зажигания" {
-                    !include relay.dsl
-                }
-
-                starter_relay = relay "Реле стартера" {
-                    !include relay5.dsl
-                }
-
-                ignition_relay_fuse = fuse "Прд реле зажигания. 80A" {
-                    tags "80А"
-                    !include fuse.dsl
-                }
-                starter_relay_fuse = fuse "Прд реле стартера. 20A" {
-                    tags "20А"
-                    !include fuse.dsl
-                }
-
-                ignition_switch = switch "Выключатель зажигания" {
-                    !include switch.dsl
-                }
+                g1 = ground "g1"
 
                 ignition = container "Система зажигания" {
                     in = component "in" {
@@ -117,26 +73,21 @@ workspace "Name" "Description" {
                     }
                 }
 
-                start_button = switch "Кнопка Старт" {
-                    !include switch.dsl
+                winch = container "Лебедка" {
+                    tags "winch"
+                    plus = plus "+"
+                    minus = minus "-"
                 }
-            }
+                g4 = ground "g4"
 
-            winch = container "Лебедка" {
-                tags "winch"
-                plus = plus "+"
-                minus = minus "-"
-            }
+                group "Блок силовых предохранителей" {
+                    # Сюда преды на 60-60-40-90
+                    ignition_relay_fuse = fuse "Прд реле зажигания. 90A" {
+                        tags "90А"
+                        !include fuse.dsl
+                    }
+                }
 
-            other_from_akb_gen = container "прочие потребители от АКБ и генератора напрямую"
-            control_line_from_ignition = container "Потребители управляющей линии от зажигания"
-            control_line_from_ignition_fuse = fuse "Предохранитель потребителей управляющей линии от зажигания" {
-                !include fuse.dsl
-            }
-
-            internal_lighting = container "Система подсветки приборов"
-
-            group "Система охлаждения" {
                 group "Вентиляторы" {
                     coolant_vent_1 = container "Э-вент охл ДВС 1"{
                         tags "vent"
@@ -148,46 +99,14 @@ workspace "Name" "Description" {
                         plus = plus "+"
                         minus = minus "-"
                     }
-                }
-
-
-                coolant_vent_1_fuse = fuse "Прд э-вент охл ДВС 1. 20А" {
-                    tags "20А"
-                    !include fuse.dsl
-                }
-
-                coolant_vent_1_relay = relay "Реле э-вент охл ДВС 1" {
-                    !include relay.dsl
-                }
-
-                coolant_vent_2_fuse = fuse "Прд э-вент охл ДВС 2. 20А" {
-                    !include fuse.dsl
-                }
-
-                coolant_vent_2_relay = relay "Реле э-вент охл ДВС 2" {
-                    !include relay.dsl
+                    g5 = ground "g5"
                 }
 
                 coolant_sensor = sensor "Датчик вкл э-вент охл ДВС" {
                     !include sensor.dsl
                 }
+                g7 = ground "g7"
 
-                coolant_control_switch = switch "Переключатель упр э-вент охл ДВС" {
-                    D = component "D"
-                    I = component "I"
-                    U = component "U"
-                    V = component "V"
-                    L = component "L"
-                    H = component "H"
-                }
-
-                coolant_control_light = light "Подсветка упр э-вент охл ДВС" {
-                    !include light.dsl
-                }
-            }
-
-
-            group "Ближний,дальний свет" {
                 group "Передний блок фар" {
                     group "Левая фара" {
                         left_low_beam = light "Левый ближний свет" {
@@ -199,6 +118,7 @@ workspace "Name" "Description" {
                         front_left_side_light = light "Передний левый габарит" {
                             !include light.dsl
                         }
+                        g10 = ground "g10"
                     }
                     group "Правая фара" {
                         right_low_beam = light "Правый ближний свет" {
@@ -210,56 +130,130 @@ workspace "Name" "Description" {
                         front_right_side_light = light "Передний правый габарит" {
                             !include light.dsl
                         }
+                        g11 = ground "g11"
                     }
                 }
+            }
 
-                group "Задний блок фар" {
+            group "Кабина" {
+                group "Блок реле и предохранителей" {
+                    #Реле
+                    ignition_relay = relay "Реле зажигания" {
+                        !include relay.dsl
+                    }
+                    g2 = ground "g2"
+
+                    starter_relay = relay "Реле стартера" {
+                        !include relay5.dsl
+                    }
+                    g3 = ground "g3"
+
+                    coolant_vent_1_relay = relay "Реле э-вент охл ДВС 1" {
+                        !include relay.dsl
+                    }
+                    coolant_vent_2_relay = relay "Реле э-вент охл ДВС 2" {
+                        !include relay.dsl
+                    }
+                    low_beam_relay = relay "Реле ближнего света" {
+                        !include relay.dsl
+                    }
+                    high_beam_relay = relay "Реле дальнего света" {
+                        !include relay.dsl
+                    }
+                    side_light_relay = relay "Реле габаритов" {
+                        !include relay.dsl
+                    }
+
+                    # Предохранители
+                    starter_relay_fuse = fuse "Прд реле стартера. 20A" {
+                        tags "20А"
+                        !include fuse.dsl
+                    }
+                    coolant_vent_1_fuse = fuse "Прд э-вент охл ДВС 1. 20А" {
+                        tags "20А"
+                        !include fuse.dsl
+                    }
+                    coolant_vent_2_fuse = fuse "Прд э-вент охл ДВС 2. 20А" {
+                        !include fuse.dsl
+                    }
+                    low_beam_relay_fuse = fuse "Прд. реле ближн света" {
+                        !include fuse.dsl
+                    }
+                    high_beam_relay_fuse = fuse "Прд. реле дальн света" {
+                        !include fuse.dsl
+                    }
+                    side_light_relay_fuse = fuse "Прд. реле габаритов" {
+                        !include fuse.dsl
+                    }
+                    left_low_beam_fuse = fuse "Прд. ближн света (лев)" {
+                        !include fuse.dsl
+                    }
+                    right_low_beam_fuse = fuse "Прд. ближн света (прав)" {
+                        !include fuse.dsl
+                    }
+                    left_high_beam_fuse = fuse "Прд. дальн света (лев)" {
+                        !include fuse.dsl
+                    }
+                    right_high_beam_fuse = fuse "Прд. дальн света (прав)" {
+                        !include fuse.dsl
+                    }
+                    side_light_fuse = fuse "Прд. габаритов" {
+                        !include fuse.dsl
+                    }
+                }
+                group "Блок приборов" {
+                    internal_lighting = container "Система подсветки приборов"
+                    coolant_control_light = light "Подсветка упр э-вент охл ДВС" {
+                        !include light.dsl
+                    }
+                    g9 = ground "g9"
+                }
+                group "Блок выключателей" {
+                    ignition_switch = switch "Выключатель зажигания" {
+                        !include switch.dsl
+                    }
+                    start_button = switch "Кнопка Старт" {
+                        !include switch.dsl
+                    }
+                    coolant_control_switch = switch "Переключатель упр э-вент охл ДВС" {
+                        D = component "D"
+                        I = component "I"
+                        U = component "U"
+                        V = component "V"
+                        L = component "L"
+                        H = component "H"
+                    }
+                    g8 = ground "g8"
+                }
+                group "Подрулевые переключатели" {
+
+                }
+            }
+
+
+
+            other_from_akb_gen = container "прочие потребители от АКБ и генератора напрямую"
+            control_line_from_ignition = container "Потребители управляющей линии от зажигания"
+            control_line_from_ignition_fuse = fuse "Предохранитель потребителей управляющей линии от зажигания" {
+                !include fuse.dsl
+            }
+
+            group "Задний блок фар" {
+                group "Левая задняя фара" {
                     rear_left_side_light = light "Задний левый габарит" {
                         !include light.dsl
                     }
+                }
+                group "Правая задняя фара" {
                     rear_right_side_light = light "Задний правый габарит" {
                         !include light.dsl
                     }
-                    number_plate_light = light "Подсветка номера" {
-                        !include light.dsl
-                    }
                 }
 
-                low_beam_relay = relay "Реле ближнего света" {
-                    !include relay.dsl
+                number_plate_light = light "Подсветка номера" {
+                    !include light.dsl
                 }
-                high_beam_relay = relay "Реле дальнего света" {
-                    !include relay.dsl
-                }
-                side_light_relay = relay "Реле габаритов" {
-                    !include relay.dsl
-                }
-                
-                low_beam_relay_fuse = fuse "Прд. реле ближн света" {
-                    !include fuse.dsl
-                }
-                high_beam_relay_fuse = fuse "Прд. реле дальн света" {
-                    !include fuse.dsl
-                }
-                side_light_relay_fuse = fuse "Прд. реле габаритов" {
-                    !include fuse.dsl
-                }
-
-                left_low_beam_fuse = fuse "Прд. ближн света (лев)" {
-                    !include fuse.dsl
-                }
-                right_low_beam_fuse = fuse "Прд. ближн света (прав)" {
-                    !include fuse.dsl
-                }
-                left_high_beam_fuse = fuse "Прд. дальн света (лев)" {
-                    !include fuse.dsl
-                }
-                right_high_beam_fuse = fuse "Прд. дальн света (прав)" {
-                    !include fuse.dsl
-                }
-                side_light_fuse = fuse "Прд. габаритов" {
-                    !include fuse.dsl
-                }
+                g16 = ground "g16"
             }
 
             #######################
@@ -371,7 +365,7 @@ workspace "Name" "Description" {
                 tags "0.5мм2,yellow"
             }
 
-            coolant_vent_2.minus -> g6 "6 мм2" {
+            coolant_vent_2.minus -> g5 "6 мм2" {
                 tags "6мм2,black"
             }
             coolant_vent_2_relay._87 -> coolant_vent_2.plus "6 мм2" {
@@ -424,34 +418,36 @@ workspace "Name" "Description" {
             low_beam_relay_fuse.out -> low_beam_relay._30
             other_from_akb_gen -> low_beam_relay_fuse.in
 
-            left_high_beam.minus -> g12 "1.5 мм2" {
+            left_high_beam.minus -> g10 "1.5 мм2" {
                 tags "1.5мм2,black"
             }
-            right_high_beam.minus -> g13 "1.5 мм2" {
+            right_high_beam.minus -> g11 "1.5 мм2" {
                 tags "1.5мм2,black"
             }
             high_beam_relay._87 -> left_high_beam_fuse.in
             left_high_beam_fuse.out -> left_high_beam.plus "1.5 мм2" {
                 tags "1.5мм2,green"
             }
-            high_beam_relay._87 -> right_high_beam_fuse.in
+            high_beam_relay._87 -> right_high_beam_fuse.in "1.5 мм2" {
+                tags "1.5мм2,brown"
+            }
             right_high_beam_fuse.out -> right_high_beam.plus
             high_beam_relay_fuse.out -> high_beam_relay._30
             other_from_akb_gen -> high_beam_relay_fuse.in
 
-            front_left_side_light.minus -> g14 "1.5 мм2" {
+            front_left_side_light.minus -> g10 "1.5 мм2" {
                 tags "1.5мм2,black"
             }
-            front_right_side_light.minus -> g15 "1.5 мм2" {
+            front_right_side_light.minus -> g11 "1.5 мм2" {
                 tags "1.5мм2,black"
             }
             rear_left_side_light.minus -> g16 "1.5 мм2" {
                 tags "1.5мм2,black"
             }
-            rear_right_side_light.minus -> g17 "1.5 мм2" {
+            rear_right_side_light.minus -> g16 "1.5 мм2" {
                 tags "1.5мм2,black"
             }
-            number_plate_light.minus -> g18 "1.5 мм2" {
+            number_plate_light.minus -> g16 "1.5 мм2" {
                 tags "1.5мм2,black"
             }
 
@@ -464,9 +460,6 @@ workspace "Name" "Description" {
             side_light_fuse.out -> rear_left_side_light.plus
             side_light_fuse.out -> rear_right_side_light.plus
             side_light_fuse.out -> number_plate_light.plus
-
-
-
             side_light_relay_fuse.out -> side_light_relay._30
             other_from_akb_gen -> side_light_relay_fuse.in
         }
@@ -482,7 +475,7 @@ workspace "Name" "Description" {
         #################
         container es es_view "Общий вид электрической системы" {
             include *
-            autolayout lr
+            #autolayout lr
         }
 
         component es.akb overall_component_view "Общий вид всех компонент" {
@@ -502,7 +495,7 @@ workspace "Name" "Description" {
             relationship "Relationship" {
                 style solid
                 #Direct|Orthogonal|Curved
-                routing Curved
+                routing Direct
             }
             relationship "relay_pwr" {
                 style dashed
@@ -533,25 +526,25 @@ workspace "Name" "Description" {
                 color #fdf4d7
             }
             relationship "50мм2" {
-                thickness 50
+                thickness 60
             }
             relationship "16мм2" {
-                thickness 16
+                thickness 55
             }
             relationship "6мм2" {
-                thickness 6
+                thickness 50
             }
             relationship "2.5мм2" {
-                thickness 3
+                thickness 25
             }
             relationship "1.5мм2" {
-                thickness 2
+                thickness 20
             }
             relationship "0.75мм2" {
-                thickness 1
+                thickness 15
             }
             relationship "0.5мм2" {
-                thickness 1
+                thickness 10
             }
 
 
@@ -627,7 +620,8 @@ workspace "Name" "Description" {
             }
             element "fuse" {
                 background #ff0000
-                height 100
+                height 300
+                width 100
                 icon fuse.jpeg
             }
             element "relay" {
