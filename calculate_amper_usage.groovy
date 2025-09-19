@@ -29,7 +29,8 @@ groups.each {
 
 
 // Create outgoing relationships for each component
-workspace.model.getSoftwareSystems().each { ss ->
+workspace.model.getSoftwareSystems().each {
+    ss = it
     println("OR: Software system: " + ss.getName())
     ss.getContainers().findAll{container ->
         (

@@ -5,3 +5,7 @@ in = component "in" {
 out = component "out" {
     tags "connector,out,switch_connector"
 }
+
+in -> out {
+    tags "ctr;switch_ctr"
+}

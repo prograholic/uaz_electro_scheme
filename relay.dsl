@@ -14,9 +14,9 @@
     }
 
     _30 -> _87 {
-        tags "relay_pwr"
+        tags "pwr;relay_pwr"
     }
     _85 -> _86 {
-        tags "relay_ctr"
+        tags "ctr;relay_ctr"
     }
 #}

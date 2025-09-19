@@ -7,6 +7,8 @@ workspace "Name" "Description" {
             "structurizr.groupSeparator" "/"
         }
 
+#        !impliedRelationships false
+
         archetypes {
             relay = container {
                 tags "relay"
@@ -37,6 +39,9 @@ workspace "Name" "Description" {
             sensor = container {
                 tags "sensor"
             }
+            splitter = container {
+                tags "splitter"
+            }
         }
 
         es = softwareSystem "Электрическая система УАЗ" {
@@ -46,7 +51,7 @@ workspace "Name" "Description" {
                 }
                 g0 = ground "g0"
                 akb = container "Аккумулятор" {
-                    tags "akb"
+                    tags "akb;power_source"
                     plus = plus "+"
                     minus = minus "-"
                 }
@@ -54,13 +59,16 @@ workspace "Name" "Description" {
                 starter = container "Стартер" {
                     tags "starter"
                     plus = plus "+"
-                    st = component "Втяг. 20А" {
-                        # Информация о мощности: https://forum.uazbuka.ru/showthread.php?t=40718
+                    st = component "Втяг" {
+                        properties {
+                            # Информация о мощности: https://forum.uazbuka.ru/showthread.php?t=40718
+                            amper 20
+                        }
                     }
                 }
 
                 generator = container "Генератор" {
-                    tags "generator"
+                    tags "generator;power_source"
                     plus = plus "+"
                     minus = minus "-"
                     v = component "Возб"
@@ -82,7 +90,20 @@ workspace "Name" "Description" {
 
                 group "Блок силовых предохранителей" {
                     # Сюда преды на 60-60-40-90
-                    ignition_relay_fuse = fuse "Прд реле зажигания. 90A" {
+                    ignition_relay_fuse = fuse "Прд реле зажигания. 40A" {
+                        tags "40А"
+                        !include fuse.dsl
+                    }
+                    light_fuse = fuse "Предохранитель штатного освещения. 60А" {
+                        tags "60А"
+                        !include fuse.dsl
+                    }
+                    ignition_vent_fuse = fuse "Предохранитель зажигания и э-вент охл-я. 60А" {
+                        tags "60А"
+                        !include fuse.dsl
+                    }
+
+                    fuse_90 = fuse "Предохранитель 90А" {
                         tags "90А"
                         !include fuse.dsl
                     }
@@ -202,7 +223,9 @@ workspace "Name" "Description" {
                     }
                 }
                 group "Блок приборов" {
-                    internal_lighting = container "Система подсветки приборов"
+                    internal_lighting = splitter "Система подсветки приборов" {
+                        data = component "connector"
+                    }
                     coolant_control_light = light "Подсветка упр э-вент охл ДВС" {
                         !include light.dsl
                     }
@@ -222,6 +245,29 @@ workspace "Name" "Description" {
                         V = component "V"
                         L = component "L"
                         H = component "H"
+
+                        I -> D {
+                            properties {
+                                state 1
+                            }
+                        }
+                        I -> U {
+                            properties {
+                                state 2
+                            }
+                        }
+
+                        V -> L {
+                            properties {
+                                state 1
+                            }
+                        }
+
+                        L -> H {
+                            properties {
+                                state 2
+                            }
+                        }
                     }
                     g8 = ground "g8"
                 }
@@ -230,10 +276,9 @@ workspace "Name" "Description" {
                 }
             }
 
-
-
-            other_from_akb_gen = container "прочие потребители от АКБ и генератора напрямую"
-            control_line_from_ignition = container "Потребители управляющей линии от зажигания"
+            control_line_from_ignition = splitter "Потребители управляющей линии от зажигания" {
+                data = component "connector"
+            }
             control_line_from_ignition_fuse = fuse "Предохранитель потребителей управляющей линии от зажигания" {
                 !include fuse.dsl
             }
@@ -262,81 +307,154 @@ workspace "Name" "Description" {
     
             # Система питания
 
-            ground_switch.out -> g0 "50 мм2" {
-                tags "50мм2,black"
+            ground_switch.out -> g0 {
+                properties {
+                    square 50
+                    color black
+                }
             }
     
-            akb.minus -> ground_switch.in "50 мм2" {
-                tags "50мм2,black"
+            akb.minus -> ground_switch.in {
+                properties {
+                    square 50
+                    color black
+                }
             }
-            akb.plus -> starter.plus "50 мм2" {
-                tags "50мм2,red"
+            akb.plus -> starter.plus {
+                properties {
+                    square 50
+                    color red
+                }
             }
-            akb.plus -> winch.plus "50 мм2" {
-                tags "50мм2,red"
+            akb.plus -> winch.plus {
+                properties {
+                    square 50
+                    color red
+                }
             }
 
             # Система зажигания
 
-            generator.minus -> g1 "50 мм2" {
-                tags "50мм2,red"
+            generator.minus -> g1 {
+                properties {
+                    square 50
+                    color red
+                }
             }
-            generator.plus -> starter.plus "50 мм2" {
-                tags "50мм2,red"
-            }
-    
-            starter.plus -> ignition_relay_fuse.in "16 мм2" {
-                tags "16мм2,red"
-            }
-    
-            ignition_relay_fuse.out -> ignition_relay._30 "16 мм2" {
-                tags "16мм2,red"
-            }
-            ignition_relay_fuse.out -> ignition_switch.in "0.5 мм2" {
-                tags "0.5мм2,red"
-            }
-            ignition_relay_fuse.out -> other_from_akb_gen "16 мм2" {
-                tags "16мм2,red"
-            }
-            ignition_relay_fuse.out -> generator.v "4 мм2" {
-                tags "4мм2,red"
+            generator.plus -> starter.plus {
+                properties {
+                    square 50
+                    color red
+                }
             }
     
-            ignition_switch.out -> ignition_relay._85 "0.5 мм2" {
-                tags "0.5мм2,green"
+            starter.plus -> ignition_relay_fuse.in {
+                properties {
+                    square 16
+                    color red
+                }
+            }
+            starter.plus -> light_fuse.in {
+                properties {
+                    square 16
+                    color red
+                }
+            }
+            starter.plus -> ignition_vent_fuse.in {
+                properties {
+                    square 16
+                    color red
+                }
+            }
+            starter.plus -> fuse_90.in {
+                properties {
+                    square 16
+                    color red
+                }
+            }
+
+            ignition_relay_fuse.out -> ignition_relay._30 {
+                properties {
+                    square 16
+                    color red
+                }
+            }
+            ignition_relay_fuse.out -> ignition_switch.in {
+                properties {
+                    square 0.5
+                    color red
+                }
+            }
+
+            ignition_relay_fuse.out -> generator.v {
+                properties {
+                    square 4
+                    color red
+                }
+            }
+    
+            ignition_switch.out -> ignition_relay._85 {
+                properties {
+                    square 0.5
+                    color green
+                }
             }
             
-            ignition_relay._86 -> g2 "0.5 мм2" {
-                tags "0.5мм2,black"
+            ignition_relay._86 -> g2 {
+                properties {
+                    square 0.5
+                    color black
+                }
             }
-            ignition_relay._87 -> starter_relay_fuse.in "6 мм2" {
-                tags "6мм2,red"
+            ignition_relay._87 -> starter_relay_fuse.in {
+                properties {
+                    square 6
+                    color red
+                }
             }
             
-            starter_relay_fuse.out -> starter_relay._30 "6 мм2" {
-                tags "6мм2,blue"
+            starter_relay_fuse.out -> starter_relay._30 {
+                properties {
+                    square 6
+                    color blue
+                }
             }
-            starter_relay_fuse.out -> ignition.in "4 мм2" {
-                tags "4мм2,black"
+            starter_relay_fuse.out -> ignition.in {
+                properties {
+                    square 4
+                    color black
+                }
             }
-            starter_relay_fuse.out -> start_button.in "0.5 мм2" {
-                tags "0.5мм2,red"
+            starter_relay_fuse.out -> start_button.in {
+                properties {
+                    square 0.5
+                    color red
+                }
             }
     
-            start_button.out -> starter_relay._85 "0.5 мм2" {
-                tags "0.5мм2,green"
+            start_button.out -> starter_relay._85 {
+                properties {
+                    square 0.5
+                    color green
+                }
             }
     
-            starter_relay._86 -> g3 "0.5 мм2" {
-                tags "0.5мм2,black"
+            starter_relay._86 -> g3 {
+                properties {
+                    square 0.5
+                    color black
+                }
             }
-            starter_relay._87 -> starter.st "6 мм2" {
-                tags "6мм2,red"
+            starter_relay._87 -> starter.st {
+                properties {
+                    square 6
+                    color red
+                }
             }
             starter_relay._88 -> control_line_from_ignition_fuse.in "6 мм2" {
                 tags "6мм2,black"
             }
-            control_line_from_ignition_fuse.out -> control_line_from_ignition
+            control_line_from_ignition_fuse.out -> control_line_from_ignition.data
 
             # Лебедка
         
@@ -355,10 +473,10 @@ workspace "Name" "Description" {
             coolant_vent_1_relay._87 -> coolant_vent_1.plus "6 мм2" {
                 tags "6мм2,green"
             }
-            control_line_from_ignition -> coolant_vent_1_relay._85 "0.5 мм2" {
+            control_line_from_ignition.data -> coolant_vent_1_relay._85 "0.5 мм2" {
                 tags "0.5мм2,yellow"
             }
-            other_from_akb_gen -> coolant_vent_1_fuse.in "6 мм2" {
+            ignition_vent_fuse.out -> coolant_vent_1_fuse.in "6 мм2" {
                 tags "6мм2,brown"
             }
             coolant_vent_1_relay._86 -> coolant_control_switch.I "0.5 мм2" {
@@ -371,10 +489,10 @@ workspace "Name" "Description" {
             coolant_vent_2_relay._87 -> coolant_vent_2.plus "6 мм2" {
                 tags "6мм2,blue"
             }
-            other_from_akb_gen -> coolant_vent_2_fuse.in "6 мм2" {
+            ignition_vent_fuse.out -> coolant_vent_2_fuse.in "6 мм2" {
                 tags "6мм2,yellow"
             }
-            control_line_from_ignition -> coolant_vent_2_relay._85 "0.5 мм2" {
+            control_line_from_ignition.data -> coolant_vent_2_relay._85 "0.5 мм2" {
                 tags "0.5мм2,yellow"
             }
             coolant_vent_2_fuse.out -> coolant_vent_2_relay._30 "6 мм2" {
@@ -392,7 +510,7 @@ workspace "Name" "Description" {
             coolant_control_light.plus -> coolant_control_switch.H "0.5 мм2" {
                 tags "0.5мм2,red"
             }
-            internal_lighting -> coolant_control_light.plus "0.5 мм2" {
+            internal_lighting.data -> coolant_control_light.plus "0.5 мм2" {
                 tags "0.5мм2,brown"
             }
             coolant_control_light.minus -> g9 "0.5 мм2" {
@@ -424,7 +542,7 @@ workspace "Name" "Description" {
             low_beam_relay_fuse.out -> low_beam_relay._30 "2.5 мм2" {
                 tags "2.5мм2,brown"
             }
-            other_from_akb_gen -> low_beam_relay_fuse.in "2.5 мм2" {
+            light_fuse.out -> low_beam_relay_fuse.in "2.5 мм2" {
                 tags "2.5мм2,red"
             }
 
@@ -449,7 +567,7 @@ workspace "Name" "Description" {
             high_beam_relay_fuse.out -> high_beam_relay._30 "2.5 мм2" {
                 tags "2.5мм2,green"
             }
-            other_from_akb_gen -> high_beam_relay_fuse.in "2.5 мм2" {
+            light_fuse.out -> high_beam_relay_fuse.in "2.5 мм2" {
                 tags "2.5мм2,yellow"
             }
 
@@ -491,10 +609,12 @@ workspace "Name" "Description" {
             side_light_relay_fuse.out -> side_light_relay._30 "1.5 мм2" {
                 tags "1.5мм2,red"
             }
-            other_from_akb_gen -> side_light_relay_fuse.in "1.5 мм2" {
+            light_fuse.out -> side_light_relay_fuse.in "1.5 мм2" {
                 tags "1.5мм2,brown"
             }
         }
+
+        !script deduce_wire_square.groovy
     }
 
     views {
@@ -507,7 +627,7 @@ workspace "Name" "Description" {
         #################
         container es es_view "Общий вид электрической системы" {
             include *
-            #autolayout lr
+            autolayout tb
         }
 
         component es.akb overall_component_view "Общий вид всех компонент" {
@@ -529,57 +649,57 @@ workspace "Name" "Description" {
                 #Direct|Orthogonal|Curved
                 routing Direct
             }
-            relationship "relay_pwr" {
+            relationship "pwr" {
                 style dashed
                 thickness 3
             }
-            relationship "relay_ctr" {
+            relationship "ctr" {
                 style dotted
             }
-            relationship "red" {
+            relationship "color_red" {
                 color #ff0000
             }
-            relationship "black" {
+            relationship "color_black" {
                 color #000000
             }
-            relationship "blue" {
+            relationship "color_blue" {
                 color #0000ff
             }
-            relationship "green" {
+            relationship "color_green" {
                 color #00b300
             }
-            relationship "brown" {
+            relationship "color_brown" {
                 color #977400
             }
-            relationship "yellow" {
+            relationship "color_yellow" {
                 color #ffff00
             }
-            relationship "white" {
+            relationship "color_white" {
                 color #fdf4d7
             }
-            relationship "50мм2" {
-                thickness 60
+            relationship "square_50" {
+                thickness 16
             }
-            relationship "16мм2" {
-                thickness 55
+            relationship "square_16" {
+                thickness 14
             }
-            relationship "6мм2" {
-                thickness 50
-            }
-            relationship "4мм2" {
-                thickness 40
-            }
-            relationship "2.5мм2" {
-                thickness 25
-            }
-            relationship "1.5мм2" {
-                thickness 20
-            }
-            relationship "0.75мм2" {
-                thickness 15
-            }
-            relationship "0.5мм2" {
+            relationship "square_6" {
                 thickness 10
+            }
+            relationship "square_4" {
+                thickness 9
+            }
+            relationship "square_2.5" {
+                thickness 8
+            }
+            relationship "square_1.5" {
+                thickness 7
+            }
+            relationship "square_0.75" {
+                thickness 6
+            }
+            relationship "square_0.5" {
+                thickness 5
             }
 
 

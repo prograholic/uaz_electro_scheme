@@ -16,12 +16,12 @@ _85 = component "85" {
 }
 
 _30 -> _87 {
-    tags "relay_pwr"
+    tags "pwr;relay_pwr"
 }
 _30 -> _88 {
-    tags "relay_pwr_default_connected"
+    tags "pwr;relay_pwr_default_connected"
 }
 
 _85 -> _86 {
-    tags "relay_ctr"
+    tags "ctr;relay_ctr"
 }
