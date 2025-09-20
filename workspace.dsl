@@ -7,31 +7,23 @@ workspace "Name" "Description" {
             "structurizr.groupSeparator" "/"
         }
 
-#        !impliedRelationships false
+        !impliedRelationships false
 
         archetypes {
             relay = container {
                 tags "relay"
+                properties {
+                    ctr_amper 0.2
+                }
             }
-
             fuse = container {
                 tags "fuse"
             }
-
             switch = container {
                 tags "switch"
             }
-
             light = container {
                 tags "light"
-            }
-
-            plus = component {
-                tags "plus"
-            }
-
-            minus = component {
-                tags "minus"
             }
             ground = container {
                 tags "ground"
@@ -42,6 +34,14 @@ workspace "Name" "Description" {
             splitter = container {
                 tags "splitter"
             }
+
+            plus = component {
+                tags "plus"
+            }
+            minus = component {
+                tags "minus"
+            }
+
         }
 
         es = softwareSystem "Электрическая система УАЗ" {
@@ -51,25 +51,44 @@ workspace "Name" "Description" {
                 }
                 g0 = ground "g0"
                 akb = container "Аккумулятор" {
-                    tags "akb;power_source"
-                    plus = plus "+"
+                    tags "akb"
+                    plus = plus "+" {
+                        tags "power_source"
+                    }
                     minus = minus "-"
                 }
 
                 starter = container "Стартер" {
                     tags "starter"
                     plus = plus "+"
+
+                    g = component "g" {
+                        tags "ground"
+                    }
+
                     st = component "Втяг" {
+                    }
+
+                    plus -> g {
+                        tags "consumer"
                         properties {
-                            # Информация о мощности: https://forum.uazbuka.ru/showthread.php?t=40718
+                            amper 350
+                        }
+                    }
+                    st -> g {
+                        tags "consumer"
+                        # Информация о мощности: https://forum.uazbuka.ru/showthread.php?t=40718
+                        properties {
                             amper 20
                         }
                     }
                 }
 
                 generator = container "Генератор" {
-                    tags "generator;power_source"
-                    plus = plus "+"
+                    tags "generator"
+                    plus = plus "+" {
+                        tags "power_source"
+                    }
                     minus = minus "-"
                     v = component "Возб"
                 }
@@ -90,21 +109,17 @@ workspace "Name" "Description" {
 
                 group "Блок силовых предохранителей" {
                     # Сюда преды на 60-60-40-90
-                    ignition_relay_fuse = fuse "Прд реле зажигания. 40A" {
-                        tags "40А"
+                    ignition_relay_fuse = fuse "Прд реле зажигания." {
                         !include fuse.dsl
                     }
-                    light_fuse = fuse "Предохранитель штатного освещения. 60А" {
-                        tags "60А"
+                    light_fuse = fuse "Предохранитель штатного освещения." {
                         !include fuse.dsl
                     }
-                    ignition_vent_fuse = fuse "Предохранитель зажигания и э-вент охл-я. 60А" {
-                        tags "60А"
+                    ignition_vent_fuse = fuse "Предохранитель зажигания и э-вент охл-я." {
                         !include fuse.dsl
                     }
 
-                    fuse_90 = fuse "Предохранитель 90А" {
-                        tags "90А"
+                    fuse_90 = fuse "Предохранитель" {
                         !include fuse.dsl
                     }
                 }
@@ -131,24 +146,42 @@ workspace "Name" "Description" {
                 group "Передний блок фар" {
                     group "Левая фара" {
                         left_low_beam = light "Левый ближний свет" {
+                            properties {
+                                amper 20
+                            }
                             !include light.dsl
                         }
                         left_high_beam = light "Левый дальний свет" {
+                            properties {
+                                amper 20
+                            }
                             !include light.dsl
                         }
                         front_left_side_light = light "Передний левый габарит" {
+                            properties {
+                                amper 20
+                            }
                             !include light.dsl
                         }
                         g10 = ground "g10"
                     }
                     group "Правая фара" {
                         right_low_beam = light "Правый ближний свет" {
+                            properties {
+                                amper 20
+                            }
                             !include light.dsl
                         }
                         right_high_beam = light "Правый дальний свет" {
+                            properties {
+                                amper 20
+                            }
                             !include light.dsl
                         }
                         front_right_side_light = light "Передний правый габарит" {
+                            properties {
+                                amper 20
+                            }
                             !include light.dsl
                         }
                         g11 = ground "g11"
@@ -186,15 +219,13 @@ workspace "Name" "Description" {
                     }
 
                     # Предохранители
-                    starter_relay_fuse = fuse "Прд реле стартера. 20A" {
-                        tags "20А"
+                    starter_relay_fuse = fuse "Прд реле стартера." {
                         !include fuse.dsl
                     }
-                    coolant_vent_1_fuse = fuse "Прд э-вент охл ДВС 1. 20А" {
-                        tags "20А"
+                    coolant_vent_1_fuse = fuse "Прд э-вент охл ДВС 1." {
                         !include fuse.dsl
                     }
-                    coolant_vent_2_fuse = fuse "Прд э-вент охл ДВС 2. 20А" {
+                    coolant_vent_2_fuse = fuse "Прд э-вент охл ДВС 2." {
                         !include fuse.dsl
                     }
                     low_beam_relay_fuse = fuse "Прд. реле ближн света" {
@@ -227,6 +258,9 @@ workspace "Name" "Description" {
                         data = component "connector"
                     }
                     coolant_control_light = light "Подсветка упр э-вент охл ДВС" {
+                            properties {
+                                amper 20
+                            }
                         !include light.dsl
                     }
                     g9 = ground "g9"
@@ -247,25 +281,29 @@ workspace "Name" "Description" {
                         H = component "H"
 
                         I -> D {
+                            tags "ctr;switch_ctr"
                             properties {
-                                state 1
+                                switch_state 1
                             }
                         }
                         I -> U {
+                            tags "ctr;switch_ctr"
                             properties {
-                                state 2
+                                switch_state 2
                             }
                         }
 
                         V -> L {
+                            tags "ctr;switch_ctr"
                             properties {
-                                state 1
+                                switch_state 1
                             }
                         }
 
                         L -> H {
+                            tags "ctr;switch_ctr"
                             properties {
-                                state 2
+                                switch_state 2
                             }
                         }
                     }
@@ -286,16 +324,25 @@ workspace "Name" "Description" {
             group "Задний блок фар" {
                 group "Левая задняя фара" {
                     rear_left_side_light = light "Задний левый габарит" {
+                        properties {
+                            amper 20
+                        }
                         !include light.dsl
                     }
                 }
                 group "Правая задняя фара" {
                     rear_right_side_light = light "Задний правый габарит" {
+                        properties {
+                            amper 20
+                        }
                         !include light.dsl
                     }
                 }
 
                 number_plate_light = light "Подсветка номера" {
+                    properties {
+                        amper 20
+                    }
                     !include light.dsl
                 }
                 g16 = ground "g16"
@@ -555,6 +602,7 @@ workspace "Name" "Description" {
             high_beam_relay._87 -> left_high_beam_fuse.in "1.5 мм2" {
                 tags "1.5мм2,white"
             }
+
             left_high_beam_fuse.out -> left_high_beam.plus "1.5 мм2" {
                 tags "1.5мм2,green"
             }
@@ -614,7 +662,8 @@ workspace "Name" "Description" {
             }
         }
 
-        !script deduce_wire_square.groovy
+        !script graph_validators.groovy
+        #!script deduce_wire_square.groovy
     }
 
     views {

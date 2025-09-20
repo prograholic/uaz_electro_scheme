@@ -8,4 +8,7 @@ out = component "out" {
 
 in -> out {
     tags "ctr;switch_ctr"
+    properties {
+        switch_state 1
+    }
 }

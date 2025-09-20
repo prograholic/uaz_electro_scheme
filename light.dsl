@@ -5,6 +5,5 @@ plus = component "+" {
 minus = component "-" {
     tags "connector,minus,light_connector"
 }
-plus -> minus {
-    tags "pwr;light_pwr"
-}
+
+!script light.groovy

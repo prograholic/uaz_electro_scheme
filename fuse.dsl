@@ -6,6 +6,4 @@ out = component "out" {
     tags "connector,out,fuse_connector"
 }
 
-in -> out {
-    tags "fuse_pwr;pwr"
-}
+!script fuse.groovy

@@ -15,13 +15,4 @@ _85 = component "85" {
     tags "connector,relay_connector,relay_85"
 }
 
-_30 -> _87 {
-    tags "pwr;relay_pwr"
-}
-_30 -> _88 {
-    tags "pwr;relay_pwr_default_connected"
-}
-
-_85 -> _86 {
-    tags "ctr;relay_ctr"
-}
+!script relay5.groovy
