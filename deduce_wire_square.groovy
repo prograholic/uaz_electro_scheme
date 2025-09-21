@@ -108,48 +108,7 @@ def get_amper_for(component) {
     component.addProperty("amper", Integer.toString(result))
     return result
 }
-
-
-def dfs(vertex, parent, path) {
-    vertex.addTags("__visited")
-    path.add(vertex)
-
-    vertex.getRelationships().each {relationship ->
-        dest = relationship.getDestination()
-        if (!dest.getTags().contains("__visited")) {
-            dfs(dest, parent, path)
-        } else if (dest != vertex) {
-            reportGraphCycleError(path)
-        }
-    }
-    path.remove(path.size() - 1)
-}
-
-def ensureNoCycles(elements) {
-    elements.each { element ->
-        should_process = true
-        element.getRelationships().each {relationship ->
-            if (relationship.getDestination() == element) {
-                should_process = false
-            }
-        }
-
-        if (should_process) {
-            dfs(element, null, new ArrayList[])
-        }
-    }
-
-
-def validateGraph(elements) {
-    ensureNoCycles(elements)
-    checkReachability(elements)
-    ensureNoPathBetweenPowerSourcesAndConsumer(elements)
-}
-
-
-validateGraph()
-
-
+/*
 // Process all power sources
 workspace.model.getElements().findAll {element ->
     (element.getTags().contains("power_source"))
@@ -157,4 +116,113 @@ workspace.model.getElements().findAll {element ->
     println("power source: " + power_source.getName())
     amper = get_amper_for(power_source.getComponentWithName("+"))
     println("Amper usage for power source [" + power_source.getName() + "]")
+}
+
+*/
+
+def get_shortest_path(start, finish) {
+    distance = new HashMap<com.structurizr.model.Element, Integer>()
+    distance.put(start, 0)
+
+    pathHolder = new HashMap<com.structurizr.model.Element, com.structurizr.model.Element>()
+
+    Queue<com.structurizr.model.Element> queue = new LinkedList<>();
+    queue.offer(start)
+    //println(" start: " + start.getParent().getName() + "." + start.getName())
+    //println(" finish: " + finish.getParent().getName() + "." + finish.getName())
+
+    while (!queue.isEmpty()) {
+        current = queue.poll()
+        //println("  current: " + current.getParent().getName() + "." + current.getName())
+
+        current.getRelationships().each { relationship ->
+            next = relationship.getDestination()
+            if (next == current) {
+                next = relationship.getSource()
+            }
+            //println("  next: " + next.getParent().getName() + "." + next.getName())
+            //println("  distance: " + distance)
+
+            if (!distance.containsKey(next) || (distance.get(next) > (distance.get(current) + 1))) {
+                pathHolder.put(next, current)
+                distance.put(next, distance.get(current) + 1)
+                queue.push(next)
+            }
+        }
+    }
+
+    if (!distance.containsKey(finish)) {
+        //println(" return NULL")
+        return null
+    }
+
+    pathHolder.each {entry ->
+        //println(" element in path holder: " + entry.key.getParent().getName() + "." + entry.key.getName() + " -> " + entry.value.getParent().getName() + "." + entry.value.getName())
+    }
+
+    elementsInPath = new ArrayList<com.structurizr.model.Element>()
+
+    while (finish != null) {
+        elementsInPath.add(finish)
+        //println(" add to pathHolder: " + finish.getParent().getName() + "." + finish.getName())
+        finish = pathHolder.getOrDefault(finish, null)
+        //println(" new finish: " + finish)
+    }
+    Collections.reverse(elementsInPath)
+
+    elementsInPath.each { element ->
+        //println(" element in shortest path: " + element.getParent().getName() + "." + element.getName())
+    }
+
+    //it = elementsInPath.iterator()
+    //while (it.hasNext()) {
+    //    println(it.next())
+    //}
+
+    return elementsInPath
+}
+
+def get_shortest_path_for_group(consumer, final_elements) {
+    result = null
+
+    final_elements.each {final_element ->
+        res = get_shortest_path(consumer, final_element)
+        if (res != null) {
+            if (result == null) {
+                result = res
+            } else {
+                if (res.size() < result.size()) {
+                    result = res
+                }
+            }
+        }
+    }
+
+    println("Shortest path for " + consumer.getParent().getName() + "." + consumer.getName() + " is: ")
+    result.each { element ->
+        println("  " + element.getParent().getName() + "." + element.getName())
+    }
+
+    return result
+}
+
+
+// Process all power sources
+power_sources = workspace.model.getElements().findAll {element ->
+    (element.getTags().contains("power_source"))
+}
+
+grounds = workspace.model.getElements().findAll {element ->
+    (element.getTags().contains("ground"))
+}
+
+consumers = workspace.model.getRelationships().findAll {relationship ->
+    (relationship.getTags().contains("consumer"))
+}
+
+
+println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+
+consumers.each { consumer ->
+    get_shortest_path_for_group(consumer.getSource(), grounds)
 }

@@ -89,10 +89,19 @@ workspace "Name" "Description" {
                     plus = plus "+" {
                         tags "power_source"
                     }
-                    minus = minus "-"
+
                     v = component "Возб"
+
+                    g = component "g" {
+                        tags "ground"
+                    }
+                    v -> g {
+                        tags "consumer"
+                        properties {
+                            amper 1000
+                        }
+                    }
                 }
-                g1 = ground "g1"
 
                 ignition = container "Система зажигания" {
                     in = component "in" {
@@ -382,12 +391,6 @@ workspace "Name" "Description" {
 
             # Система зажигания
 
-            generator.minus -> g1 {
-                properties {
-                    square 50
-                    color red
-                }
-            }
             generator.plus -> starter.plus {
                 properties {
                     square 50
@@ -663,7 +666,7 @@ workspace "Name" "Description" {
         }
 
         !script graph_validators.groovy
-        #!script deduce_wire_square.groovy
+        !script deduce_wire_square.groovy
     }
 
     views {
