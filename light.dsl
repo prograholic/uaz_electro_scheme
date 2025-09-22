@@ -1,9 +1,19 @@
 tags "light"
-plus = component "+" {
-    tags "connector,plus,light_connector"
+plus = pin "+" {
+    tags "plus,light_pin"
 }
-minus = component "-" {
-    tags "connector,minus,light_connector"
+
+lamp = consumer "lamp"
+
+minus = pin "-" {
+    tags "minus,light_pin"
+}
+
+plus -> lamp {
+    tags "expect_plus,internal_connection" 
+}
+lamp -> minus {
+    tags "expect_ground,internal_connection"
 }
 
 !script light.groovy

@@ -1,9 +1,11 @@
 tags "fuse"
-in = component "in" {
-    tags "connector,in,fuse_connector"
+in = pin "in" {
+    tags "in" "fuse_pin"
 }
-out = component "out" {
-    tags "connector,out,fuse_connector"
+out = pin "out" {
+    tags "out" "fuse_pin"
 }
 
-!script fuse.groovy
+in -> out {
+    tags "pwr" "fuse_pwr"
+}

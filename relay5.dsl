@@ -1,18 +1,41 @@
 tags "relay5"
-_30 = component "30" {
-    tags "connector,relay_connector,relay_30"
+_30 = pin "30" {
+    tags "relay_pin,relay_30"
 }
-_87 = component "87" {
-    tags "connector,relay_connector,relay_87"
+_87 = pin "87" {
+    tags "relay_pin,relay_87"
 }
-_88 = component "88" {
-    tags "connector,relay_connector,relay_88"
+_88 = pin "88" {
+    tags "relay_pin,relay_88"
 }
-_86 = component "86" {
-    tags "connector,relay_connector,relay_86"
+_86 = pin "86" {
+    tags "relay_pin,relay_86"
 }
-_85 = component "85" {
-    tags "connector,relay_connector,relay_85"
+_85 = pin "85" {
+    tags "relay_pin,relay_85"
+}
+coil = consumer "coil"
+
+
+_30 -> _87 {
+    tags "relay_power_switch"
+    properties {
+        switch_state 1
+    }
 }
 
-!script relay5.groovy
+_30 -> _88 {
+    tags "relay_power_switch"
+    properties {
+        switch_state 0
+    }
+}
+
+_85 -> coil {
+    tags "expect_plus,internal_connection"
+}
+coil -> _86 {
+    tags "expect_minus,internal_connection"
+}
+
+!script relay.groovy

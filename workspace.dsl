@@ -2,9 +2,14 @@ workspace "Name" "Description" {
 
     !identifiers hierarchical
 
+    configuration {
+        scope none
+    }
+
     model {
         properties {
             "structurizr.groupSeparator" "/"
+            default_voltage 12
         }
 
         !impliedRelationships false
@@ -26,7 +31,7 @@ workspace "Name" "Description" {
                 tags "light"
             }
             ground = container {
-                tags "ground"
+                tags "pin,ground"
             }
             sensor = container {
                 tags "sensor"
@@ -35,16 +40,25 @@ workspace "Name" "Description" {
                 tags "splitter"
             }
 
-            plus = component {
+            pin = component {
+                tags "pin"
+            }
+            plus = pin {
                 tags "plus"
             }
-            minus = component {
+            minus = pin {
                 tags "minus"
             }
-
+            consumer = component {
+                tags "consumer"
+            }
+            power_source = component {
+                tags "pin,power_source"
+            }
         }
 
         es = softwareSystem "Электрическая система УАЗ" {
+            tags "electric_system"
             power_group = group "Подкапотное пространство" {
                 ground_switch = switch "Размыкатель массы" {
                     !include switch.dsl
@@ -52,79 +66,96 @@ workspace "Name" "Description" {
                 g0 = ground "g0"
                 akb = container "Аккумулятор" {
                     tags "akb"
-                    plus = plus "+" {
-                        tags "power_source"
+                    plus = power_source "+"
+                    minus = minus "-" {
+                        tags "non_root"
                     }
-                    minus = minus "-"
                 }
 
                 starter = container "Стартер" {
                     tags "starter"
                     plus = plus "+"
+                    
+                    eng = consumer "двигатель" {
+                        properties {
+                            amper 350
+                        }
+                    }
 
                     g = component "g" {
                         tags "ground"
                     }
 
-                    st = component "Втяг" {
-                    }
+                    st = pin "Втяг"
 
-                    plus -> g {
-                        tags "consumer"
-                        properties {
-                            amper 350
-                        }
-                    }
-                    st -> g {
-                        tags "consumer"
+                    st_relay = consumer "Втяг реле" {
                         # Информация о мощности: https://forum.uazbuka.ru/showthread.php?t=40718
                         properties {
                             amper 20
                         }
                     }
+
+                    plus -> eng {
+                        tags "internal_connection"
+                    }
+                    eng -> g {
+                        tags "internal_connection"
+                    }
+                    st -> st_relay {
+                        tags "internal_connection"
+                    }
+                    st_relay -> g {
+                        tags "internal_connection"
+                    }
                 }
 
                 generator = container "Генератор" {
                     tags "generator"
-                    plus = plus "+" {
-                        tags "power_source"
-                    }
+                    plus = power_source "+"
 
-                    v = component "Возб"
+                    v = component "Возб" {
+                        tags "pin,consumer"
+                        properties {
+                            amper 1000
+                        }
+                    }
 
                     g = component "g" {
                         tags "ground"
                     }
                     v -> g {
-                        tags "consumer"
-                        properties {
-                            amper 1000
-                        }
+                        tags "internal_connection"
                     }
                 }
 
-                ignition = container "Система зажигания" {
-                    in = component "in" {
-                        tags "ignition_connector,in,connector"
-                    }
+                ignition = splitter "Система зажигания" {
+                    data = pin "pin"
                 }
 
                 winch = container "Лебедка" {
                     tags "winch"
                     plus = plus "+"
                     minus = minus "-"
+                    winch = consumer "winch"
+
+                    plus -> winch {
+                        tags "internal_connection"
+                    }
+                    winch -> minus {
+                        tags "internal_connection"
+                    }
                 }
                 g4 = ground "g4"
 
                 group "Блок силовых предохранителей" {
                     # Сюда преды на 60-60-40-90
-                    ignition_relay_fuse = fuse "Прд реле зажигания." {
+                    ignition_relay_fuse = fuse "Прд реле зажигания" {
                         !include fuse.dsl
                     }
-                    light_fuse = fuse "Предохранитель штатного освещения." {
+                    light_fuse = fuse "Предохранитель штатного освещения" {
                         !include fuse.dsl
                     }
-                    ignition_vent_fuse = fuse "Предохранитель зажигания и э-вент охл-я." {
+                    ignition_vent_fuse = fuse "Предохранитель зажигания и э-вент охл-я" {
                         !include fuse.dsl
                     }
 
@@ -138,11 +169,33 @@ workspace "Name" "Description" {
                         tags "vent"
                         plus = plus "+"
                         minus = minus "-"
+                        vent = consumer "vent" {
+                            properties {
+                                amper 20
+                            }
+                        }
+                        plus -> vent {
+                            tags "internal_connection"
+                        }
+                        vent -> minus {
+                            tags "internal_connection"
+                        }
                     }
                     coolant_vent_2 = container "Э-вент охл ДВС 2"{
                         tags "vent"
                         plus = plus "+"
                         minus = minus "-"
+                        vent = consumer "vent" {
+                            properties {
+                                amper 20
+                            }
+                        }
+                        plus -> vent {
+                            tags "internal_connection"
+                        }
+                        vent -> minus {
+                            tags "internal_connection"
+                        }
                     }
                     g5 = ground "g5"
                 }
@@ -264,7 +317,7 @@ workspace "Name" "Description" {
                 }
                 group "Блок приборов" {
                     internal_lighting = splitter "Система подсветки приборов" {
-                        data = component "connector"
+                        data = pin "pin"
                     }
                     coolant_control_light = light "Подсветка упр э-вент охл ДВС" {
                             properties {
@@ -282,35 +335,35 @@ workspace "Name" "Description" {
                         !include switch.dsl
                     }
                     coolant_control_switch = switch "Переключатель упр э-вент охл ДВС" {
-                        D = component "D"
-                        I = component "I"
-                        U = component "U"
-                        V = component "V"
-                        L = component "L"
-                        H = component "H"
+                        D = pin "D"
+                        I = pin "I"
+                        U = pin "U"
+                        V = pin "V"
+                        L = pin "L"
+                        H = pin "H"
 
                         I -> D {
-                            tags "ctr;switch_ctr"
+                            tags "ctr,switch_ctr"
                             properties {
                                 switch_state 1
                             }
                         }
                         I -> U {
-                            tags "ctr;switch_ctr"
+                            tags "ctr,switch_ctr"
                             properties {
                                 switch_state 2
                             }
                         }
 
                         V -> L {
-                            tags "ctr;switch_ctr"
+                            tags "ctr,switch_ctr"
                             properties {
                                 switch_state 1
                             }
                         }
 
                         L -> H {
-                            tags "ctr;switch_ctr"
+                            tags "ctr,switch_ctr"
                             properties {
                                 switch_state 2
                             }
@@ -324,7 +377,7 @@ workspace "Name" "Description" {
             }
 
             control_line_from_ignition = splitter "Потребители управляющей линии от зажигания" {
-                data = component "connector"
+                data = pin "pin"
             }
             control_line_from_ignition_fuse = fuse "Предохранитель потребителей управляющей линии от зажигания" {
                 !include fuse.dsl
@@ -363,311 +416,125 @@ workspace "Name" "Description" {
     
             # Система питания
 
-            ground_switch.out -> g0 {
-                properties {
-                    square 50
-                    color black
-                }
-            }
+            ground_switch.out -> g0
     
-            akb.minus -> ground_switch.in {
-                properties {
-                    square 50
-                    color black
-                }
-            }
-            akb.plus -> starter.plus {
-                properties {
-                    square 50
-                    color red
-                }
-            }
-            akb.plus -> winch.plus {
-                properties {
-                    square 50
-                    color red
-                }
-            }
+            akb.minus -> ground_switch.in
+            akb.plus -> starter.plus
+            akb.plus -> winch.plus
 
             # Система зажигания
 
-            generator.plus -> starter.plus {
-                properties {
-                    square 50
-                    color red
-                }
-            }
+            generator.plus -> starter.plus
     
-            starter.plus -> ignition_relay_fuse.in {
-                properties {
-                    square 16
-                    color red
-                }
-            }
-            starter.plus -> light_fuse.in {
-                properties {
-                    square 16
-                    color red
-                }
-            }
-            starter.plus -> ignition_vent_fuse.in {
-                properties {
-                    square 16
-                    color red
-                }
-            }
-            starter.plus -> fuse_90.in {
-                properties {
-                    square 16
-                    color red
-                }
-            }
+            starter.plus -> ignition_relay_fuse.in
+            starter.plus -> light_fuse.in
+            starter.plus -> ignition_vent_fuse.in
+            starter.plus -> fuse_90.in
 
-            ignition_relay_fuse.out -> ignition_relay._30 {
-                properties {
-                    square 16
-                    color red
-                }
-            }
-            ignition_relay_fuse.out -> ignition_switch.in {
-                properties {
-                    square 0.5
-                    color red
-                }
-            }
+            ignition_relay_fuse.out -> ignition_relay._30
+            ignition_relay_fuse.out -> ignition_switch.in
 
-            ignition_relay_fuse.out -> generator.v {
-                properties {
-                    square 4
-                    color red
-                }
-            }
+            ignition_relay_fuse.out -> generator.v
     
-            ignition_switch.out -> ignition_relay._85 {
-                properties {
-                    square 0.5
-                    color green
-                }
-            }
+            ignition_switch.out -> ignition_relay._85
             
-            ignition_relay._86 -> g2 {
-                properties {
-                    square 0.5
-                    color black
-                }
-            }
-            ignition_relay._87 -> starter_relay_fuse.in {
-                properties {
-                    square 6
-                    color red
-                }
-            }
+            ignition_relay._86 -> g2
+            ignition_relay._87 -> starter_relay_fuse.in
             
-            starter_relay_fuse.out -> starter_relay._30 {
-                properties {
-                    square 6
-                    color blue
-                }
-            }
-            starter_relay_fuse.out -> ignition.in {
-                properties {
-                    square 4
-                    color black
-                }
-            }
-            starter_relay_fuse.out -> start_button.in {
-                properties {
-                    square 0.5
-                    color red
-                }
-            }
+            starter_relay_fuse.out -> starter_relay._30
+            starter_relay_fuse.out -> ignition.data
+            starter_relay_fuse.out -> start_button.in
     
-            start_button.out -> starter_relay._85 {
-                properties {
-                    square 0.5
-                    color green
-                }
-            }
+            start_button.out -> starter_relay._85
     
-            starter_relay._86 -> g3 {
-                properties {
-                    square 0.5
-                    color black
-                }
-            }
-            starter_relay._87 -> starter.st {
-                properties {
-                    square 6
-                    color red
-                }
-            }
-            starter_relay._88 -> control_line_from_ignition_fuse.in "6 мм2" {
-                tags "6мм2,black"
-            }
+            starter_relay._86 -> g3
+            starter_relay._87 -> starter.st
+            starter_relay._88 -> control_line_from_ignition_fuse.in
             control_line_from_ignition_fuse.out -> control_line_from_ignition.data
 
             # Лебедка
         
-            winch.minus -> g4 "50 мм2" {
-                tags "50мм2,black"
-            }
+            winch.minus -> g4
 
             # Электровентиляторы охлаждения ДВС
 
-            coolant_vent_1.minus -> g5 "6 мм2" {
-                tags "6мм2,black"
-            }
-            coolant_vent_1_fuse.out -> coolant_vent_1_relay._30 "6 мм2" {
-                tags "6мм2,blue"
-            }
-            coolant_vent_1_relay._87 -> coolant_vent_1.plus "6 мм2" {
-                tags "6мм2,green"
-            }
-            control_line_from_ignition.data -> coolant_vent_1_relay._85 "0.5 мм2" {
-                tags "0.5мм2,yellow"
-            }
-            ignition_vent_fuse.out -> coolant_vent_1_fuse.in "6 мм2" {
-                tags "6мм2,brown"
-            }
-            coolant_vent_1_relay._86 -> coolant_control_switch.I "0.5 мм2" {
-                tags "0.5мм2,brown"
-            }
+            coolant_vent_1.minus -> g5
+            coolant_vent_1_fuse.out -> coolant_vent_1_relay._30
+            coolant_vent_1_relay._87 -> coolant_vent_1.plus
+            control_line_from_ignition.data -> coolant_vent_1_relay._85
+            ignition_vent_fuse.out -> coolant_vent_1_fuse.in
+            coolant_vent_1_relay._86 -> coolant_control_switch.I
 
-            coolant_vent_2.minus -> g5 "6 мм2" {
-                tags "6мм2,black"
-            }
-            coolant_vent_2_relay._87 -> coolant_vent_2.plus "6 мм2" {
-                tags "6мм2,blue"
-            }
-            ignition_vent_fuse.out -> coolant_vent_2_fuse.in "6 мм2" {
-                tags "6мм2,yellow"
-            }
-            control_line_from_ignition.data -> coolant_vent_2_relay._85 "0.5 мм2" {
-                tags "0.5мм2,yellow"
-            }
-            coolant_vent_2_fuse.out -> coolant_vent_2_relay._30 "6 мм2" {
-                tags "6мм2,blue"
-            }
-            coolant_vent_2_relay._86 -> coolant_control_switch.I "0.5 мм2" {
-                tags "0.5мм2,yellow"
-            }
+            coolant_vent_2.minus -> g5
+            coolant_vent_2_relay._87 -> coolant_vent_2.plus
+            ignition_vent_fuse.out -> coolant_vent_2_fuse.in
+            control_line_from_ignition.data -> coolant_vent_2_relay._85
+            coolant_vent_2_fuse.out -> coolant_vent_2_relay._30
+            coolant_vent_2_relay._86 -> coolant_control_switch.I
 
             coolant_sensor.out -> g7
-            coolant_sensor.in -> coolant_control_switch.D "0.5 мм2" {
-                tags "0.5мм2,white"
-            }
+            coolant_control_switch.D -> coolant_sensor.in
             coolant_control_switch.U -> g8
-            coolant_control_light.plus -> coolant_control_switch.H "0.5 мм2" {
-                tags "0.5мм2,red"
-            }
-            internal_lighting.data -> coolant_control_light.plus "0.5 мм2" {
-                tags "0.5мм2,brown"
-            }
-            coolant_control_light.minus -> g9 "0.5 мм2" {
-                tags "0.5мм2,black"
-            }
-            coolant_control_switch.D -> coolant_control_light.minus "0.5 мм2" {
-                tags "0.5мм2,green"
-            }
+            coolant_control_light.plus -> coolant_control_switch.H
+            internal_lighting.data -> coolant_control_light.plus
+            coolant_control_light.minus -> g9
+            coolant_control_switch.D -> coolant_control_light.minus
 
             # Ближний/дальний свет
-            left_low_beam.minus -> g10 "1.5 мм2" {
-                tags "1.5мм2,black"
-            }
-            right_low_beam.minus -> g11 "1.5 мм2" {
-                tags "1.5мм2,black"
-            }
-            low_beam_relay._87 -> left_low_beam_fuse.in "1.5 мм2" {
-                tags "1.5мм2,green"
-            }
-            left_low_beam_fuse.out -> left_low_beam.plus "1.5 мм2" {
-                tags "1.5мм2,white"
-            }
-            low_beam_relay._87 -> right_low_beam_fuse.in "1.5 мм2" {
-                tags "1.5мм2,blue"
-            }
-            right_low_beam_fuse.out -> right_low_beam.plus "1.5 мм2" {
-                tags "1.5мм2,yellow"
-            }
-            low_beam_relay_fuse.out -> low_beam_relay._30 "2.5 мм2" {
-                tags "2.5мм2,brown"
-            }
-            light_fuse.out -> low_beam_relay_fuse.in "2.5 мм2" {
-                tags "2.5мм2,red"
-            }
+            left_low_beam.minus -> g10
+            right_low_beam.minus -> g11
+            low_beam_relay._87 -> left_low_beam_fuse.in
+            left_low_beam_fuse.out -> left_low_beam.plus
+            low_beam_relay._87 -> right_low_beam_fuse.in
+            right_low_beam_fuse.out -> right_low_beam.plus
+            low_beam_relay_fuse.out -> low_beam_relay._30
+            light_fuse.out -> low_beam_relay_fuse.in
 
-            left_high_beam.minus -> g10 "1.5 мм2" {
-                tags "1.5мм2,black"
-            }
-            right_high_beam.minus -> g11 "1.5 мм2" {
-                tags "1.5мм2,black"
-            }
-            high_beam_relay._87 -> left_high_beam_fuse.in "1.5 мм2" {
-                tags "1.5мм2,white"
-            }
+            left_high_beam.minus -> g10
+            right_high_beam.minus -> g11
+            high_beam_relay._87 -> left_high_beam_fuse.in
 
-            left_high_beam_fuse.out -> left_high_beam.plus "1.5 мм2" {
-                tags "1.5мм2,green"
-            }
-            high_beam_relay._87 -> right_high_beam_fuse.in "1.5 мм2" {
-                tags "1.5мм2,brown"
-            }
-            right_high_beam_fuse.out -> right_high_beam.plus "1.5 мм2" {
-                tags "1.5мм2,red"
-            }
-            high_beam_relay_fuse.out -> high_beam_relay._30 "2.5 мм2" {
-                tags "2.5мм2,green"
-            }
-            light_fuse.out -> high_beam_relay_fuse.in "2.5 мм2" {
-                tags "2.5мм2,yellow"
-            }
+            left_high_beam_fuse.out -> left_high_beam.plus
+            high_beam_relay._87 -> right_high_beam_fuse.in
+            right_high_beam_fuse.out -> right_high_beam.plus
+            high_beam_relay_fuse.out -> high_beam_relay._30
+            light_fuse.out -> high_beam_relay_fuse.in
 
-            front_left_side_light.minus -> g10 "1.5 мм2" {
-                tags "1.5мм2,black"
-            }
-            front_right_side_light.minus -> g11 "1.5 мм2" {
-                tags "1.5мм2,black"
-            }
-            rear_left_side_light.minus -> g16 "1.5 мм2" {
-                tags "1.5мм2,black"
-            }
-            rear_right_side_light.minus -> g16 "1.5 мм2" {
-                tags "1.5мм2,black"
-            }
-            number_plate_light.minus -> g16 "1.5 мм2" {
-                tags "1.5мм2,black"
-            }
+            front_left_side_light.minus -> g10
+            front_right_side_light.minus -> g11
+            rear_left_side_light.minus -> g16
+            rear_right_side_light.minus -> g16
+            number_plate_light.minus -> g16
 
 
-            side_light_relay._87 -> side_light_fuse.in "1.5 мм2" {
-                tags "1.5мм2,red"
-            }
-            side_light_fuse.out -> front_left_side_light.plus "1.5 мм2" {
-                tags "1.5мм2,brown"
-            }
-            side_light_fuse.out -> front_right_side_light.plus "1.5 мм2" {
-                tags "1.5мм2,green"
-            }
-            side_light_fuse.out -> rear_left_side_light.plus "1.5 мм2" {
-                tags "1.5мм2,blue"
-            }
-            side_light_fuse.out -> rear_right_side_light.plus "1.5 мм2" {
-                tags "1.5мм2,yellow"
-            }
-            side_light_fuse.out -> number_plate_light.plus "1.5 мм2" {
-                tags "1.5мм2,white"
-            }
-            side_light_relay_fuse.out -> side_light_relay._30 "1.5 мм2" {
-                tags "1.5мм2,red"
-            }
-            light_fuse.out -> side_light_relay_fuse.in "1.5 мм2" {
-                tags "1.5мм2,brown"
-            }
+            side_light_relay._87 -> side_light_fuse.in
+            side_light_fuse.out -> front_left_side_light.plus
+            side_light_fuse.out -> front_right_side_light.plus
+            side_light_fuse.out -> rear_left_side_light.plus
+            side_light_fuse.out -> rear_right_side_light.plus
+            side_light_fuse.out -> number_plate_light.plus
+            side_light_relay_fuse.out -> side_light_relay._30
+            light_fuse.out -> side_light_relay_fuse.in
         }
 
-        !script graph_validators.groovy
-        !script deduce_wire_square.groovy
+        !element es.low_beam_relay._85 {
+            tags "non_root"
+        }
+        !element es.high_beam_relay._85 {
+            tags "non_root"
+        }
+        !element es.side_light_relay._85 {
+            tags "non_root"
+        }
+        !element es.internal_lighting.data {
+            tags "non_root"
+        }
+        !element es.coolant_control_switch.V {
+            tags "non_root"
+        }
     }
+
+    !script graph_validators.groovy
 
     views {
         properties {
@@ -764,15 +631,53 @@ workspace "Name" "Description" {
                 height 100
                 metadata false
             }
+            element "pin" {
+                description false
+                shape Box
+                background #0000bb
+            }
+            element "power_source" {
+                description false
+                shape Box
+                background #ff0000
+            }
+            element "consumer" {
+                description false
+                shape Circle
+                background #ffc400
+            }
+            element "ground" {
+                metadata false
+                description false
+                width 100
+                height 100
+                color #000000
+                icon ground.png
+                shape Circle
+                background #ffffff
+            }
+            element "plus" {
+                icon "plus.png"
+                width 100
+                metadata false
+                description false
+                shape Circle
+                background #ffffff
+            }
+            element "minus" {
+                icon "minus.png"
+                width 100
+                metadata false
+                description false
+                shape Circle
+                background #ffffff
+            }
+
+
             element "Container" {
                 background #0773af
                 metadata false
                 fontSize 1
-            }
-            element "connector" {
-                description false
-                shape Box
-                background #0000bb
             }
             element "vent" {
                 shape "Hexagon"
@@ -802,22 +707,6 @@ workspace "Name" "Description" {
                 height 150
                 fontSize 40
                 background #8b3301
-            }
-            element "plus" {
-                icon "plus.png"
-                width 100
-                metadata false
-                description false
-                shape Circle
-                background #ffffff
-            }
-            element "minus" {
-                icon "minus.png"
-                width 100
-                metadata false
-                description false
-                shape Circle
-                background #ffffff
             }
             element "switch" {
                 icon "switch.png"
@@ -855,16 +744,6 @@ workspace "Name" "Description" {
                 height 150
                 background #865515
             }
-            element "ground" {
-                metadata false
-                description false
-                width 100
-                height 100
-                color #000000
-                icon ground.png
-                shape Circle
-                background #ffffff
-            }
 
 
             element "Element" {
@@ -879,9 +758,4 @@ workspace "Name" "Description" {
             }
         }
     }
-
-    configuration {
-        scope none
-    }
-
 }

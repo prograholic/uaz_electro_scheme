@@ -1,133 +1,221 @@
-def reportGraphCycleError(path) {
-    println("Cycle detected:")
-    path.each { element ->
-        println("  " + element.getParent().getName() + "." + element.getName() + " ->")
+def getElementName(element) {
+    if (element.getParent() != null) {
+        return "[" + element.getParent().getName() + "." + element.getName() + "]"
+    } else {
+        return "[<NO_PARENT>." + element.getName() + "]"
     }
-    throw new IllegalStateException("Cycle detected! See logs for details")
 }
 
-def ensureNoCyclesImpl(element, parent, path, visited) {
-    visited.put(element, 1)
+enum ElementType {
+    ElectricSystem,
+
+    Akb,
+    Starter,
+    Generator,
+    Winch,
+    Ventilator,
+    Light,
+    Relay,
+    Splitter,
+
+    Switch,
+    PowerSource,
+    Consumer,
+    Fuse,
+    Sensor,
+    Ground,
+    Pin
+}
+
+
+def getElementType(element) {
+    tags = element.getTags()
+
+    if (tags.contains("electric_system")) {
+        return ElementType.ElectricSystem
+    }
+
+    if (tags.contains("akb")) {
+        return ElementType.Akb
+    }
+    if (tags.contains("starter")) {
+        return ElementType.Akb
+    }
+    if (tags.contains("generator")) {
+        return ElementType.Generator
+    }
+    if (tags.contains("splitter")) {
+        return ElementType.Splitter
+    }
+    if (tags.contains("winch")) {
+        return ElementType.Winch
+    }
+    if (tags.contains("vent")) {
+        return ElementType.Ventilator
+    }
+    if (tags.contains("light")) {
+        return ElementType.Light
+    }
+    if (tags.contains("relay")) {
+        return ElementType.Relay
+    }
+
+    if (tags.contains("switch")) {
+        return ElementType.Switch
+    }
+    if (tags.contains("power_source")) {
+        return ElementType.PowerSource
+    }
+    if (tags.contains("consumer")) {
+        return ElementType.Consumer
+    }
+    if (tags.contains("fuse")) {
+        return ElementType.Fuse
+    }
+    if (tags.contains("sensor")) {
+        return ElementType.Sensor
+    }
+    if (tags.contains("ground")) {
+        return ElementType.Ground
+    }
+
+    if (tags.contains("pin")) { // should be last
+        return ElementType.Pin
+    }
+
+    throw new NoSuchFieldException("Unknown element type " + getElementName(element))
+}
+
+
+def checkDirectionsFor(element, visited, path, consumer_count) {
+    visited.put(element, consumer_count)
     path.add(element)
 
     element.getRelationships().each {relationship ->
-        dest = relationship.getDestination()
-        v = visited.get(dest)
-        if (visited == null) {
-            ensureNoCyclesImpl(dest, element, path, visited)
-        } else if (visited == 1) {
-            reportGraphCycleError(path)
+        dst = relationship.getDestination()
+        if (dst == element) {
+            throw new IllegalStateException("Incorrect relationship " + getElementName(relationship.getSource()) + " -> " + getElementName(relationship.getDestination()))
+        }
+
+        if (!visited.containsKey(dst)) {
+            elementType = getElementType(dst)
+            if (elementType == ElementType.Consumer) {
+                checkDirectionsFor(dst, visited, path, consumer_count + 1)
+            }
+            if (elementType == elementType.Ground) {
+                if (consumer_count == 0) {
+                    println(" detected short circuit:")
+                    path.each {p ->
+                        println("  " + getElementName(p))
+                    }
+                    throw new IllegalStateException("Short circuit detected, see log for details.")
+                }
+            }
+        } else {
+            println(" found already visited element: " + getElementName(dst))
+            if (consumer_count != visited.get(dst))
+            {
+                println("  with different consumer count: " + visited.get(dst) + ", expected: " + consumer_count)
+                checkDirectionsFor(dst, visited, path, Math.min(consumer_count, visited.get(dst)))
+            }
         }
     }
+
     path.remove(path.size() - 1)
-    visited.put(element, 2)
 }
 
-def ensureNoCycles(elements) {
-    elements.each { element ->
-        println("ensureNoCycles: " + element.getParent() + element)
-        ensureNoCyclesImpl(element, null, new ArrayList(), new HashMap<com.structurizr.model.Element, Integer>())
-    }
-}
+def checkDirections(power_sources) {
+    println("CHECK DIRECTIONS")
 
-
-
-
-def checkReachabilityBetween(element, finish, visited) {
-    visited.add(element)
-
-    for (relationship in element.getRelationships()) {
-        dest = relationship.getDestination()
-        if (dest == finish) {
-            return true
-        }
-        if (!visited.contains(dest)) {
-            if (checkReachabilityBetween(dest, finish, visited)) {
-                return true
-            }
-        }
-    }
-
-    return false
-}
-
-def checkReachability(elements) {
-    power_sources = elements.findAll {element -> 
-        (element.getTags().contains("power_source"))
-    }
-
-    grounds = elements.findAll {element ->
-        (element.getTags().contains("ground"))
-    }
-
+    visited = new HashMap<com.structurizr.model.Element, Integer>()
     power_sources.each {power_source ->
-        connected = false
-        for (ground in grounds) {
-            if (checkReachabilityBetween(power_source, ground, new TreeSet<com.structurizr.model.Element>())) {
-                connected = true
-                break
-            }
-        }
-
-        if (!connected) {
-            println("power source " + power_source.getParent() + power_source + " is not connected to any ground")
-            throw new IllegalStateException("Found power source without ground! See log for details")
-        }
+        path = new ArrayList<com.structurizr.model.Element>()
+        checkDirectionsFor(power_source, visited, path, 0)
     }
 }
 
-def reportSequentialConsumerError(path) {
-    println("Detected sequential consumers:")
-    path.each { element ->
-        println("  " + element.getParent().getName() + "." + element.getName() + " ->")
-    }
-    throw new IllegalStateException("Detected sequential consumers! See logs for details")
-}
 
-def ensureNoSequentialConsumers(element, visited, path, gotConsumer) {
-    visited.add(element)
-
-    if (gotConsumer) {
-        path.add(element)
-    }
-
-    element.getRelationships().each { relationship ->
-        dest = relationship.getDestination()
-
-        newGotConsumer = gotConsumer
-        if (relationship.getTags().contains("consumer")) {
-            if (gotConsumer) {
-                reportSequentialConsumerError(path)
-            }
-            newGotConsumer = true
+def validatePinConnections(relationships, elements) {
+    println("VALIDATE PIN CONNECTIONS")
+    relationships.findAll { relationship ->
+        (!relationship.getTags().contains("internal_connection"))
+    }.each { relationship ->
+        src = relationship.getSource()
+        dst = relationship.getDestination()
+        if (!src.getTags().contains("pin")) {
+            throw new IllegalStateException("Non pin element (source) detected: " + getElementName(src) + " for connection: " + relationship.toString())
         }
-
-        if (!visited.contains(dest)) {
-            ensureNoSequentialConsumers(dest, visited, path, newGotConsumer)
+        if (!dst.getTags().contains("pin")) {
+            throw new IllegalStateException("Non pin element (destination) detected: " + getElementName(dst) + " for connection: " + relationship.toString())
         }
     }
 
-    if (gotConsumer) {
-        path.remove(path.size() - 1)
-    }
-}
-
-def ensureNoSequentialConsumers(elements) {
-    power_sources = elements.findAll {element -> 
-        (element.getTags().contains("power_source"))
-    }
-
-    power_sources.each {power_source ->
-        ensureNoSequentialConsumers(power_source, new TreeSet<com.structurizr.model.Element>(), new ArrayList(), false)
+    return elements.findAll {element ->
+        (getElementType(element) == ElementType.Pin)
     }
 }
 
 
-def validateGraph(elements) {
-    ensureNoCycles(elements)
-    checkReachability(elements)
-    ensureNoSequentialConsumers(elements)
+def validatePowerSources(relationships, pins) {
+    println("VALIDATE POWER SOURCES")
+    roots = new TreeSet<com.structurizr.model.Element>(pins.findAll {pin -> (!pin.getTags().contains("non_root"))})
+    relationships.each {relationship ->
+        if (roots.contains(relationship.getDestination())) {
+            roots.remove(relationship.getDestination())
+        }
+    }
+
+    power_sources = pins.findAll{power_source ->
+        (getElementType(power_source) == ElementType.PowerSource)
+    }.toSet()
+
+    if (roots != power_sources) {
+        println("power sources: ")
+        power_sources.each {power_source ->
+            println("  " + getElementName(power_source))
+        }
+
+        println("extra roots: ")
+        roots.findAll { root ->
+            (!power_sources.contains(root))
+        }.each {root ->
+            println("  " + getElementName(root))
+        }
+
+        println("non root power sources: ")
+        power_sources.findAll { power_source ->
+            (!roots.contains(power_source))
+        }.each {power_source ->
+            println("  " + getElementName(power_source))
+        }
+
+        throw new IllegalStateException("Incorrect power source declarations! See logs for details") 
+    }
+
+    return power_sources
 }
 
+def validateGraph(relationships, elements) {
+    pins = validatePinConnections(relationships, elements)
+    power_sources = validatePowerSources(relationships, pins)
+    
+    checkDirections(power_sources)
 
-validateGraph(workspace.model.getElements())
+    consumers = elements.findAll { element ->
+        (getElementType(element) == ElementType.Consumer)
+    }
+
+    grounds = elements.findAll { element ->
+        (getElementType(element) == ElementType.Ground)
+    }
+
+    return [power_sources, pins, consumers, grounds]
+}
+
+def deduceAmperage(relationships, consumers) {
+
+}
+
+def (power_sources, pins, consumers, grounds) = validateGraph(workspace.model.getRelationships(), workspace.model.getElements())
+
+deduceAmperage(workspace.model.getRelationships(), consumers)

@@ -1,11 +1,14 @@
 tags "sensor"
-in = component "in" {
-    tags "connector,in,sensor_connector"
+in = pin "in" {
+    tags "in,sensor_pin"
 }
-out = component "out" {
-    tags "connector,out,sensor_connector"
+out = pin "out" {
+    tags "out,sensor_pin"
 }
 
 in -> out {
     tags "ctr;sensor_ctr"
+    properties {
+        switch_state 1
+    }
 }

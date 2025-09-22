@@ -1,13 +1,13 @@
 tags "switch"
-in = component "in" {
-    tags "connector,in,switch_connector"
+in = pin "in" {
+    tags "in"
 }
-out = component "out" {
-    tags "connector,out,switch_connector"
+out = pin "out" {
+    tags "out"
 }
 
 in -> out {
-    tags "ctr;switch_ctr"
+    tags "ctr,switch_ctr"
     properties {
         switch_state 1
     }
