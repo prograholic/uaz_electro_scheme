@@ -14,7 +14,11 @@ _86 = pin "86" {
 _85 = pin "85" {
     tags "relay_pin,relay_85"
 }
-coil = consumer "coil"
+coil = consumer "coil" {
+    properties {
+        amper 0.2
+    }
+}
 
 
 _30 -> _87 {
@@ -37,5 +41,3 @@ _85 -> coil {
 coil -> _86 {
     tags "expect_minus,internal_connection"
 }
-
-!script relay.groovy

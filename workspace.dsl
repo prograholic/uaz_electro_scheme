@@ -17,9 +17,6 @@ workspace "Name" "Description" {
         archetypes {
             relay = container {
                 tags "relay"
-                properties {
-                    ctr_amper 0.2
-                }
             }
             fuse = container {
                 tags "fuse"
@@ -29,9 +26,6 @@ workspace "Name" "Description" {
             }
             light = container {
                 tags "light"
-            }
-            ground = container {
-                tags "pin,ground"
             }
             sensor = container {
                 tags "sensor"
@@ -53,22 +47,34 @@ workspace "Name" "Description" {
                 tags "consumer"
             }
             power_source = component {
-                tags "pin,power_source"
+                tags "power_source"
             }
         }
 
         es = softwareSystem "Электрическая система УАЗ" {
             tags "electric_system"
+            m = container "Кузов" {
+                tags "chassis"
+                ground = pin "Масса" {
+                    tags "ground"
+                }
+            }
+
             power_group = group "Подкапотное пространство" {
                 ground_switch = switch "Размыкатель массы" {
                     !include switch.dsl
                 }
-                g0 = ground "g0"
                 akb = container "Аккумулятор" {
                     tags "akb"
-                    plus = power_source "+"
-                    minus = minus "-" {
-                        tags "non_root"
+                    power_source = power_source "akb"
+                    plus = plus "+"
+                    minus = minus "-"
+
+                    power_source -> plus {
+                        tags "internal_connection"
+                    }
+                    minus -> power_source {
+                        tags "internal_connection"
                     }
                 }
 
@@ -76,60 +82,62 @@ workspace "Name" "Description" {
                     tags "starter"
                     plus = plus "+"
                     
-                    eng = consumer "двигатель" {
-                        properties {
-                            amper 350
-                        }
-                    }
-
-                    g = component "g" {
-                        tags "ground"
-                    }
+                    eng = consumer "двигатель"
 
                     st = pin "Втяг"
 
-                    st_relay = consumer "Втяг реле" {
-                        # Информация о мощности: https://forum.uazbuka.ru/showthread.php?t=40718
-                        properties {
-                            amper 20
-                        }
-                    }
+                    st_relay = consumer "Втяг реле"
 
                     plus -> eng {
                         tags "internal_connection"
                     }
-                    eng -> g {
+                    eng -> m.ground {
                         tags "internal_connection"
                     }
                     st -> st_relay {
                         tags "internal_connection"
                     }
-                    st_relay -> g {
+                    st_relay -> m.ground {
                         tags "internal_connection"
                     }
                 }
 
                 generator = container "Генератор" {
                     tags "generator"
-                    plus = power_source "+"
+                    plus = plus "+"
+                    minus = minus "-"
+                    power_source = power_source "gen"
 
                     v = component "Возб" {
                         tags "pin,consumer"
-                        properties {
-                            amper 1000
-                        }
                     }
 
-                    g = component "g" {
-                        tags "ground"
+                    v -> m.ground {
+                        tags "internal_connection"
                     }
-                    v -> g {
+                    power_source -> plus {
+                        tags "internal_connection"
+                    }
+                    minus -> power_source {
                         tags "internal_connection"
                     }
                 }
 
                 ignition = splitter "Система зажигания" {
                     data = pin "pin"
+
+                    xxx = consumer "x" {
+                        properties {
+                            amper 10
+                        }
+                    }
+
+                    data -> xxx {
+                        tags "internal_connection"
+                    }
+                    xxx -> m.ground {
+                        tags "internal_connection"
+                    }
                 }
 
                 winch = container "Лебедка" {
@@ -145,7 +153,6 @@ workspace "Name" "Description" {
                         tags "internal_connection"
                     }
                 }
-                g4 = ground "g4"
 
                 group "Блок силовых предохранителей" {
                     # Сюда преды на 60-60-40-90
@@ -159,9 +166,9 @@ workspace "Name" "Description" {
                         !include fuse.dsl
                     }
 
-                    fuse_90 = fuse "Предохранитель" {
-                        !include fuse.dsl
-                    }
+                    #fuse_90 = fuse "Предохранитель" {
+                    #    !include fuse.dsl
+                    #}
                 }
 
                 group "Вентиляторы" {
@@ -169,11 +176,8 @@ workspace "Name" "Description" {
                         tags "vent"
                         plus = plus "+"
                         minus = minus "-"
-                        vent = consumer "vent" {
-                            properties {
-                                amper 20
-                            }
-                        }
+                        vent = consumer "vent"
+
                         plus -> vent {
                             tags "internal_connection"
                         }
@@ -185,11 +189,8 @@ workspace "Name" "Description" {
                         tags "vent"
                         plus = plus "+"
                         minus = minus "-"
-                        vent = consumer "vent" {
-                            properties {
-                                amper 20
-                            }
-                        }
+                        vent = consumer "vent"
+
                         plus -> vent {
                             tags "internal_connection"
                         }
@@ -197,56 +198,34 @@ workspace "Name" "Description" {
                             tags "internal_connection"
                         }
                     }
-                    g5 = ground "g5"
                 }
 
                 coolant_sensor = sensor "Датчик вкл э-вент охл ДВС" {
                     !include sensor.dsl
                 }
-                g7 = ground "g7"
 
                 group "Передний блок фар" {
                     group "Левая фара" {
                         left_low_beam = light "Левый ближний свет" {
-                            properties {
-                                amper 20
-                            }
                             !include light.dsl
                         }
                         left_high_beam = light "Левый дальний свет" {
-                            properties {
-                                amper 20
-                            }
                             !include light.dsl
                         }
                         front_left_side_light = light "Передний левый габарит" {
-                            properties {
-                                amper 20
-                            }
                             !include light.dsl
                         }
-                        g10 = ground "g10"
                     }
                     group "Правая фара" {
                         right_low_beam = light "Правый ближний свет" {
-                            properties {
-                                amper 20
-                            }
                             !include light.dsl
                         }
                         right_high_beam = light "Правый дальний свет" {
-                            properties {
-                                amper 20
-                            }
                             !include light.dsl
                         }
                         front_right_side_light = light "Передний правый габарит" {
-                            properties {
-                                amper 20
-                            }
                             !include light.dsl
                         }
-                        g11 = ground "g11"
                     }
                 }
             }
@@ -257,12 +236,10 @@ workspace "Name" "Description" {
                     ignition_relay = relay "Реле зажигания" {
                         !include relay.dsl
                     }
-                    g2 = ground "g2"
 
                     starter_relay = relay "Реле стартера" {
                         !include relay5.dsl
                     }
-                    g3 = ground "g3"
 
                     coolant_vent_1_relay = relay "Реле э-вент охл ДВС 1" {
                         !include relay.dsl
@@ -270,9 +247,9 @@ workspace "Name" "Description" {
                     coolant_vent_2_relay = relay "Реле э-вент охл ДВС 2" {
                         !include relay.dsl
                     }
-                    low_beam_relay = relay "Реле ближнего света" {
-                        !include relay.dsl
-                    }
+                    //low_beam_relay = relay "Реле ближнего света" {
+                    //    !include relay.dsl
+                    //}
                     high_beam_relay = relay "Реле дальнего света" {
                         !include relay.dsl
                     }
@@ -316,16 +293,12 @@ workspace "Name" "Description" {
                     }
                 }
                 group "Блок приборов" {
-                    internal_lighting = splitter "Система подсветки приборов" {
-                        data = pin "pin"
-                    }
+                    #internal_lighting = splitter "Система подсветки приборов" {
+                    #    data = pin "pin"
+                    #}
                     coolant_control_light = light "Подсветка упр э-вент охл ДВС" {
-                            properties {
-                                amper 20
-                            }
                         !include light.dsl
                     }
-                    g9 = ground "g9"
                 }
                 group "Блок выключателей" {
                     ignition_switch = switch "Выключатель зажигания" {
@@ -338,9 +311,9 @@ workspace "Name" "Description" {
                         D = pin "D"
                         I = pin "I"
                         U = pin "U"
-                        V = pin "V"
-                        L = pin "L"
-                        H = pin "H"
+                        #V = pin "V"
+                        #L = pin "L"
+                        #H = pin "H"
 
                         I -> D {
                             tags "ctr,switch_ctr"
@@ -355,21 +328,20 @@ workspace "Name" "Description" {
                             }
                         }
 
-                        V -> L {
-                            tags "ctr,switch_ctr"
-                            properties {
-                                switch_state 1
-                            }
-                        }
+                        #V -> L {
+                        #    tags "ctr,switch_ctr"
+                        #    properties {
+                        #        switch_state 1
+                        #    }
+                        #}
 
-                        L -> H {
-                            tags "ctr,switch_ctr"
-                            properties {
-                                switch_state 2
-                            }
-                        }
+                        #L -> H {
+                        #    tags "ctr,switch_ctr"
+                        #    properties {
+                        #        switch_state 2
+                        #    }
+                        #}
                     }
-                    g8 = ground "g8"
                 }
                 group "Подрулевые переключатели" {
 
@@ -386,28 +358,18 @@ workspace "Name" "Description" {
             group "Задний блок фар" {
                 group "Левая задняя фара" {
                     rear_left_side_light = light "Задний левый габарит" {
-                        properties {
-                            amper 20
-                        }
                         !include light.dsl
                     }
                 }
                 group "Правая задняя фара" {
                     rear_right_side_light = light "Задний правый габарит" {
-                        properties {
-                            amper 20
-                        }
                         !include light.dsl
                     }
                 }
 
                 number_plate_light = light "Подсветка номера" {
-                    properties {
-                        amper 20
-                    }
                     !include light.dsl
                 }
-                g16 = ground "g16"
             }
 
             #######################
@@ -416,20 +378,20 @@ workspace "Name" "Description" {
     
             # Система питания
 
-            ground_switch.out -> g0
-    
-            akb.minus -> ground_switch.in
+            m.ground -> ground_switch.in
+            ground_switch.out -> akb.minus
             akb.plus -> starter.plus
             akb.plus -> winch.plus
 
             # Система зажигания
 
             generator.plus -> starter.plus
+            m.ground -> generator.minus
     
             starter.plus -> ignition_relay_fuse.in
             starter.plus -> light_fuse.in
             starter.plus -> ignition_vent_fuse.in
-            starter.plus -> fuse_90.in
+            #starter.plus -> fuse_90.in
 
             ignition_relay_fuse.out -> ignition_relay._30
             ignition_relay_fuse.out -> ignition_switch.in
@@ -438,7 +400,7 @@ workspace "Name" "Description" {
     
             ignition_switch.out -> ignition_relay._85
             
-            ignition_relay._86 -> g2
+            ignition_relay._86 -> m.ground
             ignition_relay._87 -> starter_relay_fuse.in
             
             starter_relay_fuse.out -> starter_relay._30
@@ -447,51 +409,51 @@ workspace "Name" "Description" {
     
             start_button.out -> starter_relay._85
     
-            starter_relay._86 -> g3
+            starter_relay._86 -> m.ground
             starter_relay._87 -> starter.st
             starter_relay._88 -> control_line_from_ignition_fuse.in
             control_line_from_ignition_fuse.out -> control_line_from_ignition.data
 
             # Лебедка
         
-            winch.minus -> g4
+            winch.minus -> m.ground
 
             # Электровентиляторы охлаждения ДВС
 
-            coolant_vent_1.minus -> g5
+            coolant_vent_1.minus -> m.ground
             coolant_vent_1_fuse.out -> coolant_vent_1_relay._30
             coolant_vent_1_relay._87 -> coolant_vent_1.plus
             control_line_from_ignition.data -> coolant_vent_1_relay._85
             ignition_vent_fuse.out -> coolant_vent_1_fuse.in
             coolant_vent_1_relay._86 -> coolant_control_switch.I
 
-            coolant_vent_2.minus -> g5
+            coolant_vent_2.minus -> m.ground
             coolant_vent_2_relay._87 -> coolant_vent_2.plus
             ignition_vent_fuse.out -> coolant_vent_2_fuse.in
             control_line_from_ignition.data -> coolant_vent_2_relay._85
             coolant_vent_2_fuse.out -> coolant_vent_2_relay._30
             coolant_vent_2_relay._86 -> coolant_control_switch.I
 
-            coolant_sensor.out -> g7
+            coolant_sensor.out -> m.ground
             coolant_control_switch.D -> coolant_sensor.in
-            coolant_control_switch.U -> g8
-            coolant_control_light.plus -> coolant_control_switch.H
-            internal_lighting.data -> coolant_control_light.plus
-            coolant_control_light.minus -> g9
+            coolant_control_switch.U -> m.ground
+            #coolant_control_light.plus -> coolant_control_switch.H
+            #internal_lighting.data -> coolant_control_light.plus
+            coolant_control_light.minus -> m.ground
             coolant_control_switch.D -> coolant_control_light.minus
 
             # Ближний/дальний свет
-            left_low_beam.minus -> g10
-            right_low_beam.minus -> g11
-            low_beam_relay._87 -> left_low_beam_fuse.in
+            left_low_beam.minus -> m.ground
+            right_low_beam.minus -> m.ground
+            //low_beam_relay._87 -> left_low_beam_fuse.in
             left_low_beam_fuse.out -> left_low_beam.plus
-            low_beam_relay._87 -> right_low_beam_fuse.in
+            //low_beam_relay._87 -> right_low_beam_fuse.in
             right_low_beam_fuse.out -> right_low_beam.plus
-            low_beam_relay_fuse.out -> low_beam_relay._30
+            //low_beam_relay_fuse.out -> low_beam_relay._30
             light_fuse.out -> low_beam_relay_fuse.in
 
-            left_high_beam.minus -> g10
-            right_high_beam.minus -> g11
+            left_high_beam.minus -> m.ground
+            right_high_beam.minus -> m.ground
             high_beam_relay._87 -> left_high_beam_fuse.in
 
             left_high_beam_fuse.out -> left_high_beam.plus
@@ -500,11 +462,11 @@ workspace "Name" "Description" {
             high_beam_relay_fuse.out -> high_beam_relay._30
             light_fuse.out -> high_beam_relay_fuse.in
 
-            front_left_side_light.minus -> g10
-            front_right_side_light.minus -> g11
-            rear_left_side_light.minus -> g16
-            rear_right_side_light.minus -> g16
-            number_plate_light.minus -> g16
+            front_left_side_light.minus -> m.ground
+            front_right_side_light.minus -> m.ground
+            rear_left_side_light.minus -> m.ground
+            rear_right_side_light.minus -> m.ground
+            number_plate_light.minus -> m.ground
 
 
             side_light_relay._87 -> side_light_fuse.in
@@ -517,24 +479,12 @@ workspace "Name" "Description" {
             light_fuse.out -> side_light_relay_fuse.in
         }
 
-        !element es.low_beam_relay._85 {
-            tags "non_root"
-        }
-        !element es.high_beam_relay._85 {
-            tags "non_root"
-        }
-        !element es.side_light_relay._85 {
-            tags "non_root"
-        }
-        !element es.internal_lighting.data {
-            tags "non_root"
-        }
-        !element es.coolant_control_switch.V {
-            tags "non_root"
-        }
+        // Set amper
+        !include set_consumer_amper.dsl
     }
 
     !script graph_validators.groovy
+    !script deduce_wire_square.groovy
 
     views {
         properties {
@@ -603,12 +553,15 @@ workspace "Name" "Description" {
                 thickness 14
             }
             relationship "square_6" {
-                thickness 10
+                thickness 11
             }
             relationship "square_4" {
-                thickness 9
+                thickness 10
             }
             relationship "square_2.5" {
+                thickness 9
+            }
+            relationship "square_1.5" {
                 thickness 8
             }
             relationship "square_1.5" {
@@ -653,6 +606,7 @@ workspace "Name" "Description" {
                 height 100
                 color #000000
                 icon ground.png
+                fontSize 5
                 shape Circle
                 background #ffffff
             }

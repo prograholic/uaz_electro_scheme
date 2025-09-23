@@ -1,7 +1,7 @@
 // Create group views
 groups = new HashMap<String, ArrayList<com.structurizr.model.Container>>()
 workspace.model.getSoftwareSystems().each { ss ->
-    println("Software system: " + ss.getName())
+    //println("Software system: " + ss.getName())
     ss.getContainers().each { container ->
         groupName = container.getGroup()
         if (groupName != null) {
@@ -15,7 +15,7 @@ workspace.model.getSoftwareSystems().each { ss ->
 }
 
 groups.each {
-    println("Group: " + it.key)
+    //println("Group: " + it.key)
     view = workspace.views.createComponentView(it.value[0], it.key + "_group", "")
     view.enableAutomaticLayout(com.structurizr.view.AutomaticLayout.RankDirection.TopBottom)
     it.value.each { container ->
@@ -30,7 +30,7 @@ groups.each {
 
 // Create outgoing relationships for each component
 workspace.model.getSoftwareSystems().each { ss ->
-    println("OR: Software system: " + ss.getName())
+    //println("OR: Software system: " + ss.getName())
     ss.getContainers().findAll{container ->
         (
             container.getTags().contains("relay") or
@@ -41,7 +41,7 @@ workspace.model.getSoftwareSystems().each { ss ->
             container.getTags().contains("splitter")
         )
     }.each { container ->
-        println("  Container: " + container.getName())
+        //println("  Container: " + container.getName())
 
         visitedElements = new TreeSet<com.structurizr.model.Element>()
         visitedRelationships = new TreeSet<com.structurizr.model.Relationship>()
@@ -96,9 +96,9 @@ workspace.model.getSoftwareSystems().each { ss ->
 // Create component views
 workspace.model.getSoftwareSystems().each {
     ss = it
-    println("Software system: " + ss.getName())
+    //println("Software system: " + ss.getName())
     ss.getContainers().each { container ->
-        println("  Container: " + container.getName())
+        //("  Container: " + container.getName())
         if (container.getComponents().size() > 0) {
             componentView = workspace.views.createComponentView(container, container.getName() + "_direct_neighbours", "")
             componentView.enableAutomaticLayout(com.structurizr.view.AutomaticLayout.RankDirection.LeftRight)
@@ -114,12 +114,12 @@ workspace.views.views.findAll {it instanceof com.structurizr.view.ComponentView 
     componentView = it
     println("Processing component view: " + componentView.getName())
     container = componentView.getContainer()
-    println("  Container name: " + container.getName())
-    println("  Components count: " + container.getComponents().size())
+    //println("  Container name: " + container.getName())
+    //("  Components count: " + container.getComponents().size())
     container.getComponents().each {component ->
         componentView.add(component, true)
         componentView.addNearestNeighbours(component, com.structurizr.model.Component.class)
         componentView.addNearestNeighbours(component, com.structurizr.model.Container.class)
-        println("  Add [" + component.getName() + "] to view")
+        //println("  Add [" + component.getName() + "] to view")
     }
 }

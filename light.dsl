@@ -15,5 +15,3 @@ plus -> lamp {
 lamp -> minus {
     tags "expect_ground,internal_connection"
 }
-
-!script light.groovy

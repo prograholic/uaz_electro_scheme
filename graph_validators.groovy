@@ -6,6 +6,10 @@ def getElementName(element) {
     }
 }
 
+def getRelationshipName(relationship) {
+    return "{" + getElementName(relationship.getSource()) + " -> " + getElementName(relationship.getDestination()) + "}"
+}
+
 enum ElementType {
     ElectricSystem,
 
@@ -17,6 +21,7 @@ enum ElementType {
     Light,
     Relay,
     Splitter,
+    Chassis,
 
     Switch,
     PowerSource,
@@ -35,6 +40,9 @@ def getElementType(element) {
         return ElementType.ElectricSystem
     }
 
+    if (tags.contains("chassis")) {
+        return ElementType.Chassis
+    }
     if (tags.contains("akb")) {
         return ElementType.Akb
     }
@@ -94,7 +102,7 @@ def checkDirectionsFor(element, visited, path, consumer_count) {
     element.getRelationships().each {relationship ->
         dst = relationship.getDestination()
         if (dst == element) {
-            throw new IllegalStateException("Incorrect relationship " + getElementName(relationship.getSource()) + " -> " + getElementName(relationship.getDestination()))
+            throw new IllegalStateException("Incorrect relationship " + getRelationshipName(relationship))
         }
 
         if (!visited.containsKey(dst)) {
@@ -142,54 +150,50 @@ def validatePinConnections(relationships, elements) {
     }.each { relationship ->
         src = relationship.getSource()
         dst = relationship.getDestination()
+        // should check for tag presence instead of getElementType
         if (!src.getTags().contains("pin")) {
-            throw new IllegalStateException("Non pin element (source) detected: " + getElementName(src) + " for connection: " + relationship.toString())
+            throw new IllegalStateException("Non pin element (source) detected: " + getElementName(src) + " for connection: " + getRelationshipName(relationship))
         }
+        // should check for tag presence instead of getElementType
         if (!dst.getTags().contains("pin")) {
-            throw new IllegalStateException("Non pin element (destination) detected: " + getElementName(dst) + " for connection: " + relationship.toString())
+            throw new IllegalStateException("Non pin element (destination) detected: " + getElementName(dst) + " for connection: " + getRelationshipName(relationship))
         }
     }
 
-    return elements.findAll {element ->
+    pins = elements.findAll {element ->
         (getElementType(element) == ElementType.Pin)
+    }
+
+    pins.each { pin ->
+        incomingRelationships = relationships.findAll {relationship ->
+            (relationship.getDestination() == pin)
+        }
+
+        if (incomingRelationships.size() == 0) {
+            throw new IllegalStateException("No incoming connections to  pin " + getElementName(pin))
+        }
+
+        outgoingRelationships = relationships.findAll {relationship ->
+            (relationship.getSource() == pin)
+        }
+
+        if (outgoingRelationships.size() == 0) {
+            throw new IllegalStateException("No outgoing connections to  pin " + getElementName(pin))
+        }
     }
 }
 
 
-def validatePowerSources(relationships, pins) {
+def validatePowerSources(relationships, elements, pins) {
     println("VALIDATE POWER SOURCES")
-    roots = new TreeSet<com.structurizr.model.Element>(pins.findAll {pin -> (!pin.getTags().contains("non_root"))})
-    relationships.each {relationship ->
-        if (roots.contains(relationship.getDestination())) {
-            roots.remove(relationship.getDestination())
-        }
+
+    power_sources = elements.findAll{power_source ->
+        (getElementType(power_source) == ElementType.PowerSource)
     }
 
-    power_sources = pins.findAll{power_source ->
-        (getElementType(power_source) == ElementType.PowerSource)
-    }.toSet()
-
-    if (roots != power_sources) {
-        println("power sources: ")
-        power_sources.each {power_source ->
-            println("  " + getElementName(power_source))
-        }
-
-        println("extra roots: ")
-        roots.findAll { root ->
-            (!power_sources.contains(root))
-        }.each {root ->
-            println("  " + getElementName(root))
-        }
-
-        println("non root power sources: ")
-        power_sources.findAll { power_source ->
-            (!roots.contains(power_source))
-        }.each {power_source ->
-            println("  " + getElementName(power_source))
-        }
-
-        throw new IllegalStateException("Incorrect power source declarations! See logs for details") 
+    println(" power sources: ")
+    power_sources.each {power_source ->
+        println("  " + getElementName(power_source))
     }
 
     return power_sources
@@ -197,7 +201,7 @@ def validatePowerSources(relationships, pins) {
 
 def validateGraph(relationships, elements) {
     pins = validatePinConnections(relationships, elements)
-    power_sources = validatePowerSources(relationships, pins)
+    power_sources = validatePowerSources(relationships, elements, pins)
     
     checkDirections(power_sources)
 
@@ -212,10 +216,113 @@ def validateGraph(relationships, elements) {
     return [power_sources, pins, consumers, grounds]
 }
 
-def deduceAmperage(relationships, consumers) {
 
+def deduceAmperageToPowerSourceMinus(relationships, relationship, amper) {
+    currentAmper = relationship.getProperties().getOrDefault("amper", "0").toFloat() + amper
+
+    println(" props(minus): " + getRelationshipName(relationship) + relationship.getProperties() + ", current amper: " + currentAmper)
+    
+    relationship.addProperty("amper", currentAmper.toString())
+
+    outgoingRelationships = relationships.findAll { outgoingRelationship ->
+        ((outgoingRelationship.getSource() == relationship.getDestination()) && (getElementType(relationship.getDestination()) != ElementType.PowerSource))
+    }
+    def newAmper = amper / outgoingRelationships.size()
+    println ("  rels size: " + outgoingRelationships.size() + ", newAmper: " + newAmper)
+    
+    outgoingRelationships.each { outgoingRelationship ->
+        deduceAmperageToPowerSourceMinus(relationships, outgoingRelationship, newAmper)
+    }
 }
 
-def (power_sources, pins, consumers, grounds) = validateGraph(workspace.model.getRelationships(), workspace.model.getElements())
+def deduceAmperageToPowerSourcePlus(relationships, relationship, amper) {
+    currentAmper = relationship.getProperties().getOrDefault("amper", "0").toFloat() + amper
+    println(" props(plus): " + getRelationshipName(relationship) + relationship.getProperties() + ", current amper: " + currentAmper)
+    
+    relationship.addProperty("amper", currentAmper.toString())
 
-deduceAmperage(workspace.model.getRelationships(), consumers)
+    incomingRelationships = relationships.findAll { incomingRelationship ->
+        ((incomingRelationship.getDestination() == relationship.getSource()) && (getElementType(relationship.getSource()) != ElementType.PowerSource))
+    }
+
+    def newAmper = amper / incomingRelationships.size()
+    println ("  rels size: " + incomingRelationships.size() + ", newAmper: " + newAmper)
+    
+    incomingRelationships.each { incomingRelationship ->
+        deduceAmperageToPowerSourcePlus(relationships, incomingRelationship, newAmper)
+    }
+}
+
+def validateAmperage(relationships, pins) {
+    println("VALIDATE AMPERAGE")
+    pins.each { pin ->
+        println(" pin: " + getElementName(pin))
+        incomingRelationships = relationships.findAll { relationship ->
+            (relationship.getDestination() == pin)
+        }
+        outgoingRelationships = relationships.findAll { relationship ->
+            (relationship.getSource() == pin)
+        }
+
+        incomingAmperage = 0.0
+        incomingRelationships.each { incomingRelationship ->
+            println("  incomingRelationship: " + getRelationshipName(incomingRelationship) + incomingRelationship.getProperties())
+            incomingAmperage += incomingRelationship.getProperties().getAt("amper").toFloat()
+        }
+
+        outgoingAmperage = 0.0
+        outgoingRelationships.each { outgoingRelationship ->
+            println("  outgoingRelationship: " + getRelationshipName(outgoingRelationship) + outgoingRelationship.getProperties())
+            outgoingAmperage += outgoingRelationship.getProperties().getAt("amper").toFloat()
+        }
+
+        if (Math.abs(incomingAmperage - outgoingAmperage) > 0.001) {
+            println(" Found incorrect amperage for " + getElementName(pin))
+            println("  Incoming amperage: " + incomingAmperage)
+            incomingRelationships.each { rel ->
+                println("   " + getRelationshipName(rel) + rel.getProperties().getAt("amper"))
+            }
+            println("  Outgoing amperage: " + outgoingAmperage)
+            outgoingRelationships.each { rel ->
+                println("   " + getRelationshipName(rel) + rel.getProperties().getAt("amper"))
+            }
+
+            throw new IllegalStateException("Incorrect amperage for " + getElementName(pin) + ", see log for details")
+        }
+    }
+}
+
+def deduceAmperage(relationships, consumers, pins) {
+    println("DEDUCE AMPERAGE")
+    consumers.each { consumer ->
+        if (!consumer.getProperties().containsKey("amper")) {
+            throw new IllegalStateException("Consumer " + getElementName(consumer) + " should has `amper` property")
+        }
+        amper = consumer.getProperties().get("amper").toFloat()
+        relationships.findAll {relationship ->
+            (relationship.getSource() == consumer)
+        }.each { relationship ->
+            deduceAmperageToPowerSourceMinus(relationships, relationship, amper)
+        }
+
+        relationships.findAll {relationship ->
+            (relationship.getDestination() == consumer)
+        }.each { relationship ->
+            deduceAmperageToPowerSourcePlus(relationships, relationship, amper)
+        }
+    }
+
+    validateAmperage(relationships, pins)
+}
+
+/////////////////////////
+
+try {
+    def (power_sources, pins, consumers, grounds) = validateGraph(workspace.model.getRelationships(), workspace.model.getElements())
+
+    deduceAmperage(workspace.model.getRelationships(), consumers, pins)
+} catch (Exception e) {
+    println(e)
+}
+
+
