@@ -4,7 +4,7 @@ workspace.model.getRelationships().each {rel ->
     if (desc.size() != 0) {
         desc += ", "
     }
-    rel.setDescription(desc + "amper: " + String.format("%.2f", amper))
+    rel.setDescription(desc + String.format("%.2f", amper) + "A")
 
     square = "0.5"
     if (amper < 3.6) {
@@ -34,4 +34,5 @@ workspace.model.getRelationships().each {rel ->
 
 
     //rel.addTags("square_" + square)
+    rel.addTags("powered")
 }

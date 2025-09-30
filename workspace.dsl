@@ -9,7 +9,9 @@ workspace "Name" "Description" {
     model {
         properties {
             "structurizr.groupSeparator" "/"
-            default_voltage 12
+            "default_voltage" "12"
+
+
         }
 
         !impliedRelationships false
@@ -140,28 +142,31 @@ workspace "Name" "Description" {
                     }
                 }
 
-                winch = container "Лебедка" {
-                    tags "winch"
-                    plus = plus "+"
-                    minus = minus "-"
-                    winch = consumer "winch"
-
-                    plus -> winch {
-                        tags "internal_connection"
+                group "Лебедка" {
+                    winch = container "Лебедка" {
+                        tags "winch"
+                        plus = plus "+"
+                        minus = minus "-"
+                        winch = consumer "winch"
                     }
-                    winch -> minus {
-                        tags "internal_connection"
+                    winch_relay = relay "winch_relay"{
+                        !include relay.dsl
+                    }
+                    winch_switch = switch "winch_switch" {
+                        !include switch.dsl
                     }
                 }
+
+
 
                 group "Блок силовых предохранителей" {
                     # Сюда преды на 60-60-40-90
                     ignition_relay_fuse = fuse "Прд реле зажигания" {
                         !include fuse.dsl
                     }
-                    light_fuse = fuse "Предохранитель штатного освещения" {
-                        !include fuse.dsl
-                    }
+                    #light_fuse = fuse "Предохранитель штатного освещения" {
+                    #    !include fuse.dsl
+                    #}
                     ignition_vent_fuse = fuse "Предохранитель зажигания и э-вент охл-я" {
                         !include fuse.dsl
                     }
@@ -206,26 +211,26 @@ workspace "Name" "Description" {
 
                 group "Передний блок фар" {
                     group "Левая фара" {
-                        left_low_beam = light "Левый ближний свет" {
-                            !include light.dsl
-                        }
-                        left_high_beam = light "Левый дальний свет" {
-                            !include light.dsl
-                        }
-                        front_left_side_light = light "Передний левый габарит" {
-                            !include light.dsl
-                        }
+                        #left_low_beam = light "Левый ближний свет" {
+                        #    !include light.dsl
+                        #}
+                        #left_high_beam = light "Левый дальний свет" {
+                        #    !include light.dsl
+                        #}
+                        #front_left_side_light = light "Передний левый габарит" {
+                        #    !include light.dsl
+                        #}
                     }
                     group "Правая фара" {
-                        right_low_beam = light "Правый ближний свет" {
-                            !include light.dsl
-                        }
-                        right_high_beam = light "Правый дальний свет" {
-                            !include light.dsl
-                        }
-                        front_right_side_light = light "Передний правый габарит" {
-                            !include light.dsl
-                        }
+                        #right_low_beam = light "Правый ближний свет" {
+                        #    !include light.dsl
+                        #}
+                        #right_high_beam = light "Правый дальний свет" {
+                        #    !include light.dsl
+                        #}
+                        #front_right_side_light = light "Передний правый габарит" {
+                        #    !include light.dsl
+                        #}
                     }
                 }
             }
@@ -247,15 +252,15 @@ workspace "Name" "Description" {
                     coolant_vent_2_relay = relay "Реле э-вент охл ДВС 2" {
                         !include relay.dsl
                     }
-                    //low_beam_relay = relay "Реле ближнего света" {
-                    //    !include relay.dsl
-                    //}
-                    high_beam_relay = relay "Реле дальнего света" {
-                        !include relay.dsl
-                    }
-                    side_light_relay = relay "Реле габаритов" {
-                        !include relay.dsl
-                    }
+                    #low_beam_relay = relay "Реле ближнего света" {
+                    #    !include relay.dsl
+                    #}
+                    #high_beam_relay = relay "Реле дальнего света" {
+                    #    !include relay.dsl
+                    #}
+                    #side_light_relay = relay "Реле габаритов" {
+                    #    !include relay.dsl
+                    #}
 
                     # Предохранители
                     starter_relay_fuse = fuse "Прд реле стартера." {
@@ -267,38 +272,38 @@ workspace "Name" "Description" {
                     coolant_vent_2_fuse = fuse "Прд э-вент охл ДВС 2." {
                         !include fuse.dsl
                     }
-                    low_beam_relay_fuse = fuse "Прд. реле ближн света" {
-                        !include fuse.dsl
-                    }
-                    high_beam_relay_fuse = fuse "Прд. реле дальн света" {
-                        !include fuse.dsl
-                    }
-                    side_light_relay_fuse = fuse "Прд. реле габаритов" {
-                        !include fuse.dsl
-                    }
-                    left_low_beam_fuse = fuse "Прд. ближн света (лев)" {
-                        !include fuse.dsl
-                    }
-                    right_low_beam_fuse = fuse "Прд. ближн света (прав)" {
-                        !include fuse.dsl
-                    }
-                    left_high_beam_fuse = fuse "Прд. дальн света (лев)" {
-                        !include fuse.dsl
-                    }
-                    right_high_beam_fuse = fuse "Прд. дальн света (прав)" {
-                        !include fuse.dsl
-                    }
-                    side_light_fuse = fuse "Прд. габаритов" {
-                        !include fuse.dsl
-                    }
+                    #low_beam_relay_fuse = fuse "Прд. реле ближн света" {
+                    #    !include fuse.dsl
+                    #}
+                    #high_beam_relay_fuse = fuse "Прд. реле дальн света" {
+                    #    !include fuse.dsl
+                    #}
+                    #side_light_relay_fuse = fuse "Прд. реле габаритов" {
+                    #    !include fuse.dsl
+                    #}
+                    #left_low_beam_fuse = fuse "Прд. ближн света (лев)" {
+                    #    !include fuse.dsl
+                    #}
+                    #right_low_beam_fuse = fuse "Прд. ближн света (прав)" {
+                    #    !include fuse.dsl
+                    #}
+                    #left_high_beam_fuse = fuse "Прд. дальн света (лев)" {
+                    #    !include fuse.dsl
+                    #}
+                    #right_high_beam_fuse = fuse "Прд. дальн света (прав)" {
+                    #    !include fuse.dsl
+                    #}
+                    #side_light_fuse = fuse "Прд. габаритов" {
+                    #    !include fuse.dsl
+                    #}
                 }
                 group "Блок приборов" {
                     #internal_lighting = splitter "Система подсветки приборов" {
                     #    data = pin "pin"
                     #}
-                    coolant_control_light = light "Подсветка упр э-вент охл ДВС" {
-                        !include light.dsl
-                    }
+                    #coolant_control_light = light "Подсветка упр э-вент охл ДВС" {
+                    #    !include light.dsl
+                    #}
                 }
                 group "Блок выключателей" {
                     ignition_switch = switch "Выключатель зажигания" {
@@ -344,7 +349,13 @@ workspace "Name" "Description" {
                     }
                 }
                 group "Подрулевые переключатели" {
-
+                    #left_steering_column_switch = container "Левый подрулевой переключатель" {
+                    #    tags "switch"
+                    #    _56 = pin "56"
+                    #    _56b = pin "56b"
+                    #    _56a = pin "56a"
+                    #    _30 = pin "30"
+                    #}
                 }
             }
 
@@ -357,19 +368,19 @@ workspace "Name" "Description" {
 
             group "Задний блок фар" {
                 group "Левая задняя фара" {
-                    rear_left_side_light = light "Задний левый габарит" {
-                        !include light.dsl
-                    }
+                    #rear_left_side_light = light "Задний левый габарит" {
+                    #    !include light.dsl
+                    #}
                 }
                 group "Правая задняя фара" {
-                    rear_right_side_light = light "Задний правый габарит" {
-                        !include light.dsl
-                    }
+                    #rear_right_side_light = light "Задний правый габарит" {
+                    #    !include light.dsl
+                    #}
                 }
 
-                number_plate_light = light "Подсветка номера" {
-                    !include light.dsl
-                }
+                #number_plate_light = light "Подсветка номера" {
+                #    !include light.dsl
+                #}
             }
 
             #######################
@@ -389,7 +400,7 @@ workspace "Name" "Description" {
             m.ground -> generator.minus
     
             starter.plus -> ignition_relay_fuse.in
-            starter.plus -> light_fuse.in
+            #starter.plus -> light_fuse.in
             starter.plus -> ignition_vent_fuse.in
             #starter.plus -> fuse_90.in
 
@@ -417,6 +428,26 @@ workspace "Name" "Description" {
             # Лебедка
         
             winch.minus -> m.ground
+            winch.plus -> winch_relay._30 {
+                tags "internal_connection"
+            }
+            winch_relay._87 -> winch.winch {
+                tags "internal_connection"
+            }
+            winch.winch -> winch.minus {
+                tags "internal_connection"
+            }
+
+            winch.plus -> winch_switch.in {
+                tags "internal_connection"
+            }
+            winch_switch.out -> winch_relay._85 {
+                tags "internal_connection"
+            }
+            winch_relay._86 -> winch.minus {
+                tags "internal_connection"
+            }
+
 
             # Электровентиляторы охлаждения ДВС
 
@@ -439,44 +470,45 @@ workspace "Name" "Description" {
             coolant_control_switch.U -> m.ground
             #coolant_control_light.plus -> coolant_control_switch.H
             #internal_lighting.data -> coolant_control_light.plus
-            coolant_control_light.minus -> m.ground
-            coolant_control_switch.D -> coolant_control_light.minus
+            #coolant_control_light.minus -> m.ground
+            #coolant_control_switch.D -> coolant_control_light.minus
 
             # Ближний/дальний свет
-            left_low_beam.minus -> m.ground
-            right_low_beam.minus -> m.ground
-            //low_beam_relay._87 -> left_low_beam_fuse.in
-            left_low_beam_fuse.out -> left_low_beam.plus
-            //low_beam_relay._87 -> right_low_beam_fuse.in
-            right_low_beam_fuse.out -> right_low_beam.plus
-            //low_beam_relay_fuse.out -> low_beam_relay._30
-            light_fuse.out -> low_beam_relay_fuse.in
+            #left_low_beam.minus -> m.ground
+            #right_low_beam.minus -> m.ground
+            #low_beam_relay._86 -> m.ground
+            #low_beam_relay._87 -> left_low_beam_fuse.in
+            #left_low_beam_fuse.out -> left_low_beam.plus
+            #low_beam_relay._87 -> right_low_beam_fuse.in
+            #right_low_beam_fuse.out -> right_low_beam.plus
+            #low_beam_relay_fuse.out -> low_beam_relay._30
+            #light_fuse.out -> low_beam_relay_fuse.in
 
-            left_high_beam.minus -> m.ground
-            right_high_beam.minus -> m.ground
-            high_beam_relay._87 -> left_high_beam_fuse.in
+            #left_high_beam.minus -> m.ground
+            #right_high_beam.minus -> m.ground
+            #high_beam_relay._87 -> left_high_beam_fuse.in
 
-            left_high_beam_fuse.out -> left_high_beam.plus
-            high_beam_relay._87 -> right_high_beam_fuse.in
-            right_high_beam_fuse.out -> right_high_beam.plus
-            high_beam_relay_fuse.out -> high_beam_relay._30
-            light_fuse.out -> high_beam_relay_fuse.in
+            #left_high_beam_fuse.out -> left_high_beam.plus
+            #high_beam_relay._87 -> right_high_beam_fuse.in
+            #right_high_beam_fuse.out -> right_high_beam.plus
+            #high_beam_relay_fuse.out -> high_beam_relay._30
+            #light_fuse.out -> high_beam_relay_fuse.in
 
-            front_left_side_light.minus -> m.ground
-            front_right_side_light.minus -> m.ground
-            rear_left_side_light.minus -> m.ground
-            rear_right_side_light.minus -> m.ground
-            number_plate_light.minus -> m.ground
+            #front_left_side_light.minus -> m.ground
+            #front_right_side_light.minus -> m.ground
+            #rear_left_side_light.minus -> m.ground
+            #rear_right_side_light.minus -> m.ground
+            #number_plate_light.minus -> m.ground
 
 
-            side_light_relay._87 -> side_light_fuse.in
-            side_light_fuse.out -> front_left_side_light.plus
-            side_light_fuse.out -> front_right_side_light.plus
-            side_light_fuse.out -> rear_left_side_light.plus
-            side_light_fuse.out -> rear_right_side_light.plus
-            side_light_fuse.out -> number_plate_light.plus
-            side_light_relay_fuse.out -> side_light_relay._30
-            light_fuse.out -> side_light_relay_fuse.in
+            #side_light_relay._87 -> side_light_fuse.in
+            #side_light_fuse.out -> front_left_side_light.plus
+            #side_light_fuse.out -> front_right_side_light.plus
+            #side_light_fuse.out -> rear_left_side_light.plus
+            #side_light_fuse.out -> rear_right_side_light.plus
+            #side_light_fuse.out -> number_plate_light.plus
+            #side_light_relay_fuse.out -> side_light_relay._30
+            #light_fuse.out -> side_light_relay_fuse.in
         }
 
         // Set amper
@@ -517,6 +549,11 @@ workspace "Name" "Description" {
                 style solid
                 #Direct|Orthogonal|Curved
                 routing Direct
+                opacity 20
+            }
+            relationship "powered" {
+                opacity 100
+                thickness 5
             }
             relationship "pwr" {
                 style dashed
