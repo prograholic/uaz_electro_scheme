@@ -22,14 +22,14 @@ coil = consumer "coil" {
 
 
 _30 -> _87 {
-    tags "relay_power_switch"
+    tags "relay_power_switch,internal_connection"
     properties {
         switch_state 1
     }
 }
 
 _30 -> _88 {
-    tags "relay_power_switch"
+    tags "relay_power_switch,internal_connection"
     properties {
         switch_state 0
     }

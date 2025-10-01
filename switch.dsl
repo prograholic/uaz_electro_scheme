@@ -7,7 +7,7 @@ out = pin "out" {
 }
 
 in -> out {
-    tags "ctr,switch_ctr"
+    tags "ctr,switch_ctr,internal_connection"
     properties {
         switch_state 1
     }

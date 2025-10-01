@@ -1,5 +1,5 @@
 def getRelationshipName(relationship) {
-    return "{" + relationship.getSource().getCanonicalName() + " -> " + relationship.getDestination().getCanonicalName() + "}"
+    return "{" + relationship.getSource().getCanonicalName() + " -> " + relationship.getDestination().getCanonicalName() + ", tags: " + relationship.getTags().toString() + ", props: " + relationship.getProperties().toString() + "}"
 }
 
 enum ElementType {
@@ -286,7 +286,7 @@ def findActiveCircuits(relationships, elements, consumers, connectionAllowed) {
 
     consumers.each { consumer ->
         incomingRelationships = relationships.findAll { relationship ->
-            (relationship.getDestination() == consumer)
+            (relationship.getDestination() == consumer) 
         }
 
         if (incomingRelationships.size() != 1) {
@@ -316,13 +316,56 @@ def findActiveCircuits(relationships, elements, consumers, connectionAllowed) {
 }
 
 def calculateAmperage(activeCircuits) {
+    println("CALCULATE AMPERAGE")
     activeCircuits.each { consumer, activeCircuit ->
-        amper = consumer.getProperties().getAt("amper").toFloat()
+        if (!consumer.getProperties().containsKey("amper")) {
+            throw new IllegalStateException("No `amper` property on " + consumer.getCanonicalName())
+        }
+        def amper = consumer.getProperties().getAt("amper").toFloat()
         activeCircuit.each{ relationship ->
-            currentAmper = relationship.getProperties().getOrDefault("amper", "0").toFloat()
+            def currentAmper = relationship.getProperties().getOrDefault("amper", "0").toFloat()
 
             relationship.addProperty("amper", (amper + currentAmper).toString())
         }
+    }
+
+    activeCircuits.each {consumer, activeCircuit ->
+        println(" consumer: " + consumer.getCanonicalName())
+        activeCircuit.each {relationship ->
+            println("  " + getRelationshipName(relationship))
+        }
+    }
+}
+
+def calculateWireDistance(activeCircuits) {
+    println("CALCULATE WIRE DISTANCE")
+    activeCircuits.each { consumer, activeCircuit ->
+        def length_to_power_source = 0.0
+        activeCircuit.each{ relationship ->
+            relProps = relationship.getProperties()
+
+            def distance = relProps.getOrDefault("distance", "0.5").toFloat()
+            if (relationship.getTags().contains("internal_connection")) {
+                distance = 0
+            }
+
+            length_to_power_source += distance
+        }
+
+        activeCircuit.each{ relationship ->
+            relProps = relationship.getProperties()
+            
+            def old_length_to_power_source = relProps.getOrDefault("length_to_power_source", "0").toFloat()
+            if (old_length_to_power_source > length_to_power_source) {
+                println (" !!! found relationship with bigger length: " + getRelationshipName(relationship) + ", old: " + old_length_to_power_source + ", current: " + length_to_power_source)
+                length_to_power_source = old_length_to_power_source
+                
+            }
+
+            relationship.addProperty("length_to_power_source", length_to_power_source.toString())
+        }
+
+        println(" wire distance for circuit for " + consumer.getCanonicalName() + " is " + length_to_power_source)
     }
 }
 
@@ -389,7 +432,9 @@ def validateOnlineGraph(activeCircuits) {
 
 
 /////////////////////////
-relationships = workspace.model.getRelationships()
+relationships = workspace.model.getRelationships().findAll {relationship ->
+    ((relationship.getSource().getClass() == com.structurizr.model.Component) && (relationship.getDestination().getClass() == com.structurizr.model.Component))
+}
 elements = workspace.model.getElements()
 pins = elements.findAll {element -> (element.getTags().contains("pin"))}
 consumers = elements.findAll {element -> (element.getTags().contains("consumer"))}
@@ -417,6 +462,7 @@ def allowActiveSwitchOnly = { relationship ->
     validateOfflineGraph(relationships, elements, pins)
     activeCircuits = findActiveCircuits(relationships, elements, consumers, allowActiveSwitchOnly)
     calculateAmperage(activeCircuits)
+    calculateWireDistance(activeCircuits)
 
     validateOnlineGraph(activeCircuits)
 //} catch (Exception e) {

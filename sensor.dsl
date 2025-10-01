@@ -7,7 +7,7 @@ out = pin "out" {
 }
 
 in -> out {
-    tags "ctr,sensor_ctr"
+    tags "ctr,sensor_ctr,internal_connection"
     properties {
         switch_state 1
     }

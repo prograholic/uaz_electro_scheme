@@ -27,7 +27,7 @@ groups.each {
     }
 }
 
-
+/*
 // Create outgoing relationships for each component
 workspace.model.getSoftwareSystems().each { ss ->
     //println("OR: Software system: " + ss.getName())
@@ -91,7 +91,7 @@ workspace.model.getSoftwareSystems().each { ss ->
         }
     }
 }
-
+*/
 
 // Create component views
 workspace.model.getSoftwareSystems().each {

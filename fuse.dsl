@@ -7,5 +7,5 @@ out = pin "out" {
 }
 
 in -> out {
-    tags "pwr" "fuse_pwr"
+    tags "pwr" "fuse_pwr" "internal_connection"
 }

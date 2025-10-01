@@ -10,7 +10,7 @@ minus = pin "-" {
 }
 
 plus -> lamp {
-    tags "expect_plus,internal_connection" 
+    tags "expect_plus,internal_connection"
 }
 lamp -> minus {
     tags "expect_ground,internal_connection"

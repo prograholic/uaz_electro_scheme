@@ -14,7 +14,7 @@ workspace "Name" "Description" {
 
         }
 
-        !impliedRelationships false
+        !impliedRelationships true
 
         archetypes {
             relay = container {
@@ -51,15 +51,17 @@ workspace "Name" "Description" {
             power_source = component {
                 tags "power_source"
             }
+
+            ground = pin {
+                tags "ground"
+            }
         }
 
         es = softwareSystem "Электрическая система УАЗ" {
             tags "electric_system"
             m = container "Кузов" {
                 tags "chassis"
-                ground = pin "Масса" {
-                    tags "ground"
-                }
+                ground = ground "Масса"
             }
 
             power_group = group "Подкапотное пространство" {
@@ -88,18 +90,26 @@ workspace "Name" "Description" {
 
                     st = pin "Втяг"
 
+                    g = component "ground" {
+                        tags "ground"
+                    }
+
                     st_relay = consumer "Втяг реле"
 
                     plus -> eng {
                         tags "internal_connection"
                     }
-                    eng -> m.ground {
+                    eng -> g {
+                        tags "internal_connection"
+                    }
+                    
+                    g -> m.ground {
                         tags "internal_connection"
                     }
                     st -> st_relay {
                         tags "internal_connection"
                     }
-                    st_relay -> m.ground {
+                    st_relay -> g {
                         tags "internal_connection"
                     }
                 }
@@ -109,12 +119,16 @@ workspace "Name" "Description" {
                     plus = plus "+"
                     minus = minus "-"
                     power_source = power_source "gen"
+                    g = ground "масса"
 
                     v = component "Возб" {
                         tags "pin,consumer"
                     }
 
-                    v -> m.ground {
+                    v -> g {
+                        tags "internal_connection"
+                    }
+                    g -> m.ground {
                         tags "internal_connection"
                     }
                     power_source -> plus {
@@ -128,16 +142,17 @@ workspace "Name" "Description" {
                 ignition = splitter "Система зажигания" {
                     data = pin "pin"
 
-                    xxx = consumer "x" {
-                        properties {
-                            amper 10
-                        }
-                    }
+                    xxx = consumer "x"
+
+                    g = ground "масса"
 
                     data -> xxx {
                         tags "internal_connection"
                     }
-                    xxx -> m.ground {
+                    xxx -> g {
+                        tags "internal_connection"
+                    }
+                    g -> m.ground {
                         tags "internal_connection"
                     }
                 }
@@ -164,9 +179,9 @@ workspace "Name" "Description" {
                     ignition_relay_fuse = fuse "Прд реле зажигания" {
                         !include fuse.dsl
                     }
-                    #light_fuse = fuse "Предохранитель штатного освещения" {
-                    #    !include fuse.dsl
-                    #}
+                    light_fuse = fuse "Предохранитель штатного освещения" {
+                        !include fuse.dsl
+                    }
                     ignition_vent_fuse = fuse "Предохранитель зажигания и э-вент охл-я" {
                         !include fuse.dsl
                     }
@@ -211,26 +226,26 @@ workspace "Name" "Description" {
 
                 group "Передний блок фар" {
                     group "Левая фара" {
-                        #left_low_beam = light "Левый ближний свет" {
-                        #    !include light.dsl
-                        #}
-                        #left_high_beam = light "Левый дальний свет" {
-                        #    !include light.dsl
-                        #}
-                        #front_left_side_light = light "Передний левый габарит" {
-                        #    !include light.dsl
-                        #}
+                        left_low_beam = light "Левый ближний свет" {
+                            !include light.dsl
+                        }
+                        left_high_beam = light "Левый дальний свет" {
+                            !include light.dsl
+                        }
+                        front_left_side_light = light "Передний левый габарит" {
+                            !include light.dsl
+                        }
                     }
                     group "Правая фара" {
-                        #right_low_beam = light "Правый ближний свет" {
-                        #    !include light.dsl
-                        #}
-                        #right_high_beam = light "Правый дальний свет" {
-                        #    !include light.dsl
-                        #}
-                        #front_right_side_light = light "Передний правый габарит" {
-                        #    !include light.dsl
-                        #}
+                        right_low_beam = light "Правый ближний свет" {
+                            !include light.dsl
+                        }
+                        right_high_beam = light "Правый дальний свет" {
+                            !include light.dsl
+                        }
+                        front_right_side_light = light "Передний правый габарит" {
+                            !include light.dsl
+                        }
                     }
                 }
             }
@@ -252,15 +267,15 @@ workspace "Name" "Description" {
                     coolant_vent_2_relay = relay "Реле э-вент охл ДВС 2" {
                         !include relay.dsl
                     }
-                    #low_beam_relay = relay "Реле ближнего света" {
-                    #    !include relay.dsl
-                    #}
-                    #high_beam_relay = relay "Реле дальнего света" {
-                    #    !include relay.dsl
-                    #}
-                    #side_light_relay = relay "Реле габаритов" {
-                    #    !include relay.dsl
-                    #}
+                    low_beam_relay = relay "Реле ближнего света" {
+                        !include relay.dsl
+                    }
+                    high_beam_relay = relay "Реле дальнего света" {
+                        !include relay.dsl
+                    }
+                    side_light_relay = relay "Реле габаритов" {
+                        !include relay.dsl
+                    }
 
                     # Предохранители
                     starter_relay_fuse = fuse "Прд реле стартера." {
@@ -272,30 +287,30 @@ workspace "Name" "Description" {
                     coolant_vent_2_fuse = fuse "Прд э-вент охл ДВС 2." {
                         !include fuse.dsl
                     }
-                    #low_beam_relay_fuse = fuse "Прд. реле ближн света" {
-                    #    !include fuse.dsl
-                    #}
-                    #high_beam_relay_fuse = fuse "Прд. реле дальн света" {
-                    #    !include fuse.dsl
-                    #}
-                    #side_light_relay_fuse = fuse "Прд. реле габаритов" {
-                    #    !include fuse.dsl
-                    #}
-                    #left_low_beam_fuse = fuse "Прд. ближн света (лев)" {
-                    #    !include fuse.dsl
-                    #}
-                    #right_low_beam_fuse = fuse "Прд. ближн света (прав)" {
-                    #    !include fuse.dsl
-                    #}
-                    #left_high_beam_fuse = fuse "Прд. дальн света (лев)" {
-                    #    !include fuse.dsl
-                    #}
-                    #right_high_beam_fuse = fuse "Прд. дальн света (прав)" {
-                    #    !include fuse.dsl
-                    #}
-                    #side_light_fuse = fuse "Прд. габаритов" {
-                    #    !include fuse.dsl
-                    #}
+                    low_beam_relay_fuse = fuse "Прд. реле ближн света" {
+                        !include fuse.dsl
+                    }
+                    high_beam_relay_fuse = fuse "Прд. реле дальн света" {
+                        !include fuse.dsl
+                    }
+                    side_light_relay_fuse = fuse "Прд. реле габаритов" {
+                        !include fuse.dsl
+                    }
+                    left_low_beam_fuse = fuse "Прд. ближн света (лев)" {
+                        !include fuse.dsl
+                    }
+                    right_low_beam_fuse = fuse "Прд. ближн света (прав)" {
+                        !include fuse.dsl
+                    }
+                    left_high_beam_fuse = fuse "Прд. дальн света (лев)" {
+                        !include fuse.dsl
+                    }
+                    right_high_beam_fuse = fuse "Прд. дальн света (прав)" {
+                        !include fuse.dsl
+                    }
+                    side_light_fuse = fuse "Прд. габаритов" {
+                        !include fuse.dsl
+                    }
                 }
                 group "Блок приборов" {
                     #internal_lighting = splitter "Система подсветки приборов" {
@@ -321,41 +336,78 @@ workspace "Name" "Description" {
                         #H = pin "H"
 
                         I -> D {
-                            tags "ctr,switch_ctr"
+                            tags "ctr,switch_ctr,internal_connection"
                             properties {
                                 switch_state 1
                             }
                         }
                         I -> U {
-                            tags "ctr,switch_ctr"
+                            tags "ctr,switch_ctr,internal_connection"
                             properties {
                                 switch_state 2
                             }
                         }
 
                         #V -> L {
-                        #    tags "ctr,switch_ctr"
+                        #    tags "ctr,switch_ctr,internal_connection"
                         #    properties {
                         #        switch_state 1
                         #    }
                         #}
 
                         #L -> H {
-                        #    tags "ctr,switch_ctr"
+                        #    tags "ctr,switch_ctr,internal_connection"
                         #    properties {
                         #        switch_state 2
                         #    }
                         #}
                     }
+                    light_switch = switch "Выключатель габаритов и ближнего света" {
+                        _30 = pin "30"
+                        _58 = pin "58"
+                        x = pin "X"
+                        _56 = pin "56"
+
+                        _30 -> _58 {
+                            tags "ctr,switch_ctr,internal_connection"
+                            properties {
+                                switch_state "1,2"
+                            }
+                        }
+                        x -> _56 {
+                            tags "ctr,switch_ctr,internal_connection"
+                            properties {
+                                switch_state 2
+                            }
+                        }
+                    }
                 }
                 group "Подрулевые переключатели" {
-                    #left_steering_column_switch = container "Левый подрулевой переключатель" {
-                    #    tags "switch"
-                    #    _56 = pin "56"
-                    #    _56b = pin "56b"
-                    #    _56a = pin "56a"
-                    #    _30 = pin "30"
-                    #}
+                    left_steering_column_switch = switch "Левый подрулевой переключатель" {
+                        _56 = pin "56"
+                        _56b = pin "56b"
+                        _56a = pin "56a"
+                        _30 = pin "30"
+
+                        _56 -> _56b {
+                            tags "ctr,switch_ctr,internal_connection"
+                            properties {
+                                switch_state "1,2,3"
+                            }
+                        }
+                        _56 -> _56a {
+                            tags "ctr,switch_ctr,internal_connection"
+                            properties {
+                                switch_state 2
+                            }
+                        }
+                        _30 -> _56a {
+                            tags "ctr,switch_ctr,internal_connection"
+                            properties {
+                                switch_state 3
+                            }
+                        }
+                    }
                 }
             }
 
@@ -368,19 +420,19 @@ workspace "Name" "Description" {
 
             group "Задний блок фар" {
                 group "Левая задняя фара" {
-                    #rear_left_side_light = light "Задний левый габарит" {
-                    #    !include light.dsl
-                    #}
+                    rear_left_side_light = light "Задний левый габарит" {
+                        !include light.dsl
+                    }
                 }
                 group "Правая задняя фара" {
-                    #rear_right_side_light = light "Задний правый габарит" {
-                    #    !include light.dsl
-                    #}
+                    rear_right_side_light = light "Задний правый габарит" {
+                        !include light.dsl
+                    }
                 }
 
-                #number_plate_light = light "Подсветка номера" {
-                #    !include light.dsl
-                #}
+                number_plate_light = light "Подсветка номера" {
+                    !include light.dsl
+                }
             }
 
             #######################
@@ -389,18 +441,43 @@ workspace "Name" "Description" {
     
             # Система питания
 
-            m.ground -> ground_switch.in
-            ground_switch.out -> akb.minus
-            akb.plus -> starter.plus
-            akb.plus -> winch.plus
+            m.ground -> ground_switch.in {
+                properties {
+                    distance 0
+                }
+            }
+            ground_switch.out -> akb.minus {
+                properties {
+                    distance 0.2
+                }
+            }
+            akb.plus -> starter.plus {
+                properties {
+                    distance 1.5
+                }
+            }
+            akb.plus -> winch.plus {
+                properties {
+                    distance 1.5
+                }
+            }
+
 
             # Система зажигания
 
-            generator.plus -> starter.plus
-            m.ground -> generator.minus
+            generator.plus -> starter.plus {
+                properties {
+                    distance 1.5
+                }
+            }
+            m.ground -> generator.minus {
+                properties {
+                    distance 0.1
+                }
+            }
     
             starter.plus -> ignition_relay_fuse.in
-            #starter.plus -> light_fuse.in
+            starter.plus -> light_fuse.in
             starter.plus -> ignition_vent_fuse.in
             #starter.plus -> fuse_90.in
 
@@ -411,23 +488,43 @@ workspace "Name" "Description" {
     
             ignition_switch.out -> ignition_relay._85
             
-            ignition_relay._86 -> m.ground
-            ignition_relay._87 -> starter_relay_fuse.in
+            ignition_relay._86 -> m.ground {
+                properties {
+                    distance 0.1
+                }
+            }
+            ignition_relay._87 -> starter_relay_fuse.in {
+                properties {
+                    distance 0.2
+                }
+            }
             
-            starter_relay_fuse.out -> starter_relay._30
+            starter_relay_fuse.out -> starter_relay._30 {
+                properties {
+                    distance 0.2
+                }
+            }
             starter_relay_fuse.out -> ignition.data
             starter_relay_fuse.out -> start_button.in
     
             start_button.out -> starter_relay._85
     
-            starter_relay._86 -> m.ground
+            starter_relay._86 -> m.ground {
+                properties {
+                    distance 0.1
+                }
+            }
             starter_relay._87 -> starter.st
             starter_relay._88 -> control_line_from_ignition_fuse.in
             control_line_from_ignition_fuse.out -> control_line_from_ignition.data
 
             # Лебедка
         
-            winch.minus -> m.ground
+            winch.minus -> m.ground {
+                properties {
+                    distance 1.5
+                }
+            }
             winch.plus -> winch_relay._30 {
                 tags "internal_connection"
             }
@@ -451,64 +548,102 @@ workspace "Name" "Description" {
 
             # Электровентиляторы охлаждения ДВС
 
-            coolant_vent_1.minus -> m.ground
-            coolant_vent_1_fuse.out -> coolant_vent_1_relay._30
+            coolant_vent_1.minus -> m.ground {
+                properties {
+                    distance 0.2
+                }
+            }
+            coolant_vent_1_fuse.out -> coolant_vent_1_relay._30 {
+                properties {
+                    distance 0.2
+                }
+            }
             coolant_vent_1_relay._87 -> coolant_vent_1.plus
             control_line_from_ignition.data -> coolant_vent_1_relay._85
             ignition_vent_fuse.out -> coolant_vent_1_fuse.in
-            coolant_vent_1_relay._86 -> coolant_control_switch.I
+            coolant_vent_1_relay._86 -> coolant_control_switch.I {
+                properties {
+                    distance 0.5
+                }
+            }
 
-            coolant_vent_2.minus -> m.ground
+            coolant_vent_2.minus -> m.ground {
+                properties {
+                    distance 0.2
+                }
+            }
             coolant_vent_2_relay._87 -> coolant_vent_2.plus
             ignition_vent_fuse.out -> coolant_vent_2_fuse.in
             control_line_from_ignition.data -> coolant_vent_2_relay._85
             coolant_vent_2_fuse.out -> coolant_vent_2_relay._30
             coolant_vent_2_relay._86 -> coolant_control_switch.I
 
-            coolant_sensor.out -> m.ground
+            coolant_sensor.out -> m.ground {
+                properties {
+                    distance 0
+                }
+            }
             coolant_control_switch.D -> coolant_sensor.in
-            coolant_control_switch.U -> m.ground
+            coolant_control_switch.U -> m.ground {
+                properties {
+                    distance 0.2
+                }
+            }
             #coolant_control_light.plus -> coolant_control_switch.H
             #internal_lighting.data -> coolant_control_light.plus
             #coolant_control_light.minus -> m.ground
             #coolant_control_switch.D -> coolant_control_light.minus
 
             # Ближний/дальний свет
-            #left_low_beam.minus -> m.ground
-            #right_low_beam.minus -> m.ground
-            #low_beam_relay._86 -> m.ground
-            #low_beam_relay._87 -> left_low_beam_fuse.in
-            #left_low_beam_fuse.out -> left_low_beam.plus
-            #low_beam_relay._87 -> right_low_beam_fuse.in
-            #right_low_beam_fuse.out -> right_low_beam.plus
-            #low_beam_relay_fuse.out -> low_beam_relay._30
-            #light_fuse.out -> low_beam_relay_fuse.in
+            control_line_from_ignition.data -> left_steering_column_switch._30
+            left_steering_column_switch._56a -> high_beam_relay._85
+            left_steering_column_switch._56b -> low_beam_relay._85
 
-            #left_high_beam.minus -> m.ground
-            #right_high_beam.minus -> m.ground
-            #high_beam_relay._87 -> left_high_beam_fuse.in
+            control_line_from_ignition.data -> light_switch.x
+            light_fuse.out -> light_switch._30
+            //light_switch._58 -> подсветка приборов
+            light_switch._56 -> left_steering_column_switch._56
+            light_switch._58 -> side_light_relay._85
 
-            #left_high_beam_fuse.out -> left_high_beam.plus
-            #high_beam_relay._87 -> right_high_beam_fuse.in
-            #right_high_beam_fuse.out -> right_high_beam.plus
-            #high_beam_relay_fuse.out -> high_beam_relay._30
-            #light_fuse.out -> high_beam_relay_fuse.in
+            
 
-            #front_left_side_light.minus -> m.ground
-            #front_right_side_light.minus -> m.ground
-            #rear_left_side_light.minus -> m.ground
-            #rear_right_side_light.minus -> m.ground
-            #number_plate_light.minus -> m.ground
+            left_low_beam.minus -> m.ground
+            right_low_beam.minus -> m.ground
+            low_beam_relay._86 -> m.ground
+            low_beam_relay._87 -> left_low_beam_fuse.in
+            left_low_beam_fuse.out -> left_low_beam.plus
+            low_beam_relay._87 -> right_low_beam_fuse.in
+            right_low_beam_fuse.out -> right_low_beam.plus
+            low_beam_relay_fuse.out -> low_beam_relay._30
+            light_fuse.out -> low_beam_relay_fuse.in
+
+            left_high_beam.minus -> m.ground
+            right_high_beam.minus -> m.ground
+            high_beam_relay._87 -> left_high_beam_fuse.in
+            high_beam_relay._86 -> m.ground
+
+            left_high_beam_fuse.out -> left_high_beam.plus
+            high_beam_relay._87 -> right_high_beam_fuse.in
+            right_high_beam_fuse.out -> right_high_beam.plus
+            high_beam_relay_fuse.out -> high_beam_relay._30
+            light_fuse.out -> high_beam_relay_fuse.in
+
+            front_left_side_light.minus -> m.ground
+            front_right_side_light.minus -> m.ground
+            rear_left_side_light.minus -> m.ground
+            rear_right_side_light.minus -> m.ground
+            number_plate_light.minus -> m.ground
 
 
-            #side_light_relay._87 -> side_light_fuse.in
-            #side_light_fuse.out -> front_left_side_light.plus
-            #side_light_fuse.out -> front_right_side_light.plus
-            #side_light_fuse.out -> rear_left_side_light.plus
-            #side_light_fuse.out -> rear_right_side_light.plus
-            #side_light_fuse.out -> number_plate_light.plus
-            #side_light_relay_fuse.out -> side_light_relay._30
-            #light_fuse.out -> side_light_relay_fuse.in
+            side_light_relay._86 -> m.ground
+            side_light_relay._87 -> side_light_fuse.in
+            side_light_fuse.out -> front_left_side_light.plus
+            side_light_fuse.out -> front_right_side_light.plus
+            side_light_fuse.out -> rear_left_side_light.plus
+            side_light_fuse.out -> rear_right_side_light.plus
+            side_light_fuse.out -> number_plate_light.plus
+            side_light_relay_fuse.out -> side_light_relay._30
+            light_fuse.out -> side_light_relay_fuse.in
         }
 
         // Set amper
@@ -528,12 +663,14 @@ workspace "Name" "Description" {
         #################
         container es es_view "Общий вид электрической системы" {
             include *
+            exclude es.m
             autolayout tb
         }
 
         component es.akb overall_component_view "Общий вид всех компонент" {
             include "element.type==component"
             include "element.type==container"
+            exclude es.m.ground
             autolayout lr
         }
 
@@ -583,8 +720,20 @@ workspace "Name" "Description" {
             relationship "color_white" {
                 color #fdf4d7
             }
+            relationship "square_100" {
+                thickness 19
+            }
+            relationship "square_75" {
+                thickness 18
+            }
             relationship "square_50" {
+                thickness 17
+            }
+            relationship "square_35" {
                 thickness 16
+            }
+            relationship "square_25" {
+                thickness 15
             }
             relationship "square_16" {
                 thickness 14
