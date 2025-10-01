@@ -97,10 +97,14 @@ workspace "Name" "Description" {
                     st_relay = consumer "Втяг реле"
 
                     plus -> eng {
-                        tags "internal_connection"
+                        tags "internal_connection,starter_switch"
+                        properties {
+                            switch_state 1
+                        }
                     }
                     eng -> g {
                         tags "internal_connection"
+
                     }
                     
                     g -> m.ground {
@@ -132,7 +136,10 @@ workspace "Name" "Description" {
                         tags "internal_connection"
                     }
                     power_source -> plus {
-                        tags "internal_connection"
+                        tags "relay_power_switch,internal_connection"
+                        properties {
+                            switch_state 1
+                        }
                     }
                     minus -> power_source {
                         tags "internal_connection"
@@ -392,19 +399,19 @@ workspace "Name" "Description" {
                         _56 -> _56b {
                             tags "ctr,switch_ctr,internal_connection"
                             properties {
-                                switch_state "1,2,3"
+                                switch_state "0,1,2"
                             }
                         }
                         _56 -> _56a {
                             tags "ctr,switch_ctr,internal_connection"
                             properties {
-                                switch_state 2
+                                switch_state 1
                             }
                         }
                         _30 -> _56a {
                             tags "ctr,switch_ctr,internal_connection"
                             properties {
-                                switch_state 3
+                                switch_state 2
                             }
                         }
                     }
@@ -648,6 +655,7 @@ workspace "Name" "Description" {
 
         // Set amper
         !include set_consumer_amper.dsl
+        !include switch_states.dsl
     }
 
     !script graph_validators.groovy

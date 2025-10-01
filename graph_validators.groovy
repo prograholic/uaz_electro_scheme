@@ -39,7 +39,7 @@ def getElementType(element) {
         return ElementType.Akb
     }
     if (tags.contains("starter")) {
-        return ElementType.Akb
+        return ElementType.Starter
     }
     if (tags.contains("generator")) {
         return ElementType.Generator
@@ -279,8 +279,21 @@ def findShortestPath(start, finish, relationships, connectionAllowed, totalEleme
     return res
 }
 
-def findActiveCircuits(relationships, elements, consumers, connectionAllowed) {
-    println("FIND ACTIVE CIRCUITS")
+def handleActiveConsumer(consumer) {
+    println ("   handle active consumer: " + consumer.getCanonicalName())
+    if (getElementType(consumer.getParent()) == ElementType.Relay) {
+        println("    set active state `1` for relay " + consumer.getCanonicalName())
+        consumer.getParent().addProperty("active_switch_state", "1")
+    }
+
+    if (getElementType(consumer.getParent()) == ElementType.Starter) {
+        println("    set active state `1` for starter " + consumer.getCanonicalName())
+        consumer.getParent().addProperty("active_switch_state", "1")
+    }
+}
+
+def findActiveCircuitsImpl(relationships, elements, consumers, connectionAllowed, iteration) {
+    println("FIND ACTIVE CIRCUITS IMPL" + iteration)
 
     def res = new HashMap<com.structurizr.model.Element, ArrayList<com.structurizr.model.Relationship>>()
 
@@ -297,22 +310,40 @@ def findActiveCircuits(relationships, elements, consumers, connectionAllowed) {
             throw new IllegalStateException("Incorrect incoming relationships for consumer " + consumer.getCanonicalName() + ", see log for details")
         }
 
-        relationshipWithConsumer = incomingRelationships.first()
+        def relationshipWithConsumer = incomingRelationships.first()
 
-        shortestPath = findShortestPath(consumer, relationshipWithConsumer.getSource(), relationships, connectionAllowed, elements.size())
-        if (shortestPath != null) {
-            shortestPath.add(relationshipWithConsumer)
+        if (connectionAllowed(relationshipWithConsumer)) {
+            shortestPath = findShortestPath(consumer, relationshipWithConsumer.getSource(), relationships, connectionAllowed, elements.size())
+            if (shortestPath != null) {
+                shortestPath.add(relationshipWithConsumer)
 
-            println(" Shortest path for " + consumer.getCanonicalName())
-            shortestPath.each {
-                println("  " + getRelationshipName(it))
+                println(" Shortest path for " + consumer.getCanonicalName())
+                shortestPath.each {
+                    println("  " + getRelationshipName(it))
+                }
+
+                res.put(consumer, shortestPath)
+
+                handleActiveConsumer(consumer)
             }
-
-            res.put(consumer, shortestPath)
         }
     }
 
     return res
+}
+
+def findActiveCircuits(relationships, elements, consumers, connectionAllowed) {
+    def iteration = 0
+    def prevResult = null
+    def currResult = findActiveCircuitsImpl(relationships, elements, consumers, connectionAllowed, iteration)
+
+    while (currResult != prevResult) {
+        prevResult = currResult
+        iteration += 1
+        currResult = findActiveCircuitsImpl(relationships, elements, consumers, connectionAllowed, iteration)
+    }
+
+    return currResult
 }
 
 def calculateAmperage(activeCircuits) {
@@ -344,7 +375,7 @@ def calculateWireDistance(activeCircuits) {
         activeCircuit.each{ relationship ->
             relProps = relationship.getProperties()
 
-            def distance = relProps.getOrDefault("distance", "0.5").toFloat()
+            def distance = relProps.getOrDefault("distance", "0.1").toFloat()
             if (relationship.getTags().contains("internal_connection")) {
                 distance = 0
             }
@@ -443,17 +474,27 @@ power_sources = elements.findAll {element -> (element.getTags().contains("power_
 
 
 def allowActiveSwitchOnly = { relationship ->
-    if (!relationship.getTags().contains("switch_ctr")) {
+    def switchableTags = ["sensor_ctr", "switch_ctr", "relay_power_switch", "starter_switch"]
+
+    hasSwitchableTag = switchableTags.any { switchableTag ->
+        relationship.getTags().contains(switchableTag)
+    }
+
+    if (!hasSwitchableTag) {
+        // Non switchable relationship
+        println("   Non switchable relationship " + getRelationshipName(relationship))
         return true
     }
 
     rel_switch_state = relationship.getProperties().getOrDefault("switch_state", "0")
     active_switch_state = relationship.getSource().getParent().getProperties().getOrDefault("active_switch_state", "0")
 
-    if (active_switch_state == rel_switch_state) {
+    if (rel_switch_state.contains(active_switch_state)) { // rel_switch_state may be in form "1,2"
+        println("   Switchable relationship with proper states[" + active_switch_state + ", " + rel_switch_state + "] " + getRelationshipName(relationship))
         return true
     }
 
+    println("   Skip non-active relationship " + getRelationshipName(relationship))
     return false
 }
 

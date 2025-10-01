@@ -1,4 +1,4 @@
-tags "relay5"
+tags "relay5,relay"
 _30 = pin "30" {
     tags "relay_pin,relay_30"
 }

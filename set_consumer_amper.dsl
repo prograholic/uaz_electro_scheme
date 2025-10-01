@@ -1,6 +1,6 @@
 !element es.starter.eng {
     properties {
-        amper 30
+        amper 150
     }
 }
 !element es.starter.st_relay {
