@@ -32,7 +32,7 @@
         active_switch_state 2
     }
 }
-!element es.left_steering_column_switch {
+!element es.left_steering_column_light_switch {
     properties {
         # при light_switch == 0
         #   0 - 

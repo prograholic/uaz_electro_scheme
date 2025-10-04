@@ -189,7 +189,7 @@ workspace "Name" "Description" {
                     light_fuse = fuse "Предохранитель штатного освещения" {
                         !include fuse.dsl
                     }
-                    ignition_vent_fuse = fuse "Предохранитель зажигания и э-вент охл-я" {
+                    ignition_fan_fuse = fuse "Предохранитель зажигания и э-вент охл-я" {
                         !include fuse.dsl
                     }
 
@@ -199,29 +199,29 @@ workspace "Name" "Description" {
                 }
 
                 group "Вентиляторы" {
-                    coolant_vent_1 = container "Э-вент охл ДВС 1"{
-                        tags "vent"
+                    coolant_fan_1 = container "Э-вент охл ДВС 1"{
+                        tags "fan"
                         plus = plus "+"
                         minus = minus "-"
-                        vent = consumer "vent"
+                        fan = consumer "fan"
 
-                        plus -> vent {
+                        plus -> fan {
                             tags "internal_connection"
                         }
-                        vent -> minus {
+                        fan -> minus {
                             tags "internal_connection"
                         }
                     }
-                    coolant_vent_2 = container "Э-вент охл ДВС 2"{
-                        tags "vent"
+                    coolant_fan_2 = container "Э-вент охл ДВС 2"{
+                        tags "fan"
                         plus = plus "+"
                         minus = minus "-"
-                        vent = consumer "vent"
+                        fan = consumer "fan"
 
-                        plus -> vent {
+                        plus -> fan {
                             tags "internal_connection"
                         }
-                        vent -> minus {
+                        fan -> minus {
                             tags "internal_connection"
                         }
                     }
@@ -242,6 +242,12 @@ workspace "Name" "Description" {
                         front_left_side_light = light "Передний левый габарит" {
                             !include light.dsl
                         }
+                        left_front_turn_signal = light "Левый передний поворотник" {
+                            !include light.dsl
+                        }
+                        left_turn_signal_repeater = light "Левый повторитель поворотника" {
+                            !include light.dsl
+                        }
                     }
                     group "Правая фара" {
                         right_low_beam = light "Правый ближний свет" {
@@ -253,79 +259,214 @@ workspace "Name" "Description" {
                         front_right_side_light = light "Передний правый габарит" {
                             !include light.dsl
                         }
+                        right_front_turn_signal = light "Правый передний поворотник" {
+                            !include light.dsl
+                        }
+                        right_turn_signal_repeater = light "Правый повторитель поворотника" {
+                            !include light.dsl
+                        }
                     }
                 }
             }
 
             group "Кабина" {
+                heater = container "Отопитель салона" {
+                    tags "heater"
+                }
+                interior_fan = container "Вентилятор салона" {
+                    tags "fan"
+                }
+                wipers = container "Дворники" {
+                    tags "wipers"
+                }
+                windshield_washer = container "Омыватель лобового стекла" {
+                    tags "windshield_washer"
+                }
+                transmitter = container "Рация" {
+                    tags "transmitter"
+                }
+                car_radio = container "Магнитола" {
+                    tags "car_radio"
+                }
+                usb_charger = container "USB зарядка" {
+                    tags "usb_charger"
+                }
+
+                group "Дополнительный свет" {
+                    front_head_light = light "Передняя люстра" {
+                        !include light.dsl
+                    }
+                    rear_head_light = light "Задняя люстра" {
+                        !include light.dsl
+                    }
+                    left_head_light = light "Левая боковая люстра" {
+                        !include light.dsl
+                    }
+                    right_head_light = light "Правая боковая люстра" {
+                        !include light.dsl
+                    }
+
+                }
                 group "Блок реле и предохранителей" {
                     #Реле
-                    ignition_relay = relay "Реле зажигания" {
-                        !include relay.dsl
+                    group "Блок реле" {
+                        ignition_relay = relay "Реле зажигания" {
+                            !include relay.dsl
+                        }
+
+                        starter_relay = relay "Реле стартера" {
+                            !include relay5.dsl
+                        }
+
+                        coolant_fan_1_relay = relay "Реле э-вент охл ДВС 1" {
+                            !include relay.dsl
+                        }
+                        coolant_fan_2_relay = relay "Реле э-вент охл ДВС 2" {
+                            !include relay.dsl
+                        }
+                        low_beam_relay = relay "Реле ближнего света" {
+                            !include relay.dsl
+                        }
+                        high_beam_relay = relay "Реле дальнего света" {
+                            !include relay.dsl
+                        }
+                        side_light_relay = relay "Реле габаритов" {
+                            !include relay.dsl
+                        }
+                        turn_signal_relay = relay "Реле поворотников" {
+                            tags "relay950"
+                            plus = pin "+" {
+                                tags "relay_pin,relay_plus"
+                            }
+                            minus = pin "-" {
+                                tags "relay_pin,relay_minus"
+                            }
+                            p = pin "П" {
+                                tags "relay_pin,relay_p"
+                            }
+                            pb = pin "ПБ" {
+                                tags "relay_pin,relay_pb"
+                            }
+                            lb = pin "ЛБ" {
+                                tags "relay_pin,relay_lb"
+                            }
+                            kt = pin "КТ" {
+                                tags "relay_pin,relay_kt"
+                            }
+                            left = pin "Лев" {
+                                tags "relay_pin,relay_left"
+                            }
+                            right = pin "Прав" {
+                                tags "relay_pin,relay_right"
+                            }
+
+                            coil_r = consumer "coil_r" {
+                                properties {
+                                    amper 0.2
+                                    state_when_active 2
+                                }
+                            }
+                            coil_l = consumer "coil_l" {
+                                properties {
+                                    amper 0.2
+                                    state_when_active 1
+                                }
+                            }
+
+                            coil_r -> minus {
+                                tags "internal_connection"
+                            }
+                            coil_l -> minus {
+                                tags "internal_connection"
+                            }
+                            plus -> p {
+                                tags "internal_connection"
+                            }
+                            pb -> coil_r {
+                                tags "internal_connection"
+                            }
+                            lb -> coil_l {
+                                tags "internal_connection"
+                            }
+
+                            plus -> left {
+                                tags "relay_power_switch,internal_connection"
+                                properties {
+                                    switch_state 1
+                                }
+                            }
+                            plus -> right {
+                                tags "relay_power_switch,internal_connection"
+                                properties {
+                                    switch_state 2
+                                }
+                            }
+                            plus -> kt {
+                                tags "relay_power_switch,internal_connection"
+                                properties {
+                                    switch_state "1,2"
+                                }
+                            }
+                        }
                     }
 
-                    starter_relay = relay "Реле стартера" {
-                        !include relay5.dsl
+                    right_turn_signal_splitter = splitter "Подключение правых поворотников"{
+                        pin = pin "pin"
+                    }
+                    left_turn_signal_splitter = splitter "Подключение левых поворотников"{
+                        pin = pin "pin"
                     }
 
-                    coolant_vent_1_relay = relay "Реле э-вент охл ДВС 1" {
-                        !include relay.dsl
-                    }
-                    coolant_vent_2_relay = relay "Реле э-вент охл ДВС 2" {
-                        !include relay.dsl
-                    }
-                    low_beam_relay = relay "Реле ближнего света" {
-                        !include relay.dsl
-                    }
-                    high_beam_relay = relay "Реле дальнего света" {
-                        !include relay.dsl
-                    }
-                    side_light_relay = relay "Реле габаритов" {
-                        !include relay.dsl
-                    }
-
-                    # Предохранители
-                    starter_relay_fuse = fuse "Прд реле стартера." {
-                        !include fuse.dsl
-                    }
-                    coolant_vent_1_fuse = fuse "Прд э-вент охл ДВС 1." {
-                        !include fuse.dsl
-                    }
-                    coolant_vent_2_fuse = fuse "Прд э-вент охл ДВС 2." {
-                        !include fuse.dsl
-                    }
-                    low_beam_relay_fuse = fuse "Прд. реле ближн света" {
-                        !include fuse.dsl
-                    }
-                    high_beam_relay_fuse = fuse "Прд. реле дальн света" {
-                        !include fuse.dsl
-                    }
-                    side_light_relay_fuse = fuse "Прд. реле габаритов" {
-                        !include fuse.dsl
-                    }
-                    left_low_beam_fuse = fuse "Прд. ближн света (лев)" {
-                        !include fuse.dsl
-                    }
-                    right_low_beam_fuse = fuse "Прд. ближн света (прав)" {
-                        !include fuse.dsl
-                    }
-                    left_high_beam_fuse = fuse "Прд. дальн света (лев)" {
-                        !include fuse.dsl
-                    }
-                    right_high_beam_fuse = fuse "Прд. дальн света (прав)" {
-                        !include fuse.dsl
-                    }
-                    side_light_fuse = fuse "Прд. габаритов" {
-                        !include fuse.dsl
+                    group "Блок предохранителей" {
+                        starter_relay_fuse = fuse "Прд реле стартера." {
+                            !include fuse.dsl
+                        }
+                        coolant_fan_1_fuse = fuse "Прд э-вент охл ДВС 1." {
+                            !include fuse.dsl
+                        }
+                        coolant_fan_2_fuse = fuse "Прд э-вент охл ДВС 2." {
+                            !include fuse.dsl
+                        }
+                        low_beam_relay_fuse = fuse "Прд. реле ближн света" {
+                            !include fuse.dsl
+                        }
+                        high_beam_relay_fuse = fuse "Прд. реле дальн света" {
+                            !include fuse.dsl
+                        }
+                        side_light_relay_fuse = fuse "Прд. реле габаритов" {
+                            !include fuse.dsl
+                        }
+                        left_low_beam_fuse = fuse "Прд. ближн света (лев)" {
+                            !include fuse.dsl
+                        }
+                        right_low_beam_fuse = fuse "Прд. ближн света (прав)" {
+                            !include fuse.dsl
+                        }
+                        left_high_beam_fuse = fuse "Прд. дальн света (лев)" {
+                            !include fuse.dsl
+                        }
+                        right_high_beam_fuse = fuse "Прд. дальн света (прав)" {
+                            !include fuse.dsl
+                        }
+                        side_light_fuse = fuse "Прд. габаритов" {
+                            !include fuse.dsl
+                        }
+                        turn_signal_fuse = fuse "Прд. поворотников" {
+                            !include fuse.dsl
+                        }
                     }
                 }
                 group "Блок приборов" {
-                    #internal_lighting = splitter "Система подсветки приборов" {
-                    #    data = pin "pin"
-                    #}
-                    #coolant_control_light = light "Подсветка упр э-вент охл ДВС" {
-                    #    !include light.dsl
-                    #}
+                    internal_lighting = splitter "Система подсветки приборов" {
+                        data = pin "pin"
+                    }
+                    coolant_control_light = light "Подсветка упр э-вент охл ДВС" {
+                        !include light.dsl
+                    }
+
+                    turn_signal_control_light = light "Контрольная лампа поворотников" {
+                        !include light.dsl
+                    }
                 }
                 group "Блок выключателей" {
                     ignition_switch = switch "Выключатель зажигания" {
@@ -388,31 +529,92 @@ workspace "Name" "Description" {
                             }
                         }
                     }
-                }
-                group "Подрулевые переключатели" {
-                    left_steering_column_switch = switch "Левый подрулевой переключатель" {
-                        _56 = pin "56"
-                        _56b = pin "56b"
-                        _56a = pin "56a"
-                        _30 = pin "30"
+                    car_horn_switch = switch "Кнопка гудка" {
+                    }
 
-                        _56 -> _56b {
+                    emergency_light_button = switch "Кнопка аварийной сигнализации" {
+                        pb = pin "ПБ"
+                        p = pin "П"
+                        lb = pin "ЛБ"
+                        pow = pin "пов"
+                        plus = pin "+"
+                        emer = pin "авар"
+
+                        pow -> plus {
                             tags "ctr,switch_ctr,internal_connection"
                             properties {
-                                switch_state "0,1,2"
+                                switch_state 0
                             }
                         }
-                        _56 -> _56a {
+                        emer -> plus {
                             tags "ctr,switch_ctr,internal_connection"
                             properties {
                                 switch_state 1
                             }
                         }
-                        _30 -> _56a {
+                        p -> pb {
                             tags "ctr,switch_ctr,internal_connection"
                             properties {
-                                switch_state 2
+                                switch_state 1
                             }
+                        }
+                        p -> lb {
+                            tags "ctr,switch_ctr,internal_connection"
+                            properties {
+                                switch_state 1
+                            }
+                        }
+                    }
+                }
+                group "Подрулевые переключатели" {
+                    group "левый подрулевой переключатель" {
+                        left_steering_column_light_switch = switch "Левый подрулевой переключатель освещения" {
+                            _56 = pin "56"
+                            _56b = pin "56b"
+                            _56a = pin "56a"
+                            _30 = pin "30"
+
+                            _56 -> _56b {
+                                tags "ctr,switch_ctr,internal_connection"
+                                properties {
+                                    switch_state "0,1,2"
+                                }
+                            }
+                            _56 -> _56a {
+                                tags "ctr,switch_ctr,internal_connection"
+                                properties {
+                                    switch_state 1
+                                }
+                            }
+                            _30 -> _56a {
+                                tags "ctr,switch_ctr,internal_connection"
+                                properties {
+                                    switch_state 2
+                                }
+                            }
+                        }
+                        left_steering_column_turn_signal_switch = switch "левый подрулевой переключатель поворотников" {
+                            _49aR = pin "49aR"
+                            _49a = pin "49a"
+                            _49aL = pin "49aL"
+
+                            _49a -> _49aR {
+                                tags "ctr,switch_ctr,internal_connection"
+                                properties {
+                                    switch_state 1
+                                }
+                            }
+
+                            _49a -> _49aL {
+                                tags "ctr,switch_ctr,internal_connection"
+                                properties {
+                                    switch_state 2
+                                }
+                            }
+                        }
+                    }
+                    group "правый подрулевой переключатель" {
+                        right_steering_column_turn_signal_switch = switch "правый подрулевой переключатель поворотников" {
                         }
                     }
                 }
@@ -430,14 +632,29 @@ workspace "Name" "Description" {
                     rear_left_side_light = light "Задний левый габарит" {
                         !include light.dsl
                     }
+                    left_rear_turn_signal = light "Левый задний поворотник" {
+                        !include light.dsl
+                    }
+                    left_stop_signal = light "Левый стоп-сигнал" {
+                        !include light.dsl
+                    }
                 }
                 group "Правая задняя фара" {
                     rear_right_side_light = light "Задний правый габарит" {
                         !include light.dsl
                     }
+                    right_rear_turn_signal = light "Правый задний поворотник" {
+                        !include light.dsl
+                    }
+                    right_stop_signal = light "Правый стоп-сигнал" {
+                        !include light.dsl
+                    }
                 }
 
                 number_plate_light = light "Подсветка номера" {
+                    !include light.dsl
+                }
+                reverse_lamp = light "Сигнал заднего хода" {
                     !include light.dsl
                 }
             }
@@ -485,7 +702,7 @@ workspace "Name" "Description" {
     
             starter.plus -> ignition_relay_fuse.in
             starter.plus -> light_fuse.in
-            starter.plus -> ignition_vent_fuse.in
+            starter.plus -> ignition_fan_fuse.in
             #starter.plus -> fuse_90.in
 
             ignition_relay_fuse.out -> ignition_relay._30
@@ -555,35 +772,35 @@ workspace "Name" "Description" {
 
             # Электровентиляторы охлаждения ДВС
 
-            coolant_vent_1.minus -> m.ground {
+            coolant_fan_1.minus -> m.ground {
                 properties {
                     distance 0.2
                 }
             }
-            coolant_vent_1_fuse.out -> coolant_vent_1_relay._30 {
+            coolant_fan_1_fuse.out -> coolant_fan_1_relay._30 {
                 properties {
                     distance 0.2
                 }
             }
-            coolant_vent_1_relay._87 -> coolant_vent_1.plus
-            control_line_from_ignition.data -> coolant_vent_1_relay._85
-            ignition_vent_fuse.out -> coolant_vent_1_fuse.in
-            coolant_vent_1_relay._86 -> coolant_control_switch.I {
+            coolant_fan_1_relay._87 -> coolant_fan_1.plus
+            control_line_from_ignition.data -> coolant_fan_1_relay._85
+            ignition_fan_fuse.out -> coolant_fan_1_fuse.in
+            coolant_fan_1_relay._86 -> coolant_control_switch.I {
                 properties {
                     distance 0.5
                 }
             }
 
-            coolant_vent_2.minus -> m.ground {
+            coolant_fan_2.minus -> m.ground {
                 properties {
                     distance 0.2
                 }
             }
-            coolant_vent_2_relay._87 -> coolant_vent_2.plus
-            ignition_vent_fuse.out -> coolant_vent_2_fuse.in
-            control_line_from_ignition.data -> coolant_vent_2_relay._85
-            coolant_vent_2_fuse.out -> coolant_vent_2_relay._30
-            coolant_vent_2_relay._86 -> coolant_control_switch.I
+            coolant_fan_2_relay._87 -> coolant_fan_2.plus
+            ignition_fan_fuse.out -> coolant_fan_2_fuse.in
+            control_line_from_ignition.data -> coolant_fan_2_relay._85
+            coolant_fan_2_fuse.out -> coolant_fan_2_relay._30
+            coolant_fan_2_relay._86 -> coolant_control_switch.I
 
             coolant_sensor.out -> m.ground {
                 properties {
@@ -602,17 +819,15 @@ workspace "Name" "Description" {
             #coolant_control_switch.D -> coolant_control_light.minus
 
             # Ближний/дальний свет
-            control_line_from_ignition.data -> left_steering_column_switch._30
-            left_steering_column_switch._56a -> high_beam_relay._85
-            left_steering_column_switch._56b -> low_beam_relay._85
+            control_line_from_ignition.data -> left_steering_column_light_switch._30
+            left_steering_column_light_switch._56a -> high_beam_relay._85
+            left_steering_column_light_switch._56b -> low_beam_relay._85
 
             control_line_from_ignition.data -> light_switch.x
             light_fuse.out -> light_switch._30
             //light_switch._58 -> подсветка приборов
-            light_switch._56 -> left_steering_column_switch._56
+            light_switch._56 -> left_steering_column_light_switch._56
             light_switch._58 -> side_light_relay._85
-
-            
 
             left_low_beam.minus -> m.ground
             right_low_beam.minus -> m.ground
@@ -641,6 +856,14 @@ workspace "Name" "Description" {
             rear_right_side_light.minus -> m.ground
             number_plate_light.minus -> m.ground
 
+            left_front_turn_signal.minus -> m.ground
+            left_turn_signal_repeater.minus -> m.ground
+            left_rear_turn_signal.minus -> m.ground
+
+            right_front_turn_signal.minus -> m.ground
+            right_turn_signal_repeater.minus -> m.ground
+            right_rear_turn_signal.minus -> m.ground
+
 
             side_light_relay._86 -> m.ground
             side_light_relay._87 -> side_light_fuse.in
@@ -651,6 +874,36 @@ workspace "Name" "Description" {
             side_light_fuse.out -> number_plate_light.plus
             side_light_relay_fuse.out -> side_light_relay._30
             light_fuse.out -> side_light_relay_fuse.in
+
+            #turn_signal_fuse.out -> left_front_turn_signal.
+
+            # Поворотники и аварийка
+            turn_signal_relay.p -> left_steering_column_turn_signal_switch._49a
+            turn_signal_relay.p -> emergency_light_button.p
+            turn_signal_relay.minus -> m.ground
+            left_steering_column_turn_signal_switch._49aR -> turn_signal_relay.pb
+            emergency_light_button.pb -> turn_signal_relay.pb
+            left_steering_column_turn_signal_switch._49aL -> turn_signal_relay.lb
+            emergency_light_button.lb -> turn_signal_relay.lb
+            turn_signal_relay.kt -> turn_signal_control_light.plus
+            turn_signal_control_light.minus -> m.ground
+            turn_signal_relay.right -> right_turn_signal_splitter.pin
+            turn_signal_relay.left -> left_turn_signal_splitter.pin
+
+            emergency_light_button.plus -> turn_signal_relay.plus
+
+            # TODO тут питание должно приходить только при включенном зажигании - значит нужно поставить реле
+            light_fuse.out -> emergency_light_button.pow
+            light_fuse.out -> emergency_light_button.emer
+
+
+            right_turn_signal_splitter.pin -> right_front_turn_signal.plus
+            right_turn_signal_splitter.pin -> right_turn_signal_repeater.plus
+            right_turn_signal_splitter.pin -> right_rear_turn_signal.plus
+
+            left_turn_signal_splitter.pin -> left_front_turn_signal.plus
+            left_turn_signal_splitter.pin -> left_turn_signal_repeater.plus
+            left_turn_signal_splitter.pin -> left_rear_turn_signal.plus
         }
 
         // Set amper
@@ -827,7 +1080,7 @@ workspace "Name" "Description" {
                 metadata false
                 fontSize 1
             }
-            element "vent" {
+            element "fan" {
                 shape "Hexagon"
                 width 150
                 fontSize 1

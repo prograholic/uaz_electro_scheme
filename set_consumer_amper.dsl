@@ -23,12 +23,12 @@
         amper 30
     }
 }
-!element es.coolant_vent_1.vent {
+!element es.coolant_fan_1.fan {
     properties {
         amper 20
     }
 }
-!element es.coolant_vent_2.vent {
+!element es.coolant_fan_2.fan {
     properties {
         amper 20
     }

@@ -346,6 +346,31 @@ def findActiveCircuits(relationships, elements, consumers, connectionAllowed) {
     return currResult
 }
 
+def checkFuseLocations(activeCircuits) {
+    println('CHECK FUSE LOCATIONS')
+    activeCircuits.each {activeCircuit ->
+        // TODO
+        def gotFuse = false
+        activeCircuit.each {relationship ->
+            dest = relationship.getDestination()
+            if (getElementType(dest) == ElementType.Fuse) {
+                gotFuse = true
+            }
+            if (getElementType(dest) == ElementType.Consumer) {
+                if (!gotFuse) {
+                    throw new IllegalStateException('Got consumer before fuse in relationship ' + getRelationshipName(relationship))
+                }
+            }
+            // relay should be after fuse
+            if (relationship.getTags().contains('relay_power_switch')) {
+                if (!gotFuse) {
+                    throw new IllegalStateException('Got relay before fuse in relationship ' + getRelationshipName(relationship))
+                }
+            }
+        }
+    }
+}
+
 def calculateAmperage(activeCircuits) {
     println("CALCULATE AMPERAGE")
     activeCircuits.each { consumer, activeCircuit ->
@@ -499,15 +524,16 @@ def allowActiveSwitchOnly = { relationship ->
 }
 
 
-//try {
+try {
     validateOfflineGraph(relationships, elements, pins)
     activeCircuits = findActiveCircuits(relationships, elements, consumers, allowActiveSwitchOnly)
+    checkFuseLocations(activeCircuits)
     calculateAmperage(activeCircuits)
     calculateWireDistance(activeCircuits)
 
     validateOnlineGraph(activeCircuits)
-//} catch (Exception e) {
-//    println(e)
-//}
+} catch (Exception e) {
+    println(e)
+}
 
 

@@ -1,15 +1,25 @@
 // Create group views
 groups = new HashMap<String, ArrayList<com.structurizr.model.Container>>()
+groupDelimiter = workspace.model.getProperties().getAt("structurizr.groupSeparator")
+
 workspace.model.getSoftwareSystems().each { ss ->
     //println("Software system: " + ss.getName())
     ss.getContainers().each { container ->
-        groupName = container.getGroup()
-        if (groupName != null) {
-            if (!groups.containsKey(groupName)) {
-                groups.put(groupName, new ArrayList<com.structurizr.model.Container>())
-            }
+        fullGroupName = container.getGroup()
+        if (fullGroupName != null) {
+            relativeGroupName = ""
+            fullGroupName.split(groupDelimiter).each { subGroupName ->
+                if (relativeGroupName.isEmpty()) {
+                    relativeGroupName = subGroupName
+                } else {
+                    relativeGroupName = relativeGroupName + groupDelimiter + subGroupName
+                }
+                if (!groups.containsKey(relativeGroupName)) {
+                    groups.put(relativeGroupName, new ArrayList<com.structurizr.model.Container>())
+                }
 
-            groups.get(groupName).add(container)
+                groups.get(relativeGroupName).add(container)
+            }
         }
     }
 }
