@@ -282,8 +282,9 @@ def findShortestPath(start, finish, relationships, connectionAllowed, totalEleme
 def handleActiveConsumer(consumer) {
     println ("   handle active consumer: " + consumer.getCanonicalName())
     if (getElementType(consumer.getParent()) == ElementType.Relay) {
-        println("    set active state `1` for relay " + consumer.getCanonicalName())
-        consumer.getParent().addProperty("active_switch_state", "1")
+        activeState = consumer.getProperties().getOrDefault("state_when_active", "1")
+        println("    set active state `" + activeState + "` for relay " + consumer.getCanonicalName())
+        consumer.getParent().addProperty("active_switch_state", activeState)
     }
 
     if (getElementType(consumer.getParent()) == ElementType.Starter) {

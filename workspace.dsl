@@ -10,52 +10,11 @@ workspace "Name" "Description" {
         properties {
             "structurizr.groupSeparator" "/"
             "default_voltage" "12"
-
-
         }
 
         !impliedRelationships true
 
-        archetypes {
-            relay = container {
-                tags "relay"
-            }
-            fuse = container {
-                tags "fuse"
-            }
-            switch = container {
-                tags "switch"
-            }
-            light = container {
-                tags "light"
-            }
-            sensor = container {
-                tags "sensor"
-            }
-            splitter = container {
-                tags "splitter"
-            }
-
-            pin = component {
-                tags "pin"
-            }
-            plus = pin {
-                tags "plus"
-            }
-            minus = pin {
-                tags "minus"
-            }
-            consumer = component {
-                tags "consumer"
-            }
-            power_source = component {
-                tags "power_source"
-            }
-
-            ground = pin {
-                tags "ground"
-            }
-        }
+        !include "archetypes.dsl"
 
         es = softwareSystem "Электрическая система УАЗ" {
             tags "electric_system"
@@ -66,84 +25,18 @@ workspace "Name" "Description" {
 
             power_group = group "Подкапотное пространство" {
                 ground_switch = switch "Размыкатель массы" {
-                    !include switch.dsl
+                    !include "elements/switch.dsl"
                 }
                 akb = container "Аккумулятор" {
-                    tags "akb"
-                    power_source = power_source "akb"
-                    plus = plus "+"
-                    minus = minus "-"
-
-                    power_source -> plus {
-                        tags "internal_connection"
-                    }
-                    minus -> power_source {
-                        tags "internal_connection"
-                    }
+                    !include "elements/akb.dsl"
                 }
 
                 starter = container "Стартер" {
-                    tags "starter"
-                    plus = plus "+"
-                    
-                    eng = consumer "двигатель"
-
-                    st = pin "Втяг"
-
-                    g = component "ground" {
-                        tags "ground"
-                    }
-
-                    st_relay = consumer "Втяг реле"
-
-                    plus -> eng {
-                        tags "internal_connection,starter_switch"
-                        properties {
-                            switch_state 1
-                        }
-                    }
-                    eng -> g {
-                        tags "internal_connection"
-
-                    }
-                    
-                    g -> m.ground {
-                        tags "internal_connection"
-                    }
-                    st -> st_relay {
-                        tags "internal_connection"
-                    }
-                    st_relay -> g {
-                        tags "internal_connection"
-                    }
+                    !include "elements/starter.dsl"
                 }
 
                 generator = container "Генератор" {
-                    tags "generator"
-                    plus = plus "+"
-                    minus = minus "-"
-                    power_source = power_source "gen"
-                    g = ground "масса"
-
-                    v = component "Возб" {
-                        tags "pin,consumer"
-                    }
-
-                    v -> g {
-                        tags "internal_connection"
-                    }
-                    g -> m.ground {
-                        tags "internal_connection"
-                    }
-                    power_source -> plus {
-                        tags "relay_power_switch,internal_connection"
-                        properties {
-                            switch_state 1
-                        }
-                    }
-                    minus -> power_source {
-                        tags "internal_connection"
-                    }
+                    !include "elements/generator.dsl"
                 }
 
                 ignition = splitter "Система зажигания" {
@@ -165,105 +58,72 @@ workspace "Name" "Description" {
                 }
 
                 group "Лебедка" {
-                    winch = container "Лебедка" {
-                        tags "winch"
-                        plus = plus "+"
-                        minus = minus "-"
-                        winch = consumer "winch"
-                    }
-                    winch_relay = relay "winch_relay"{
-                        !include relay.dsl
-                    }
-                    winch_switch = switch "winch_switch" {
-                        !include switch.dsl
-                    }
+                    !include "elements/winch.dsl"
                 }
-
-
 
                 group "Блок силовых предохранителей" {
                     # Сюда преды на 60-60-40-90
                     ignition_relay_fuse = fuse "Прд реле зажигания" {
-                        !include fuse.dsl
+                        !include "elements/fuse.dsl"
                     }
                     light_fuse = fuse "Предохранитель освещения" {
-                        !include fuse.dsl
+                        !include "elements/fuse.dsl"
                     }
                     ignition_fan_fuse = fuse "Предохранитель зажигания и э-вент охл-я" {
-                        !include fuse.dsl
+                        !include "elements/fuse.dsl"
                     }
 
                     #fuse_90 = fuse "Предохранитель" {
-                    #    !include fuse.dsl
+                    #    !include "elements/fuse.dsl"
                     #}
                 }
 
                 group "Вентиляторы" {
-                    coolant_fan_1 = container "Э-вент охл ДВС 1"{
-                        tags "fan"
-                        plus = plus "+"
-                        minus = minus "-"
-                        fan = consumer "fan"
-
-                        plus -> fan {
-                            tags "internal_connection"
-                        }
-                        fan -> minus {
-                            tags "internal_connection"
-                        }
+                    coolant_fan_1 = fan "Э-вент охл ДВС 1"{
+                        !include "elements/fan.dsl"
                     }
-                    coolant_fan_2 = container "Э-вент охл ДВС 2"{
-                        tags "fan"
-                        plus = plus "+"
-                        minus = minus "-"
-                        fan = consumer "fan"
-
-                        plus -> fan {
-                            tags "internal_connection"
-                        }
-                        fan -> minus {
-                            tags "internal_connection"
-                        }
+                    coolant_fan_2 = fan "Э-вент охл ДВС 2"{
+                        !include "elements/fan.dsl"
                     }
                 }
 
                 coolant_sensor = sensor "Датчик вкл э-вент охл ДВС" {
-                    !include sensor.dsl
+                    !include "elements/sensor.dsl"
                 }
 
                 group "Передний блок фар" {
                     group "Левая фара" {
                         left_low_beam = light "Левый ближний свет" {
-                            !include light.dsl
+                            !include "elements/light.dsl"
                         }
                         left_high_beam = light "Левый дальний свет" {
-                            !include light.dsl
+                            !include "elements/light.dsl"
                         }
                         front_left_side_light = light "Передний левый габарит" {
-                            !include light.dsl
+                            !include "elements/light.dsl"
                         }
                         left_front_turn_signal = light "Левый передний поворотник" {
-                            !include light.dsl
+                            !include "elements/light.dsl"
                         }
                         left_turn_signal_repeater = light "Левый повторитель поворотника" {
-                            !include light.dsl
+                            !include "elements/light.dsl"
                         }
                     }
                     group "Правая фара" {
                         right_low_beam = light "Правый ближний свет" {
-                            !include light.dsl
+                            !include "elements/light.dsl"
                         }
                         right_high_beam = light "Правый дальний свет" {
-                            !include light.dsl
+                            !include "elements/light.dsl"
                         }
                         front_right_side_light = light "Передний правый габарит" {
-                            !include light.dsl
+                            !include "elements/light.dsl"
                         }
                         right_front_turn_signal = light "Правый передний поворотник" {
-                            !include light.dsl
+                            !include "elements/light.dsl"
                         }
                         right_turn_signal_repeater = light "Правый повторитель поворотника" {
-                            !include light.dsl
+                            !include "elements/light.dsl"
                         }
                     }
                 }
@@ -292,24 +152,24 @@ workspace "Name" "Description" {
                     tags "usb_charger"
                 }
                 brake_pressure_sensor = sensor "Датчик нажатия педали тормоза" {
-                    !include sensor.dsl
+                    !include "elements/sensor.dsl"
                 }
                 reverse_lamp_sensor = sensor "Датчик движения заднего хода" {
-                    !include sensor.dsl
+                    !include "elements/sensor.dsl"
                 }
 
                 group "Дополнительный свет" {
                     front_head_light = light "Передняя люстра" {
-                        !include light.dsl
+                        !include "elements/light.dsl"
                     }
                     rear_head_light = light "Задняя люстра" {
-                        !include light.dsl
+                        !include "elements/light.dsl"
                     }
                     left_head_light = light "Левая боковая люстра" {
-                        !include light.dsl
+                        !include "elements/light.dsl"
                     }
                     right_head_light = light "Правая боковая люстра" {
-                        !include light.dsl
+                        !include "elements/light.dsl"
                     }
 
                 }
@@ -317,115 +177,41 @@ workspace "Name" "Description" {
                     #Реле
                     group "Блок реле" {
                         ignition_relay = relay "Реле зажигания" {
-                            !include relay.dsl
+                            !include "elements/relay.dsl"
                         }
-
                         starter_relay = relay "Реле стартера" {
-                            !include relay5.dsl
+                            !include "elements/relay5.dsl"
                         }
-
                         coolant_fan_1_relay = relay "Реле э-вент охл ДВС 1" {
-                            !include relay.dsl
+                            !include "elements/relay.dsl"
                         }
                         coolant_fan_2_relay = relay "Реле э-вент охл ДВС 2" {
-                            !include relay.dsl
+                            !include "elements/relay.dsl"
                         }
                         low_beam_relay = relay "Реле ближнего света" {
-                            !include relay.dsl
+                            !include "elements/relay.dsl"
                         }
                         high_beam_relay = relay "Реле дальнего света" {
-                            !include relay.dsl
+                            !include "elements/relay.dsl"
                         }
                         side_light_relay = relay "Реле габаритов" {
-                            !include relay.dsl
+                            !include "elements/relay.dsl"
                         }
                         turn_signal_relay = relay "Реле поворотников" {
-                            tags "relay950"
-                            plus = pin "+" {
-                                tags "relay_pin,relay_plus"
-                            }
-                            minus = pin "-" {
-                                tags "relay_pin,relay_minus"
-                            }
-                            p = pin "П" {
-                                tags "relay_pin,relay_p"
-                            }
-                            pb = pin "ПБ" {
-                                tags "relay_pin,relay_pb"
-                            }
-                            lb = pin "ЛБ" {
-                                tags "relay_pin,relay_lb"
-                            }
-                            kt = pin "КТ" {
-                                tags "relay_pin,relay_kt"
-                            }
-                            left = pin "Лев" {
-                                tags "relay_pin,relay_left"
-                            }
-                            right = pin "Прав" {
-                                tags "relay_pin,relay_right"
-                            }
-
-                            coil_r = consumer "coil_r" {
-                                properties {
-                                    amper 0.2
-                                    state_when_active 2
-                                }
-                            }
-                            coil_l = consumer "coil_l" {
-                                properties {
-                                    amper 0.2
-                                    state_when_active 1
-                                }
-                            }
-
-                            coil_r -> minus {
-                                tags "internal_connection"
-                            }
-                            coil_l -> minus {
-                                tags "internal_connection"
-                            }
-                            plus -> p {
-                                tags "internal_connection"
-                            }
-                            pb -> coil_r {
-                                tags "internal_connection"
-                            }
-                            lb -> coil_l {
-                                tags "internal_connection"
-                            }
-
-                            plus -> left {
-                                tags "relay_power_switch,internal_connection"
-                                properties {
-                                    switch_state 1
-                                }
-                            }
-                            plus -> right {
-                                tags "relay_power_switch,internal_connection"
-                                properties {
-                                    switch_state 2
-                                }
-                            }
-                            plus -> kt {
-                                tags "relay_power_switch,internal_connection"
-                                properties {
-                                    switch_state "1,2"
-                                }
-                            }
+                            !include "elements/uaz/3151/turn_signal_relay_950.dsl"
                         }
 
                         front_head_light_relay = relay "Реле передней люстры" {
-                            !include relay.dsl
+                            !include "elements/relay.dsl"
                         }
                         rear_head_light_relay = relay "Реле задней люстры" {
-                            !include relay.dsl
+                            !include "elements/relay.dsl"
                         }
                         left_head_light_relay = relay "Реле левой боковой люстры" {
-                            !include relay.dsl
+                            !include "elements/relay.dsl"
                         }
                         right_head_light_relay = relay "Реле правой боковой люстры" {
-                            !include relay.dsl
+                            !include "elements/relay.dsl"
                         }
                     }
 
@@ -438,52 +224,52 @@ workspace "Name" "Description" {
 
                     group "Блок предохранителей" {
                         starter_relay_fuse = fuse "Прд реле стартера." {
-                            !include fuse.dsl
+                            !include "elements/fuse.dsl"
                         }
                         coolant_fan_1_fuse = fuse "Прд э-вент охл ДВС 1." {
-                            !include fuse.dsl
+                            !include "elements/fuse.dsl"
                         }
                         coolant_fan_2_fuse = fuse "Прд э-вент охл ДВС 2." {
-                            !include fuse.dsl
+                            !include "elements/fuse.dsl"
                         }
                         low_beam_relay_fuse = fuse "Прд. реле ближн света" {
-                            !include fuse.dsl
+                            !include "elements/fuse.dsl"
                         }
                         high_beam_relay_fuse = fuse "Прд. реле дальн света" {
-                            !include fuse.dsl
+                            !include "elements/fuse.dsl"
                         }
                         side_light_relay_fuse = fuse "Прд. реле габаритов" {
-                            !include fuse.dsl
+                            !include "elements/fuse.dsl"
                         }
                         left_low_beam_fuse = fuse "Прд. ближн света (лев)" {
-                            !include fuse.dsl
+                            !include "elements/fuse.dsl"
                         }
                         right_low_beam_fuse = fuse "Прд. ближн света (прав)" {
-                            !include fuse.dsl
+                            !include "elements/fuse.dsl"
                         }
                         left_high_beam_fuse = fuse "Прд. дальн света (лев)" {
-                            !include fuse.dsl
+                            !include "elements/fuse.dsl"
                         }
                         right_high_beam_fuse = fuse "Прд. дальн света (прав)" {
-                            !include fuse.dsl
+                            !include "elements/fuse.dsl"
                         }
                         side_light_fuse = fuse "Прд. габаритов" {
-                            !include fuse.dsl
+                            !include "elements/fuse.dsl"
                         }
                         turn_signal_fuse = fuse "Прд. поворотников" {
-                            !include fuse.dsl
+                            !include "elements/fuse.dsl"
                         }
                         front_head_light_fuse = fuse "Прд. передней люстры" {
-                            !include fuse.dsl
+                            !include "elements/fuse.dsl"
                         }
                         rear_head_light_fuse = fuse "Прд. задней люстры" {
-                            !include fuse.dsl
+                            !include "elements/fuse.dsl"
                         }
                         left_head_light_fuse = fuse "Прд. левой боковой люстры" {
-                            !include fuse.dsl
+                            !include "elements/fuse.dsl"
                         }
                         right_head_light_fuse = fuse "Прд. правой боковой люстры" {
-                            !include fuse.dsl
+                            !include "elements/fuse.dsl"
                         }
                     }
                 }
@@ -492,169 +278,53 @@ workspace "Name" "Description" {
                         data = pin "pin"
                     }
                     coolant_control_light = light "Подсветка упр э-вент охл ДВС" {
-                        !include light.dsl
+                        !include "elements/light.dsl"
                     }
 
                     turn_signal_control_light = light "Контрольная лампа поворотников" {
-                        !include light.dsl
+                        !include "elements/light.dsl"
                     }
                 }
                 group "Блок выключателей" {
                     ignition_switch = switch "Выключатель зажигания" {
-                        !include switch.dsl
+                        !include "elements/switch.dsl"
                     }
                     start_button = switch "Кнопка Старт" {
-                        !include switch.dsl
+                        !include "elements/switch.dsl"
                     }
                     coolant_control_switch = switch "Переключатель упр э-вент охл ДВС" {
-                        D = pin "D"
-                        I = pin "I"
-                        U = pin "U"
-                        #V = pin "V"
-                        #L = pin "L"
-                        #H = pin "H"
-
-                        I -> D {
-                            tags "ctr,switch_ctr,internal_connection"
-                            properties {
-                                switch_state 1
-                            }
-                        }
-                        I -> U {
-                            tags "ctr,switch_ctr,internal_connection"
-                            properties {
-                                switch_state 2
-                            }
-                        }
-
-                        #V -> L {
-                        #    tags "ctr,switch_ctr,internal_connection"
-                        #    properties {
-                        #        switch_state 1
-                        #    }
-                        #}
-
-                        #L -> H {
-                        #    tags "ctr,switch_ctr,internal_connection"
-                        #    properties {
-                        #        switch_state 2
-                        #    }
-                        #}
+                        !include "elements/switch_6pin_3states.dsl"
                     }
                     light_switch = switch "Выключатель габаритов и ближнего света" {
-                        _30 = pin "30"
-                        _58 = pin "58"
-                        x = pin "X"
-                        _56 = pin "56"
-
-                        _30 -> _58 {
-                            tags "ctr,switch_ctr,internal_connection"
-                            properties {
-                                switch_state "1,2"
-                            }
-                        }
-                        x -> _56 {
-                            tags "ctr,switch_ctr,internal_connection"
-                            properties {
-                                switch_state 2
-                            }
-                        }
+                        !include "elements/uaz/3151/light_switch.dsl"
                     }
                     car_horn_switch = switch "Кнопка гудка" {
                     }
 
                     emergency_light_button = switch "Кнопка аварийной сигнализации" {
-                        pb = pin "ПБ"
-                        p = pin "П"
-                        lb = pin "ЛБ"
-                        pow = pin "пов"
-                        plus = pin "+"
-                        emer = pin "авар"
-
-                        pow -> plus {
-                            tags "ctr,switch_ctr,internal_connection"
-                            properties {
-                                switch_state 0
-                            }
-                        }
-                        emer -> plus {
-                            tags "ctr,switch_ctr,internal_connection"
-                            properties {
-                                switch_state 1
-                            }
-                        }
-                        p -> pb {
-                            tags "ctr,switch_ctr,internal_connection"
-                            properties {
-                                switch_state 1
-                            }
-                        }
-                        p -> lb {
-                            tags "ctr,switch_ctr,internal_connection"
-                            properties {
-                                switch_state 1
-                            }
-                        }
+                        !include "elements/uaz/3151/emergency_light_button.dsl"
                     }
 
                     front_head_light_switch = switch "Выключатель передней люстры" {
-                        !include switch.dsl
+                        !include "elements/switch.dsl"
                     }
                     rear_head_light_switch = switch "Выключатель задней люстры" {
-                        !include switch.dsl
+                        !include "elements/switch.dsl"
                     }
                     left_head_light_switch = switch "Выключатель левой боковой люстры" {
-                        !include switch.dsl
+                        !include "elements/switch.dsl"
                     }
                     right_head_light_switch = switch "Выключатель правой боковой люстры" {
-                        !include switch.dsl
+                        !include "elements/switch.dsl"
                     }
                 }
                 group "Подрулевые переключатели" {
                     group "левый подрулевой переключатель" {
                         left_steering_column_light_switch = switch "Левый подрулевой переключатель освещения" {
-                            _56 = pin "56"
-                            _56b = pin "56b"
-                            _56a = pin "56a"
-                            _30 = pin "30"
-
-                            _56 -> _56b {
-                                tags "ctr,switch_ctr,internal_connection"
-                                properties {
-                                    switch_state "0,1,2"
-                                }
-                            }
-                            _56 -> _56a {
-                                tags "ctr,switch_ctr,internal_connection"
-                                properties {
-                                    switch_state 1
-                                }
-                            }
-                            _30 -> _56a {
-                                tags "ctr,switch_ctr,internal_connection"
-                                properties {
-                                    switch_state 2
-                                }
-                            }
+                            !include "elements/uaz/3151/left_steering_column_light_switch.dsl"
                         }
                         left_steering_column_turn_signal_switch = switch "левый подрулевой переключатель поворотников" {
-                            _49aR = pin "49aR"
-                            _49a = pin "49a"
-                            _49aL = pin "49aL"
-
-                            _49a -> _49aR {
-                                tags "ctr,switch_ctr,internal_connection"
-                                properties {
-                                    switch_state 1
-                                }
-                            }
-
-                            _49a -> _49aL {
-                                tags "ctr,switch_ctr,internal_connection"
-                                properties {
-                                    switch_state 2
-                                }
-                            }
+                            !include "elements/uaz/3151/left_steering_column_turn_signal_switch.dsl"
                         }
                     }
                     group "правый подрулевой переключатель" {
@@ -668,41 +338,41 @@ workspace "Name" "Description" {
                 data = pin "pin"
             }
             control_line_from_ignition_fuse = fuse "Предохранитель потребителей управляющей линии от зажигания" {
-                !include fuse.dsl
+                !include "elements/fuse.dsl"
             }
 
             group "Задний блок фар" {
                 group "Левая задняя фара" {
                     rear_left_side_light = light "Задний левый габарит" {
-                        !include light.dsl
+                        !include "elements/light.dsl"
                     }
                     left_rear_turn_signal = light "Левый задний поворотник" {
-                        !include light.dsl
+                        !include "elements/light.dsl"
                     }
                     left_stop_signal = light "Левый стоп-сигнал" {
-                        !include light.dsl
+                        !include "elements/light.dsl"
                     }
                 }
                 group "Правая задняя фара" {
                     rear_right_side_light = light "Задний правый габарит" {
-                        !include light.dsl
+                        !include "elements/light.dsl"
                     }
                     right_rear_turn_signal = light "Правый задний поворотник" {
-                        !include light.dsl
+                        !include "elements/light.dsl"
                     }
                     right_stop_signal = light "Правый стоп-сигнал" {
-                        !include light.dsl
+                        !include "elements/light.dsl"
                     }
                 }
 
                 number_plate_light = light "Подсветка номера" {
-                    !include light.dsl
+                    !include "elements/light.dsl"
                 }
                 reverse_lamp = light "Лампа заднего хода" {
-                    !include light.dsl
+                    !include "elements/light.dsl"
                 }
                 extra_stop_signal = light "Доп. стоп-сигнал" {
-                    !include light.dsl
+                    !include "elements/light.dsl"
                 }
 
                 s3 = splitter "s3" {
@@ -1013,8 +683,8 @@ workspace "Name" "Description" {
         }
 
         // Set amper
-        !include set_consumer_amper.dsl
-        !include switch_states.dsl
+        !include "set_consumer_amper.dsl"
+        !include "switch_states.dsl"
     }
 
     !script graph_validators.groovy
@@ -1044,225 +714,8 @@ workspace "Name" "Description" {
         !script all_components_view.groovy
 
         styles {
-
-            #######################
-            # Описание соединений #
-            #######################
-
-            relationship "Relationship" {
-                style solid
-                #Direct|Orthogonal|Curved
-                routing Direct
-                opacity 20
-            }
-            relationship "powered" {
-                opacity 100
-                thickness 5
-            }
-            relationship "pwr" {
-                style dashed
-                thickness 3
-            }
-            relationship "ctr" {
-                style dotted
-            }
-            relationship "color_red" {
-                color #ff0000
-            }
-            relationship "color_black" {
-                color #000000
-            }
-            relationship "color_blue" {
-                color #0000ff
-            }
-            relationship "color_green" {
-                color #00b300
-            }
-            relationship "color_brown" {
-                color #977400
-            }
-            relationship "color_yellow" {
-                color #ffff00
-            }
-            relationship "color_white" {
-                color #fdf4d7
-            }
-            relationship "square_100" {
-                thickness 19
-            }
-            relationship "square_75" {
-                thickness 18
-            }
-            relationship "square_50" {
-                thickness 17
-            }
-            relationship "square_35" {
-                thickness 16
-            }
-            relationship "square_25" {
-                thickness 15
-            }
-            relationship "square_16" {
-                thickness 14
-            }
-            relationship "square_6" {
-                thickness 11
-            }
-            relationship "square_4" {
-                thickness 10
-            }
-            relationship "square_2.5" {
-                thickness 9
-            }
-            relationship "square_1.5" {
-                thickness 8
-            }
-            relationship "square_1.5" {
-                thickness 7
-            }
-            relationship "square_0.75" {
-                thickness 6
-            }
-            relationship "square_0.5" {
-                thickness 5
-            }
-
-
-            ######################
-            # Описание элементов #
-            ######################
-            element "Component" {
-                background #808080
-                width 100
-                height 100
-                metadata false
-            }
-            element "pin" {
-                description false
-                shape Box
-                background #0000bb
-            }
-            element "power_source" {
-                description false
-                shape Box
-                background #ff0000
-            }
-            element "consumer" {
-                description false
-                shape Circle
-                background #ffc400
-            }
-            element "ground" {
-                metadata false
-                description false
-                width 100
-                height 100
-                color #000000
-                icon ground.png
-                fontSize 5
-                shape Circle
-                background #ffffff
-            }
-            element "plus" {
-                icon "plus.png"
-                width 100
-                metadata false
-                description false
-                shape Circle
-                background #ffffff
-            }
-            element "minus" {
-                icon "minus.png"
-                width 100
-                metadata false
-                description false
-                shape Circle
-                background #ffffff
-            }
-
-
-            element "Container" {
-                background #0773af
-                metadata false
-                fontSize 1
-            }
-            element "fan" {
-                shape "Hexagon"
-                width 150
-                fontSize 1
-                background #000000
-            }
-            element "akb" {
-                icon akb.jpg
-                background #ffc400
-            }
-            element "starter" {
-                icon "starter.jpg"
-                shape pipe
-                height 150
-                width 300
-                background #808080
-            }
-            element "generator" {
-                shape pipe
-                height 150
-                width 300
-                background #ae03fd
-            }
-            element "winch" {
-                shape pipe
-                height 150
-                fontSize 40
-                background #8b3301
-            }
-            element "switch" {
-                icon "switch.png"
-                height 100
-                width 300
-                background #038803
-            }
-            element "fuse" {
-                background #ff0000
-                height 300
-                width 100
-                icon fuse.jpeg
-            }
-            element "relay" {
-                background #0000bb
-                height 100
-                width 100
-                icon relay.jpg
-            }
-            element "relay5" {
-                background #0000bb
-            }
-            element "light" {
-                metadata false
-                description false
-                width 150
-                icon light.jpg
-                shape Circle
-                background #808080
-            }
-            element "sensor" {
-                metadata false
-                description false
-                width 150
-                height 150
-                background #865515
-            }
-
-
-            element "Element" {
-                color #ffffff
-            }
-            element "Person" {
-                background #05527d
-                shape person
-            }
-            element "Software System" {
-                background #066296
-            }
+            !include "styles/relationships.dsl"
+            !include "styles/elements.dsl"
         }
     }
 }
