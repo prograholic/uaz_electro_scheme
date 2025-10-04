@@ -186,7 +186,7 @@ workspace "Name" "Description" {
                     ignition_relay_fuse = fuse "Прд реле зажигания" {
                         !include fuse.dsl
                     }
-                    light_fuse = fuse "Предохранитель штатного освещения" {
+                    light_fuse = fuse "Предохранитель освещения" {
                         !include fuse.dsl
                     }
                     ignition_fan_fuse = fuse "Предохранитель зажигания и э-вент охл-я" {
@@ -290,6 +290,12 @@ workspace "Name" "Description" {
                 }
                 usb_charger = container "USB зарядка" {
                     tags "usb_charger"
+                }
+                brake_pressure_sensor = sensor "Датчик нажатия педали тормоза" {
+                    !include sensor.dsl
+                }
+                reverse_lamp_sensor = sensor "Датчик движения заднего хода" {
+                    !include sensor.dsl
                 }
 
                 group "Дополнительный свет" {
@@ -408,6 +414,19 @@ workspace "Name" "Description" {
                                 }
                             }
                         }
+
+                        front_head_light_relay = relay "Реле передней люстры" {
+                            !include relay.dsl
+                        }
+                        rear_head_light_relay = relay "Реле задней люстры" {
+                            !include relay.dsl
+                        }
+                        left_head_light_relay = relay "Реле левой боковой люстры" {
+                            !include relay.dsl
+                        }
+                        right_head_light_relay = relay "Реле правой боковой люстры" {
+                            !include relay.dsl
+                        }
                     }
 
                     right_turn_signal_splitter = splitter "Подключение правых поворотников"{
@@ -452,6 +471,18 @@ workspace "Name" "Description" {
                             !include fuse.dsl
                         }
                         turn_signal_fuse = fuse "Прд. поворотников" {
+                            !include fuse.dsl
+                        }
+                        front_head_light_fuse = fuse "Прд. передней люстры" {
+                            !include fuse.dsl
+                        }
+                        rear_head_light_fuse = fuse "Прд. задней люстры" {
+                            !include fuse.dsl
+                        }
+                        left_head_light_fuse = fuse "Прд. левой боковой люстры" {
+                            !include fuse.dsl
+                        }
+                        right_head_light_fuse = fuse "Прд. правой боковой люстры" {
                             !include fuse.dsl
                         }
                     }
@@ -565,6 +596,19 @@ workspace "Name" "Description" {
                             }
                         }
                     }
+
+                    front_head_light_switch = switch "Выключатель передней люстры" {
+                        !include switch.dsl
+                    }
+                    rear_head_light_switch = switch "Выключатель задней люстры" {
+                        !include switch.dsl
+                    }
+                    left_head_light_switch = switch "Выключатель левой боковой люстры" {
+                        !include switch.dsl
+                    }
+                    right_head_light_switch = switch "Выключатель правой боковой люстры" {
+                        !include switch.dsl
+                    }
                 }
                 group "Подрулевые переключатели" {
                     group "левый подрулевой переключатель" {
@@ -654,8 +698,15 @@ workspace "Name" "Description" {
                 number_plate_light = light "Подсветка номера" {
                     !include light.dsl
                 }
-                reverse_lamp = light "Сигнал заднего хода" {
+                reverse_lamp = light "Лампа заднего хода" {
                     !include light.dsl
+                }
+                extra_stop_signal = light "Доп. стоп-сигнал" {
+                    !include light.dsl
+                }
+
+                s3 = splitter "s3" {
+                    pin = pin "pin"
                 }
             }
 
@@ -813,10 +864,9 @@ workspace "Name" "Description" {
                     distance 0.2
                 }
             }
-            #coolant_control_light.plus -> coolant_control_switch.H
-            #internal_lighting.data -> coolant_control_light.plus
-            #coolant_control_light.minus -> m.ground
-            #coolant_control_switch.D -> coolant_control_light.minus
+            internal_lighting.data -> coolant_control_light.plus
+            coolant_control_light.minus -> m.ground
+            coolant_control_switch.D -> coolant_control_light.minus
 
             # Ближний/дальний свет
             control_line_from_ignition.data -> left_steering_column_light_switch._30
@@ -825,7 +875,7 @@ workspace "Name" "Description" {
 
             control_line_from_ignition.data -> light_switch.x
             light_fuse.out -> light_switch._30
-            //light_switch._58 -> подсветка приборов
+            light_switch._58 -> internal_lighting.data
             light_switch._56 -> left_steering_column_light_switch._56
             light_switch._58 -> side_light_relay._85
 
@@ -875,9 +925,8 @@ workspace "Name" "Description" {
             side_light_relay_fuse.out -> side_light_relay._30
             light_fuse.out -> side_light_relay_fuse.in
 
-            #turn_signal_fuse.out -> left_front_turn_signal.
-
             # Поворотники и аварийка
+            light_fuse.out -> turn_signal_fuse.in
             turn_signal_relay.p -> left_steering_column_turn_signal_switch._49a
             turn_signal_relay.p -> emergency_light_button.p
             turn_signal_relay.minus -> m.ground
@@ -893,8 +942,8 @@ workspace "Name" "Description" {
             emergency_light_button.plus -> turn_signal_relay.plus
 
             # TODO тут питание должно приходить только при включенном зажигании - значит нужно поставить реле
-            light_fuse.out -> emergency_light_button.pow
-            light_fuse.out -> emergency_light_button.emer
+            turn_signal_fuse.out -> emergency_light_button.pow
+            turn_signal_fuse.out -> emergency_light_button.emer
 
 
             right_turn_signal_splitter.pin -> right_front_turn_signal.plus
@@ -904,6 +953,63 @@ workspace "Name" "Description" {
             left_turn_signal_splitter.pin -> left_front_turn_signal.plus
             left_turn_signal_splitter.pin -> left_turn_signal_repeater.plus
             left_turn_signal_splitter.pin -> left_rear_turn_signal.plus
+
+
+
+            # Передняя люстра
+            light_fuse.out -> front_head_light_fuse.in
+            front_head_light_fuse.out -> front_head_light_relay._30
+            front_head_light_relay._87 -> front_head_light.plus
+            front_head_light.minus -> m.ground
+            control_line_from_ignition.data -> front_head_light_switch.in
+            front_head_light_switch.out -> front_head_light_relay._85
+            front_head_light_relay._86 -> m.ground
+
+
+            # Задняя люстра
+            light_fuse.out -> rear_head_light_fuse.in
+            rear_head_light_fuse.out -> rear_head_light_relay._30
+            rear_head_light_relay._87 -> rear_head_light.plus
+            rear_head_light.minus -> m.ground
+            control_line_from_ignition.data -> rear_head_light_switch.in
+            rear_head_light_switch.out -> rear_head_light_relay._85
+            rear_head_light_relay._86 -> m.ground
+
+            # Левая боковая люстра
+            light_fuse.out -> left_head_light_fuse.in
+            left_head_light_fuse.out -> left_head_light_relay._30
+            left_head_light_relay._87 -> left_head_light.plus
+            left_head_light.minus -> m.ground
+            control_line_from_ignition.data -> left_head_light_switch.in
+            left_head_light_switch.out -> left_head_light_relay._85
+            left_head_light_relay._86 -> m.ground
+
+
+            # Задняя люстра
+            light_fuse.out -> right_head_light_fuse.in
+            right_head_light_fuse.out -> right_head_light_relay._30
+            right_head_light_relay._87 -> right_head_light.plus
+            right_head_light.minus -> m.ground
+            control_line_from_ignition.data -> right_head_light_switch.in
+            right_head_light_switch.out -> right_head_light_relay._85
+            right_head_light_relay._86 -> m.ground
+
+
+            # Педаль тормоза
+            ignition_fan_fuse.out -> brake_pressure_sensor.in
+            brake_pressure_sensor.out -> s3.pin
+            s3.pin -> left_stop_signal.plus
+            s3.pin -> right_stop_signal.plus
+            s3.pin -> extra_stop_signal.plus
+
+            left_stop_signal.minus -> m.ground
+            right_stop_signal.minus -> m.ground
+            extra_stop_signal.minus -> m.ground
+
+            # Лампа заднего хода
+            ignition_fan_fuse.out -> reverse_lamp_sensor.in
+            reverse_lamp_sensor.out -> reverse_lamp.plus
+            reverse_lamp.minus -> m.ground
         }
 
         // Set amper

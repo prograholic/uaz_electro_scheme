@@ -9,7 +9,7 @@ enum ElementType {
     Starter,
     Generator,
     Winch,
-    Ventilator,
+    Fan,
     Light,
     Relay,
     Splitter,
@@ -50,8 +50,8 @@ def getElementType(element) {
     if (tags.contains("winch")) {
         return ElementType.Winch
     }
-    if (tags.contains("vent")) {
-        return ElementType.Ventilator
+    if (tags.contains("fan")) {
+        return ElementType.Fan
     }
     if (tags.contains("light")) {
         return ElementType.Light
@@ -524,7 +524,7 @@ def allowActiveSwitchOnly = { relationship ->
 }
 
 
-try {
+//try {
     validateOfflineGraph(relationships, elements, pins)
     activeCircuits = findActiveCircuits(relationships, elements, consumers, allowActiveSwitchOnly)
     checkFuseLocations(activeCircuits)
@@ -532,8 +532,8 @@ try {
     calculateWireDistance(activeCircuits)
 
     validateOnlineGraph(activeCircuits)
-} catch (Exception e) {
-    println(e)
-}
+//} catch (Exception e) {
+//    println(e)
+//}
 
 
