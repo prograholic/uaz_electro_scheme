@@ -348,7 +348,7 @@ def findActiveCircuits(relationships, elements, consumers, connectionAllowed) {
 
 def checkFuseLocations(activeCircuits) {
     println('CHECK FUSE LOCATIONS')
-    activeCircuits.each {activeCircuit ->
+    activeCircuits.each {consumer, activeCircuit ->
         // TODO
         def gotFuse = false
         activeCircuit.each {relationship ->

@@ -658,7 +658,7 @@ workspace "Name" "Description" {
                         }
                     }
                     group "правый подрулевой переключатель" {
-                        right_steering_column_turn_signal_switch = switch "правый подрулевой переключатель поворотников" {
+                        right_steering_column_switch = switch "правый подрулевой переключатель" {
                         }
                     }
                 }

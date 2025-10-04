@@ -63,11 +63,11 @@
         amper 0.5
     }
 }
-#!element es.coolant_control_light.lamp {
-#    properties {
-#        amper 2
-#    }
-#}
+!element es.coolant_control_light.lamp {
+    properties {
+        amper 0.5
+    }
+}
 !element es.rear_left_side_light.lamp {
     properties {
         amper 0.5
