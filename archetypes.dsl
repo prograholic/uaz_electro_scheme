@@ -20,6 +20,9 @@ archetypes {
     fan = container {
         tags "fan"
     }
+    resistor = container {
+        tags "resistor"
+    }
 
     pin = component {
         tags "pin"

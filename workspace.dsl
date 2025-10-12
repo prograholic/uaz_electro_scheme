@@ -132,15 +132,22 @@ workspace "Name" "Description" {
             group "Кабина" {
                 heater = container "Отопитель салона" {
                     tags "heater"
+                    !include "elements/electric_motor.dsl"
                 }
-                interior_fan = container "Вентилятор салона" {
-                    tags "fan"
+                heater_resistor = resistor "Резистор печки салона" {
+                    !include "elements/resistor.dsl"
+                }
+
+                interior_fan = fan "Вентилятор салона" {
+                    !include "elements/fan.dsl"
                 }
                 wipers = container "Дворники" {
                     tags "wipers"
+                    !include "elements/electric_motor.dsl"
                 }
                 windshield_washer = container "Омыватель лобового стекла" {
                     tags "windshield_washer"
+                    !include "elements/electric_motor.dsl"
                 }
                 transmitter = container "Рация" {
                     tags "transmitter"
@@ -199,6 +206,15 @@ workspace "Name" "Description" {
                         }
                         turn_signal_relay = relay "Реле поворотников" {
                             !include "elements/uaz/3151/turn_signal_relay_950.dsl"
+                        }
+                        heater_relay_1 = relay "Реле отопителя (1-я скорость)" {
+                            !include "elements/relay.dsl"
+                        }
+                        heater_relay_2 = relay "Реле отопителя (2-я скорость)" {
+                            !include "elements/relay.dsl"
+                        }
+                        interior_fan_relay = relay "Реле вентилятора салона" {
+                            !include "elements/relay.dsl"
                         }
 
                         front_head_light_relay = relay "Реле передней люстры" {
@@ -271,6 +287,12 @@ workspace "Name" "Description" {
                         right_head_light_fuse = fuse "Прд. правой боковой люстры" {
                             !include "elements/fuse.dsl"
                         }
+                        heater_fuse = fuse "Прд. отопителя" {
+                            !include "elements/fuse.dsl"
+                        }
+                        interior_fan_fuse = fuse "Прд. вентилятора салона" {
+                            !include "elements/fuse.dsl"
+                        }
                     }
                 }
                 group "Блок приборов" {
@@ -293,12 +315,18 @@ workspace "Name" "Description" {
                         !include "elements/switch.dsl"
                     }
                     coolant_control_switch = switch "Переключатель упр э-вент охл ДВС" {
-                        !include "elements/switch_6pin_3states.dsl"
+                        !include "elements/switch_3states_6pin.dsl"
                     }
                     light_switch = switch "Выключатель габаритов и ближнего света" {
                         !include "elements/uaz/3151/light_switch.dsl"
                     }
                     car_horn_switch = switch "Кнопка гудка" {
+                    }
+                    heater_switch = switch "Переключатель печки" {
+                        !include "elements/switch_3states_6pin.dsl"
+                    }
+                    interior_fan_switch = switch "Выключатель салонного вентилятора" {
+                        !include "elements/switch.dsl"
                     }
 
                     emergency_light_button = switch "Кнопка аварийной сигнализации" {
@@ -680,6 +708,32 @@ workspace "Name" "Description" {
             ignition_fan_fuse.out -> reverse_lamp_sensor.in
             reverse_lamp_sensor.out -> reverse_lamp.plus
             reverse_lamp.minus -> m.ground
+
+            # Отопитель
+            ignition_fan_fuse.out -> heater_fuse.in
+            heater_fuse.out -> heater_relay_1._30
+            heater_fuse.out -> heater_relay_2._30
+            heater_relay_1._87 -> heater_resistor.in
+            heater_resistor.out -> heater.plus
+            heater_relay_2._87 -> heater.plus
+            heater.minus -> m.ground
+
+            control_line_from_ignition.data -> heater_switch.i
+            heater_switch.d -> heater_relay_1._85
+            heater_switch.u -> heater_relay_2._85
+
+            heater_relay_1._86 -> m.ground
+            heater_relay_2._86 -> m.ground
+
+            # Вентилятор салона
+            ignition_fan_fuse.out -> interior_fan_fuse.in
+            interior_fan_fuse.out -> interior_fan_relay._30
+            interior_fan_relay._87 -> interior_fan.plus
+            interior_fan.minus -> m.ground
+
+            control_line_from_ignition.data -> interior_fan_switch.in
+            interior_fan_switch.out -> interior_fan_relay._85
+            interior_fan_relay._86 -> m.ground
         }
 
         // Set amper
@@ -701,7 +755,7 @@ workspace "Name" "Description" {
         container es es_view "Общий вид электрической системы" {
             include *
             exclude es.m
-            autolayout tb
+            autolayout lr
         }
 
         component es.akb overall_component_view "Общий вид всех компонент" {

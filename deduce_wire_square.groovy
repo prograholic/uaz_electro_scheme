@@ -273,9 +273,6 @@ workspace.model.getRelationships().findAll {rel ->
     }
     rel.setDescription(desc + String.format("%.2f", amper) + "A" + "\n" + square + " мм2")
 
-
-
-
     rel.addTags("square_" + square)
     rel.addTags("powered")
 }
