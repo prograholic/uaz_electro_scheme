@@ -13,10 +13,12 @@
 !element es.start_button {
     properties {
         # 1 - покрутить стартер!
-        #active_switch_state 1
+        active_switch_state 1
     }
 }
 
+
+# Вентиляторы охлаждения ДВС
 !element es.coolant_control_switch {
     properties {
         # 1 - от датчика, 2 - всегда
@@ -65,5 +67,79 @@
         # 0 - аварийка выключена
         # 1 - аварийка включена
         active_switch_state 1
+    }
+}
+
+# Доп освещение
+!element es.front_head_light_switch {
+    properties {
+        # 0 - передний доп свет выключен
+        # 1 - передний доп свет включен
+        active_switch_state 1
+    }
+}
+!element es.rear_head_light_switch {
+    properties {
+        # 0 - задний доп свет выключен
+        # 1 - задний доп свет включен
+        active_switch_state 1
+    }
+}
+!element es.left_head_light_switch {
+    properties {
+        # 0 - левый доп свет выключен
+        # 1 - левый доп свет включен
+        active_switch_state 1
+    }
+}
+!element es.right_head_light_switch {
+    properties {
+        # 0 - правый доп свет выключен
+        # 1 - правый доп свет включен
+        active_switch_state 1
+    }
+}
+
+
+# Гудок
+!element es.car_horn_switch {
+    properties {
+        # 0 - гудок выключен
+        # 1 - гудок включен
+        active_switch_state 0
+    }
+}
+
+#Печка
+!element es.heater_switch {
+    properties {
+        # 0 - печка выключена
+        # 1 - печка включена (1-я скорость)
+        # 2 - печка включена (2-я скорость)
+        active_switch_state 2
+    }
+}
+
+
+#Салонный вентилятор
+!element es.interior_fan_switch {
+    properties {
+        # 0 - вентилятор выключен
+        # 1 - вентилятор включен
+        active_switch_state 1
+    }
+}
+
+
+# Дворники и омыватель
+!element es.right_steering_column_switch {
+    properties {
+        # 0 - дворники и омыватель выключен
+        # 1 - однократный взмах дворниками (???)
+        # 2 - ???
+        # 3 - ???
+        # 4 - ???
+        # 8 - ???
+        active_switch_state 8
     }
 }

@@ -14,6 +14,10 @@ enum ElementType {
     Relay,
     Splitter,
     Chassis,
+    CarHorn,
+    Heater,
+    Wipers,
+    WindshieldWasher,
 
     Switch,
     PowerSource,
@@ -58,6 +62,18 @@ def getElementType(element) {
     }
     if (tags.contains("relay")) {
         return ElementType.Relay
+    }
+    if (tags.contains("car_horn")) {
+        return ElementType.CarHorn
+    }
+    if (tags.contains("heater")) {
+        return ElementType.Heater
+    }
+    if (tags.contains("wipers")) {
+        return ElementType.Wipers
+    }
+    if (tags.contains("windshield_washer")) {
+        return ElementType.WindshieldWasher
     }
 
     if (tags.contains("switch")) {
@@ -359,12 +375,17 @@ def checkFuseLocations(activeCircuits) {
         def gotFuse = false
         activeCircuit.each {relationship ->
             dest = relationship.getDestination()
-            if (getElementType(dest) == ElementType.Fuse) {
+            elementType = getElementType(dest)
+            if (elementType == ElementType.Fuse) {
                 gotFuse = true
             }
-            if (getElementType(dest) == ElementType.Consumer) {
-                if (!gotFuse) {
-                    throw new IllegalStateException('Got consumer before fuse in relationship ' + getRelationshipName(relationship))
+            if (elementType == ElementType.Consumer) {
+                if (!dest.getTags().contains("skip_fuse_checking")) {
+                    if (!gotFuse) {
+                        throw new IllegalStateException('Got consumer before fuse in relationship ' + getRelationshipName(relationship))
+                    }
+                } else {
+                    println(" Skip fuse checking for " + dest.getCanonicalName())
                 }
             }
             // relay should be after fuse

@@ -1,7 +1,9 @@
 tags "starter"
 plus = plus "+"
 
-eng = consumer "двигатель"
+eng = consumer "двигатель" {
+    tags "skip_fuse_checking"
+}
 
 st = pin "Втяг"
 

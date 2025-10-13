@@ -91,6 +91,10 @@ workspace "Name" "Description" {
                     !include "elements/sensor.dsl"
                 }
 
+                car_horn = container "Гудок" {
+                    !include "elements/car_horn.dsl"
+                }
+
                 group "Передний блок фар" {
                     group "Левая фара" {
                         left_low_beam = light "Левый ближний свет" {
@@ -222,6 +226,9 @@ workspace "Name" "Description" {
                         windshield_washer_relay = relay "Реле моторчика омывайки" {
                             !include "elements/relay.dsl"
                         }
+                        car_horn_relay = relay "Реле гудка" {
+                            !include "elements/relay.dsl"
+                        }
 
                         front_head_light_relay = relay "Реле передней люстры" {
                             !include "elements/relay.dsl"
@@ -305,6 +312,9 @@ workspace "Name" "Description" {
                         windshield_washer_fuse = fuse "Прд. моторчика омывайки" {
                             !include "elements/fuse.dsl"
                         }
+                        car_horn_fuse = fuse "Прд. гудка" {
+                            !include "elements/fuse.dsl"
+                        }
                     }
                 }
                 group "Блок приборов" {
@@ -332,14 +342,6 @@ workspace "Name" "Description" {
                     light_switch = switch "Выключатель габаритов и ближнего света" {
                         !include "elements/uaz/3151/light_switch.dsl"
                     }
-                    car_horn_switch = switch "Кнопка гудка" {
-                    }
-                    heater_switch = switch "Переключатель печки" {
-                        !include "elements/switch_3states_6pin.dsl"
-                    }
-                    interior_fan_switch = switch "Выключатель салонного вентилятора" {
-                        !include "elements/switch.dsl"
-                    }
 
                     emergency_light_button = switch "Кнопка аварийной сигнализации" {
                         !include "elements/uaz/3151/emergency_light_button.dsl"
@@ -355,6 +357,17 @@ workspace "Name" "Description" {
                         !include "elements/switch.dsl"
                     }
                     right_head_light_switch = switch "Выключатель правой боковой люстры" {
+                        !include "elements/switch.dsl"
+                    }
+
+                    car_horn_switch = switch "Кнопка гудка" {
+                        !include "elements/switch.dsl"
+                    }
+
+                    heater_switch = switch "Переключатель печки" {
+                        !include "elements/switch_3states_6pin.dsl"
+                    }
+                    interior_fan_switch = switch "Выключатель салонного вентилятора" {
                         !include "elements/switch.dsl"
                     }
                 }
@@ -429,22 +442,22 @@ workspace "Name" "Description" {
 
             m.ground -> ground_switch.in {
                 properties {
-                    distance 0
+                    #distance 0
                 }
             }
             ground_switch.out -> akb.minus {
                 properties {
-                    distance 0.2
+                    #distance 0.2
                 }
             }
             akb.plus -> starter.plus {
                 properties {
-                    distance 1.5
+                    #distance 0.5
                 }
             }
             akb.plus -> winch.plus {
                 properties {
-                    distance 1.5
+                    #distance 1.0
                 }
             }
 
@@ -453,12 +466,12 @@ workspace "Name" "Description" {
 
             generator.plus -> starter.plus {
                 properties {
-                    distance 1.5
+                    #distance 1.0
                 }
             }
             m.ground -> generator.minus {
                 properties {
-                    distance 0.1
+                    #distance 0.1
                 }
             }
     
@@ -774,6 +787,16 @@ workspace "Name" "Description" {
 
             wipers_relay._31b -> wipers._4
             wipers_relay._31 -> m.ground
+
+
+            # Гудок
+            ignition_fan_fuse.out -> car_horn_fuse.in
+            car_horn_fuse.out -> car_horn_relay._30
+            car_horn_relay._87 -> car_horn.plus
+            car_horn.minus -> m.ground
+            control_line_from_ignition.data -> car_horn_switch.in
+            car_horn_switch.out -> car_horn_relay._85
+            car_horn_relay._86 -> m.ground
         }
 
         // Set amper

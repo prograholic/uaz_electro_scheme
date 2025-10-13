@@ -129,3 +129,55 @@
         amper 0.5
     }
 }
+
+# Гудок
+!element es.car_horn.horn {
+    properties {
+        amper 15
+    }
+}
+
+
+# Отопитель салона
+!element es.heater.motor {
+    properties {
+        amper 8
+    }
+}
+
+# Доп свет
+!element es.front_head_light.lamp {
+    properties {
+        amper 20
+    }
+}
+!element es.rear_head_light.lamp {
+    properties {
+        amper 10
+    }
+}
+!element es.left_head_light.lamp {
+    properties {
+        amper 10
+    }
+}
+!element es.right_head_light.lamp {
+    properties {
+        amper 10
+    }
+}
+
+
+#Вентилятор в салоне
+!element es.interior_fan.motor {
+    properties {
+        amper 2
+    }
+}
+
+# Дворники и омыватель
+!element es.windshield_washer.motor {
+    properties {
+        amper 1
+    }
+}

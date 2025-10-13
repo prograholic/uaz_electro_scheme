@@ -1,5 +1,5 @@
 // https://www.uazbuka.ru/electro.htm#secpr
-// https://xn----jtbncduncbo1j.xn--p1ai/articles/provoda-dlya-avtomobilnoy-provodki/
+// https://www.drive2.ru/c/1893545/
 
 
 
@@ -9,6 +9,12 @@ def getRelationshipName(relationship) {
 }
 
 
+
+
+
+/*
+
+// Based on https://xn----jtbncduncbo1j.xn--p1ai/articles/provoda-dlya-avtomobilnoy-provodki/
 def getSquareForTemp20Meter05(amper, rel) {
     if (amper < 6) {
         return "0.5"
@@ -249,6 +255,103 @@ def getSquare(amper, temperature, length, rel) {
     return getSquareForTemp20(amper / tempCoeff, length, rel)
 }
 
+
+*/
+
+
+// Based on
+//    https://www.drive2.ru/c/1893545/
+//    https://elmarts.ru/blog/sovety-pokupatelyam/provoda-dlya-avtomobilnoy-provodki/
+
+MapAmperToLength = [
+             /* 0.5,   1.0,   1.5,    2.5,    4.0,    6.0,    8.0,   10.0,   16.0,   20.0,   25.0,   35.0,   50.0 */
+    /*   1A */ [3.5f,  7.0f,  10.91f, 17.65f, 28.57f, 42.86f, 56.0f, 70.6f,  109.1f, 130.0f, 176.5f, 244.9f, 300.0f],
+    /*   2A */ [2.0f,  3.53f, 5.45f,  8.82f,  14.29f, 21.4f,  28.0f, 35.3f,  54.5f,  65.0f,  88,2f,  122.4f, 171.4f],
+    /*   4A */ [1.2f,  1.76f, 2.73f,  4.41f,  7.7f,   10.7f,  14.0f, 17.6f,  27.3f,  32.0f,  44.1f,  61.2f,  85.7f],
+    /*   6A */ [0.9f,  1.18f, 1.82f,  2.94f,  4.76f,  7.1f,   9.4f,  11.7f,  18.2f,  21.0f,  29.4f,  40.8f,  57.1f],
+    /*   8A */ [0.65f, 0.88f, 1.36f,  2.2f,   3.47f,  5.4f,   7.1f,  8.8f,   13.6f,  16.0f,  22.0f,  30.6f,  42.9f],
+    /*  10A */ [0.5f,  0.71f, 1.0f,   1.76f,  2.86f,  4.3f,   5.7f,  7.1f,   10.9f,  13.0f,  17.7f,  24.5f,  34.3f],
+    /*  15A */ [0.35f, 0.5f,  0.73f,  1.18f,  1.9f,   2.9f,   3.8f,  4.7f,   7.3f,   8.5f,   11.8f,  16.3f,  22.9f],
+    /*  20A */ [0.0f,  0.3f,  0.5f,   0.88f,  1.43f,  2.1f,   2.8f,  3.5f,   5.5f,   6.6f,   8.8f,   12.2f,  17.1f],
+    /*  25A */ [0.0f,  0.1f,  0.35f,  0.6f,   1.14f,  1.7f,   2.25f, 2.8f,   4.4f,   5.0f,   7.1f,   9.8f,   13.7f],
+    /*  30A */ [0.0f,  0.0f,  0.1f,   0.4f,   0.9f,   1.4f,   1.9f,  2.4f,   3.6f,   4.2f,   5.9f,   8.2f,   11.4f],
+    /*  40A */ [0.0f,  0.0f,  0.0f,   0.1f,   0.6f,   1.0f,   1.4f,  1.8f,   2.7f,   3.2f,   4.4f,   6.1f,   8.5f],
+    /*  50A */ [0.0f,  0.0f,  0.0f,   0.0f,   0.3f,   0.6f,   0.9f,  1.2f,   2.2f,   2.5f,   3.5f,   4.9f,   6.9f],
+    /* 100A */ [0.0f,  0.0f,  0.0f,   0.0f,   0.0f,   0.0f,   0.1f,  0.4f,   1.2f,   1.35f,  1.7f,   2.4f,   3.4f],
+    /* 150A */ [0.0f,  0.0f,  0.0f,   0.0f,   0.0f,   0.0f,   0.0f,  0.0f,   0.4f,   0.5f,   0.6f,   1.0f,   2.3f],
+    /* 200A */ [0.0f,  0.0f,  0.0f,   0.0f,   0.0f,   0.0f,   0.0f,  0.0f,   0.0f,   0.0f,   0.0f,   0.5f,   1.0f],
+]
+
+MapIndexToSquare = [0.5f, 1.0f, 1.5f, 2.5f, 4.0f, 6.0f, 8.0f, 10.0f, 16.0f, 20.0f, 25.0f, 35.0f, 50.0f]
+
+def getRowForAmper(amper, rel) {
+    if (amper <= 1.0f) {
+        return 0
+    }
+    if (amper <= 2.0f) {
+        return 1
+    }
+    if (amper <= 4.0f) {
+        return 2
+    }
+    if (amper <= 6.0f) {
+        return 3
+    }
+    if (amper <= 8.0f) {
+        return 4
+    }
+    if (amper <= 10.0f) {
+        return 5
+    }
+    if (amper <= 15.0f) {
+        return 6
+    }
+    if (amper <= 20.0f) {
+        return 7
+    }
+    if (amper <= 25.0f) {
+        return 8
+    }
+    if (amper <= 30.0f) {
+        return 9
+    }
+    if (amper <= 40.0f) {
+        return 10
+    }
+    if (amper <= 50.0f) {
+        return 11
+    }
+    if (amper <= 100.0f) {
+        return 12
+    }
+    if (amper <= 150.0f) {
+        return 13
+    }
+    if (amper <= 200.0f) {
+        return 14
+    }
+
+    throw new IllegalStateException("Too high amperage: " + String.format("%.2f", amper) + " for " + getRelationshipName(rel))
+}
+
+def getSquareFromLength(row, length, rel) {
+    for (int i = 0; i < row.size(); ++i) {
+        if (row[i] >= length) {
+            return MapIndexToSquare[i]
+        }
+    }
+
+    throw new IllegalStateException("Too high length: " + String.format("%.2f", length) + " for " + getRelationshipName(rel))
+}
+
+def getSquare(amper, temperature, length, rel) {
+    def amperRow = getRowForAmper(amper, rel)
+    println("row: " + amperRow + ", amper: " + amper + ", rel: " + getRelationshipName(rel))
+
+    def row = MapAmperToLength[amperRow]
+
+    return getSquareFromLength(row, length, rel)
+}
 
 workspace.model.getRelationships().findAll {rel ->
     ((rel.getProperties().containsKey("amper")) && !rel.getTags().contains("internal_connection"))
