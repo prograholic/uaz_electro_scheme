@@ -283,7 +283,12 @@ def handleActiveConsumer(consumer) {
     println ("   handle active consumer: " + consumer.getCanonicalName())
     if (getElementType(consumer.getParent()) == ElementType.Relay) {
         activeState = consumer.getProperties().getOrDefault("state_when_active", "1")
-        println("    set active state `" + activeState + "` for relay " + consumer.getCanonicalName())
+        println("    add active state `" + activeState + "` for relay " + consumer.getCanonicalName())
+        if (consumer.getParent().getProperties().containsKey("active_switch_state")) {
+            currentActiveState = consumer.getParent().getProperties().get("active_switch_state")
+            println("    parent already has active state `" + currentActiveState + "`, add extra value")
+            activeState = currentActiveState + "," + activeState
+        }
         consumer.getParent().addProperty("active_switch_state", activeState)
     }
 
@@ -512,10 +517,11 @@ def allowActiveSwitchOnly = { relationship ->
         return true
     }
 
-    rel_switch_state = relationship.getProperties().getOrDefault("switch_state", "0")
-    active_switch_state = relationship.getSource().getParent().getProperties().getOrDefault("active_switch_state", "0")
+    def rel_switch_state = relationship.getProperties().getOrDefault("switch_state", "0").split(",").toList()
+    def active_switch_state = relationship.getSource().getParent().getProperties().getOrDefault("active_switch_state", "0").split(",").toList()
 
-    if (rel_switch_state.contains(active_switch_state)) { // rel_switch_state may be in form "1,2"
+    // both `rel_switch_state` and `active_switch_state` may be in form "1,2", so we need to check any match
+    if (rel_switch_state.intersect(active_switch_state).size() > 0) {
         println("   Switchable relationship with proper states[" + active_switch_state + ", " + rel_switch_state + "] " + getRelationshipName(relationship))
         return true
     }

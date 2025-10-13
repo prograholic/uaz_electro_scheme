@@ -219,6 +219,9 @@ workspace "Name" "Description" {
                         wipers_relay = relay "Реле дворников" {
                             !include "elements/uaz/3151/wipers_relay.dsl"
                         }
+                        windshield_washer_relay = relay "Реле моторчика омывайки" {
+                            !include "elements/relay.dsl"
+                        }
 
                         front_head_light_relay = relay "Реле передней люстры" {
                             !include "elements/relay.dsl"
@@ -297,6 +300,9 @@ workspace "Name" "Description" {
                             !include "elements/fuse.dsl"
                         }
                         wipers_fuse = fuse "Прд. дворников" {
+                            !include "elements/fuse.dsl"
+                        }
+                        windshield_washer_fuse = fuse "Прд. моторчика омывайки" {
                             !include "elements/fuse.dsl"
                         }
                     }
@@ -756,9 +762,13 @@ workspace "Name" "Description" {
             control_line_from_ignition.data -> right_steering_column_switch._53ah
 
 
-            #TODO внедрить реле и пред для моторчика омывателя
-            right_steering_column_switch.W -> windshield_washer.plus
-            right_steering_column_switch.W -> wipers_relay._86
+            light_fuse.out -> windshield_washer_fuse.in
+            windshield_washer_fuse.out -> windshield_washer_relay._30
+            windshield_washer_relay._87 -> windshield_washer.plus
+            windshield_washer_relay._87 -> wipers_relay._86
+
+            right_steering_column_switch.W -> windshield_washer_relay._85
+            windshield_washer_relay._86 -> m.ground
             windshield_washer.minus -> m.ground
 
 

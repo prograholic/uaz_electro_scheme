@@ -49,3 +49,21 @@
         active_switch_state 2
     }
 }
+
+
+# Поворотники и аварийка
+!element es.left_steering_column_turn_signal_switch {
+    properties {
+        # 0 - поворотники выключены
+        # 1 - правый поворотник включен
+        # 2 - левый поворотник включен
+        active_switch_state 0
+    }
+}
+!element es.emergency_light_button {
+    properties {
+        # 0 - аварийка выключена
+        # 1 - аварийка включена
+        active_switch_state 1
+    }
+}
