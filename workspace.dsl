@@ -143,7 +143,7 @@ workspace "Name" "Description" {
                 }
                 wipers = container "Дворники" {
                     tags "wipers"
-                    !include "elements/electric_motor.dsl"
+                    !include "elements/uaz/3151/wipers.dsl"
                 }
                 windshield_washer = container "Омыватель лобового стекла" {
                     tags "windshield_washer"
@@ -215,6 +215,9 @@ workspace "Name" "Description" {
                         }
                         interior_fan_relay = relay "Реле вентилятора салона" {
                             !include "elements/relay.dsl"
+                        }
+                        wipers_relay = relay "Реле дворников" {
+                            !include "elements/uaz/3151/wipers_relay.dsl"
                         }
 
                         front_head_light_relay = relay "Реле передней люстры" {
@@ -293,6 +296,9 @@ workspace "Name" "Description" {
                         interior_fan_fuse = fuse "Прд. вентилятора салона" {
                             !include "elements/fuse.dsl"
                         }
+                        wipers_fuse = fuse "Прд. дворников" {
+                            !include "elements/fuse.dsl"
+                        }
                     }
                 }
                 group "Блок приборов" {
@@ -357,6 +363,7 @@ workspace "Name" "Description" {
                     }
                     group "правый подрулевой переключатель" {
                         right_steering_column_switch = switch "правый подрулевой переключатель" {
+                            !include "elements/uaz/3151/right_steering_column_switch.dsl"
                         }
                     }
                 }
@@ -734,6 +741,29 @@ workspace "Name" "Description" {
             control_line_from_ignition.data -> interior_fan_switch.in
             interior_fan_switch.out -> interior_fan_relay._85
             interior_fan_relay._86 -> m.ground
+
+
+            # Дворники и передний омыватель
+            ignition_fan_fuse.out -> wipers_fuse.in
+            wipers_fuse.out -> wipers._1
+            wipers._3 -> m.ground
+            wipers._2 -> wipers_relay._15
+            wipers_relay.S -> right_steering_column_switch._53e
+            right_steering_column_switch._53 -> wipers._5
+            right_steering_column_switch._53b -> wipers._6
+            right_steering_column_switch.J -> wipers_relay.J
+            wipers_relay._15 -> right_steering_column_switch._53a
+            control_line_from_ignition.data -> right_steering_column_switch._53ah
+
+
+            #TODO внедрить реле и пред для моторчика омывателя
+            right_steering_column_switch.W -> windshield_washer.plus
+            right_steering_column_switch.W -> wipers_relay._86
+            windshield_washer.minus -> m.ground
+
+
+            wipers_relay._31b -> wipers._4
+            wipers_relay._31 -> m.ground
         }
 
         // Set amper
