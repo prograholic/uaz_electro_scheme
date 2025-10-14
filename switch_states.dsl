@@ -13,7 +13,7 @@
 !element es.start_button {
     properties {
         # 1 - покрутить стартер!
-        active_switch_state 1
+        #active_switch_state 1
     }
 }
 
@@ -48,7 +48,7 @@
         #   0 - ближний
         #   1 - ближний + дальний (постоянный)
         #   2 - ближний + дальний (мыргалка)
-        active_switch_state 2
+        active_switch_state 1
     }
 }
 
@@ -66,7 +66,7 @@
     properties {
         # 0 - аварийка выключена
         # 1 - аварийка включена
-        active_switch_state 1
+        active_switch_state 0
     }
 }
 
@@ -99,7 +99,6 @@
         active_switch_state 1
     }
 }
-
 
 # Гудок
 !element es.car_horn_switch {
@@ -140,6 +139,30 @@
         # 3 - ???
         # 4 - ???
         # 8 - ???
-        active_switch_state 8
+        active_switch_state 0
+    }
+}
+
+
+# Датчики
+!element es.brake_pressure_sensor {
+    properties {
+        # 0 - тормоз отпущен
+        # 1 - тормоз нажат
+        active_switch_state 1
+    }
+}
+!element es.reverse_lamp_sensor {
+    properties {
+        # 0 - задняя передача не включена
+        # 1 - включена задняя передача
+        active_switch_state 1
+    }
+}
+!element es.coolant_sensor {
+    properties {
+        # 0 - датчик температуры не включен
+        # 1 - датчик температуры включен
+        active_switch_state 1
     }
 }

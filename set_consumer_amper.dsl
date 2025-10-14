@@ -130,6 +130,28 @@
     }
 }
 
+# Стоп-сигнал и задний ход
+!element es.extra_stop_signal.lamp {
+    properties {
+        amper 2
+    }
+}
+!element es.right_stop_signal.lamp {
+    properties {
+        amper 2
+    }
+}
+!element es.left_stop_signal.lamp {
+    properties {
+        amper 2
+    }
+}
+!element es.reverse_lamp.lamp {
+    properties {
+        amper 2
+    }
+}
+
 # Гудок
 !element es.car_horn.horn {
     properties {

@@ -69,13 +69,13 @@ workspace "Name" "Description" {
                     light_fuse = fuse "Предохранитель освещения" {
                         !include "elements/fuse.dsl"
                     }
-                    ignition_fan_fuse = fuse "Предохранитель зажигания и э-вент охл-я" {
+                    ignition_fan_fuse = fuse "Предохранитель охл-я, отопителя, дворники, гудок" {
                         !include "elements/fuse.dsl"
                     }
 
-                    #fuse_90 = fuse "Предохранитель" {
-                    #    !include "elements/fuse.dsl"
-                    #}
+                    fuse_xxx = fuse "Предохранитель" {
+                        !include "elements/fuse.dsl"
+                    }
                 }
 
                 group "Вентиляторы" {
@@ -478,7 +478,7 @@ workspace "Name" "Description" {
             starter.plus -> ignition_relay_fuse.in
             starter.plus -> light_fuse.in
             starter.plus -> ignition_fan_fuse.in
-            #starter.plus -> fuse_90.in
+            starter.plus -> fuse_xxx.in
 
             ignition_relay_fuse.out -> ignition_relay._30
             ignition_relay_fuse.out -> ignition_switch.in
@@ -720,7 +720,7 @@ workspace "Name" "Description" {
 
 
             # Педаль тормоза
-            ignition_fan_fuse.out -> brake_pressure_sensor.in
+            light_fuse.out -> brake_pressure_sensor.in
             brake_pressure_sensor.out -> s3.pin
             s3.pin -> left_stop_signal.plus
             s3.pin -> right_stop_signal.plus
@@ -731,7 +731,7 @@ workspace "Name" "Description" {
             extra_stop_signal.minus -> m.ground
 
             # Лампа заднего хода
-            ignition_fan_fuse.out -> reverse_lamp_sensor.in
+            light_fuse.out -> reverse_lamp_sensor.in
             reverse_lamp_sensor.out -> reverse_lamp.plus
             reverse_lamp.minus -> m.ground
 
@@ -775,7 +775,7 @@ workspace "Name" "Description" {
             control_line_from_ignition.data -> right_steering_column_switch._53ah
 
 
-            light_fuse.out -> windshield_washer_fuse.in
+            fuse_xxx.out -> windshield_washer_fuse.in
             windshield_washer_fuse.out -> windshield_washer_relay._30
             windshield_washer_relay._87 -> windshield_washer.plus
             windshield_washer_relay._87 -> wipers_relay._86
