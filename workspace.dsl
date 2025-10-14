@@ -253,6 +253,9 @@ workspace "Name" "Description" {
                     left_turn_signal_splitter = splitter "Подключение левых поворотников"{
                         pin = pin "pin"
                     }
+                    side_light_splitter = splitter "s6" {
+                        pin = pin "pin"
+                    }
 
                     group "Блок предохранителей" {
                         starter_relay_fuse = fuse "Прд реле стартера." {
@@ -271,21 +274,6 @@ workspace "Name" "Description" {
                             !include "elements/fuse.dsl"
                         }
                         side_light_relay_fuse = fuse "Прд. реле габаритов" {
-                            !include "elements/fuse.dsl"
-                        }
-                        left_low_beam_fuse = fuse "Прд. ближн света (лев)" {
-                            !include "elements/fuse.dsl"
-                        }
-                        right_low_beam_fuse = fuse "Прд. ближн света (прав)" {
-                            !include "elements/fuse.dsl"
-                        }
-                        left_high_beam_fuse = fuse "Прд. дальн света (лев)" {
-                            !include "elements/fuse.dsl"
-                        }
-                        right_high_beam_fuse = fuse "Прд. дальн света (прав)" {
-                            !include "elements/fuse.dsl"
-                        }
-                        side_light_fuse = fuse "Прд. габаритов" {
                             !include "elements/fuse.dsl"
                         }
                         turn_signal_fuse = fuse "Прд. поворотников" {
@@ -391,8 +379,11 @@ workspace "Name" "Description" {
                 }
             }
 
-            control_line_from_ignition = splitter "Потребители управляющей линии от зажигания" {
-                data = pin "pin"
+            control_line_from_ignition_1 = splitter "Потребители управляющей линии от зажигания 1" {
+                pin = pin "pin"
+            }
+            control_line_from_ignition_2 = splitter "Потребители управляющей линии от зажигания 2" {
+                pin = pin "pin"
             }
             control_line_from_ignition_fuse = fuse "Предохранитель потребителей управляющей линии от зажигания" {
                 !include "elements/fuse.dsl"
@@ -579,11 +570,17 @@ workspace "Name" "Description" {
                     color "5"
                 }
             }
-            control_line_from_ignition_fuse.out -> control_line_from_ignition.data {
+            control_line_from_ignition_fuse.out -> control_line_from_ignition_1.pin {
                 properties {
                     color "1"
                 }
             }
+            control_line_from_ignition_fuse.out -> control_line_from_ignition_2.pin {
+                properties {
+                    color "2"
+                }
+            }
+
 
             # Лебедка
         
@@ -633,7 +630,7 @@ workspace "Name" "Description" {
                     color "2"
                 }
             }
-            control_line_from_ignition.data -> coolant_fan_1_relay._85 {
+            control_line_from_ignition_1.pin -> coolant_fan_1_relay._85 {
                 properties {
                     color "3"
                 }
@@ -666,7 +663,7 @@ workspace "Name" "Description" {
                     color "1"
                 }
             }
-            coolant_fan_1_relay._85 -> coolant_fan_2_relay._85 {
+            control_line_from_ignition_2.pin -> coolant_fan_2_relay._85 {
                 properties {
                     color "6"
                 }
@@ -713,7 +710,7 @@ workspace "Name" "Description" {
             }
 
             # Ближний/дальний свет
-            coolant_fan_2_relay._85 -> left_steering_column_light_switch._30 {
+            control_line_from_ignition_1.pin -> left_steering_column_light_switch._30 {
                 properties {
                     color "9"
                 }
@@ -729,7 +726,7 @@ workspace "Name" "Description" {
                 }
             }
 
-            left_steering_column_light_switch._30 -> light_switch.x {
+            control_line_from_ignition_2.pin -> light_switch.x {
                 properties {
                     color "0"
                 }
@@ -770,24 +767,14 @@ workspace "Name" "Description" {
                     color "0"
                 }
             }
-            low_beam_relay._87 -> left_low_beam_fuse.in {
+            low_beam_relay._87 -> left_low_beam.plus {
                 properties {
                     color "2"
                 }
             }
-            left_low_beam_fuse.out -> left_low_beam.plus {
-                properties {
-                    color "1"
-                }
-            }
-            low_beam_relay._87 -> right_low_beam_fuse.in {
+            low_beam_relay._87 -> right_low_beam.plus {
                 properties {
                     color "3"
-                }
-            }
-            right_low_beam_fuse.out -> right_low_beam.plus {
-                properties {
-                    color "1"
                 }
             }
             low_beam_relay_fuse.out -> low_beam_relay._30 {
@@ -811,7 +798,7 @@ workspace "Name" "Description" {
                     color "0"
                 }
             }
-            high_beam_relay._87 -> left_high_beam_fuse.in {
+            high_beam_relay._87 -> left_high_beam.plus {
                 properties {
                     color "2"
                 }
@@ -822,19 +809,9 @@ workspace "Name" "Description" {
                 }
             }
 
-            left_high_beam_fuse.out -> left_high_beam.plus {
-                properties {
-                    color "1"
-                }
-            }
-            high_beam_relay._87 -> right_high_beam_fuse.in {
+            high_beam_relay._87 -> right_high_beam.plus {
                 properties {
                     color "3"
-                }
-            }
-            right_high_beam_fuse.out -> right_high_beam.plus {
-                properties {
-                    color "1"
                 }
             }
             high_beam_relay_fuse.out -> high_beam_relay._30 {
@@ -912,32 +889,32 @@ workspace "Name" "Description" {
                     color "0"
                 }
             }
-            side_light_relay._87 -> side_light_fuse.in {
+            side_light_relay._87 -> side_light_splitter.pin {
                 properties {
                     color "2"
                 }
             }
-            side_light_fuse.out -> front_left_side_light.plus {
+            side_light_splitter.pin -> front_left_side_light.plus {
                 properties {
                     color "1"
                 }
             }
-            side_light_fuse.out -> front_right_side_light.plus {
+            side_light_splitter.pin -> front_right_side_light.plus {
                 properties {
                     color "3"
                 }
             }
-            side_light_fuse.out -> rear_left_side_light.plus {
+            side_light_splitter.pin -> rear_left_side_light.plus {
                 properties {
                     color "4"
                 }
             }
-            side_light_fuse.out -> rear_right_side_light.plus {
+            side_light_splitter.pin -> rear_right_side_light.plus {
                 properties {
                     color "5"
                 }
             }
-            side_light_fuse.out -> number_plate_light.plus {
+            side_light_splitter.pin -> number_plate_light.plus {
                 properties {
                     color "6"
                 }
@@ -1094,7 +1071,7 @@ workspace "Name" "Description" {
                     color "0"
                 }
             }
-            light_switch.x -> front_head_light_switch.in {
+            control_line_from_ignition_1.pin -> front_head_light_switch.in {
                 properties {
                     color "5"
                 }
@@ -1132,9 +1109,9 @@ workspace "Name" "Description" {
                     color "0"
                 }
             }
-            front_head_light_switch.in -> rear_head_light_switch.in {
+            control_line_from_ignition_2.pin -> rear_head_light_switch.in {
                 properties {
-                    color "1"
+                    color "10"
                 }
             }
             rear_head_light_switch.out -> rear_head_light_relay._85 {
@@ -1169,7 +1146,7 @@ workspace "Name" "Description" {
                     color "0"
                 }
             }
-            rear_head_light_switch.in -> left_head_light_switch.in {
+            control_line_from_ignition_1.pin -> left_head_light_switch.in {
                 properties {
                     color "2"
                 }
@@ -1207,7 +1184,7 @@ workspace "Name" "Description" {
                     color "0"
                 }
             }
-            left_head_light_switch.in -> right_head_light_switch.in {
+            control_line_from_ignition_2.pin -> right_head_light_switch.in {
                 properties {
                     color "1"
                 }
@@ -1321,9 +1298,9 @@ workspace "Name" "Description" {
                 }
             }
 
-            right_head_light_switch.in -> heater_switch.i {
+            control_line_from_ignition_1.pin -> heater_switch.i {
                 properties {
-                    color "2"
+                    color "6"
                 }
             }
             heater_switch.d -> heater_relay_1._85 {
@@ -1370,9 +1347,9 @@ workspace "Name" "Description" {
                 }
             }
 
-            heater_switch.i -> interior_fan_switch.in {
+            control_line_from_ignition_2.pin -> interior_fan_switch.in {
                 properties {
-                    color "1"
+                    color "7"
                 }
             }
             interior_fan_switch.out -> interior_fan_relay._85 {
@@ -1433,9 +1410,9 @@ workspace "Name" "Description" {
                     color "10"
                 }
             }
-            interior_fan_switch.in -> right_steering_column_switch._53ah {
+            control_line_from_ignition_1.pin -> right_steering_column_switch._53ah {
                 properties {
-                    color "2"
+                    color "8"
                 }
             }
 
@@ -1511,9 +1488,9 @@ workspace "Name" "Description" {
                     color "0"
                 }
             }
-            right_steering_column_switch._53ah -> car_horn_switch.in {
+            control_line_from_ignition_2.pin -> car_horn_switch.in {
                 properties {
-                    color "0"
+                    color "4"
                 }
             }
             car_horn_switch.out -> car_horn_relay._85 {

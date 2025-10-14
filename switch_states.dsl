@@ -48,7 +48,7 @@
         #   0 - ближний
         #   1 - ближний + дальний (постоянный)
         #   2 - ближний + дальний (мыргалка)
-        active_switch_state 1
+        active_switch_state 2
     }
 }
 
@@ -59,14 +59,14 @@
         # 0 - поворотники выключены
         # 1 - правый поворотник включен
         # 2 - левый поворотник включен
-        active_switch_state 0
+        active_switch_state 1
     }
 }
 !element es.emergency_light_button {
     properties {
         # 0 - аварийка выключена
         # 1 - аварийка включена
-        active_switch_state 0
+        active_switch_state 1
     }
 }
 
@@ -105,7 +105,7 @@
     properties {
         # 0 - гудок выключен
         # 1 - гудок включен
-        active_switch_state 0
+        active_switch_state 1
     }
 }
 
@@ -139,7 +139,7 @@
         # 3 - ???
         # 4 - ???
         # 8 - ???
-        active_switch_state 0
+        active_switch_state 8
     }
 }
 

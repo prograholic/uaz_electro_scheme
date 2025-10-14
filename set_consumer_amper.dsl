@@ -30,12 +30,12 @@
 # Охлаждение ДВС
 !element es.coolant_fan_1.motor {
     properties {
-        amper 20
+        amper 8
     }
 }
 !element es.coolant_fan_2.motor {
     properties {
-        amper 20
+        amper 8
     }
 }
 !element es.coolant_control_light.lamp {
@@ -170,7 +170,7 @@
 # Доп свет
 !element es.front_head_light.lamp {
     properties {
-        amper 20
+        amper 10
     }
 }
 !element es.rear_head_light.lamp {
