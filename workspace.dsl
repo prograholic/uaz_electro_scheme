@@ -183,6 +183,9 @@ workspace "Name" "Description" {
                         !include "elements/light.dsl"
                     }
 
+                    s4 = splitter "s4" {
+                        pin = pin "pin"
+                    }
                 }
                 group "Блок реле и предохранителей" {
                     #Реле
@@ -441,23 +444,27 @@ workspace "Name" "Description" {
             # Система питания
 
             m.ground -> ground_switch.in {
-                properties {
-                    #distance 0
-                }
+                # Прикручено к корпусу
+                tags "internal_connection"
             }
             ground_switch.out -> akb.minus {
+                tags "foreign_color"
                 properties {
                     #distance 0.2
+                    color "0"
                 }
             }
             akb.plus -> starter.plus {
                 properties {
                     #distance 0.5
+                    color "0"
                 }
             }
             akb.plus -> winch.plus {
+                tags "foreign_color"
                 properties {
                     #distance 1.0
+                    color "1"
                 }
             }
 
@@ -467,61 +474,123 @@ workspace "Name" "Description" {
             generator.plus -> starter.plus {
                 properties {
                     #distance 1.0
+                    color "1"
                 }
             }
             m.ground -> generator.minus {
                 properties {
-                    #distance 0.1
+                    color "0"
+                    distance 0.1
                 }
             }
     
-            starter.plus -> ignition_relay_fuse.in
-            starter.plus -> light_fuse.in
-            starter.plus -> ignition_fan_fuse.in
-            starter.plus -> fuse_xxx.in
+            starter.plus -> ignition_relay_fuse.in {
+                properties {
+                    color "2"
+                }
+            }
+            starter.plus -> light_fuse.in {
+                properties {
+                    color "8"
+                }
+            }
+            starter.plus -> ignition_fan_fuse.in {
+                properties {
+                    color "4"
+                }
+            }
+            starter.plus -> fuse_xxx.in {
+                properties {
+                    color "5"
+                }
+            }
 
-            ignition_relay_fuse.out -> ignition_relay._30
-            ignition_relay_fuse.out -> ignition_switch.in
+            ignition_relay_fuse.out -> ignition_relay._30 {
+                properties {
+                    color "4"
+                }
+            }
+            ignition_relay_fuse.out -> ignition_switch.in {
+                properties {
+                    color "1"
+                }
+            }
 
-            ignition_relay_fuse.out -> generator.v
+            ignition_relay_fuse.out -> generator.v {
+                properties {
+                    color "3"
+                }
+            }
     
-            ignition_switch.out -> ignition_relay._85
+            ignition_switch.out -> ignition_relay._85 {
+                properties {
+                    color "2"
+                }
+            }
             
             ignition_relay._86 -> m.ground {
                 properties {
                     distance 0.1
+                    color "0"
                 }
             }
             ignition_relay._87 -> starter_relay_fuse.in {
                 properties {
                     distance 0.2
+                    color "3"
                 }
             }
             
             starter_relay_fuse.out -> starter_relay._30 {
                 properties {
                     distance 0.2
+                    color "1"
                 }
             }
-            starter_relay_fuse.out -> ignition.data
-            starter_relay_fuse.out -> start_button.in
+            starter_relay_fuse.out -> ignition.data {
+                properties {
+                    color "0"
+                }
+            }
+            starter_relay_fuse.out -> start_button.in {
+                properties {
+                    color "2"
+                }
+            }
     
-            start_button.out -> starter_relay._85
+            start_button.out -> starter_relay._85 {
+                properties {
+                    color "3"
+                }
+            }
     
             starter_relay._86 -> m.ground {
                 properties {
-                    distance 0.1
+                    color "0"
                 }
             }
-            starter_relay._87 -> starter.st
-            starter_relay._88 -> control_line_from_ignition_fuse.in
-            control_line_from_ignition_fuse.out -> control_line_from_ignition.data
+            starter_relay._87 -> starter.st {
+                properties {
+                    color "6"
+                }
+            }
+            starter_relay._88 -> control_line_from_ignition_fuse.in {
+                properties {
+                    color "5"
+                }
+            }
+            control_line_from_ignition_fuse.out -> control_line_from_ignition.data {
+                properties {
+                    color "1"
+                }
+            }
 
             # Лебедка
         
             winch.minus -> m.ground {
                 properties {
                     distance 1.5
+                    color "0"
                 }
             }
             winch.plus -> winch_relay._30 {
@@ -550,253 +619,913 @@ workspace "Name" "Description" {
             coolant_fan_1.minus -> m.ground {
                 properties {
                     distance 0.2
+                    color "0"
                 }
             }
             coolant_fan_1_fuse.out -> coolant_fan_1_relay._30 {
                 properties {
                     distance 0.2
+                    color "1"
                 }
             }
-            coolant_fan_1_relay._87 -> coolant_fan_1.plus
-            control_line_from_ignition.data -> coolant_fan_1_relay._85
-            ignition_fan_fuse.out -> coolant_fan_1_fuse.in
+            coolant_fan_1_relay._87 -> coolant_fan_1.plus {
+                properties {
+                    color "2"
+                }
+            }
+            control_line_from_ignition.data -> coolant_fan_1_relay._85 {
+                properties {
+                    color "3"
+                }
+            }
+            ignition_fan_fuse.out -> coolant_fan_1_fuse.in {
+                properties {
+                    color "0"
+                }
+            }
             coolant_fan_1_relay._86 -> coolant_control_switch.I {
                 properties {
                     distance 0.5
+                    color "7"
                 }
             }
 
             coolant_fan_2.minus -> m.ground {
                 properties {
                     distance 0.2
+                    color "0"
                 }
             }
-            coolant_fan_2_relay._87 -> coolant_fan_2.plus
-            ignition_fan_fuse.out -> coolant_fan_2_fuse.in
-            control_line_from_ignition.data -> coolant_fan_2_relay._85
-            coolant_fan_2_fuse.out -> coolant_fan_2_relay._30
-            coolant_fan_2_relay._86 -> coolant_control_switch.I
+            coolant_fan_2_relay._87 -> coolant_fan_2.plus {
+                properties {
+                    color "1"
+                }
+            }
+            ignition_fan_fuse.out -> coolant_fan_2_fuse.in {
+                properties {
+                    color "1"
+                }
+            }
+            coolant_fan_1_relay._85 -> coolant_fan_2_relay._85 {
+                properties {
+                    color "6"
+                }
+            }
+            coolant_fan_2_fuse.out -> coolant_fan_2_relay._30 {
+                properties {
+                    color "3"
+                }
+            }
+            coolant_fan_2_relay._86 -> coolant_control_switch.I {
+                properties {
+                    color "5"
+                }
+            }
 
             coolant_sensor.out -> m.ground {
+                tags "internal_connection"
+            }
+            coolant_control_switch.D -> coolant_sensor.in {
                 properties {
-                    distance 0
+                    color "1"
                 }
             }
-            coolant_control_switch.D -> coolant_sensor.in
             coolant_control_switch.U -> m.ground {
                 properties {
                     distance 0.2
+                    color "0"
                 }
             }
-            internal_lighting.data -> coolant_control_light.plus
-            coolant_control_light.minus -> m.ground
-            coolant_control_switch.D -> coolant_control_light.minus
+            internal_lighting.data -> coolant_control_light.plus {
+                properties {
+                    color "3"
+                }
+            }
+            coolant_control_light.minus -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
+            coolant_control_switch.D -> coolant_control_light.minus {
+                properties {
+                    color "2"
+                }
+            }
 
             # Ближний/дальний свет
-            control_line_from_ignition.data -> left_steering_column_light_switch._30
-            left_steering_column_light_switch._56a -> high_beam_relay._85
-            left_steering_column_light_switch._56b -> low_beam_relay._85
+            coolant_fan_2_relay._85 -> left_steering_column_light_switch._30 {
+                properties {
+                    color "9"
+                }
+            }
+            left_steering_column_light_switch._56a -> high_beam_relay._85 {
+                properties {
+                    color "1"
+                }
+            }
+            left_steering_column_light_switch._56b -> low_beam_relay._85 {
+                properties {
+                    color "4"
+                }
+            }
 
-            control_line_from_ignition.data -> light_switch.x
-            light_fuse.out -> light_switch._30
-            light_switch._58 -> internal_lighting.data
-            light_switch._56 -> left_steering_column_light_switch._56
-            light_switch._58 -> side_light_relay._85
+            left_steering_column_light_switch._30 -> light_switch.x {
+                properties {
+                    color "0"
+                }
+            }
+            light_fuse.out -> light_switch._30 {
+                properties {
+                    color "3"
+                }
+            }
+            light_switch._58 -> internal_lighting.data {
+                properties {
+                    color "1"
+                }
+            }
+            light_switch._56 -> left_steering_column_light_switch._56 {
+                properties {
+                    color "2"
+                }
+            }
+            light_switch._58 -> side_light_relay._85 {
+                properties {
+                    color "4"
+                }
+            }
 
-            left_low_beam.minus -> m.ground
-            right_low_beam.minus -> m.ground
-            low_beam_relay._86 -> m.ground
-            low_beam_relay._87 -> left_low_beam_fuse.in
-            left_low_beam_fuse.out -> left_low_beam.plus
-            low_beam_relay._87 -> right_low_beam_fuse.in
-            right_low_beam_fuse.out -> right_low_beam.plus
-            low_beam_relay_fuse.out -> low_beam_relay._30
-            light_fuse.out -> low_beam_relay_fuse.in
+            left_low_beam.minus -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
+            right_low_beam.minus -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
+            low_beam_relay._86 -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
+            low_beam_relay._87 -> left_low_beam_fuse.in {
+                properties {
+                    color "2"
+                }
+            }
+            left_low_beam_fuse.out -> left_low_beam.plus {
+                properties {
+                    color "1"
+                }
+            }
+            low_beam_relay._87 -> right_low_beam_fuse.in {
+                properties {
+                    color "3"
+                }
+            }
+            right_low_beam_fuse.out -> right_low_beam.plus {
+                properties {
+                    color "1"
+                }
+            }
+            low_beam_relay_fuse.out -> low_beam_relay._30 {
+                properties {
+                    color "1"
+                }
+            }
+            light_fuse.out -> low_beam_relay_fuse.in {
+                properties {
+                    color "9"
+                }
+            }
 
-            left_high_beam.minus -> m.ground
-            right_high_beam.minus -> m.ground
-            high_beam_relay._87 -> left_high_beam_fuse.in
-            high_beam_relay._86 -> m.ground
+            left_high_beam.minus -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
+            right_high_beam.minus -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
+            high_beam_relay._87 -> left_high_beam_fuse.in {
+                properties {
+                    color "2"
+                }
+            }
+            high_beam_relay._86 -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
 
-            left_high_beam_fuse.out -> left_high_beam.plus
-            high_beam_relay._87 -> right_high_beam_fuse.in
-            right_high_beam_fuse.out -> right_high_beam.plus
-            high_beam_relay_fuse.out -> high_beam_relay._30
-            light_fuse.out -> high_beam_relay_fuse.in
+            left_high_beam_fuse.out -> left_high_beam.plus {
+                properties {
+                    color "1"
+                }
+            }
+            high_beam_relay._87 -> right_high_beam_fuse.in {
+                properties {
+                    color "3"
+                }
+            }
+            right_high_beam_fuse.out -> right_high_beam.plus {
+                properties {
+                    color "1"
+                }
+            }
+            high_beam_relay_fuse.out -> high_beam_relay._30 {
+                properties {
+                    color "4"
+                }
+            }
+            light_fuse.out -> high_beam_relay_fuse.in {
+                properties {
+                    color "2"
+                }
+            }
 
-            front_left_side_light.minus -> m.ground
-            front_right_side_light.minus -> m.ground
-            rear_left_side_light.minus -> m.ground
-            rear_right_side_light.minus -> m.ground
-            number_plate_light.minus -> m.ground
+            front_left_side_light.minus -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
+            front_right_side_light.minus -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
+            rear_left_side_light.minus -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
+            rear_right_side_light.minus -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
+            number_plate_light.minus -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
 
-            left_front_turn_signal.minus -> m.ground
-            left_turn_signal_repeater.minus -> m.ground
-            left_rear_turn_signal.minus -> m.ground
+            left_front_turn_signal.minus -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
+            left_turn_signal_repeater.minus -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
+            left_rear_turn_signal.minus -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
 
-            right_front_turn_signal.minus -> m.ground
-            right_turn_signal_repeater.minus -> m.ground
-            right_rear_turn_signal.minus -> m.ground
+            right_front_turn_signal.minus -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
+            right_turn_signal_repeater.minus -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
+            right_rear_turn_signal.minus -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
 
 
-            side_light_relay._86 -> m.ground
-            side_light_relay._87 -> side_light_fuse.in
-            side_light_fuse.out -> front_left_side_light.plus
-            side_light_fuse.out -> front_right_side_light.plus
-            side_light_fuse.out -> rear_left_side_light.plus
-            side_light_fuse.out -> rear_right_side_light.plus
-            side_light_fuse.out -> number_plate_light.plus
-            side_light_relay_fuse.out -> side_light_relay._30
-            light_fuse.out -> side_light_relay_fuse.in
+            side_light_relay._86 -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
+            side_light_relay._87 -> side_light_fuse.in {
+                properties {
+                    color "2"
+                }
+            }
+            side_light_fuse.out -> front_left_side_light.plus {
+                properties {
+                    color "1"
+                }
+            }
+            side_light_fuse.out -> front_right_side_light.plus {
+                properties {
+                    color "3"
+                }
+            }
+            side_light_fuse.out -> rear_left_side_light.plus {
+                properties {
+                    color "4"
+                }
+            }
+            side_light_fuse.out -> rear_right_side_light.plus {
+                properties {
+                    color "5"
+                }
+            }
+            side_light_fuse.out -> number_plate_light.plus {
+                properties {
+                    color "6"
+                }
+            }
+            side_light_relay_fuse.out -> side_light_relay._30 {
+                properties {
+                    color "3"
+                }
+            }
+            light_fuse.out -> side_light_relay_fuse.in {
+                properties {
+                    color "4"
+                }
+            }
 
             # Поворотники и аварийка
-            light_fuse.out -> turn_signal_fuse.in
-            turn_signal_relay.p -> left_steering_column_turn_signal_switch._49a
-            turn_signal_relay.p -> emergency_light_button.p
-            turn_signal_relay.minus -> m.ground
-            left_steering_column_turn_signal_switch._49aR -> turn_signal_relay.pb
-            emergency_light_button.pb -> turn_signal_relay.pb
-            left_steering_column_turn_signal_switch._49aL -> turn_signal_relay.lb
-            emergency_light_button.lb -> turn_signal_relay.lb
-            turn_signal_relay.kt -> turn_signal_control_light.plus
-            turn_signal_control_light.minus -> m.ground
-            turn_signal_relay.right -> right_turn_signal_splitter.pin
-            turn_signal_relay.left -> left_turn_signal_splitter.pin
+            light_fuse.out -> turn_signal_fuse.in {
+                properties {
+                    color "5"
+                }
+            }
+            turn_signal_relay.p -> left_steering_column_turn_signal_switch._49a {
+                properties {
+                    color "2"
+                }
+            }
+            turn_signal_relay.p -> emergency_light_button.p {
+                properties {
+                    color "1"
+                }
+            }
+            turn_signal_relay.minus -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
+            left_steering_column_turn_signal_switch._49aR -> turn_signal_relay.pb {
+                properties {
+                    color "3"
+                }
+            }
+            emergency_light_button.pb -> turn_signal_relay.pb {
+                properties {
+                    color "4"
+                }
+            }
+            left_steering_column_turn_signal_switch._49aL -> turn_signal_relay.lb {
+                properties {
+                    color "5"
+                }
+            }
+            emergency_light_button.lb -> turn_signal_relay.lb {
+                properties {
+                    color "6"
+                }
+            }
+            turn_signal_relay.kt -> turn_signal_control_light.plus {
+                properties {
+                    color "7"
+                }
+            }
+            turn_signal_control_light.minus -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
+            turn_signal_relay.right -> right_turn_signal_splitter.pin {
+                properties {
+                    color "8"
+                }
+            }
+            turn_signal_relay.left -> left_turn_signal_splitter.pin {
+                properties {
+                    color "9"
+                }
+            }
 
-            emergency_light_button.plus -> turn_signal_relay.plus
+            emergency_light_button.plus -> turn_signal_relay.plus {
+                properties {
+                    color "10"
+                }
+            }
 
             # TODO тут питание должно приходить только при включенном зажигании - значит нужно поставить реле
-            turn_signal_fuse.out -> emergency_light_button.pow
-            turn_signal_fuse.out -> emergency_light_button.emer
+            turn_signal_fuse.out -> emergency_light_button.pow {
+                properties {
+                    color "2"
+                }
+            }
+            turn_signal_fuse.out -> emergency_light_button.emer {
+                properties {
+                    color "3"
+                }
+            }
 
 
-            right_turn_signal_splitter.pin -> right_front_turn_signal.plus
-            right_turn_signal_splitter.pin -> right_turn_signal_repeater.plus
-            right_turn_signal_splitter.pin -> right_rear_turn_signal.plus
+            right_turn_signal_splitter.pin -> right_front_turn_signal.plus {
+                properties {
+                    color "1"
+                }
+            }
+            right_turn_signal_splitter.pin -> right_turn_signal_repeater.plus {
+                properties {
+                    color "2"
+                }
+            }
+            right_turn_signal_splitter.pin -> right_rear_turn_signal.plus {
+                properties {
+                    color "3"
+                }
+            }
 
-            left_turn_signal_splitter.pin -> left_front_turn_signal.plus
-            left_turn_signal_splitter.pin -> left_turn_signal_repeater.plus
-            left_turn_signal_splitter.pin -> left_rear_turn_signal.plus
+            left_turn_signal_splitter.pin -> left_front_turn_signal.plus {
+                properties {
+                    color "1"
+                }
+            }
+            left_turn_signal_splitter.pin -> left_turn_signal_repeater.plus {
+                properties {
+                    color "2"
+                }
+            }
+            left_turn_signal_splitter.pin -> left_rear_turn_signal.plus {
+                properties {
+                    color "3"
+                }
+            }
 
 
 
             # Передняя люстра
-            light_fuse.out -> front_head_light_fuse.in
-            front_head_light_fuse.out -> front_head_light_relay._30
-            front_head_light_relay._87 -> front_head_light.plus
-            front_head_light.minus -> m.ground
-            control_line_from_ignition.data -> front_head_light_switch.in
-            front_head_light_switch.out -> front_head_light_relay._85
-            front_head_light_relay._86 -> m.ground
+            light_fuse.out -> s4.pin {
+                properties {
+                    color "7"
+                }
+            }
+            s4.pin -> front_head_light_fuse.in {
+                properties {
+                    color "6"
+                }
+            }
+            front_head_light_fuse.out -> front_head_light_relay._30 {
+                properties {
+                    color "1"
+                }
+            }
+            front_head_light_relay._87 -> front_head_light.plus {
+                properties {
+                    color "2"
+                }
+            }
+            front_head_light.minus -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
+            light_switch.x -> front_head_light_switch.in {
+                properties {
+                    color "5"
+                }
+            }
+            front_head_light_switch.out -> front_head_light_relay._85 {
+                properties {
+                    color "3"
+                }
+            }
+            front_head_light_relay._86 -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
 
 
             # Задняя люстра
-            light_fuse.out -> rear_head_light_fuse.in
-            rear_head_light_fuse.out -> rear_head_light_relay._30
-            rear_head_light_relay._87 -> rear_head_light.plus
-            rear_head_light.minus -> m.ground
-            control_line_from_ignition.data -> rear_head_light_switch.in
-            rear_head_light_switch.out -> rear_head_light_relay._85
-            rear_head_light_relay._86 -> m.ground
+            s4.pin -> rear_head_light_fuse.in {
+                properties {
+                    color "0"
+                }
+            }
+            rear_head_light_fuse.out -> rear_head_light_relay._30 {
+                properties {
+                    color "1"
+                }
+            }
+            rear_head_light_relay._87 -> rear_head_light.plus {
+                properties {
+                    color "2"
+                }
+            }
+            rear_head_light.minus -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
+            front_head_light_switch.in -> rear_head_light_switch.in {
+                properties {
+                    color "1"
+                }
+            }
+            rear_head_light_switch.out -> rear_head_light_relay._85 {
+                properties {
+                    color "3"
+                }
+            }
+            rear_head_light_relay._86 -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
 
             # Левая боковая люстра
-            light_fuse.out -> left_head_light_fuse.in
-            left_head_light_fuse.out -> left_head_light_relay._30
-            left_head_light_relay._87 -> left_head_light.plus
-            left_head_light.minus -> m.ground
-            control_line_from_ignition.data -> left_head_light_switch.in
-            left_head_light_switch.out -> left_head_light_relay._85
-            left_head_light_relay._86 -> m.ground
+            s4.pin -> left_head_light_fuse.in {
+                properties {
+                    color "1"
+                }
+            }
+            left_head_light_fuse.out -> left_head_light_relay._30 {
+                properties {
+                    color "2"
+                }
+            }
+            left_head_light_relay._87 -> left_head_light.plus {
+                properties {
+                    color "1"
+                }
+            }
+            left_head_light.minus -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
+            rear_head_light_switch.in -> left_head_light_switch.in {
+                properties {
+                    color "2"
+                }
+            }
+            left_head_light_switch.out -> left_head_light_relay._85 {
+                properties {
+                    color "3"
+                }
+            }
+            left_head_light_relay._86 -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
 
 
             # Задняя люстра
-            light_fuse.out -> right_head_light_fuse.in
-            right_head_light_fuse.out -> right_head_light_relay._30
-            right_head_light_relay._87 -> right_head_light.plus
-            right_head_light.minus -> m.ground
-            control_line_from_ignition.data -> right_head_light_switch.in
-            right_head_light_switch.out -> right_head_light_relay._85
-            right_head_light_relay._86 -> m.ground
+            s4.pin -> right_head_light_fuse.in {
+                properties {
+                    color "2"
+                }
+            }
+            right_head_light_fuse.out -> right_head_light_relay._30 {
+                properties {
+                    color "1"
+                }
+            }
+            right_head_light_relay._87 -> right_head_light.plus {
+                properties {
+                    color "2"
+                }
+            }
+            right_head_light.minus -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
+            left_head_light_switch.in -> right_head_light_switch.in {
+                properties {
+                    color "1"
+                }
+            }
+            right_head_light_switch.out -> right_head_light_relay._85 {
+                properties {
+                    color "3"
+                }
+            }
+            right_head_light_relay._86 -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
 
 
             # Педаль тормоза
-            light_fuse.out -> brake_pressure_sensor.in
-            brake_pressure_sensor.out -> s3.pin
-            s3.pin -> left_stop_signal.plus
-            s3.pin -> right_stop_signal.plus
-            s3.pin -> extra_stop_signal.plus
+            light_fuse.out -> brake_pressure_sensor.in {
+                properties {
+                    color "6"
+                }
+            }
+            brake_pressure_sensor.out -> s3.pin {
+                properties {
+                    color "0"
+                }
+            }
+            s3.pin -> left_stop_signal.plus {
+                properties {
+                    color "1"
+                }
+            }
+            s3.pin -> right_stop_signal.plus {
+                properties {
+                    color "2"
+                }
+            }
+            s3.pin -> extra_stop_signal.plus {
+                properties {
+                    color "3"
+                }
+            }
 
-            left_stop_signal.minus -> m.ground
-            right_stop_signal.minus -> m.ground
-            extra_stop_signal.minus -> m.ground
+            left_stop_signal.minus -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
+            right_stop_signal.minus -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
+            extra_stop_signal.minus -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
 
             # Лампа заднего хода
-            light_fuse.out -> reverse_lamp_sensor.in
-            reverse_lamp_sensor.out -> reverse_lamp.plus
-            reverse_lamp.minus -> m.ground
+            light_fuse.out -> reverse_lamp_sensor.in {
+                properties {
+                    color "10"
+                }
+            }
+            reverse_lamp_sensor.out -> reverse_lamp.plus {
+                properties {
+                    color "1"
+                }
+            }
+            reverse_lamp.minus -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
 
             # Отопитель
-            ignition_fan_fuse.out -> heater_fuse.in
-            heater_fuse.out -> heater_relay_1._30
-            heater_fuse.out -> heater_relay_2._30
-            heater_relay_1._87 -> heater_resistor.in
-            heater_resistor.out -> heater.plus
-            heater_relay_2._87 -> heater.plus
-            heater.minus -> m.ground
+            ignition_fan_fuse.out -> heater_fuse.in {
+                properties {
+                    color "2"
+                }
+            }
+            heater_fuse.out -> heater_relay_1._30 {
+                properties {
+                    color "1"
+                }
+            }
+            heater_fuse.out -> heater_relay_2._30 {
+                properties {
+                    color "3"
+                }
+            }
+            heater_relay_1._87 -> heater_resistor.in {
+                properties {
+                    color "2"
+                }
+            }
+            heater_resistor.out -> heater.plus {
+                properties {
+                    color "1"
+                }
+            }
+            heater_relay_2._87 -> heater.plus {
+                properties {
+                    color "2"
+                }
+            }
+            heater.minus -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
 
-            control_line_from_ignition.data -> heater_switch.i
-            heater_switch.d -> heater_relay_1._85
-            heater_switch.u -> heater_relay_2._85
+            right_head_light_switch.in -> heater_switch.i {
+                properties {
+                    color "2"
+                }
+            }
+            heater_switch.d -> heater_relay_1._85 {
+                properties {
+                    color "4"
+                }
+            }
+            heater_switch.u -> heater_relay_2._85 {
+                properties {
+                    color "5"
+                }
+            }
 
-            heater_relay_1._86 -> m.ground
-            heater_relay_2._86 -> m.ground
+            heater_relay_1._86 -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
+            heater_relay_2._86 -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
 
             # Вентилятор салона
-            ignition_fan_fuse.out -> interior_fan_fuse.in
-            interior_fan_fuse.out -> interior_fan_relay._30
-            interior_fan_relay._87 -> interior_fan.plus
-            interior_fan.minus -> m.ground
+            ignition_fan_fuse.out -> interior_fan_fuse.in {
+                properties {
+                    color "3"
+                }
+            }
+            interior_fan_fuse.out -> interior_fan_relay._30 {
+                properties {
+                    color "1"
+                }
+            }
+            interior_fan_relay._87 -> interior_fan.plus {
+                properties {
+                    color "2"
+                }
+            }
+            interior_fan.minus -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
 
-            control_line_from_ignition.data -> interior_fan_switch.in
-            interior_fan_switch.out -> interior_fan_relay._85
-            interior_fan_relay._86 -> m.ground
+            heater_switch.i -> interior_fan_switch.in {
+                properties {
+                    color "1"
+                }
+            }
+            interior_fan_switch.out -> interior_fan_relay._85 {
+                properties {
+                    color "3"
+                }
+            }
+            interior_fan_relay._86 -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
 
 
             # Дворники и передний омыватель
-            ignition_fan_fuse.out -> wipers_fuse.in
-            wipers_fuse.out -> wipers._1
-            wipers._3 -> m.ground
-            wipers._2 -> wipers_relay._15
-            wipers_relay.S -> right_steering_column_switch._53e
-            right_steering_column_switch._53 -> wipers._5
-            right_steering_column_switch._53b -> wipers._6
-            right_steering_column_switch.J -> wipers_relay.J
-            wipers_relay._15 -> right_steering_column_switch._53a
-            control_line_from_ignition.data -> right_steering_column_switch._53ah
+            ignition_fan_fuse.out -> wipers_fuse.in {
+                properties {
+                    color "6"
+                }
+            }
+            wipers_fuse.out -> wipers._1 {
+                properties {
+                    color "1"
+                }
+            }
+            wipers._3 -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
+            wipers._2 -> wipers_relay._15 {
+                properties {
+                    color "2"
+                }
+            }
+            wipers_relay.S -> right_steering_column_switch._53e {
+                properties {
+                    color "1"
+                }
+            }
+            right_steering_column_switch._53 -> wipers._5 {
+                properties {
+                    color "3"
+                }
+            }
+            right_steering_column_switch._53b -> wipers._6 {
+                properties {
+                    color "4"
+                }
+            }
+            right_steering_column_switch.J -> wipers_relay.J {
+                properties {
+                    color "7"
+                }
+            }
+            wipers_relay._15 -> right_steering_column_switch._53a {
+                properties {
+                    color "10"
+                }
+            }
+            interior_fan_switch.in -> right_steering_column_switch._53ah {
+                properties {
+                    color "2"
+                }
+            }
 
 
-            fuse_xxx.out -> windshield_washer_fuse.in
-            windshield_washer_fuse.out -> windshield_washer_relay._30
-            windshield_washer_relay._87 -> windshield_washer.plus
-            windshield_washer_relay._87 -> wipers_relay._86
+            fuse_xxx.out -> windshield_washer_fuse.in {
+                properties {
+                    color "0"
+                }
+            }
+            windshield_washer_fuse.out -> windshield_washer_relay._30 {
+                properties {
+                    color "1"
+                }
+            }
+            windshield_washer_relay._87 -> windshield_washer.plus {
+                properties {
+                    color "2"
+                }
+            }
+            windshield_washer_relay._87 -> wipers_relay._86 {
+                properties {
+                    color "5"
+                }
+            }
 
-            right_steering_column_switch.W -> windshield_washer_relay._85
-            windshield_washer_relay._86 -> m.ground
-            windshield_washer.minus -> m.ground
+            right_steering_column_switch.W -> windshield_washer_relay._85 {
+                properties {
+                    color "6"
+                }
+            }
+            windshield_washer_relay._86 -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
+            windshield_washer.minus -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
 
 
-            wipers_relay._31b -> wipers._4
-            wipers_relay._31 -> m.ground
+            wipers_relay._31b -> wipers._4 {
+                properties {
+                    color "6"
+                }
+            }
+            wipers_relay._31 -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
 
 
             # Гудок
-            ignition_fan_fuse.out -> car_horn_fuse.in
-            car_horn_fuse.out -> car_horn_relay._30
-            car_horn_relay._87 -> car_horn.plus
-            car_horn.minus -> m.ground
-            control_line_from_ignition.data -> car_horn_switch.in
-            car_horn_switch.out -> car_horn_relay._85
-            car_horn_relay._86 -> m.ground
+            ignition_fan_fuse.out -> car_horn_fuse.in {
+                properties {
+                    color "5"
+                }
+            }
+            car_horn_fuse.out -> car_horn_relay._30 {
+                properties {
+                    color "1"
+                }
+            }
+            car_horn_relay._87 -> car_horn.plus {
+                properties {
+                    color "2"
+                }
+            }
+            car_horn.minus -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
+            right_steering_column_switch._53ah -> car_horn_switch.in {
+                properties {
+                    color "0"
+                }
+            }
+            car_horn_switch.out -> car_horn_relay._85 {
+                properties {
+                    color "3"
+                }
+            }
+            car_horn_relay._86 -> m.ground {
+                properties {
+                    color "0"
+                }
+            }
         }
 
         // Set amper

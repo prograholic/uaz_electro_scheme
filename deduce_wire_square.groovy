@@ -379,3 +379,30 @@ workspace.model.getRelationships().findAll {rel ->
     rel.addTags("square_" + square)
     rel.addTags("powered")
 }
+
+
+def MapColorIndexToColor = [
+    "0": "black",
+    "1": "red",
+    "2": "blue",
+    "3": "white",
+    "4": "green",
+    "5": "yellow",
+    "6": "brown",
+    "7": "orange",
+    "8": "pink",
+    "9": "violet",
+    "10": "grey"
+]
+
+workspace.model.getRelationships().findAll {rel ->
+    (rel.getProperties().containsKey("color"))
+}.each {rel ->
+    def colorIndex = rel.getProperties().get("color")
+    def color = MapColorIndexToColor[colorIndex]
+    if (color == null) {
+        throw new IllegalStateException("Cannot map color index " + colorIndex + " to color")
+    }
+
+    rel.addTags("color_" + color)
+}

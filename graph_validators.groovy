@@ -199,11 +199,46 @@ def ensureNoShortCircuitAndSequentialConsumers(power_sources) {
     }
 }
 
+def validateRelationshipColors(relationships, elements) {
+    println("VALIDATE RELATIONSHIP COLORS")
+    elements.findAll { element ->
+        (element.getClass() == com.structurizr.model.Container)
+    }.each {element ->
+        println(" ELEMENT " + element.getCanonicalName())
+        def colors = new TreeSet<String>()
+
+        element.getComponents().findAll {component ->
+            (component.getTags().contains("pin") && !component.getTags().contains("ground"))
+        }.each { pin ->
+            println("  PIN " + pin.getCanonicalName())
+            relationships.findAll {relationship ->
+                ((relationship.getDestination() == pin) || (relationship.getSource() == pin)) &&
+                (!relationship.getTags().contains("internal_connection")) &&
+                (!relationship.getTags().contains("foreign_color"))
+            }.each {relationship ->
+                println("   REL: " + getRelationshipName(relationship))
+                color = relationship.getProperties().get("color")
+                if (color == null) {
+                    throw new IllegalStateException("Missing `color` property for " + getRelationshipName(relationship) + " for pin " + pin.getCanonicalName())
+                }
+
+                if (colors.contains(color)) {
+                    throw new IllegalStateException("Duplicate color " + color + " found for " + getRelationshipName(relationship) + " for pin " + pin.getCanonicalName())
+                } else {
+                    colors.add(color)
+                    relationship.addProperty("color", color)
+                }
+            }
+        }
+    }
+}
+
 
 def validateOfflineGraph(relationships, elements, pins) {
     ensureCorrectPin2PinConnections(relationships)
     ensureNoUnconnectedPins(relationships, pins)
     ensureNoShortCircuitAndSequentialConsumers(power_sources)
+    validateRelationshipColors(relationships, elements)
 }
 
 def deduceAmperageToPowerSource(relationships, relationship, amper, isIncoming) {

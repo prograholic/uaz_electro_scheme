@@ -37,6 +37,18 @@ relationship "color_yellow" {
 relationship "color_white" {
     color #fdf4d7
 }
+relationship "color_orange" {
+    color #ff7c01
+}
+relationship "color_pink" {
+    color #FFC0CB
+}
+relationship "color_violet" {
+    color #8000FF
+}
+relationship "color_grey" {
+    color #808080
+}
 relationship "square_100" {
     thickness 19
 }
