@@ -446,9 +446,10 @@ workspace "Name" "Description" {
                 }
             }
             akb.plus -> starter.plus {
+                tags "foreign_color"
                 properties {
                     #distance 0.5
-                    color "0"
+                    color "1"
                 }
             }
             akb.plus -> winch.plus {
@@ -463,6 +464,7 @@ workspace "Name" "Description" {
             # Система зажигания
 
             generator.plus -> starter.plus {
+                tags "foreign_color"
                 properties {
                     #distance 1.0
                     color "1"
@@ -481,8 +483,9 @@ workspace "Name" "Description" {
                 }
             }
             starter.plus -> light_fuse.in {
+                tags "foreign_color"
                 properties {
-                    color "8"
+                    color "1"
                 }
             }
             starter.plus -> ignition_fan_fuse.in {
@@ -590,27 +593,6 @@ workspace "Name" "Description" {
                     color "0"
                 }
             }
-            winch.plus -> winch_relay._30 {
-                tags "internal_connection"
-            }
-            winch_relay._87 -> winch.winch {
-                tags "internal_connection"
-            }
-            winch.winch -> winch.minus {
-                tags "internal_connection"
-            }
-
-            winch.plus -> winch_switch.in {
-                tags "internal_connection"
-            }
-            winch_switch.out -> winch_relay._85 {
-                tags "internal_connection"
-            }
-            winch_relay._86 -> winch.minus {
-                tags "internal_connection"
-            }
-
-
             # Электровентиляторы охлаждения ДВС
 
             coolant_fan_1.minus -> m.ground {

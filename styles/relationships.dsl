@@ -6,7 +6,7 @@ relationship "Relationship" {
 }
 relationship "powered" {
     opacity 100
-    thickness 5
+    #thickness 5
     color #ff0000
 }
 relationship "pwr" {
@@ -50,25 +50,28 @@ relationship "color_grey" {
     color #808080
 }
 relationship "square_100" {
-    thickness 19
+    thickness 105
 }
 relationship "square_75" {
-    thickness 18
+    thickness 80
 }
 relationship "square_50" {
-    thickness 17
+    thickness 55
 }
 relationship "square_35" {
-    thickness 16
+    thickness 40
 }
 relationship "square_25" {
-    thickness 15
+    thickness 30
 }
 relationship "square_16" {
-    thickness 14
+    thickness 21
+}
+relationship "square_10" {
+    thickness 15
 }
 relationship "square_6" {
-    thickness 11
+    thickness 12
 }
 relationship "square_4" {
     thickness 10
@@ -79,7 +82,7 @@ relationship "square_2.5" {
 relationship "square_1.5" {
     thickness 8
 }
-relationship "square_1.5" {
+relationship "square_1.0" {
     thickness 7
 }
 relationship "square_0.75" {

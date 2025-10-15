@@ -264,25 +264,25 @@ def getSquare(amper, temperature, length, rel) {
 //    https://elmarts.ru/blog/sovety-pokupatelyam/provoda-dlya-avtomobilnoy-provodki/
 
 MapAmperToLength = [
-             /* 0.5,   1.0,   1.5,    2.5,    4.0,    6.0,    8.0,   10.0,   16.0,   20.0,   25.0,   35.0,   50.0 */
-    /*   1A */ [3.5f,  7.0f,  10.91f, 17.65f, 28.57f, 42.86f, 56.0f, 70.6f,  109.1f, 130.0f, 176.5f, 244.9f, 300.0f],
-    /*   2A */ [2.0f,  3.53f, 5.45f,  8.82f,  14.29f, 21.4f,  28.0f, 35.3f,  54.5f,  65.0f,  88,2f,  122.4f, 171.4f],
-    /*   4A */ [1.2f,  1.76f, 2.73f,  4.41f,  7.7f,   10.7f,  14.0f, 17.6f,  27.3f,  32.0f,  44.1f,  61.2f,  85.7f],
-    /*   6A */ [0.9f,  1.18f, 1.82f,  2.94f,  4.76f,  7.1f,   9.4f,  11.7f,  18.2f,  21.0f,  29.4f,  40.8f,  57.1f],
-    /*   8A */ [0.65f, 0.88f, 1.36f,  2.2f,   3.47f,  5.4f,   7.1f,  8.8f,   13.6f,  16.0f,  22.0f,  30.6f,  42.9f],
-    /*  10A */ [0.5f,  0.71f, 1.0f,   1.76f,  2.86f,  4.3f,   5.7f,  7.1f,   10.9f,  13.0f,  17.7f,  24.5f,  34.3f],
-    /*  15A */ [0.35f, 0.5f,  0.73f,  1.18f,  1.9f,   2.9f,   3.8f,  4.7f,   7.3f,   8.5f,   11.8f,  16.3f,  22.9f],
-    /*  20A */ [0.0f,  0.3f,  0.5f,   0.88f,  1.43f,  2.1f,   2.8f,  3.5f,   5.5f,   6.6f,   8.8f,   12.2f,  17.1f],
-    /*  25A */ [0.0f,  0.1f,  0.35f,  0.6f,   1.14f,  1.7f,   2.25f, 2.8f,   4.4f,   5.0f,   7.1f,   9.8f,   13.7f],
-    /*  30A */ [0.0f,  0.0f,  0.1f,   0.4f,   0.9f,   1.4f,   1.9f,  2.4f,   3.6f,   4.2f,   5.9f,   8.2f,   11.4f],
-    /*  40A */ [0.0f,  0.0f,  0.0f,   0.1f,   0.6f,   1.0f,   1.4f,  1.8f,   2.7f,   3.2f,   4.4f,   6.1f,   8.5f],
-    /*  50A */ [0.0f,  0.0f,  0.0f,   0.0f,   0.3f,   0.6f,   0.9f,  1.2f,   2.2f,   2.5f,   3.5f,   4.9f,   6.9f],
-    /* 100A */ [0.0f,  0.0f,  0.0f,   0.0f,   0.0f,   0.0f,   0.1f,  0.4f,   1.2f,   1.35f,  1.7f,   2.4f,   3.4f],
-    /* 150A */ [0.0f,  0.0f,  0.0f,   0.0f,   0.0f,   0.0f,   0.0f,  0.0f,   0.4f,   0.5f,   0.6f,   1.0f,   2.3f],
-    /* 200A */ [0.0f,  0.0f,  0.0f,   0.0f,   0.0f,   0.0f,   0.0f,  0.0f,   0.0f,   0.0f,   0.0f,   0.5f,   1.0f],
+             /* 0.5,   0.75,  1.0,   1.5,    2.5,    4,      6,      10,    16,     25,     35,     50 ,    75,     100*/
+    /*   1A */ [3.5f,  5.25f, 7.0f,  10.91f, 17.65f, 28.57f, 42.86f, 70.6f, 109.1f, 176.5f, 244.9f, 300.0f, 400.0f, 500.0f],
+    /*   2A */ [2.0f,  2.76f, 3.53f, 5.45f,  8.82f,  14.29f, 21.4f,  35.3f, 54.5f,  88,2f,  122.4f, 171.4f, 230.0f, 300.0f],
+    /*   4A */ [1.2f,  1.48f, 1.76f, 2.73f,  4.41f,  7.7f,   10.7f,  17.6f, 27.3f,  44.1f,  61.2f,  85.7f,  130.0f, 200.0f],
+    /*   6A */ [0.9f,  1.04f, 1.18f, 1.82f,  2.94f,  4.76f,  7.1f,   11.7f, 18.2f,  29.4f,  40.8f,  57.1f,  87.0f,  117.6f],
+    /*   8A */ [0.65f, 0.76f, 0.88f, 1.36f,  2.2f,   3.47f,  5.4f,   8.8f,  13.6f,  22.0f,  30.6f,  42.9f,  65.25f, 88.2f],
+    /*  10A */ [0.5f,  0.6f,  0.71f, 1.0f,   1.76f,  2.86f,  4.3f,   7.1f,  10.9f,  17.7f,  24.5f,  34.3f,  52.2f,  70.6f],
+    /*  15A */ [0.35f, 0.42f, 0.5f,  0.73f,  1.18f,  1.9f,   2.9f,   4.7f,  7.3f,   11.8f,  16.3f,  22.9f,  34.8f,  47.1f],
+    /*  20A */ [0.0f,  0.1f,  0.3f,  0.5f,   0.88f,  1.43f,  2.1f,   3.5f,  5.5f,   8.8f,   12.2f,  17.1f,  26.1f,  35.3f],
+    /*  25A */ [0.0f,  0.0f,  0.1f,  0.35f,  0.6f,   1.14f,  1.7f,   2.8f,  4.4f,   7.1f,   9.8f,   13.7f,  20.9f,  28.2f],
+    /*  30A */ [0.0f,  0.0f,  0.0f,  0.1f,   0.4f,   0.9f,   1.4f,   2.4f,  3.6f,   5.9f,   8.2f,   11.4f,  17.4f,  23.5f],
+    /*  40A */ [0.0f,  0.0f,  0.0f,  0.0f,   0.1f,   0.6f,   1.0f,   1.8f,  2.7f,   4.4f,   6.1f,   8.5f,   13.0f,  17.6f],
+    /*  50A */ [0.0f,  0.0f,  0.0f,  0.0f,   0.0f,   0.3f,   0.6f,   1.2f,  2.2f,   3.5f,   4.9f,   6.9f,   10.4f,  14.1f],
+    /* 100A */ [0.0f,  0.0f,  0.0f,  0.0f,   0.0f,   0.0f,   0.0f,   0.4f,  1.2f,   1.7f,   2.4f,   3.4f,   5.2f,   7.1f],
+    /* 150A */ [0.0f,  0.0f,  0.0f,  0.0f,   0.0f,   0.0f,   0.0f,   0.0f,  0.4f,   0.6f,   1.0f,   2.3f,   3.5f,   4.7f],
+    /* 200A */ [0.0f,  0.0f,  0.0f,  0.0f,   0.0f,   0.0f,   0.0f,   0.0f,  0.0f,   0.0f,   0.5f,   1.0f,   2.6f,   3.5f],
 ]
 
-MapIndexToSquare = [0.5f, 1.0f, 1.5f, 2.5f, 4.0f, 6.0f, 8.0f, 10.0f, 16.0f, 20.0f, 25.0f, 35.0f, 50.0f]
+MapIndexToSquare = ["0.5", "0.75", "1.0", "1.5", "2.5", "4", "6", "10", "16", "25", "35", "50", "75", "100"]
 
 def getRowForAmper(amper, rel) {
     if (amper <= 1.0f) {
@@ -366,9 +366,8 @@ workspace.model.getRelationships().findAll {rel ->
 
     def temperature = relProps.getOrDefault("temperature", "30").toFloat()
 
-    println(" relationship: " + getRelationshipName(rel) + ", amper: " + amper + ", temp: " + temperature)
-
     square = getSquare(amper, temperature, length, rel)
+    rel.addProperty("square", square)
     
     desc = rel.getDescription()
     if (desc.size() != 0) {
@@ -378,6 +377,8 @@ workspace.model.getRelationships().findAll {rel ->
 
     rel.addTags("square_" + square)
     rel.addTags("powered")
+
+    println(" relationship: " + getRelationshipName(rel) + ", amper: " + amper + ", temp: " + temperature)
 }
 
 
@@ -395,6 +396,8 @@ def MapColorIndexToColor = [
     "10": "grey"
 ]
 
+def WiresTotal = new HashMap<String, TreeSet<String>>()
+
 workspace.model.getRelationships().findAll {rel ->
     (rel.getProperties().containsKey("color"))
 }.each {rel ->
@@ -405,4 +408,18 @@ workspace.model.getRelationships().findAll {rel ->
     }
 
     rel.addTags("color_" + color)
+
+    squares = WiresTotal.getOrDefault(color, new TreeSet<String>())
+    square = rel.getProperties().get("square")
+    if (square != null) {
+        squares.add(square)
+    }
+    WiresTotal.put(color, squares)
+}
+
+WiresTotal.each {color, squares ->
+    println("COLOR: " + color)
+    squares.each {square ->
+        println("  " + square + " мм2")
+    }
 }

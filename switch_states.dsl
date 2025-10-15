@@ -166,3 +166,12 @@
         active_switch_state 1
     }
 }
+
+# Лебедка
+!element es.winch_switch {
+    properties {
+        # 0 - лебедка выключена
+        # 1 - лебедка включена
+        active_switch_state 0
+    }
+}
