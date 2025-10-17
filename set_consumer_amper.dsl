@@ -205,3 +205,9 @@
         amper 1
     }
 }
+
+!element es.wipers.motor1 {
+    properties {
+        amper 5
+    }
+}

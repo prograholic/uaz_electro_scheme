@@ -11,7 +11,7 @@ W = pin "W"
 _53e -> _53 {
     tags "ctr,switch_ctr,internal_connection"
     properties {
-        switch_state "0,1,2"
+        switch_state "0,1,2,8"
     }
 }
 _53a -> J {
