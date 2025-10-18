@@ -71,7 +71,7 @@
     properties {
         # 0 - аварийка выключена
         # 1 - аварийка включена
-        active_switch_state 0
+        active_switch_state 1
     }
 }
 

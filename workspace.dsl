@@ -1072,6 +1072,8 @@ workspace "Name" "Description" {
             turn_signal_relay.p -> emergency_light_button.p {
                 properties {
                     color "1"
+                    length "2.5"
+                    square "0.5"
                 }
             }
             turn_signal_relay.minus -> m.ground {
@@ -1091,6 +1093,8 @@ workspace "Name" "Description" {
             emergency_light_button.pb -> turn_signal_relay.pb {
                 properties {
                     color "4"
+                    length "2.5"
+                    square "0.5"
                 }
             }
             left_steering_column_turn_signal_switch._49aL -> turn_signal_relay.lb {
@@ -1153,6 +1157,8 @@ workspace "Name" "Description" {
             turn_signal_fuse.out -> emergency_light_button.emer {
                 properties {
                     color "3"
+                    length "2.5"
+                    square "2.5"
                 }
             }
 
