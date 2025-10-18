@@ -514,6 +514,8 @@ workspace "Name" "Description" {
             ignition_relay_power_fuse.out -> ignition_switch.in {
                 properties {
                     color "1"
+                    length "2.5"
+                    square "0.5"
                 }
             }
 
@@ -528,6 +530,8 @@ workspace "Name" "Description" {
             ignition_switch.out -> ignition_relay._85 {
                 properties {
                     color "2"
+                    length "2.5"
+                    square "0.5"
                 }
             }
             
@@ -557,7 +561,7 @@ workspace "Name" "Description" {
                 properties {
                     color "0"
                     length "3.0"
-                    squre "4"
+                    square "4"
                 }
             }
             starter_relay_fuse.out -> start_button.in {
@@ -585,6 +589,8 @@ workspace "Name" "Description" {
             starter_relay._88 -> control_line_from_ignition_fuse.in {
                 properties {
                     color "5"
+                    length "0.2"
+                    square "2.5"
                 }
             }
             control_line_from_ignition_fuse.out -> control_line_from_ignition_1.pin {
@@ -595,6 +601,8 @@ workspace "Name" "Description" {
             control_line_from_ignition_fuse.out -> control_line_from_ignition_2.pin {
                 properties {
                     color "2"
+                    length "0.3"
+                    square "2.5"
                 }
             }
 
@@ -619,22 +627,29 @@ workspace "Name" "Description" {
             coolant_fan_1_fuse.out -> coolant_fan_1_relay._30 {
                 properties {
                     length "0.2"
+                    square "2.5"
                     color "1"
                 }
             }
             coolant_fan_1_relay._87 -> coolant_fan_1.plus {
                 properties {
                     color "2"
+                    length "3"
+                    square "2.5"
                 }
             }
             control_line_from_ignition_2.pin -> coolant_fan_1_relay._85 {
                 properties {
                     color "3"
+                    length "0.3"
+                    square "0.5"
                 }
             }
             ignition_fan_power_fuse.out -> coolant_fan_1_fuse.in {
                 properties {
                     color "0"
+                    length "2"
+                    square "4"
                 }
             }
             coolant_fan_1_relay._86 -> coolant_control_switch.I {
@@ -655,21 +670,29 @@ workspace "Name" "Description" {
             coolant_fan_2_relay._87 -> coolant_fan_2.plus {
                 properties {
                     color "1"
+                    length "2"
+                    square "4"
                 }
             }
             ignition_fan_power_fuse.out -> coolant_fan_2_fuse.in {
                 properties {
                     color "1"
+                    length "2"
+                    square "4"
                 }
             }
             control_line_from_ignition_2.pin -> coolant_fan_2_relay._85 {
                 properties {
                     color "6"
+                    length "0.3"
+                    square "0.5"
                 }
             }
             coolant_fan_2_fuse.out -> coolant_fan_2_relay._30 {
                 properties {
                     color "3"
+                    length "0.2"
+                    square "2.5"
                 }
             }
             coolant_fan_2_relay._86 -> coolant_control_switch.I {

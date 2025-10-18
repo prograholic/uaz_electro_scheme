@@ -7,14 +7,14 @@
 !element es.ignition_switch {
     properties {
         # 1 - вкл зажигание
-        active_switch_state 0
+        active_switch_state 1
     }
 }
 !element es.start_button {
     properties {
         # 0 - стартер не крутим
         # 1 - покрутить стартер!
-        #active_switch_state 1
+        active_switch_state 0
     }
 }
 

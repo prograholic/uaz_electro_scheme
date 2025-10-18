@@ -1,7 +1,7 @@
 #Стартер, генератор, зажигание
 !element es.starter.eng {
     properties {
-        amper 150
+        amper 300
     }
 }
 !element es.starter.st_relay {
@@ -23,9 +23,7 @@
 # Лебедка
 !element es.winch.winch {
     properties {
-        # Вообще-то кол-во ампер около 300, но т.к. это кратковременная нагрузка, то считаем поменьше
-        #amper 300
-        amper 140
+        amper 300
     }
 }
 
