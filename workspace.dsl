@@ -948,16 +948,22 @@ workspace "Name" "Description" {
             left_front_turn_signal.minus -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "1"
                 }
             }
             left_turn_signal_repeater.minus -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "1"
                 }
             }
             left_rear_turn_signal.minus -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "1"
                 }
             }
 
@@ -1090,6 +1096,8 @@ workspace "Name" "Description" {
             left_steering_column_turn_signal_switch._49aL -> turn_signal_relay.lb {
                 properties {
                     color "5"
+                    length "2.5"
+                    square "0.5"
                 }
             }
             emergency_light_button.lb -> turn_signal_relay.lb {
@@ -1121,6 +1129,8 @@ workspace "Name" "Description" {
             turn_signal_relay.left -> left_turn_signal_splitter.pin {
                 properties {
                     color "9"
+                    length "3"
+                    square "1.5"
                 }
             }
 
@@ -1172,16 +1182,22 @@ workspace "Name" "Description" {
             left_turn_signal_splitter.pin -> left_front_turn_signal.plus {
                 properties {
                     color "1"
+                    length "2"
+                    square "0.5"
                 }
             }
             left_turn_signal_splitter.pin -> left_turn_signal_repeater.plus {
                 properties {
                     color "2"
+                    length "1"
+                    square "0.5"
                 }
             }
             left_turn_signal_splitter.pin -> left_rear_turn_signal.plus {
                 properties {
                     color "3"
+                    length "4"
+                    square "0.5"
                 }
             }
 

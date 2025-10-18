@@ -64,7 +64,7 @@
         # 0 - поворотники выключены
         # 1 - правый поворотник включен
         # 2 - левый поворотник включен
-        active_switch_state 1
+        active_switch_state 2
     }
 }
 !element es.emergency_light_button {
