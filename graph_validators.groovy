@@ -615,14 +615,15 @@ def colorizeAndPrintStats(activeCircuits) {
 
     activeCircuits.each {consumer, activeCircuit ->
         activeCircuit.findAll{ rel ->
-            (!rel.getTags().contains("internal_connection"))
+            // skip internal connections and already processed items
+            (!rel.getTags().contains("internal_connection") && (!rel.getTags().contains("powered")))
         }.each { rel ->
             println(" rel: " + getRelationshipName(rel))
 
             def relProps = rel.getProperties()
             def amper = relProps.getAt("amper").toFloat()
             def length = relProps.getAt("length").toFloat()
-            def square = relProps.getAt("square").toFloat()
+            def square = relProps.getAt("square")
             def colorIndex = relProps.getAt("color")
             def color = MapColorIndexToColor[colorIndex]
             if (color == null) {

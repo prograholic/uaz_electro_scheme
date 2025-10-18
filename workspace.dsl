@@ -467,7 +467,8 @@ workspace "Name" "Description" {
             akb.plus -> starter.plus {
                 tags "foreign_color"
                 properties {
-                    #length "0.5"
+                    length "1.5"
+                    square "50"
                     color "1"
                 }
             }
@@ -508,7 +509,7 @@ workspace "Name" "Description" {
                 properties {
                     color "4"
                     length "2.0"
-                    square "4"
+                    square "10"
                 }
             }
             ignition_relay_power_fuse.out -> ignition_switch.in {
@@ -553,7 +554,7 @@ workspace "Name" "Description" {
             starter_relay_fuse.out -> starter_relay._30 {
                 properties {
                     length "3.0"
-                    square "4"
+                    square "10"
                     color "1"
                 }
             }
@@ -567,23 +568,31 @@ workspace "Name" "Description" {
             starter_relay_fuse.out -> start_button.in {
                 properties {
                     color "2"
+                    length "2.5"
+                    square "0.5"
                 }
             }
     
             start_button.out -> starter_relay._85 {
                 properties {
                     color "3"
+                    length "2.5"
+                    square "0.5"
                 }
             }
     
             starter_relay._86 -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "0.5"
                 }
             }
             starter_relay._87 -> starter.st {
                 properties {
                     color "6"
+                    length "3.5"
+                    square "10"
                 }
             }
             starter_relay._88 -> control_line_from_ignition_fuse.in {

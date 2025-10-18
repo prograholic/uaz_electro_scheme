@@ -7,7 +7,7 @@ relationship "Relationship" {
 relationship "powered" {
     opacity 100
     #thickness 5
-    color #ff0000
+    #color #ff0000
 }
 relationship "pwr" {
     style dashed

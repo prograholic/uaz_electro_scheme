@@ -14,7 +14,7 @@
     properties {
         # 0 - стартер не крутим
         # 1 - покрутить стартер!
-        active_switch_state 0
+        active_switch_state 1
     }
 }
 
