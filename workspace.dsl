@@ -1575,37 +1575,51 @@ workspace "Name" "Description" {
             ignition_fan_power_fuse.out -> interior_fan_fuse.in {
                 properties {
                     color "3"
+                    length "2.5"
+                    square "0.5"
                 }
             }
             interior_fan_fuse.out -> interior_fan_relay._30 {
                 properties {
                     color "1"
+                    length "0.3"
+                    square "0.5"
                 }
             }
             interior_fan_relay._87 -> interior_fan.plus {
                 properties {
                     color "2"
+                    length "1"
+                    square "0.5"
                 }
             }
             interior_fan.minus -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "0.5"
                 }
             }
 
             control_line_from_ignition_2.pin -> interior_fan_switch.in {
                 properties {
                     color "7"
+                    length "2.5"
+                    square "0.5"
                 }
             }
             interior_fan_switch.out -> interior_fan_relay._85 {
                 properties {
                     color "3"
+                    length "2.5"
+                    square "0.5"
                 }
             }
             interior_fan_relay._86 -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "0.5"
                 }
             }
 

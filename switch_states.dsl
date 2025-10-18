@@ -130,7 +130,7 @@
     properties {
         # 0 - вентилятор выключен
         # 1 - вентилятор включен
-        active_switch_state 0
+        active_switch_state 1
     }
 }
 
