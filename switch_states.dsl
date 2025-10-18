@@ -94,7 +94,7 @@
     properties {
         # 0 - левый доп свет выключен
         # 1 - левый доп свет включен
-        active_switch_state 0
+        active_switch_state 1
     }
 }
 !element es.right_head_light_switch {
