@@ -605,6 +605,8 @@ workspace "Name" "Description" {
             control_line_from_ignition_fuse.out -> control_line_from_ignition_1.pin {
                 properties {
                     color "1"
+                    length "0.3"
+                    square "2.5"
                 }
             }
             control_line_from_ignition_fuse.out -> control_line_from_ignition_2.pin {
@@ -751,11 +753,15 @@ workspace "Name" "Description" {
             control_line_from_ignition_1.pin -> left_steering_column_light_switch._30 {
                 properties {
                     color "9"
+                    length "2.5"
+                    square "0.5"
                 }
             }
             left_steering_column_light_switch._56a -> high_beam_relay._85 {
                 properties {
                     color "1"
+                    length "2.5"
+                    square "0.5"
                 }
             }
             left_steering_column_light_switch._56b -> low_beam_relay._85 {
@@ -835,37 +841,51 @@ workspace "Name" "Description" {
             left_high_beam.minus -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "1"
                 }
             }
             right_high_beam.minus -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "1"
                 }
             }
             high_beam_relay._87 -> left_high_beam.plus {
                 properties {
                     color "2"
+                    length "3.5"
+                    square "1.5"
                 }
             }
             high_beam_relay._86 -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "0.5"
                 }
             }
 
             high_beam_relay._87 -> right_high_beam.plus {
                 properties {
                     color "3"
+                    length "3.5"
+                    square "1.5"
                 }
             }
             high_beam_relay_fuse.out -> high_beam_relay._30 {
                 properties {
                     color "4"
+                    length "0.3"
+                    square "2.5"
                 }
             }
             light_power_fuse.out -> high_beam_relay_fuse.in {
                 properties {
                     color "2"
+                    length "3"
+                    square "4"
                 }
             }
 
