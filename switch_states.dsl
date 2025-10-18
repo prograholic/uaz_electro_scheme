@@ -87,7 +87,7 @@
     properties {
         # 0 - задний доп свет выключен
         # 1 - задний доп свет включен
-        active_switch_state 0
+        active_switch_state 1
     }
 }
 !element es.left_head_light_switch {

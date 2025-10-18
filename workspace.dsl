@@ -1214,7 +1214,7 @@ workspace "Name" "Description" {
                 properties {
                     color "7"
                     length "2.5"
-                    square "4"
+                    square "10"
                 }
             }
             head_light_splitter.pin -> front_head_light_fuse.in {
@@ -1272,36 +1272,50 @@ workspace "Name" "Description" {
             head_light_splitter.pin -> rear_head_light_fuse.in {
                 properties {
                     color "0"
+                    length "1.5"
+                    square "2.5"
                 }
             }
             rear_head_light_fuse.out -> rear_head_light_relay._30 {
                 properties {
                     color "1"
+                    length "0.3"
+                    square "1.5"
                 }
             }
             rear_head_light_relay._87 -> rear_head_light.plus {
                 properties {
                     color "2"
+                    length "2.5"
+                    square "4"
                 }
             }
             rear_head_light.minus -> m.ground {
                 properties {
                     color "0"
+                    length "3.5"
+                    square "6"
                 }
             }
             control_line_from_ignition_1.pin -> rear_head_light_switch.in {
                 properties {
                     color "10"
+                    length "2.5"
+                    square "0.5"
                 }
             }
             rear_head_light_switch.out -> rear_head_light_relay._85 {
                 properties {
                     color "3"
+                    length "2.5"
+                    square "0.5"
                 }
             }
             rear_head_light_relay._86 -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "0.5"
                 }
             }
 
