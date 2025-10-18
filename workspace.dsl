@@ -1221,7 +1221,7 @@ workspace "Name" "Description" {
                 properties {
                     color "6"
                     length "1.5"
-                    square "2.5"
+                    square "4"
                 }
             }
             front_head_light_fuse.out -> front_head_light_relay._30 {
@@ -1273,7 +1273,7 @@ workspace "Name" "Description" {
                 properties {
                     color "0"
                     length "1.5"
-                    square "2.5"
+                    square "4"
                 }
             }
             rear_head_light_fuse.out -> rear_head_light_relay._30 {
@@ -1324,7 +1324,7 @@ workspace "Name" "Description" {
                 properties {
                     color "1"
                     length "1.5"
-                    square "2.5"
+                    square "4"
                 }
             }
             left_head_light_fuse.out -> left_head_light_relay._30 {
@@ -1338,7 +1338,7 @@ workspace "Name" "Description" {
                 properties {
                     color "1"
                     length "3"
-                    square "4"
+                    square "6"
                 }
             }
             left_head_light.minus -> m.ground {
@@ -1371,40 +1371,54 @@ workspace "Name" "Description" {
             }
 
 
-            # Задняя люстра
+            # Правая люстра
             head_light_splitter.pin -> right_head_light_fuse.in {
                 properties {
                     color "2"
+                    length "1.5"
+                    square "4"
                 }
             }
             right_head_light_fuse.out -> right_head_light_relay._30 {
                 properties {
                     color "1"
+                    length "0.3"
+                    square "1.5"
                 }
             }
             right_head_light_relay._87 -> right_head_light.plus {
                 properties {
                     color "2"
+                    length "3"
+                    square "6"
                 }
             }
             right_head_light.minus -> m.ground {
                 properties {
                     color "0"
+                    length "3"
+                    square "6"
                 }
             }
             control_line_from_ignition_1.pin -> right_head_light_switch.in {
                 properties {
                     color "4"
+                    length "2.5"
+                    square "0.5"
                 }
             }
             right_head_light_switch.out -> right_head_light_relay._85 {
                 properties {
                     color "3"
+                    length "2.5"
+                    square "0.5"
                 }
             }
             right_head_light_relay._86 -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "0.5"
                 }
             }
 
