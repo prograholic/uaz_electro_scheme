@@ -1487,63 +1487,87 @@ workspace "Name" "Description" {
             ignition_fan_power_fuse.out -> heater_fuse.in {
                 properties {
                     color "2"
+                    length "2.5"
+                    square "2.5"
                 }
             }
             heater_fuse.out -> heater_relay_1._30 {
                 properties {
                     color "1"
+                    length "0.3"
+                    square "0.5"
                 }
             }
             heater_fuse.out -> heater_relay_2._30 {
                 properties {
                     color "3"
+                    length "0.3"
+                    square "0.5"
                 }
             }
             heater_relay_1._87 -> heater_resistor.in {
                 properties {
                     color "2"
+                    length "3"
+                    square "4"
                 }
             }
             heater_resistor.out -> heater.plus {
                 properties {
                     color "1"
+                    length "0.1"
+                    square "0.5"
                 }
             }
             heater_relay_2._87 -> heater.plus {
                 properties {
                     color "2"
+                    length "3"
+                    square "4"
                 }
             }
             heater.minus -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "2.5"
                 }
             }
 
             control_line_from_ignition_2.pin -> heater_switch.i {
                 properties {
                     color "1"
+                    length "2.5"
+                    square "0.5"
                 }
             }
             heater_switch.d -> heater_relay_1._85 {
                 properties {
                     color "4"
+                    length "2.5"
+                    square "0.5"
                 }
             }
             heater_switch.u -> heater_relay_2._85 {
                 properties {
                     color "5"
+                    length "2.5"
+                    square "0.5"
                 }
             }
 
             heater_relay_1._86 -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "0.5"
                 }
             }
             heater_relay_2._86 -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "0.5"
                 }
             }
 
