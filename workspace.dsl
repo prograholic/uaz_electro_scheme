@@ -62,6 +62,9 @@ workspace "Name" "Description" {
                 }
 
                 group "Блок силовых предохранителей" {
+                    power_fuse_splitter = splitter "Разветвитель силовых предохранителей" {
+                        pin = pin "pin"
+                    }
                     # Сюда преды на 60-60-40-90
                     ignition_relay_fuse = fuse "Прд реле зажигания" {
                         !include "elements/fuse.dsl"
@@ -459,6 +462,13 @@ workspace "Name" "Description" {
                     color "1"
                 }
             }
+            akb.plus -> power_fuse_splitter.pin {
+                tags "foreign_color"
+                properties {
+                    #distance 1.0
+                    color "1"
+                }
+            }
 
 
             # Система зажигания
@@ -477,23 +487,23 @@ workspace "Name" "Description" {
                 }
             }
     
-            starter.plus -> ignition_relay_fuse.in {
+            power_fuse_splitter.pin -> ignition_relay_fuse.in {
                 properties {
                     color "2"
                 }
             }
-            starter.plus -> light_fuse.in {
+            power_fuse_splitter.pin -> light_fuse.in {
                 tags "foreign_color"
                 properties {
                     color "1"
                 }
             }
-            starter.plus -> ignition_fan_fuse.in {
+            power_fuse_splitter.pin -> ignition_fan_fuse.in {
                 properties {
                     color "4"
                 }
             }
-            starter.plus -> fuse_xxx.in {
+            power_fuse_splitter.pin -> fuse_xxx.in {
                 properties {
                     color "5"
                 }
