@@ -36,7 +36,7 @@
         # 0 - выключено
         # 1 - габариты
         # 2 - габариты + ближний
-        active_switch_state 1
+        active_switch_state 2
     }
 }
 !element es.left_steering_column_light_switch {
@@ -53,7 +53,7 @@
         #   0 - ближний
         #   1 - ближний + дальний (постоянный)
         #   2 - ближний + дальний (мыргалка)
-        active_switch_state 2
+        active_switch_state 0
     }
 }
 
