@@ -964,16 +964,22 @@ workspace "Name" "Description" {
             right_front_turn_signal.minus -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "0.5"
                 }
             }
             right_turn_signal_repeater.minus -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "0.5"
                 }
             }
             right_rear_turn_signal.minus -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "0.5"
                 }
             }
 
@@ -1046,11 +1052,15 @@ workspace "Name" "Description" {
             light_power_fuse.out -> turn_signal_fuse.in {
                 properties {
                     color "5"
+                    length "3"
+                    square "1.5"
                 }
             }
             turn_signal_relay.p -> left_steering_column_turn_signal_switch._49a {
                 properties {
                     color "2"
+                    length "2.5"
+                    square "0.5"
                 }
             }
             turn_signal_relay.p -> emergency_light_button.p {
@@ -1061,11 +1071,15 @@ workspace "Name" "Description" {
             turn_signal_relay.minus -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "0.5"
                 }
             }
             left_steering_column_turn_signal_switch._49aR -> turn_signal_relay.pb {
                 properties {
                     color "3"
+                    length "2.5"
+                    square "0.5"
                 }
             }
             emergency_light_button.pb -> turn_signal_relay.pb {
@@ -1086,16 +1100,22 @@ workspace "Name" "Description" {
             turn_signal_relay.kt -> turn_signal_control_light.plus {
                 properties {
                     color "7"
+                    length "3"
+                    square "0.5"
                 }
             }
             turn_signal_control_light.minus -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "0.5"
                 }
             }
             turn_signal_relay.right -> right_turn_signal_splitter.pin {
                 properties {
                     color "8"
+                    length "3"
+                    square "1.5"
                 }
             }
             turn_signal_relay.left -> left_turn_signal_splitter.pin {
@@ -1107,6 +1127,8 @@ workspace "Name" "Description" {
             emergency_light_button.plus -> turn_signal_relay.plus {
                 properties {
                     color "10"
+                    length "2"
+                    square "1.5"
                 }
             }
 
@@ -1114,6 +1136,8 @@ workspace "Name" "Description" {
             turn_signal_fuse.out -> emergency_light_button.pow {
                 properties {
                     color "2"
+                    length "2"
+                    square "1.5"
                 }
             }
             turn_signal_fuse.out -> emergency_light_button.emer {
@@ -1126,16 +1150,22 @@ workspace "Name" "Description" {
             right_turn_signal_splitter.pin -> right_front_turn_signal.plus {
                 properties {
                     color "1"
+                    length "2"
+                    square "0.5"
                 }
             }
             right_turn_signal_splitter.pin -> right_turn_signal_repeater.plus {
                 properties {
                     color "2"
+                    length "1"
+                    square "0.5"
                 }
             }
             right_turn_signal_splitter.pin -> right_rear_turn_signal.plus {
                 properties {
                     color "3"
+                    length "4"
+                    square "0.5"
                 }
             }
 
