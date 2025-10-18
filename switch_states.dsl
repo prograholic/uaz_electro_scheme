@@ -110,7 +110,7 @@
     properties {
         # 0 - гудок выключен
         # 1 - гудок включен
-        active_switch_state 0
+        active_switch_state 1
     }
 }
 

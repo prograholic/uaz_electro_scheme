@@ -1693,36 +1693,50 @@ workspace "Name" "Description" {
             ignition_fan_power_fuse.out -> car_horn_fuse.in {
                 properties {
                     color "5"
+                    length "2.5"
+                    square "6"
                 }
             }
             car_horn_fuse.out -> car_horn_relay._30 {
                 properties {
                     color "1"
+                    length "0.3"
+                    square "1.5"
                 }
             }
             car_horn_relay._87 -> car_horn.plus {
                 properties {
                     color "2"
+                    length "3.5"
+                    square "6"
                 }
             }
             car_horn.minus -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "6"
                 }
             }
             control_line_from_ignition_2.pin -> car_horn_switch.in {
                 properties {
                     color "4"
+                    length "2.5"
+                    square "0.5"
                 }
             }
             car_horn_switch.out -> car_horn_relay._85 {
                 properties {
                     color "3"
+                    length "2.5"
+                    square "0.5"
                 }
             }
             car_horn_relay._86 -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "0.5"
                 }
             }
         }
