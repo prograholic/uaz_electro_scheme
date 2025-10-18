@@ -68,18 +68,31 @@ workspace "Name" "Description" {
                         pin = pin "pin"
                     }
                     # Сюда преды на 60-60-40-90
-                    ignition_relay_fuse = fuse "Прд реле зажигания" {
+                    ignition_relay_power_fuse = fuse "Прд реле зажигания" {
                         !include "elements/fuse.dsl"
                     }
-                    light_fuse = fuse "Предохранитель освещения" {
+                    light_power_fuse = fuse "Предохранитель освещения" {
                         !include "elements/fuse.dsl"
                     }
-                    ignition_fan_fuse = fuse "Предохранитель охл-я, отопителя, дворники, гудок" {
+                    ignition_fan_power_fuse = fuse "Предохранитель охл-я, отопителя, дворники, гудок" {
                         !include "elements/fuse.dsl"
                     }
 
-                    fuse_xxx = fuse "Предохранитель" {
+                    xxx_power_fuse = fuse "Предохранитель" {
                         !include "elements/fuse.dsl"
+                    }
+
+                    power_fuse_splitter.pin -> ignition_relay_power_fuse.in {
+                        tags "internal_connection"
+                    }
+                    power_fuse_splitter.pin -> light_power_fuse.in {
+                        tags "internal_connection"
+                    }
+                    power_fuse_splitter.pin -> ignition_fan_power_fuse.in {
+                        tags "internal_connection"
+                    }
+                    power_fuse_splitter.pin -> xxx_power_fuse.in {
+                        tags "internal_connection"
                     }
                 }
 
@@ -446,28 +459,30 @@ workspace "Name" "Description" {
             ground_switch.out -> akb.minus {
                 tags "foreign_color"
                 properties {
-                    #distance 0.2
                     color "0"
+                    length "0.3"
+                    square "50"
                 }
             }
             akb.plus -> starter.plus {
                 tags "foreign_color"
                 properties {
-                    #distance 0.5
+                    #length "0.5"
                     color "1"
                 }
             }
             akb.plus -> winch.plus {
                 tags "foreign_color"
                 properties {
-                    #distance 1.0
+                    #length "1.0"
                     color "1"
                 }
             }
             akb.plus -> power_fuse_splitter.pin {
                 tags "foreign_color"
                 properties {
-                    #distance 1.0
+                    length "0.3"
+                    square "16"
                     color "1"
                 }
             }
@@ -478,53 +493,35 @@ workspace "Name" "Description" {
             generator.plus -> starter.plus {
                 tags "foreign_color"
                 properties {
-                    #distance 1.0
+                    #length "1.0"
                     color "1"
                 }
             }
             m.ground -> generator.minus {
                 properties {
                     color "0"
-                    distance 0.1
-                }
-            }
-    
-            power_fuse_splitter.pin -> ignition_relay_fuse.in {
-                properties {
-                    color "2"
-                }
-            }
-            power_fuse_splitter.pin -> light_fuse.in {
-                tags "foreign_color"
-                properties {
-                    color "1"
-                }
-            }
-            power_fuse_splitter.pin -> ignition_fan_fuse.in {
-                properties {
-                    color "4"
-                }
-            }
-            power_fuse_splitter.pin -> fuse_xxx.in {
-                properties {
-                    color "5"
+                    length "0.1"
                 }
             }
 
-            ignition_relay_fuse.out -> ignition_relay._30 {
+            ignition_relay_power_fuse.out -> ignition_relay._30 {
                 properties {
                     color "4"
+                    length "2.0"
+                    square "4"
                 }
             }
-            ignition_relay_fuse.out -> ignition_switch.in {
+            ignition_relay_power_fuse.out -> ignition_switch.in {
                 properties {
                     color "1"
                 }
             }
 
-            ignition_relay_fuse.out -> generator.v {
+            ignition_relay_power_fuse.out -> generator.v {
                 properties {
                     color "3"
+                    length "3.0"
+                    square "4"
                 }
             }
     
@@ -536,26 +533,31 @@ workspace "Name" "Description" {
             
             ignition_relay._86 -> m.ground {
                 properties {
-                    distance 0.1
+                    length "1.5"
+                    square "0.5"
                     color "0"
                 }
             }
             ignition_relay._87 -> starter_relay_fuse.in {
                 properties {
-                    distance 0.2
+                    length "0.2"
+                    square "2.5"
                     color "3"
                 }
             }
             
             starter_relay_fuse.out -> starter_relay._30 {
                 properties {
-                    distance 0.2
+                    length "3.0"
+                    square "4"
                     color "1"
                 }
             }
             starter_relay_fuse.out -> ignition.data {
                 properties {
                     color "0"
+                    length "3.0"
+                    squre "4"
                 }
             }
             starter_relay_fuse.out -> start_button.in {
@@ -601,7 +603,7 @@ workspace "Name" "Description" {
         
             winch.minus -> m.ground {
                 properties {
-                    distance 1.5
+                    length "1.5"
                     color "0"
                 }
             }
@@ -609,13 +611,14 @@ workspace "Name" "Description" {
 
             coolant_fan_1.minus -> m.ground {
                 properties {
-                    distance 0.2
+                    length "0.3"
+                    square "0.5"
                     color "0"
                 }
             }
             coolant_fan_1_fuse.out -> coolant_fan_1_relay._30 {
                 properties {
-                    distance 0.2
+                    length "0.2"
                     color "1"
                 }
             }
@@ -629,21 +632,23 @@ workspace "Name" "Description" {
                     color "3"
                 }
             }
-            ignition_fan_fuse.out -> coolant_fan_1_fuse.in {
+            ignition_fan_power_fuse.out -> coolant_fan_1_fuse.in {
                 properties {
                     color "0"
                 }
             }
             coolant_fan_1_relay._86 -> coolant_control_switch.I {
                 properties {
-                    distance 0.5
+                    length "1.5"
+                    square "0.5"
                     color "7"
                 }
             }
 
             coolant_fan_2.minus -> m.ground {
                 properties {
-                    distance 0.2
+                    length "0.3"
+                    square "0.5"
                     color "0"
                 }
             }
@@ -652,7 +657,7 @@ workspace "Name" "Description" {
                     color "1"
                 }
             }
-            ignition_fan_fuse.out -> coolant_fan_2_fuse.in {
+            ignition_fan_power_fuse.out -> coolant_fan_2_fuse.in {
                 properties {
                     color "1"
                 }
@@ -669,6 +674,8 @@ workspace "Name" "Description" {
             }
             coolant_fan_2_relay._86 -> coolant_control_switch.I {
                 properties {
+                    length "1.5"
+                    square "0.5"
                     color "5"
                 }
             }
@@ -683,7 +690,8 @@ workspace "Name" "Description" {
             }
             coolant_control_switch.U -> m.ground {
                 properties {
-                    distance 0.2
+                    length "0.5"
+                    square "0.5"
                     color "0"
                 }
             }
@@ -725,7 +733,7 @@ workspace "Name" "Description" {
                     color "0"
                 }
             }
-            light_fuse.out -> light_switch._30 {
+            light_power_fuse.out -> light_switch._30 {
                 properties {
                     color "3"
                 }
@@ -776,7 +784,7 @@ workspace "Name" "Description" {
                     color "1"
                 }
             }
-            light_fuse.out -> low_beam_relay_fuse.in {
+            light_power_fuse.out -> low_beam_relay_fuse.in {
                 properties {
                     color "9"
                 }
@@ -813,7 +821,7 @@ workspace "Name" "Description" {
                     color "4"
                 }
             }
-            light_fuse.out -> high_beam_relay_fuse.in {
+            light_power_fuse.out -> high_beam_relay_fuse.in {
                 properties {
                     color "2"
                 }
@@ -918,14 +926,14 @@ workspace "Name" "Description" {
                     color "3"
                 }
             }
-            light_fuse.out -> side_light_relay_fuse.in {
+            light_power_fuse.out -> side_light_relay_fuse.in {
                 properties {
                     color "4"
                 }
             }
 
             # Поворотники и аварийка
-            light_fuse.out -> turn_signal_fuse.in {
+            light_power_fuse.out -> turn_signal_fuse.in {
                 properties {
                     color "5"
                 }
@@ -1040,7 +1048,7 @@ workspace "Name" "Description" {
 
 
             # Передняя люстра
-            light_fuse.out -> head_light_splitter.pin {
+            light_power_fuse.out -> head_light_splitter.pin {
                 properties {
                     color "7"
                 }
@@ -1196,7 +1204,7 @@ workspace "Name" "Description" {
 
 
             # Педаль тормоза
-            light_fuse.out -> brake_pressure_sensor.in {
+            light_power_fuse.out -> brake_pressure_sensor.in {
                 properties {
                     color "6"
                 }
@@ -1239,7 +1247,7 @@ workspace "Name" "Description" {
             }
 
             # Лампа заднего хода
-            light_fuse.out -> reverse_lamp_sensor.in {
+            light_power_fuse.out -> reverse_lamp_sensor.in {
                 properties {
                     color "10"
                 }
@@ -1256,7 +1264,7 @@ workspace "Name" "Description" {
             }
 
             # Отопитель
-            ignition_fan_fuse.out -> heater_fuse.in {
+            ignition_fan_power_fuse.out -> heater_fuse.in {
                 properties {
                     color "2"
                 }
@@ -1320,7 +1328,7 @@ workspace "Name" "Description" {
             }
 
             # Вентилятор салона
-            ignition_fan_fuse.out -> interior_fan_fuse.in {
+            ignition_fan_power_fuse.out -> interior_fan_fuse.in {
                 properties {
                     color "3"
                 }
@@ -1359,7 +1367,7 @@ workspace "Name" "Description" {
 
 
             # Дворники и передний омыватель
-            ignition_fan_fuse.out -> wipers_fuse.in {
+            ignition_fan_power_fuse.out -> wipers_fuse.in {
                 properties {
                     color "6"
                 }
@@ -1411,7 +1419,7 @@ workspace "Name" "Description" {
             }
 
 
-            fuse_xxx.out -> windshield_washer_fuse.in {
+            xxx_power_fuse.out -> windshield_washer_fuse.in {
                 properties {
                     color "0"
                 }
@@ -1462,7 +1470,7 @@ workspace "Name" "Description" {
 
 
             # Гудок
-            ignition_fan_fuse.out -> car_horn_fuse.in {
+            ignition_fan_power_fuse.out -> car_horn_fuse.in {
                 properties {
                     color "5"
                 }
@@ -1505,7 +1513,6 @@ workspace "Name" "Description" {
     }
 
     !script graph_validators.groovy
-    !script deduce_wire_square.groovy
 
     views {
         properties {

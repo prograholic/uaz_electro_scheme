@@ -541,16 +541,119 @@ def ValidateKirchhoffsVoltageLaw(activeCircuits) {
     println("  NOT IMPLEMENTED!!!")
 }
 
-def ValidateVoltageDrop(activeCircuits) {
+def CalculateVoltageDropForRelationShip(relationship) {
+    if (relationship.getTags().contains("internal_connection")) {
+        return 0.0f
+    }
+
+    if (!relationship.getProperties().containsKey("amper")) {
+        throw new IllegalStateException("No `amper` property on " + getRelationshipName(relationship))
+    }
+    def amper = relationship.getProperties().get("amper").toFloat()
+
+    if (!relationship.getProperties().containsKey("length")) {
+        throw new IllegalStateException("No `length` property on " + getRelationshipName(relationship))
+    }
+    def length = relationship.getProperties().get("length").toFloat()
+
+    if (!relationship.getProperties().containsKey("square")) {
+        throw new IllegalStateException("No `square` property on " + getRelationshipName(relationship))
+    }
+    def square = relationship.getProperties().get("square").toFloat()
     
+    def res = amper * wireRelativeResistance * length / square
+
+    println("  Voltage drop for  " + getRelationshipName(relationship) + " is: " + res)
+
+    return res
 }
 
-def validateOnlineGraph(activeCircuits) {
+def ValidateVoltageDropForCircuit(activeCircuit, maxVoltageDrop, wireRelativeResistance) {
+    def voltageDrop = 0.0f
+    activeCircuit.each {relationship ->
+        voltageDrop += CalculateVoltageDropForRelationShip(relationship)
+    }
+
+    if (voltageDrop > maxVoltageDrop) {
+        throw new IllegalStateException("Voltage drop " + voltageDrop + " exceed maximum value: " + maxVoltageDrop)
+    }
+}
+
+def ValidateVoltageDrop(activeCircuits, maxVoltageDrop, wireRelativeResistance) {
+    println("VALIDATE VOLTAGE DROP")
+
+    activeCircuits.each {consumer, activeCircuit ->
+        println(" process consumer: " + consumer.getCanonicalName())
+        ValidateVoltageDropForCircuit(activeCircuit, maxVoltageDrop, wireRelativeResistance)
+    }
+}
+
+def validateOnlineGraph(activeCircuits, maxVoltageDrop, wireRelativeResistance) {
     ValidateKirchhoffsCurrentLaw(activeCircuits)
     ValidateKirchhoffsVoltageLaw(activeCircuits)
-    ValidateVoltageDrop(activeCircuits)
+    ValidateVoltageDrop(activeCircuits, maxVoltageDrop, wireRelativeResistance)
 }
 
+def colorizeAndPrintStats(activeCircuits) {
+    println("COLORIZE AND PRINT STATS")
+
+    def MapColorIndexToColor = [
+        "0": "black",
+        "1": "red",
+        "2": "blue",
+        "3": "white",
+        "4": "green",
+        "5": "yellow",
+        "6": "brown",
+        "7": "orange",
+        "8": "pink",
+        "9": "violet",
+        "10": "grey"
+    ]
+
+    def WiresTotal = new HashMap<String, TreeSet<String>>()
+
+    activeCircuits.each {consumer, activeCircuit ->
+        activeCircuit.findAll{ rel ->
+            (!rel.getTags().contains("internal_connection"))
+        }.each { rel ->
+            println(" rel: " + getRelationshipName(rel))
+
+            def relProps = rel.getProperties()
+            def amper = relProps.getAt("amper").toFloat()
+            def length = relProps.getAt("length").toFloat()
+            def square = relProps.getAt("square").toFloat()
+            def colorIndex = relProps.getAt("color")
+            def color = MapColorIndexToColor[colorIndex]
+            if (color == null) {
+                throw new IllegalStateException("Cannot map color index " + colorIndex + " to color for " + getRelationshipName(rel))
+            }
+
+            def desc = rel.getDescription()
+            if (desc.size() != 0) {
+                desc += ", "
+            }
+            rel.setDescription(desc + String.format("%.2f", amper) + "A" + "\n" + square + " мм2")
+
+            rel.addTags("square_" + square)
+            rel.addTags("color_" + color)
+            rel.addTags("powered")
+
+            squares = WiresTotal.getOrDefault(color, new TreeSet<String>())
+            squares.add(square)
+            WiresTotal.put(color, squares)
+
+            println(" relationship: " + getRelationshipName(rel) + ", amper: " + amper)
+        }
+    }
+
+    WiresTotal.each {color, squares ->
+        println("COLOR: " + color)
+        squares.each {square ->
+            println("  " + square + " мм2")
+        }
+    }
+}
 
 /////////////////////////
 relationships = workspace.model.getRelationships().findAll {relationship ->
@@ -561,6 +664,8 @@ pins = elements.findAll {element -> (element.getTags().contains("pin"))}
 consumers = elements.findAll {element -> (element.getTags().contains("consumer"))}
 switches = elements.findAll {element -> (element.getTags().contains("switch"))}
 power_sources = elements.findAll {element -> (element.getTags().contains("power_source"))}
+maxVoltageDrop = workspace.model.getProperties().getOrDefault("max_voltage_drop", "0.5").toFloat()
+wireRelativeResistance = workspace.model.getProperties().getOrDefault("wire_relative_resistance", "0.018").toFloat()
 
 
 def allowActiveSwitchOnly = { relationship ->
@@ -595,11 +700,10 @@ def allowActiveSwitchOnly = { relationship ->
     activeCircuits = findActiveCircuits(relationships, elements, consumers, allowActiveSwitchOnly)
     checkFuseLocations(activeCircuits)
     calculateAmperage(activeCircuits)
-    calculateWireDistance(activeCircuits)
+    //calculateWireDistance(activeCircuits)
 
-    validateOnlineGraph(activeCircuits)
+    validateOnlineGraph(activeCircuits, maxVoltageDrop, wireRelativeResistance)
+    colorizeAndPrintStats(activeCircuits)
 //} catch (Exception e) {
 //    println(e)
 //}
-
-

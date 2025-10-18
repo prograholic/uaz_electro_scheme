@@ -13,6 +13,10 @@ relationship "pwr" {
     style dashed
     thickness 3
 }
+relationship "internal_connection" {
+    style dashed
+    thickness 3
+}
 relationship "ctr" {
     style dotted
 }
