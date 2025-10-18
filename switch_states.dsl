@@ -80,7 +80,7 @@
     properties {
         # 0 - передний доп свет выключен
         # 1 - передний доп свет включен
-        active_switch_state 0
+        active_switch_state 1
     }
 }
 !element es.rear_head_light_switch {

@@ -1213,41 +1213,57 @@ workspace "Name" "Description" {
             light_power_fuse.out -> head_light_splitter.pin {
                 properties {
                     color "7"
+                    length "2.5"
+                    square "4"
                 }
             }
             head_light_splitter.pin -> front_head_light_fuse.in {
                 properties {
                     color "6"
+                    length "1.5"
+                    square "2.5"
                 }
             }
             front_head_light_fuse.out -> front_head_light_relay._30 {
                 properties {
                     color "1"
+                    length "0.3"
+                    square "1.5"
                 }
             }
             front_head_light_relay._87 -> front_head_light.plus {
                 properties {
                     color "2"
+                    length "2.5"
+                    square "6"
                 }
             }
             front_head_light.minus -> m.ground {
                 properties {
                     color "0"
+                    length "2"
+                    square "4"
                 }
             }
             control_line_from_ignition_1.pin -> front_head_light_switch.in {
                 properties {
                     color "5"
+                    length "2.5"
+                    square "0.5"
                 }
             }
             front_head_light_switch.out -> front_head_light_relay._85 {
                 properties {
                     color "3"
+                    length "2.5"
+                    square "0.5"
                 }
             }
             front_head_light_relay._86 -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "0.5"
                 }
             }
 
