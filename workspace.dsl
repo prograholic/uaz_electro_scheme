@@ -730,11 +730,15 @@ workspace "Name" "Description" {
             internal_lighting.data -> coolant_control_light.plus {
                 properties {
                     color "3"
+                    length "0.5"
+                    square "0.5"
                 }
             }
             coolant_control_light.minus -> m.ground {
                 properties {
                     color "0"
+                    length "0.3"
+                    square "0.5"
                 }
             }
             coolant_control_switch.D -> coolant_control_light.minus {
@@ -768,11 +772,15 @@ workspace "Name" "Description" {
             light_power_fuse.out -> light_switch._30 {
                 properties {
                     color "3"
+                    length "2"
+                    square "0.5"
                 }
             }
             light_switch._58 -> internal_lighting.data {
                 properties {
                     color "1"
+                    length "0.5"
+                    square "1"
                 }
             }
             light_switch._56 -> left_steering_column_light_switch._56 {
@@ -783,6 +791,8 @@ workspace "Name" "Description" {
             light_switch._58 -> side_light_relay._85 {
                 properties {
                     color "4"
+                    length "2.5"
+                    square "0.5"
                 }
             }
 
@@ -862,26 +872,36 @@ workspace "Name" "Description" {
             front_left_side_light.minus -> m.ground {
                 properties {
                     color "0"
+                    length "1"
+                    square "0.5"
                 }
             }
             front_right_side_light.minus -> m.ground {
                 properties {
                     color "0"
+                    length "1"
+                    square "0.5"
                 }
             }
             rear_left_side_light.minus -> m.ground {
                 properties {
                     color "0"
+                    length "1"
+                    square "0.5"
                 }
             }
             rear_right_side_light.minus -> m.ground {
                 properties {
                     color "0"
+                    length "1"
+                    square "0.5"
                 }
             }
             number_plate_light.minus -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "1"
                 }
             }
 
@@ -921,46 +941,64 @@ workspace "Name" "Description" {
             side_light_relay._86 -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "0.5"
                 }
             }
             side_light_relay._87 -> side_light_splitter.pin {
                 properties {
                     color "2"
+                    length "2.5"
+                    square "1"
                 }
             }
             side_light_splitter.pin -> front_left_side_light.plus {
                 properties {
                     color "1"
+                    length "3.5"
+                    square "1"
                 }
             }
             side_light_splitter.pin -> front_right_side_light.plus {
                 properties {
                     color "3"
+                    length "3.5"
+                    square "1"
                 }
             }
             side_light_splitter.pin -> rear_left_side_light.plus {
                 properties {
                     color "4"
+                    length "3.5"
+                    square "1"
                 }
             }
             side_light_splitter.pin -> rear_right_side_light.plus {
                 properties {
                     color "5"
+                    length "3.5"
+                    square "1"
                 }
             }
             side_light_splitter.pin -> number_plate_light.plus {
                 properties {
                     color "6"
+                    length "3.5"
+                    square "1"
                 }
             }
             side_light_relay_fuse.out -> side_light_relay._30 {
                 properties {
                     color "3"
+                    length "0.2"
+                    square "1"
                 }
             }
             light_power_fuse.out -> side_light_relay_fuse.in {
                 properties {
                     color "4"
+                    length "3"
+                    square "1"
                 }
             }
 

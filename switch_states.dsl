@@ -14,7 +14,7 @@
     properties {
         # 0 - стартер не крутим
         # 1 - покрутить стартер!
-        active_switch_state 1
+        active_switch_state 0
     }
 }
 
@@ -36,7 +36,7 @@
         # 0 - выключено
         # 1 - габариты
         # 2 - габариты + ближний
-        active_switch_state 0
+        active_switch_state 1
     }
 }
 !element es.left_steering_column_light_switch {
