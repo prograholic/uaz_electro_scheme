@@ -541,11 +541,14 @@ def ValidateKirchhoffsVoltageLaw(activeCircuits) {
     println("  NOT IMPLEMENTED!!!")
 }
 
-
+def ValidateVoltageDrop(activeCircuits) {
+    
+}
 
 def validateOnlineGraph(activeCircuits) {
     ValidateKirchhoffsCurrentLaw(activeCircuits)
     ValidateKirchhoffsVoltageLaw(activeCircuits)
+    ValidateVoltageDrop(activeCircuits)
 }
 
 

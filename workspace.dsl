@@ -9,7 +9,9 @@ workspace "Name" "Description" {
     model {
         properties {
             "structurizr.groupSeparator" "/"
-            "default_voltage" "12"
+            "default_voltage" "13.8"
+            "max_voltage_drop" "0.5"
+            "wire_relative_resistance" "0.018"
         }
 
         !impliedRelationships true
