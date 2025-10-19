@@ -1059,7 +1059,7 @@ workspace "Name" "Description" {
                 properties {
                     color "5"
                     length "3"
-                    square "1.5"
+                    square "2.5"
                 }
             }
             turn_signal_relay.p -> left_steering_column_turn_signal_switch._49a {
@@ -1427,42 +1427,58 @@ workspace "Name" "Description" {
             light_power_fuse.out -> brake_pressure_sensor.in {
                 properties {
                     color "6"
+                    length "3"
+                    square "2.5"
                 }
             }
             brake_pressure_sensor.out -> stop_signal_splitter.pin {
                 properties {
                     color "0"
+                    length "2.5"
+                    square "2.5"
                 }
             }
             stop_signal_splitter.pin -> left_stop_signal.plus {
                 properties {
                     color "1"
+                    length "1"
+                    square "0.75"
                 }
             }
             stop_signal_splitter.pin -> right_stop_signal.plus {
                 properties {
                     color "2"
+                    length "1"
+                    square "0.75"
                 }
             }
             stop_signal_splitter.pin -> extra_stop_signal.plus {
                 properties {
                     color "3"
+                    length "1"
+                    square "0.75"
                 }
             }
 
             left_stop_signal.minus -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "0.5"
                 }
             }
             right_stop_signal.minus -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "0.5"
                 }
             }
             extra_stop_signal.minus -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "0.5"
                 }
             }
 

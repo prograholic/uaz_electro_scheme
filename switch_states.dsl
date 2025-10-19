@@ -154,7 +154,7 @@
     properties {
         # 0 - тормоз отпущен
         # 1 - тормоз нажат
-        active_switch_state 0
+        active_switch_state 1
     }
 }
 !element es.reverse_lamp_sensor {
