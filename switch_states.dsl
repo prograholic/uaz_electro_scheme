@@ -25,7 +25,7 @@
         # 0 - отключены
         # 1 - от датчика
         # 2 - всегда
-        active_switch_state 2
+        active_switch_state 1
     }
 }
 

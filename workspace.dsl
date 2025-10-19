@@ -722,6 +722,8 @@ workspace "Name" "Description" {
             coolant_control_switch.D -> coolant_sensor.in {
                 properties {
                     color "1"
+                    length "3.5"
+                    square "0.5"
                 }
             }
             coolant_control_switch.U -> m.ground {
@@ -748,6 +750,8 @@ workspace "Name" "Description" {
             coolant_control_switch.D -> coolant_control_light.minus {
                 properties {
                     color "2"
+                    length "2.5"
+                    square "0.5"
                 }
             }
 
