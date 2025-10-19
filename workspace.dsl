@@ -1142,7 +1142,7 @@ workspace "Name" "Description" {
                 properties {
                     color "10"
                     length "2"
-                    square "1.5"
+                    square "2.5"
                 }
             }
 
@@ -1486,16 +1486,22 @@ workspace "Name" "Description" {
             light_power_fuse.out -> reverse_lamp_sensor.in {
                 properties {
                     color "10"
+                    length "3.5"
+                    square "1.5"
                 }
             }
             reverse_lamp_sensor.out -> reverse_lamp.plus {
                 properties {
                     color "1"
+                    length "3.5"
+                    square "1.5"
                 }
             }
             reverse_lamp.minus -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "1.5"
                 }
             }
 

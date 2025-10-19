@@ -161,7 +161,7 @@
     properties {
         # 0 - задняя передача не включена
         # 1 - включена задняя передача
-        active_switch_state 0
+        active_switch_state 1
     }
 }
 !element es.coolant_sensor {
