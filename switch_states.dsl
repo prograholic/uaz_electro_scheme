@@ -168,7 +168,7 @@
     properties {
         # 0 - датчик температуры не включен
         # 1 - датчик температуры включен
-        active_switch_state 0
+        active_switch_state 1
     }
 }
 
@@ -177,6 +177,6 @@
     properties {
         # 0 - лебедка выключена
         # 1 - лебедка включена
-        active_switch_state 0
+        active_switch_state 1
     }
 }

@@ -475,7 +475,8 @@ workspace "Name" "Description" {
             akb.plus -> winch.plus {
                 tags "foreign_color"
                 properties {
-                    #length "1.0"
+                    length "1.5"
+                    square "50"
                     color "1"
                 }
             }
@@ -623,6 +624,7 @@ workspace "Name" "Description" {
             winch.minus -> m.ground {
                 properties {
                     length "1.5"
+                    square "50"
                     color "0"
                 }
             }
@@ -876,7 +878,7 @@ workspace "Name" "Description" {
                 properties {
                     color "2"
                     length "3.5"
-                    square "1.5"
+                    square "2.5"
                 }
             }
             high_beam_relay._86 -> m.ground {
@@ -891,7 +893,7 @@ workspace "Name" "Description" {
                 properties {
                     color "3"
                     length "3.5"
-                    square "1.5"
+                    square "2.5"
                 }
             }
             high_beam_relay_fuse.out -> high_beam_relay._30 {
@@ -1221,7 +1223,7 @@ workspace "Name" "Description" {
                 properties {
                     color "6"
                     length "1.5"
-                    square "4"
+                    square "6"
                 }
             }
             front_head_light_fuse.out -> front_head_light_relay._30 {
@@ -1242,7 +1244,7 @@ workspace "Name" "Description" {
                 properties {
                     color "0"
                     length "2"
-                    square "4"
+                    square "6"
                 }
             }
             control_line_from_ignition_1.pin -> front_head_light_switch.in {
@@ -1273,7 +1275,7 @@ workspace "Name" "Description" {
                 properties {
                     color "0"
                     length "1.5"
-                    square "4"
+                    square "6"
                 }
             }
             rear_head_light_fuse.out -> rear_head_light_relay._30 {
@@ -1287,7 +1289,7 @@ workspace "Name" "Description" {
                 properties {
                     color "2"
                     length "2.5"
-                    square "4"
+                    square "6"
                 }
             }
             rear_head_light.minus -> m.ground {
@@ -1324,7 +1326,7 @@ workspace "Name" "Description" {
                 properties {
                     color "1"
                     length "1.5"
-                    square "4"
+                    square "6"
                 }
             }
             left_head_light_fuse.out -> left_head_light_relay._30 {
@@ -1376,7 +1378,7 @@ workspace "Name" "Description" {
                 properties {
                     color "2"
                     length "1.5"
-                    square "4"
+                    square "6"
                 }
             }
             right_head_light_fuse.out -> right_head_light_relay._30 {
