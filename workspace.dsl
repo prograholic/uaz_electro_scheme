@@ -10,7 +10,7 @@ workspace "Name" "Description" {
         properties {
             "structurizr.groupSeparator" "/"
             "default_voltage" "13.8"
-            "max_voltage_drop" "0.5"
+            "max_voltage_drop" "0.45"
             "wire_relative_resistance" "0.018"
         }
 
@@ -648,7 +648,7 @@ workspace "Name" "Description" {
                 properties {
                     color "2"
                     length "3"
-                    square "2.5"
+                    square "4"
                 }
             }
             control_line_from_ignition_2.pin -> coolant_fan_1_relay._85 {
@@ -839,14 +839,14 @@ workspace "Name" "Description" {
                 properties {
                     color "2"
                     length "3.5"
-                    square "2.5"
+                    square "4"
                 }
             }
             low_beam_relay._87 -> right_low_beam.plus {
                 properties {
                     color "3"
                     length "3.5"
-                    square "2.5"
+                    square "4"
                 }
             }
             low_beam_relay_fuse.out -> low_beam_relay._30 {
@@ -860,7 +860,7 @@ workspace "Name" "Description" {
                 properties {
                     color "9"
                     length "3.5"
-                    square "4"
+                    square "6"
                 }
             }
 
@@ -911,7 +911,7 @@ workspace "Name" "Description" {
                 properties {
                     color "2"
                     length "3"
-                    square "4"
+                    square "6"
                 }
             }
 
@@ -1056,7 +1056,7 @@ workspace "Name" "Description" {
                 properties {
                     color "4"
                     length "3"
-                    square "1"
+                    square "1.5"
                 }
             }
 
@@ -1065,7 +1065,7 @@ workspace "Name" "Description" {
                 properties {
                     color "5"
                     length "3"
-                    square "2.5"
+                    square "4"
                 }
             }
             turn_signal_relay.p -> left_steering_column_turn_signal_switch._49a {
@@ -1173,21 +1173,21 @@ workspace "Name" "Description" {
                 properties {
                     color "1"
                     length "2"
-                    square "0.5"
+                    square "0.75"
                 }
             }
             right_turn_signal_splitter.pin -> right_turn_signal_repeater.plus {
                 properties {
                     color "2"
                     length "1"
-                    square "0.5"
+                    square "0.75"
                 }
             }
             right_turn_signal_splitter.pin -> right_rear_turn_signal.plus {
                 properties {
                     color "3"
                     length "4"
-                    square "0.5"
+                    square "0.75"
                 }
             }
 
@@ -1195,21 +1195,21 @@ workspace "Name" "Description" {
                 properties {
                     color "1"
                     length "2"
-                    square "0.5"
+                    square "0.75"
                 }
             }
             left_turn_signal_splitter.pin -> left_turn_signal_repeater.plus {
                 properties {
                     color "2"
                     length "1"
-                    square "0.5"
+                    square "0.75"
                 }
             }
             left_turn_signal_splitter.pin -> left_rear_turn_signal.plus {
                 properties {
                     color "3"
                     length "4"
-                    square "0.5"
+                    square "0.75"
                 }
             }
 
@@ -1220,7 +1220,7 @@ workspace "Name" "Description" {
                 properties {
                     color "7"
                     length "2.5"
-                    square "16"
+                    square "25"
                 }
             }
             head_light_splitter.pin -> front_head_light_fuse.in {
@@ -1299,7 +1299,7 @@ workspace "Name" "Description" {
             rear_head_light.minus -> m.ground {
                 properties {
                     color "0"
-                    length "3.5"
+                    length "2.5"
                     square "6"
                 }
             }
@@ -1441,7 +1441,7 @@ workspace "Name" "Description" {
                 properties {
                     color "0"
                     length "2.5"
-                    square "2.5"
+                    square "4"
                 }
             }
             stop_signal_splitter.pin -> left_stop_signal.plus {
@@ -1516,7 +1516,7 @@ workspace "Name" "Description" {
                 properties {
                     color "2"
                     length "2.5"
-                    square "2.5"
+                    square "4"
                 }
             }
             heater_fuse.out -> heater_relay_1._30 {
@@ -1551,7 +1551,7 @@ workspace "Name" "Description" {
                 properties {
                     color "2"
                     length "3"
-                    square "4"
+                    square "6"
                 }
             }
             heater.minus -> m.ground {
@@ -1604,7 +1604,7 @@ workspace "Name" "Description" {
                 properties {
                     color "3"
                     length "2.5"
-                    square "0.5"
+                    square "1.5"
                 }
             }
             interior_fan_fuse.out -> interior_fan_relay._30 {
@@ -1692,14 +1692,14 @@ workspace "Name" "Description" {
                 properties {
                     color "3"
                     length "1.5"
-                    square "1.5"
+                    square "2.5"
                 }
             }
             right_steering_column_switch._53b -> wipers._6 {
                 properties {
                     color "4"
                     length "1.5"
-                    square "1.5"
+                    square "2.5"
                 }
             }
             right_steering_column_switch.J -> wipers_relay.J {
