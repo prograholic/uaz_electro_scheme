@@ -20,6 +20,12 @@ _53a -> J {
         switch_state "1,2"
     }
 }
+_53a -> _53 {
+    tags "ctr,switch_ctr,internal_connection"
+    properties {
+        switch_state "3"
+    }
+}
 _53a -> _53b {
     tags "ctr,switch_ctr,internal_connection"
     properties {

@@ -144,7 +144,7 @@
         # 3 - ???
         # 4 - ???
         # 8 - ???
-        active_switch_state 0
+        active_switch_state 8
     }
 }
 

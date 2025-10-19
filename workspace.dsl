@@ -1628,51 +1628,71 @@ workspace "Name" "Description" {
             ignition_fan_power_fuse.out -> wipers_fuse.in {
                 properties {
                     color "6"
+                    length "2.5"
+                    square "4"
                 }
             }
             wipers_fuse.out -> wipers._1 {
                 properties {
                     color "1"
+                    length "2.5"
+                    square "4"
                 }
             }
             wipers._3 -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "1.5"
                 }
             }
             wipers._2 -> wipers_relay._15 {
                 properties {
                     color "2"
+                    length "2.5"
+                    square "4"
                 }
             }
             wipers_relay.S -> right_steering_column_switch._53e {
                 properties {
                     color "1"
+                    length "2.5"
+                    square "4"
                 }
             }
             right_steering_column_switch._53 -> wipers._5 {
                 properties {
                     color "3"
+                    length "1.5"
+                    square "1.5"
                 }
             }
             right_steering_column_switch._53b -> wipers._6 {
                 properties {
                     color "4"
+                    length "1.5"
+                    square "1.5"
                 }
             }
             right_steering_column_switch.J -> wipers_relay.J {
                 properties {
                     color "7"
+                    length "2.5"
+                    square "0.5"
                 }
             }
             wipers_relay._15 -> right_steering_column_switch._53a {
                 properties {
                     color "10"
+                    length "2.5"
+                    square "1.5"
                 }
             }
             control_line_from_ignition_2.pin -> right_steering_column_switch._53ah {
                 properties {
                     color "8"
+                    length "2.5"
+                    square "0.5"
                 }
             }
 
@@ -1680,37 +1700,51 @@ workspace "Name" "Description" {
             xxx_power_fuse.out -> windshield_washer_fuse.in {
                 properties {
                     color "0"
+                    length "2.5"
+                    square "0.5"
                 }
             }
             windshield_washer_fuse.out -> windshield_washer_relay._30 {
                 properties {
                     color "1"
+                    length "0.3"
+                    square "0.5"
                 }
             }
             windshield_washer_relay._87 -> windshield_washer.plus {
                 properties {
                     color "2"
+                    length "3.5"
+                    square "0.5"
                 }
             }
             windshield_washer_relay._87 -> wipers_relay._86 {
                 properties {
                     color "5"
+                    length "0.3"
+                    square "0.5"
                 }
             }
 
             right_steering_column_switch.W -> windshield_washer_relay._85 {
                 properties {
                     color "6"
+                    length "2.5"
+                    square "0.5"
                 }
             }
             windshield_washer_relay._86 -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "0.5"
                 }
             }
             windshield_washer.minus -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "0.5"
                 }
             }
 
@@ -1718,11 +1752,15 @@ workspace "Name" "Description" {
             wipers_relay._31b -> wipers._4 {
                 properties {
                     color "6"
+                    length "2.5"
+                    square "0.5"
                 }
             }
             wipers_relay._31 -> m.ground {
                 properties {
                     color "0"
+                    length "0.5"
+                    square "0.5"
                 }
             }
 
