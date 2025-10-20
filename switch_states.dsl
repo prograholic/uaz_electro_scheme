@@ -171,6 +171,13 @@
         active_switch_state 1
     }
 }
+!element es.low_brake_fluid_sensor {
+    properties {
+        # 0 - датчик не включен
+        # 1 - датчик включен
+        active_switch_state 1
+    }
+}
 
 # Лебедка
 !element es.winch_switch {

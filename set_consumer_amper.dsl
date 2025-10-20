@@ -91,6 +91,11 @@
         amper 0.5
     }
 }
+!element es.high_beam_control_light.lamp {
+    properties {
+        amper 0.5
+    }
+}
 
 
 # Поворотники и аварийка
@@ -220,5 +225,12 @@
 !element es.electric_pump.motor {
     properties {
         amper 6
+    }
+}
+
+# Лампа низкого уровня тормозной жидкости
+!element es.low_brake_fluid_warning_light.lamp {
+    properties {
+        amper 0.5
     }
 }

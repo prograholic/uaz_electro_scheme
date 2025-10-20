@@ -7,7 +7,7 @@ workspace "Name" "Description" {
     }
 
     #TODO: 
-    #  добавить приборы (+ лампочки)
+    #  добавить приборы (вольтметр, температура, давление масла, уровень топлива, спидометр)
     #  вывести статистику по предохранителям
     #  вывести статистику по длине проводов
 
@@ -196,6 +196,9 @@ workspace "Name" "Description" {
                 reverse_lamp_sensor = sensor "Датчик движения заднего хода" {
                     !include "elements/sensor.dsl"
                 }
+                low_brake_fluid_sensor = sensor "Датчик недостаточного уровня тормозной жидкости" {
+                    !include "elements/sensor.dsl"
+                }
 
                 group "Дополнительный свет" {
                     front_head_light = light "Передняя люстра" {
@@ -346,12 +349,19 @@ workspace "Name" "Description" {
                     internal_lighting = splitter "Система подсветки приборов" {
                         data = pin "pin"
                     }
-                    coolant_control_light = light "Подсветка упр э-вент охл ДВС" {
-                        !include "elements/light.dsl"
-                    }
-
-                    turn_signal_control_light = light "Контрольная лампа поворотников" {
-                        !include "elements/light.dsl"
+                    group "Блок контрольных ламп" {
+                        coolant_control_light = light "Подсветка упр э-вент охл ДВС" {
+                            !include "elements/light.dsl"
+                        }
+                        turn_signal_control_light = light "Контрольная лампа поворотников" {
+                            !include "elements/light.dsl"
+                        }
+                        low_brake_fluid_warning_light = light "Контрольная лампа недостаточного уровня тормозной жидкости" {
+                            !include "elements/light.dsl"
+                        }
+                        high_beam_control_light = light "Контрольная лампа дальнего света" {
+                            !include "elements/light.dsl"
+                        }
                     }
                 }
                 group "Блок выключателей" {
@@ -931,6 +941,20 @@ workspace "Name" "Description" {
                     color "2"
                     length "3"
                     square "6"
+                }
+            }
+            high_beam_control_light.minus -> m.ground {
+                properties {
+                    color "0"
+                    length "0.5"
+                    square "0.5"
+                }
+            }
+            high_beam_relay._87 -> high_beam_control_light.plus {
+                properties {
+                    color "5"
+                    length "0.5"
+                    square "0.5"
                 }
             }
 
@@ -1911,6 +1935,25 @@ workspace "Name" "Description" {
                 properties {
                     color "0"
                     length "0.5"
+                    square "0.5"
+                }
+            }
+
+            # Датчик низкого уровня тормозной жидкости
+            low_brake_fluid_sensor.out -> m.ground {
+                tags "internal_connection"
+            }
+            low_brake_fluid_warning_light.minus -> low_brake_fluid_sensor.in {
+                properties {
+                    color "1"
+                    length "2.5"
+                    square "0.5"
+                }
+            }
+            xxx_power_fuse.out -> low_brake_fluid_warning_light.plus {
+                properties {
+                    color "2"
+                    length "2.5"
                     square "0.5"
                 }
             }
