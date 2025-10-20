@@ -1396,10 +1396,10 @@ workspace "Name" "Description" {
                     square "6"
                 }
             }
-            control_line_from_ignition_1.pin -> rear_head_light_switch.in {
+            front_head_light_switch.in -> rear_head_light_switch.in {
                 properties {
                     color "10"
-                    length "2.5"
+                    length "0.1"
                     square "0.5"
                 }
             }
@@ -1440,10 +1440,10 @@ workspace "Name" "Description" {
                     square "6"
                 }
             }
-            control_line_from_ignition_1.pin -> left_head_light_switch.in {
+            rear_head_light_switch.in -> left_head_light_switch.in {
                 properties {
                     color "2"
-                    length "2.5"
+                    length "0.1"
                     square "0.5"
                 }
             }
@@ -1485,10 +1485,10 @@ workspace "Name" "Description" {
                     square "6"
                 }
             }
-            control_line_from_ignition_1.pin -> right_head_light_switch.in {
+            left_head_light_switch.in -> right_head_light_switch.in {
                 properties {
-                    color "4"
-                    length "2.5"
+                    color "1"
+                    length "0.1"
                     square "0.5"
                 }
             }
