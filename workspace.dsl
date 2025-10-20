@@ -366,9 +366,6 @@ workspace "Name" "Description" {
                 }
                 group "Блок приборов" {
                     group "Блок контрольных ламп" {
-                        coolant_control_light = light "Подсветка упр э-вент охл ДВС" {
-                            !include "elements/light.dsl"
-                        }
                         turn_signal_control_light = light "Контрольная лампа поворотников" {
                             !include "elements/light.dsl"
                         }
@@ -826,27 +823,6 @@ workspace "Name" "Description" {
                     length "0.5"
                     square "0.5"
                     color "0"
-                }
-            }
-            control_lamps_splitter.pin -> coolant_control_light.plus {
-                properties {
-                    color "9"
-                    length "2.5"
-                    square "0.5"
-                }
-            }
-            coolant_control_light.minus -> m.ground {
-                properties {
-                    color "0"
-                    length "0.3"
-                    square "0.5"
-                }
-            }
-            coolant_control_switch.D -> coolant_control_light.minus {
-                properties {
-                    color "2"
-                    length "2.5"
-                    square "0.5"
                 }
             }
 

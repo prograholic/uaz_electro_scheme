@@ -38,11 +38,6 @@
         amper 8
     }
 }
-!element es.coolant_control_light.lamp {
-    properties {
-        amper 0.5
-    }
-}
 
 
 # Ближний/дальний/габариты
