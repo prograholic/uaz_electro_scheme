@@ -101,7 +101,7 @@ workspace.model.getSoftwareSystems().each { ss ->
         }
     }
 }
-*/
+
 
 // Create component views
 workspace.model.getSoftwareSystems().each {
@@ -133,3 +133,4 @@ workspace.views.views.findAll {it instanceof com.structurizr.view.ComponentView 
         //println("  Add [" + component.getName() + "] to view")
     }
 }
+*/

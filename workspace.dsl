@@ -174,6 +174,25 @@ workspace "Name" "Description" {
                 }
             }
 
+            group "Дополнительный свет" {
+                front_head_light = light "Передняя люстра" {
+                    !include "elements/light.dsl"
+                }
+                rear_head_light = light "Задняя люстра" {
+                    !include "elements/light.dsl"
+                }
+                left_head_light = light "Левая боковая люстра" {
+                    !include "elements/light.dsl"
+                }
+                right_head_light = light "Правая боковая люстра" {
+                    !include "elements/light.dsl"
+                }
+
+                head_light_splitter = splitter "Разветвитель питания доп. света" {
+                    pin = pin "pin"
+                }
+            }
+
             group "Кабина" {
                 heater = container "Отопитель салона" {
                     tags "heater"
@@ -216,24 +235,6 @@ workspace "Name" "Description" {
                     !include "elements/sensor.dsl"
                 }
 
-                group "Дополнительный свет" {
-                    front_head_light = light "Передняя люстра" {
-                        !include "elements/light.dsl"
-                    }
-                    rear_head_light = light "Задняя люстра" {
-                        !include "elements/light.dsl"
-                    }
-                    left_head_light = light "Левая боковая люстра" {
-                        !include "elements/light.dsl"
-                    }
-                    right_head_light = light "Правая боковая люстра" {
-                        !include "elements/light.dsl"
-                    }
-
-                    head_light_splitter = splitter "Разветвитель питания доп. света" {
-                        pin = pin "pin"
-                    }
-                }
                 group "Блок реле и предохранителей" {
                     #Реле
                     group "Блок реле" {

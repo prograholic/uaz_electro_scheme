@@ -602,6 +602,7 @@ def validateOnlineGraph(activeCircuits, maxVoltageDrop, wireRelativeResistance) 
     ValidateVoltageDrop(activeCircuits, maxVoltageDrop, wireRelativeResistance)
 }
 
+
 def colorizeAndPrintStats(activeCircuits) {
     println("COLORIZE AND PRINT STATS")
 
@@ -619,7 +620,8 @@ def colorizeAndPrintStats(activeCircuits) {
         "10": "grey"
     ]
 
-    def WiresTotal = new HashMap<String, TreeSet<String>>()
+    def WiresTotal = new HashMap<String, HashMap<String, Float>>()
+    def FusesTotal = new HashMap<com.structurizr.model.Container, Float>()
 
     activeCircuits.each {consumer, activeCircuit ->
         activeCircuit.findAll{ rel ->
@@ -642,25 +644,50 @@ def colorizeAndPrintStats(activeCircuits) {
             if (desc.size() != 0) {
                 desc += ", "
             }
-            rel.setDescription(desc + String.format("%.2f", amper) + "A" + "\n" + square + " мм2")
+            rel.setDescription(desc + String.format("%.2f", amper) + " A\n" + square + " мм2\n" + String.format("%.1f", length) + " м")
 
             rel.addTags("square_" + square)
             rel.addTags("color_" + color)
             rel.addTags("powered")
 
-            squares = WiresTotal.getOrDefault(color, new TreeSet<String>())
-            squares.add(square)
+            squares = WiresTotal.getOrDefault(color, new HashMap<String, Float>())
+            def lengthForSquare = squares.getOrDefault(square, 0.0f)
+            squares.put(square, lengthForSquare + length)
             WiresTotal.put(color, squares)
+
+            if (rel.getSource().getTags().contains("fuse_pin")) {
+                Float oldAmper = FusesTotal.getOrDefault(rel.getSource().getParent(), 0.0f)
+                if (amper > oldAmper) {
+                    FusesTotal.put(rel.getSource().getParent(), amper)
+                }
+            }
+            if (rel.getDestination().getTags().contains("fuse_pin")) {
+                Float oldAmper = FusesTotal.getOrDefault(rel.getDestination().getParent(), 0.0f)
+                if (amper > oldAmper) {
+                    FusesTotal.put(rel.getDestination().getParent(), amper)
+                }
+            }
 
             println(" relationship: " + getRelationshipName(rel) + ", amper: " + amper)
         }
     }
 
+    def totalLength = 0.0f
     WiresTotal.each {color, squares ->
         println("COLOR: " + color)
-        squares.each {square ->
-            println("  " + square + " мм2")
+        squares.each {square, length ->
+            println("  " + square + " мм2: " + String.format("%.2f", length) + " м")
+            totalLength += length
         }
+    }
+    println("")
+    println("TOTAL wires length:" + String.format("%.2f", totalLength))
+    println("")
+    println("FUSE INFO")
+    FusesTotal.each {fuse, amper ->
+        println(" fuse " + fuse.getCanonicalName() + ": " + String.format("%.2f", amper) + " amper")
+        def rel = fuse.getComponentWithName("in").getEfferentRelationshipWith(fuse.getComponentWithName("out"))
+        rel.setDescription(String.format("%.2f", amper) + " A")
     }
 }
 
