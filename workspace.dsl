@@ -75,14 +75,14 @@ workspace "Name" "Description" {
                     ignition_relay_power_fuse = fuse "Прд реле зажигания" {
                         !include "elements/fuse.dsl"
                     }
-                    light_power_fuse = fuse "Предохранитель освещения" {
+                    light_power_fuse = fuse "Предохранитель освещения и охлаждения" {
                         !include "elements/fuse.dsl"
                     }
-                    ignition_fan_power_fuse = fuse "Предохранитель охл-я, отопителя, дворники, гудок" {
+                    ignition_fan_power_fuse = fuse "Предохранитель отопителя, дворники, гудок" {
                         !include "elements/fuse.dsl"
                     }
 
-                    xxx_power_fuse = fuse "Предохранитель" {
+                    head_light_power_fuse = fuse "Предохранитель дополнительного освещения" {
                         !include "elements/fuse.dsl"
                     }
 
@@ -95,7 +95,7 @@ workspace "Name" "Description" {
                     power_fuse_splitter.pin -> ignition_fan_power_fuse.in {
                         tags "internal_connection"
                     }
-                    power_fuse_splitter.pin -> xxx_power_fuse.in {
+                    power_fuse_splitter.pin -> head_light_power_fuse.in {
                         tags "internal_connection"
                     }
                 }
@@ -236,68 +236,128 @@ workspace "Name" "Description" {
                 }
 
                 group "Блок реле и предохранителей" {
-                    #Реле
-                    group "Блок реле" {
-                        ignition_relay = relay "Реле зажигания" {
-                            !include "elements/relay.dsl"
-                        }
-                        starter_relay = relay "Реле стартера" {
-                            !include "elements/relay5.dsl"
-                        }
-                        coolant_fan_1_relay = relay "Реле э-вент охл ДВС 1" {
-                            !include "elements/relay.dsl"
-                        }
-                        coolant_fan_2_relay = relay "Реле э-вент охл ДВС 2" {
-                            !include "elements/relay.dsl"
-                        }
-                        low_beam_relay = relay "Реле ближнего света" {
-                            !include "elements/relay.dsl"
-                        }
-                        high_beam_relay = relay "Реле дальнего света" {
-                            !include "elements/relay.dsl"
-                        }
-                        side_light_relay = relay "Реле габаритов" {
-                            !include "elements/relay.dsl"
-                        }
-                        turn_signal_relay = relay "Реле поворотников" {
-                            !include "elements/uaz/3151/turn_signal_relay_950.dsl"
-                        }
-                        heater_relay_1 = relay "Реле отопителя (1-я скорость)" {
-                            !include "elements/relay.dsl"
-                        }
-                        heater_relay_2 = relay "Реле отопителя (2-я скорость)" {
-                            !include "elements/relay.dsl"
-                        }
-                        interior_fan_relay = relay "Реле вентилятора салона" {
-                            !include "elements/relay.dsl"
-                        }
-                        wipers_relay = relay "Реле дворников" {
-                            !include "elements/uaz/3151/wipers_relay.dsl"
-                        }
-                        windshield_washer_relay = relay "Реле моторчика омывайки" {
-                            !include "elements/relay.dsl"
-                        }
-                        car_horn_relay = relay "Реле гудка" {
-                            !include "elements/relay.dsl"
-                        }
+                    group "Левый блок реле и предохранителей" {
+                        group "Левый блок реле" {
+                            starter_relay = relay "Реле стартера" {
+                                !include "elements/relay5.dsl"
+                            }
 
-                        front_head_light_relay = relay "Реле передней люстры" {
-                            !include "elements/relay.dsl"
+                            ignition_relay = relay "Реле зажигания" {
+                                !include "elements/relay.dsl"
+                            }
+                            coolant_fan_1_relay = relay "Реле э-вент охл ДВС 1" {
+                                !include "elements/relay.dsl"
+                            }
+                            coolant_fan_2_relay = relay "Реле э-вент охл ДВС 2" {
+                                !include "elements/relay.dsl"
+                            }
+                            low_beam_relay = relay "Реле ближнего света" {
+                                !include "elements/relay.dsl"
+                            }
+                            high_beam_relay = relay "Реле дальнего света" {
+                                !include "elements/relay.dsl"
+                            }
+                            side_light_relay = relay "Реле габаритов" {
+                                !include "elements/relay.dsl"
+                            }
+                            windshield_washer_relay = relay "Реле моторчика омывайки" {
+                                !include "elements/relay.dsl"
+                            }
+
+                            turn_signal_relay = relay "Реле поворотников" {
+                                !include "elements/uaz/3151/turn_signal_relay_950.dsl"
+                            }
+                            wipers_relay = relay "Реле дворников" {
+                                !include "elements/uaz/3151/wipers_relay.dsl"
+                            }
                         }
-                        rear_head_light_relay = relay "Реле задней люстры" {
-                            !include "elements/relay.dsl"
-                        }
-                        left_head_light_relay = relay "Реле левой боковой люстры" {
-                            !include "elements/relay.dsl"
-                        }
-                        right_head_light_relay = relay "Реле правой боковой люстры" {
-                            !include "elements/relay.dsl"
-                        }
-                        electric_pump_relay = relay "Реле электрической помпы" {
-                            !include "elements/relay.dsl"
+                        group "Левый блок предохранителей" {
+                            starter_relay_fuse = fuse "Прд реле стартера." {
+                                !include "elements/fuse.dsl"
+                            }
+                            coolant_fan_1_fuse = fuse "Прд э-вент охл ДВС 1." {
+                                !include "elements/fuse.dsl"
+                            }
+                            coolant_fan_2_fuse = fuse "Прд э-вент охл ДВС 2." {
+                                !include "elements/fuse.dsl"
+                            }
+                            low_beam_relay_fuse = fuse "Прд. реле ближн света" {
+                                !include "elements/fuse.dsl"
+                            }
+                            high_beam_relay_fuse = fuse "Прд. реле дальн света" {
+                                !include "elements/fuse.dsl"
+                            }
+                            side_light_relay_fuse = fuse "Прд. реле габаритов" {
+                                !include "elements/fuse.dsl"
+                            }
+                            turn_signal_fuse = fuse "Прд. поворотников" {
+                                !include "elements/fuse.dsl"
+                            }
+                            wipers_fuse = fuse "Прд. дворников" {
+                                !include "elements/fuse.dsl"
+                            }
+                            windshield_washer_fuse = fuse "Прд. моторчика омывайки" {
+                                !include "elements/fuse.dsl"
+                            }
                         }
                     }
-
+                    group "Правый блок реле и предохранителей" {
+                        group "Правый блок реле" {
+                            front_head_light_relay = relay "Реле передней люстры" {
+                                !include "elements/relay.dsl"
+                            }
+                            rear_head_light_relay = relay "Реле задней люстры" {
+                                !include "elements/relay.dsl"
+                            }
+                            left_head_light_relay = relay "Реле левой боковой люстры" {
+                                !include "elements/relay.dsl"
+                            }
+                            right_head_light_relay = relay "Реле правой боковой люстры" {
+                                !include "elements/relay.dsl"
+                            }
+                            heater_relay_1 = relay "Реле отопителя (1-я скорость)" {
+                                !include "elements/relay.dsl"
+                            }
+                            heater_relay_2 = relay "Реле отопителя (2-я скорость)" {
+                                !include "elements/relay.dsl"
+                            }
+                            interior_fan_relay = relay "Реле вентилятора салона" {
+                                !include "elements/relay.dsl"
+                            }
+                            car_horn_relay = relay "Реле гудка" {
+                                !include "elements/relay.dsl"
+                            }
+                            electric_pump_relay = relay "Реле электрической помпы" {
+                                !include "elements/relay.dsl"
+                            }
+                        }
+                        group "Правый блок предохранителей" {
+                            front_head_light_fuse = fuse "Прд. передней люстры" {
+                                !include "elements/fuse.dsl"
+                            }
+                            rear_head_light_fuse = fuse "Прд. задней люстры" {
+                                !include "elements/fuse.dsl"
+                            }
+                            left_head_light_fuse = fuse "Прд. левой боковой люстры" {
+                                !include "elements/fuse.dsl"
+                            }
+                            right_head_light_fuse = fuse "Прд. правой боковой люстры" {
+                                !include "elements/fuse.dsl"
+                            }
+                            heater_fuse = fuse "Прд. отопителя" {
+                                !include "elements/fuse.dsl"
+                            }
+                            interior_fan_fuse = fuse "Прд. вентилятора салона" {
+                                !include "elements/fuse.dsl"
+                            }
+                            car_horn_fuse = fuse "Прд. гудка" {
+                                !include "elements/fuse.dsl"
+                            }
+                            electric_pump_fuse = fuse "Прд. электрической помпы" {
+                                !include "elements/fuse.dsl"
+                            }
+                        }
+                    }
                     right_turn_signal_splitter = splitter "Подключение правых поворотников"{
                         pin = pin "pin"
                     }
@@ -306,60 +366,6 @@ workspace "Name" "Description" {
                     }
                     side_light_splitter = splitter "разветвитель габаритов" {
                         pin = pin "pin"
-                    }
-
-                    group "Блок предохранителей" {
-                        starter_relay_fuse = fuse "Прд реле стартера." {
-                            !include "elements/fuse.dsl"
-                        }
-                        coolant_fan_1_fuse = fuse "Прд э-вент охл ДВС 1." {
-                            !include "elements/fuse.dsl"
-                        }
-                        coolant_fan_2_fuse = fuse "Прд э-вент охл ДВС 2." {
-                            !include "elements/fuse.dsl"
-                        }
-                        low_beam_relay_fuse = fuse "Прд. реле ближн света" {
-                            !include "elements/fuse.dsl"
-                        }
-                        high_beam_relay_fuse = fuse "Прд. реле дальн света" {
-                            !include "elements/fuse.dsl"
-                        }
-                        side_light_relay_fuse = fuse "Прд. реле габаритов" {
-                            !include "elements/fuse.dsl"
-                        }
-                        turn_signal_fuse = fuse "Прд. поворотников" {
-                            !include "elements/fuse.dsl"
-                        }
-                        front_head_light_fuse = fuse "Прд. передней люстры" {
-                            !include "elements/fuse.dsl"
-                        }
-                        rear_head_light_fuse = fuse "Прд. задней люстры" {
-                            !include "elements/fuse.dsl"
-                        }
-                        left_head_light_fuse = fuse "Прд. левой боковой люстры" {
-                            !include "elements/fuse.dsl"
-                        }
-                        right_head_light_fuse = fuse "Прд. правой боковой люстры" {
-                            !include "elements/fuse.dsl"
-                        }
-                        heater_fuse = fuse "Прд. отопителя" {
-                            !include "elements/fuse.dsl"
-                        }
-                        interior_fan_fuse = fuse "Прд. вентилятора салона" {
-                            !include "elements/fuse.dsl"
-                        }
-                        wipers_fuse = fuse "Прд. дворников" {
-                            !include "elements/fuse.dsl"
-                        }
-                        windshield_washer_fuse = fuse "Прд. моторчика омывайки" {
-                            !include "elements/fuse.dsl"
-                        }
-                        car_horn_fuse = fuse "Прд. гудка" {
-                            !include "elements/fuse.dsl"
-                        }
-                        electric_pump_fuse = fuse "Прд. электрической помпы" {
-                            !include "elements/fuse.dsl"
-                        }
                     }
                 }
                 group "Блок приборов" {
@@ -751,7 +757,7 @@ workspace "Name" "Description" {
                     square "0.5"
                 }
             }
-            ignition_fan_power_fuse.out -> coolant_fan_1_fuse.in {
+            light_power_fuse.out -> coolant_fan_1_fuse.in {
                 properties {
                     color "0"
                     length "2"
@@ -780,7 +786,7 @@ workspace "Name" "Description" {
                     square "4"
                 }
             }
-            ignition_fan_power_fuse.out -> coolant_fan_2_fuse.in {
+            light_power_fuse.out -> coolant_fan_2_fuse.in {
                 properties {
                     color "1"
                     length "2"
@@ -1323,7 +1329,7 @@ workspace "Name" "Description" {
 
 
             # Передняя люстра
-            light_power_fuse.out -> head_light_splitter.pin {
+            head_light_power_fuse.out -> head_light_splitter.pin {
                 properties {
                     color "7"
                     length "2.5"
@@ -1832,7 +1838,7 @@ workspace "Name" "Description" {
             }
 
 
-            xxx_power_fuse.out -> windshield_washer_fuse.in {
+            ignition_fan_power_fuse.out -> windshield_washer_fuse.in {
                 properties {
                     color "0"
                     length "2.5"
@@ -2004,7 +2010,7 @@ workspace "Name" "Description" {
             }
 
             # Датчик низкого уровня тормозной жидкости
-            xxx_power_fuse.out -> control_lamps_splitter.pin {
+            ignition_fan_power_fuse.out -> control_lamps_splitter.pin {
                 properties {
                     color "1"
                     length "2.5"

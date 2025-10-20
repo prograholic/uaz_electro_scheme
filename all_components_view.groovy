@@ -101,7 +101,7 @@ workspace.model.getSoftwareSystems().each { ss ->
         }
     }
 }
-
+*/
 
 // Create component views
 workspace.model.getSoftwareSystems().each {
@@ -109,7 +109,7 @@ workspace.model.getSoftwareSystems().each {
     //println("Software system: " + ss.getName())
     ss.getContainers().each { container ->
         //("  Container: " + container.getName())
-        if (container.getComponents().size() > 0) {
+        if ((container.getComponents().size() > 0) && container.getTags().contains("splitter")) {
             componentView = workspace.views.createComponentView(container, container.getName() + "_direct_neighbours", "")
             componentView.enableAutomaticLayout(com.structurizr.view.AutomaticLayout.RankDirection.LeftRight)
         }
@@ -119,9 +119,9 @@ workspace.model.getSoftwareSystems().each {
 
 
 // Fill component views with data
-workspace.views.views.findAll {it instanceof com.structurizr.view.ComponentView && it.getKey().endsWith("_direct_neighbours")}.each {
-    //componentView.
-    componentView = it
+workspace.views.views.findAll {
+    it instanceof com.structurizr.view.ComponentView && it.getKey().endsWith("_direct_neighbours")
+    }.each { componentView ->
     println("Processing component view: " + componentView.getName())
     container = componentView.getContainer()
     //println("  Container name: " + container.getName())
@@ -133,4 +133,3 @@ workspace.views.views.findAll {it instanceof com.structurizr.view.ComponentView 
         //println("  Add [" + component.getName() + "] to view")
     }
 }
-*/

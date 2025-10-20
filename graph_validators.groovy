@@ -656,16 +656,14 @@ def colorizeAndPrintStats(activeCircuits) {
             WiresTotal.put(color, squares)
 
             if (rel.getSource().getTags().contains("fuse_pin")) {
-                Float oldAmper = FusesTotal.getOrDefault(rel.getSource().getParent(), 0.0f)
-                if (amper > oldAmper) {
-                    FusesTotal.put(rel.getSource().getParent(), amper)
-                }
+                def fuse = rel.getSource().getParent()
+                def internalRel = fuse.getComponentWithName("in").getEfferentRelationshipWith(fuse.getComponentWithName("out"))
+                FusesTotal.put(fuse, internalRel.getProperties().getAt("amper").toFloat())
             }
             if (rel.getDestination().getTags().contains("fuse_pin")) {
-                Float oldAmper = FusesTotal.getOrDefault(rel.getDestination().getParent(), 0.0f)
-                if (amper > oldAmper) {
-                    FusesTotal.put(rel.getDestination().getParent(), amper)
-                }
+                def fuse = rel.getDestination().getParent()
+                def internalRel = fuse.getComponentWithName("in").getEfferentRelationshipWith(fuse.getComponentWithName("out"))
+                FusesTotal.put(fuse, internalRel.getProperties().getAt("amper").toFloat())
             }
 
             println(" relationship: " + getRelationshipName(rel) + ", amper: " + amper)
