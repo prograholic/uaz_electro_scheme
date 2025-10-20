@@ -196,3 +196,39 @@
         active_switch_state 1
     }
 }
+
+
+# Датчик уровня топлива
+!element es.fuel_level_sensor {
+    properties {
+        active_switch_state 1
+    }
+}
+
+# Датчик перегрева охлаждающей жидкости
+!element es.engine_overheat_sensor {
+    properties {
+        active_switch_state 1
+    }
+}
+
+#Датчик температуры охлаждающей жидкости
+!element es.engine_temp_sensor {
+    properties {
+        active_switch_state 1
+    }
+}
+
+# Датчик низкого давления масла
+!element es.low_oil_pressure_sensor {
+    properties {
+        active_switch_state 1
+    }
+}
+
+# Датчик давления масла
+!element es.oil_pressure_sensor {
+    properties {
+        active_switch_state 1
+    }
+}

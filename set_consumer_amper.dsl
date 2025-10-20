@@ -234,3 +234,80 @@
         amper 0.5
     }
 }
+
+# Подсветка спидометра
+!element es.speedometer_backlight.lamp {
+    properties {
+        amper 0.5
+    }
+}
+
+# Подсветка датчика уровня топлива
+!element es.fuel_level_backlight.lamp {
+    properties {
+        amper 0.5
+    }
+}
+
+# Подсветка датчика температуры двигателя
+!element es.engine_temp_backlight.lamp {
+    properties {
+        amper 0.5
+    }
+}
+
+# Подсветка датчика давления масла
+!element es.oil_pressure_backlight.lamp {
+    properties {
+        amper 0.5
+    }
+}
+
+# Подсветка вольтметра
+!element es.voltmeter_backlight.lamp {
+    properties {
+        amper 0.5
+    }
+}
+
+# Указатель уровня топлива
+!element es.fuel_level_gauge.gauge {
+    properties {
+        amper 0.1
+    }
+}
+
+# Указатель температуры двигателя
+!element es.engine_temp_gauge.gauge {
+    properties {
+        amper 0.1
+    }
+}
+
+# Указатель давления масла
+!element es.oil_pressure_gauge.gauge {
+    properties {
+        amper 0.1
+    }
+}
+
+# Указатель вольтметра
+!element es.voltmeter_gauge.gauge {
+    properties {
+        amper 0.1
+    }
+}
+
+# Лампа перегрева двигателя
+!element es.engine_overheat_control_light.lamp {
+    properties {
+        amper 0.5
+    }
+}
+
+# Лампа низкого давления масла в двигателе
+!element es.low_oil_pressure_control_light.lamp {
+    properties {
+        amper 0.5
+    }
+}

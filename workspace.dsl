@@ -7,7 +7,6 @@ workspace "Name" "Description" {
     }
 
     #TODO: 
-    #  добавить приборы (вольтметр, температура, давление масла, уровень топлива, спидометр)
     #  вывести статистику по предохранителям
     #  вывести статистику по длине проводов
 
@@ -110,7 +109,21 @@ workspace "Name" "Description" {
                     }
                 }
 
+                # TODO нужно три датчика свести к двум!!!
                 coolant_sensor = sensor "Датчик вкл э-вент охл ДВС" {
+                    !include "elements/sensor.dsl"
+                }
+                engine_overheat_sensor = sensor "Датчик перегрева охлаждающей жидкости" {
+                    !include "elements/sensor.dsl"
+                }
+                engine_temp_sensor = sensor "Датчик температуры охлаждающей жидкости" {
+                    !include "elements/sensor.dsl"
+                }
+
+                low_oil_pressure_sensor = sensor "Датчик низкого давления масла" {
+                    !include "elements/sensor.dsl"
+                }
+                oil_pressure_sensor = sensor "Датчик давления масла" {
                     !include "elements/sensor.dsl"
                 }
 
@@ -197,6 +210,9 @@ workspace "Name" "Description" {
                     !include "elements/sensor.dsl"
                 }
                 low_brake_fluid_sensor = sensor "Датчик недостаточного уровня тормозной жидкости" {
+                    !include "elements/sensor.dsl"
+                }
+                fuel_level_sensor = sensor "Датчик уровня топлива" {
                     !include "elements/sensor.dsl"
                 }
 
@@ -346,9 +362,6 @@ workspace "Name" "Description" {
                     }
                 }
                 group "Блок приборов" {
-                    internal_lighting = splitter "Система подсветки приборов" {
-                        data = pin "pin"
-                    }
                     group "Блок контрольных ламп" {
                         coolant_control_light = light "Подсветка упр э-вент охл ДВС" {
                             !include "elements/light.dsl"
@@ -361,6 +374,56 @@ workspace "Name" "Description" {
                         }
                         high_beam_control_light = light "Контрольная лампа дальнего света" {
                             !include "elements/light.dsl"
+                        }
+                    }
+
+                    backlight_splitter = splitter "Система подсветки приборов" {
+                        pin = pin "pin"
+                    }
+                    control_lamps_splitter = splitter "Система контрольных ламп и указателей" {
+                        pin = pin "pin"
+                    }
+
+                    speedometer_backlight = light "Подсветка спидометра" {
+                        !include "elements/light.dsl"
+                    }
+
+                    group "Датчик топлива" {
+                        fuel_level_backlight = light "Подсветка датчика уровня топлива" {
+                            !include "elements/light.dsl"
+                        }
+                        fuel_level_gauge = gauge "Указатель уровня топлива" {
+                            !include "elements/gauge.dsl"
+                        }
+                    }
+                    group "Датчик температуры двигателя" {
+                        engine_temp_backlight = light "Подсветка датчика температуры двигателя" {
+                            !include "elements/light.dsl"
+                        }
+                        engine_temp_gauge = gauge "Указатель температуры двигателя" {
+                            !include "elements/gauge.dsl"
+                        }
+                        engine_overheat_control_light = light "Лампа перегрева двигателя" {
+                            !include "elements/light.dsl"
+                        }
+                    }
+                    group "Датчик давления масла в двигателе" {
+                        oil_pressure_backlight = light "Подсветка датчика давления масла в двигателе" {
+                            !include "elements/light.dsl"
+                        }
+                        oil_pressure_gauge = gauge "Указатель давления масла в двигателе" {
+                            !include "elements/gauge.dsl"
+                        }
+                        low_oil_pressure_control_light = light "Лампа низкого давления масла в двигателе" {
+                            !include "elements/light.dsl"
+                        }
+                    }
+                    group "Вольтметр" {
+                        voltmeter_backlight = light "Подсветка вольтметра" {
+                            !include "elements/light.dsl"
+                        }
+                        voltmeter_gauge = gauge "Указатель вольтметра" {
+                            !include "elements/gauge.dsl"
                         }
                     }
                 }
@@ -762,10 +825,10 @@ workspace "Name" "Description" {
                     color "0"
                 }
             }
-            internal_lighting.data -> coolant_control_light.plus {
+            control_lamps_splitter.pin -> coolant_control_light.plus {
                 properties {
-                    color "3"
-                    length "0.5"
+                    color "9"
+                    length "2.5"
                     square "0.5"
                 }
             }
@@ -821,7 +884,7 @@ workspace "Name" "Description" {
                     square "0.5"
                 }
             }
-            light_switch._58 -> internal_lighting.data {
+            light_switch._58 -> backlight_splitter.pin {
                 properties {
                     color "1"
                     length "0.5"
@@ -1940,6 +2003,13 @@ workspace "Name" "Description" {
             }
 
             # Датчик низкого уровня тормозной жидкости
+            xxx_power_fuse.out -> control_lamps_splitter.pin {
+                properties {
+                    color "1"
+                    length "2.5"
+                    square "0.5"
+                }
+            }
             low_brake_fluid_sensor.out -> m.ground {
                 tags "internal_connection"
             }
@@ -1950,10 +2020,200 @@ workspace "Name" "Description" {
                     square "0.5"
                 }
             }
-            xxx_power_fuse.out -> low_brake_fluid_warning_light.plus {
+            control_lamps_splitter.pin -> low_brake_fluid_warning_light.plus {
                 properties {
                     color "2"
                     length "2.5"
+                    square "0.5"
+                }
+            }
+
+            # Подсветка приборов
+            backlight_splitter.pin -> speedometer_backlight.plus {
+                properties {
+                    color "2"
+                    length "0.3"
+                    square "0.5"
+                }
+            }
+            speedometer_backlight.minus -> m.ground {
+                properties {
+                    color "0"
+                    length "0.3"
+                    square "0.5"
+                }
+            }
+
+            backlight_splitter.pin -> fuel_level_backlight.plus {
+                properties {
+                    color "3"
+                    length "0.3"
+                    square "0.5"
+                }
+            }
+            fuel_level_backlight.minus -> m.ground {
+                properties {
+                    color "0"
+                    length "0.3"
+                    square "0.5"
+                }
+            }
+
+            backlight_splitter.pin -> engine_temp_backlight.plus {
+                properties {
+                    color "4"
+                    length "0.3"
+                    square "0.5"
+                }
+            }
+            engine_temp_backlight.minus -> m.ground {
+                properties {
+                    color "0"
+                    length "0.3"
+                    square "0.5"
+                }
+            }
+
+            backlight_splitter.pin -> oil_pressure_backlight.plus {
+                properties {
+                    color "5"
+                    length "0.3"
+                    square "0.5"
+                }
+            }
+            oil_pressure_backlight.minus -> m.ground {
+                properties {
+                    color "0"
+                    length "0.3"
+                    square "0.5"
+                }
+            }
+
+            backlight_splitter.pin -> voltmeter_backlight.plus {
+                properties {
+                    color "6"
+                    length "0.3"
+                    square "0.5"
+                }
+            }
+            voltmeter_backlight.minus -> m.ground {
+                properties {
+                    color "0"
+                    length "0.3"
+                    square "0.5"
+                }
+            }
+
+
+            # Показатель уровня топлива
+            fuel_level_sensor.out -> m.ground {
+                properties {
+                    color "0"
+                    length "0.5"
+                    square "0.5"
+                }
+            }
+            fuel_level_gauge.minus -> fuel_level_sensor.in {
+                properties {
+                    color "1"
+                    length "2.5"
+                    square "0.5"
+                }
+            }
+            control_lamps_splitter.pin -> fuel_level_gauge.plus {
+                properties {
+                    color "3"
+                    length "0.3"
+                    square "0.5"
+                }
+            }
+
+            # Датчик + лампа температуры двигателя
+            engine_overheat_control_light.minus -> engine_overheat_sensor.in {
+                properties {
+                    color "0"
+                    length "2.5"
+                    square "0.5"
+                }
+            }
+            engine_overheat_sensor.out -> m.ground {
+                tags "internal_connection"
+            }
+            control_lamps_splitter.pin -> engine_overheat_control_light.plus {
+                properties {
+                    color "4"
+                    length "0.3"
+                    square "0.5"
+                }
+            }
+
+            engine_temp_gauge.minus -> engine_temp_sensor.in {
+                properties {
+                    color "0"
+                    length "2.5"
+                    square "0.5"
+                }
+            }
+            engine_temp_sensor.out -> m.ground {
+                tags "internal_connection"
+            }
+            control_lamps_splitter.pin -> engine_temp_gauge.plus {
+                properties {
+                    color "5"
+                    length "0.3"
+                    square "0.5"
+                }
+            }
+
+            # Датчик + лампа давления масла
+            low_oil_pressure_control_light.minus -> low_oil_pressure_sensor.in {
+                properties {
+                    color "0"
+                    length "2.5"
+                    square "0.5"
+                }
+            }
+            low_oil_pressure_sensor.out -> m.ground {
+                tags "internal_connection"
+            }
+            control_lamps_splitter.pin -> low_oil_pressure_control_light.plus {
+                properties {
+                    color "6"
+                    length "0.3"
+                    square "0.5"
+                }
+            }
+
+            oil_pressure_gauge.minus -> oil_pressure_sensor.in {
+                properties {
+                    color "0"
+                    length "2.5"
+                    square "0.5"
+                }
+            }
+            oil_pressure_sensor.out -> m.ground {
+                tags "internal_connection"
+            }
+            control_lamps_splitter.pin -> oil_pressure_gauge.plus {
+                properties {
+                    color "7"
+                    length "0.3"
+                    square "0.5"
+                }
+            }
+
+            # Датчик вольтметра
+            voltmeter_gauge.minus -> m.ground {
+                properties {
+                    color "0"
+                    length "0.3"
+                    square "0.5"
+                }
+            }
+            control_lamps_splitter.pin -> voltmeter_gauge.plus {
+                properties {
+                    color "8"
+                    length "0.3"
                     square "0.5"
                 }
             }

@@ -23,6 +23,9 @@ archetypes {
     resistor = container {
         tags "resistor"
     }
+    gauge = container {
+        tags "gauge"
+    }
 
     pin = component {
         tags "pin"
