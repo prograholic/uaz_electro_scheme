@@ -786,10 +786,10 @@ workspace "Name" "Description" {
                     square "4"
                 }
             }
-            control_line_from_ignition_2.pin -> coolant_fan_2_relay._85 {
+            coolant_fan_1_relay._85 -> coolant_fan_2_relay._85 {
                 properties {
                     color "6"
-                    length "0.3"
+                    length "0.1"
                     square "0.5"
                 }
             }
