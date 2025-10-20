@@ -187,10 +187,6 @@ workspace "Name" "Description" {
                 right_head_light = light "Правая боковая люстра" {
                     !include "elements/light.dsl"
                 }
-
-                head_light_splitter = splitter "Разветвитель питания доп. света" {
-                    pin = pin "pin"
-                }
             }
 
             group "Кабина" {
@@ -1327,22 +1323,37 @@ workspace "Name" "Description" {
             }
 
 
-
-            # Передняя люстра
-            head_light_power_fuse.out -> head_light_splitter.pin {
+            # Предохранители доп света
+            head_light_power_fuse.out -> front_head_light_fuse.in {
                 properties {
                     color "7"
                     length "2.5"
                     square "25"
                 }
             }
-            head_light_splitter.pin -> front_head_light_fuse.in {
+            front_head_light_fuse.in -> rear_head_light_fuse.in {
                 properties {
-                    color "6"
-                    length "1.5"
-                    square "6"
+                    color "2"
+                    length "0.1"
+                    square "1.5"
                 }
             }
+            rear_head_light_fuse.in -> left_head_light_fuse.in {
+                properties {
+                    color "1"
+                    length "0.1"
+                    square "1.5"
+                }
+            }
+            left_head_light_fuse.in -> right_head_light_fuse.in {
+                properties {
+                    color "2"
+                    length "0.1"
+                    square "1.5"
+                }
+            }
+
+            # Передняя люстра
             front_head_light_fuse.out -> front_head_light_relay._30 {
                 properties {
                     color "1"
@@ -1388,16 +1399,9 @@ workspace "Name" "Description" {
 
 
             # Задняя люстра
-            head_light_splitter.pin -> rear_head_light_fuse.in {
-                properties {
-                    color "0"
-                    length "1.5"
-                    square "6"
-                }
-            }
             rear_head_light_fuse.out -> rear_head_light_relay._30 {
                 properties {
-                    color "1"
+                    color "3"
                     length "0.3"
                     square "1.5"
                 }
@@ -1425,7 +1429,7 @@ workspace "Name" "Description" {
             }
             rear_head_light_switch.out -> rear_head_light_relay._85 {
                 properties {
-                    color "3"
+                    color "1"
                     length "2.5"
                     square "0.5"
                 }
@@ -1439,16 +1443,9 @@ workspace "Name" "Description" {
             }
 
             # Левая боковая люстра
-            head_light_splitter.pin -> left_head_light_fuse.in {
-                properties {
-                    color "1"
-                    length "1.5"
-                    square "6"
-                }
-            }
             left_head_light_fuse.out -> left_head_light_relay._30 {
                 properties {
-                    color "2"
+                    color "3"
                     length "0.3"
                     square "1.5"
                 }
@@ -1476,7 +1473,7 @@ workspace "Name" "Description" {
             }
             left_head_light_switch.out -> left_head_light_relay._85 {
                 properties {
-                    color "3"
+                    color "4"
                     length "2.5"
                     square "0.5"
                 }
@@ -1491,13 +1488,6 @@ workspace "Name" "Description" {
 
 
             # Правая люстра
-            head_light_splitter.pin -> right_head_light_fuse.in {
-                properties {
-                    color "2"
-                    length "1.5"
-                    square "6"
-                }
-            }
             right_head_light_fuse.out -> right_head_light_relay._30 {
                 properties {
                     color "1"
@@ -1508,14 +1498,14 @@ workspace "Name" "Description" {
             right_head_light_relay._87 -> right_head_light.plus {
                 properties {
                     color "2"
-                    length "3"
+                    length "2"
                     square "6"
                 }
             }
             right_head_light.minus -> m.ground {
                 properties {
                     color "0"
-                    length "3"
+                    length "2"
                     square "6"
                 }
             }
