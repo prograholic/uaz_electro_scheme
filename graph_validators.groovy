@@ -18,6 +18,7 @@ enum ElementType {
     Heater,
     Wipers,
     WindshieldWasher,
+    ElectricPump,
 
     Switch,
     PowerSource,
@@ -74,6 +75,9 @@ def getElementType(element) {
     }
     if (tags.contains("windshield_washer")) {
         return ElementType.WindshieldWasher
+    }
+    if (tags.contains("electric_pump")) {
+        return ElementType.ElectricPump
     }
 
     if (tags.contains("switch")) {

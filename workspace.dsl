@@ -6,6 +6,11 @@ workspace "Name" "Description" {
         scope none
     }
 
+    #TODO: 
+    #  добавить приборы (+ лампочки)
+    #  вывести статистику по предохранителям
+    #  вывести статистику по длине проводов
+
     model {
         properties {
             "structurizr.groupSeparator" "/"
@@ -149,6 +154,11 @@ workspace "Name" "Description" {
                         }
                     }
                 }
+
+                electric_pump = container "Электрическая помпа" {
+                    tags "electric_pump"
+                    !include "elements/electric_motor.dsl"
+                }
             }
 
             group "Кабина" {
@@ -263,6 +273,9 @@ workspace "Name" "Description" {
                         right_head_light_relay = relay "Реле правой боковой люстры" {
                             !include "elements/relay.dsl"
                         }
+                        electric_pump_relay = relay "Реле электрической помпы" {
+                            !include "elements/relay.dsl"
+                        }
                     }
 
                     right_turn_signal_splitter = splitter "Подключение правых поворотников"{
@@ -324,6 +337,9 @@ workspace "Name" "Description" {
                         car_horn_fuse = fuse "Прд. гудка" {
                             !include "elements/fuse.dsl"
                         }
+                        electric_pump_fuse = fuse "Прд. электрической помпы" {
+                            !include "elements/fuse.dsl"
+                        }
                     }
                 }
                 group "Блок приборов" {
@@ -377,6 +393,9 @@ workspace "Name" "Description" {
                         !include "elements/switch_3states_6pin.dsl"
                     }
                     interior_fan_switch = switch "Выключатель салонного вентилятора" {
+                        !include "elements/switch.dsl"
+                    }
+                    electric_pump_switch = switch "Выключатель электрической помпы" {
                         !include "elements/switch.dsl"
                     }
                 }
@@ -1837,6 +1856,58 @@ workspace "Name" "Description" {
                 }
             }
             car_horn_relay._86 -> m.ground {
+                properties {
+                    color "0"
+                    length "0.5"
+                    square "0.5"
+                }
+            }
+
+            # Электрическая помпа
+            ignition_fan_power_fuse.out -> electric_pump_fuse.in {
+                properties {
+                    color "4"
+                    length "2.5"
+                    square "2.5"
+                }
+            }
+
+            electric_pump_fuse.out -> electric_pump_relay._30 {
+                properties {
+                    color "1"
+                    length "0.3"
+                    square "0.5"
+                }
+            }
+            electric_pump_relay._87 -> electric_pump.plus {
+                properties {
+                    color "2"
+                    length "2.5"
+                    square "2.5"
+                }
+            }
+            electric_pump.minus -> m.ground {
+                properties {
+                    color "0"
+                    length "0.5"
+                    square "1.5"
+                }
+            }
+            control_line_from_ignition_2.pin -> electric_pump_switch.in {
+                properties {
+                    color "5"
+                    length "2.5"
+                    square "0.5"
+                }
+            }
+            electric_pump_switch.out -> electric_pump_relay._85 {
+                properties {
+                    color "3"
+                    length "2.5"
+                    square "0.5"
+                }
+            }
+            electric_pump_relay._86 -> m.ground {
                 properties {
                     color "0"
                     length "0.5"

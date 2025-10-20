@@ -180,3 +180,12 @@
         active_switch_state 1
     }
 }
+
+# Электрическая помпа
+!element es.electric_pump_switch {
+    properties {
+        # 0 - помпа выключена
+        # 1 - помпа включена
+        active_switch_state 1
+    }
+}

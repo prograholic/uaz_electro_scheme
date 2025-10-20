@@ -215,3 +215,10 @@
         amper 5
     }
 }
+
+# Электрическая помпа
+!element es.electric_pump.motor {
+    properties {
+        amper 6
+    }
+}
