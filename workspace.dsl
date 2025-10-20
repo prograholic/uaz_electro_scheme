@@ -377,10 +377,6 @@ workspace "Name" "Description" {
                         }
                     }
 
-                    backlight_splitter = splitter "Система подсветки приборов" {
-                        pin = pin "pin"
-                    }
-
                     speedometer_backlight = light "Подсветка спидометра" {
                         !include "elements/light.dsl"
                     }
@@ -860,7 +856,7 @@ workspace "Name" "Description" {
                     square "0.5"
                 }
             }
-            light_switch._58 -> backlight_splitter.pin {
+            light_switch._58 -> speedometer_backlight.plus {
                 properties {
                     color "1"
                     length "0.5"
@@ -1992,13 +1988,6 @@ workspace "Name" "Description" {
             }
 
             # Подсветка приборов
-            backlight_splitter.pin -> speedometer_backlight.plus {
-                properties {
-                    color "2"
-                    length "0.3"
-                    square "0.5"
-                }
-            }
             speedometer_backlight.minus -> m.ground {
                 properties {
                     color "0"
@@ -2007,10 +1996,10 @@ workspace "Name" "Description" {
                 }
             }
 
-            backlight_splitter.pin -> fuel_level_backlight.plus {
+            speedometer_backlight.plus -> fuel_level_backlight.plus {
                 properties {
                     color "3"
-                    length "0.3"
+                    length "0.2"
                     square "0.5"
                 }
             }
@@ -2022,10 +2011,10 @@ workspace "Name" "Description" {
                 }
             }
 
-            backlight_splitter.pin -> engine_temp_backlight.plus {
+            fuel_level_backlight.plus -> engine_temp_backlight.plus {
                 properties {
                     color "4"
-                    length "0.3"
+                    length "0.2"
                     square "0.5"
                 }
             }
@@ -2037,10 +2026,10 @@ workspace "Name" "Description" {
                 }
             }
 
-            backlight_splitter.pin -> oil_pressure_backlight.plus {
+            engine_temp_backlight.plus -> oil_pressure_backlight.plus {
                 properties {
                     color "5"
-                    length "0.3"
+                    length "0.2"
                     square "0.5"
                 }
             }
@@ -2052,7 +2041,7 @@ workspace "Name" "Description" {
                 }
             }
 
-            backlight_splitter.pin -> voltmeter_backlight.plus {
+            oil_pressure_backlight.plus -> voltmeter_backlight.plus {
                 properties {
                     color "6"
                     length "0.3"
