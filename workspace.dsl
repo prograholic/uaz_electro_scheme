@@ -380,9 +380,6 @@ workspace "Name" "Description" {
                     backlight_splitter = splitter "Система подсветки приборов" {
                         pin = pin "pin"
                     }
-                    control_lamps_splitter = splitter "Система контрольных ламп и указателей" {
-                        pin = pin "pin"
-                    }
 
                     speedometer_backlight = light "Подсветка спидометра" {
                         !include "elements/light.dsl"
@@ -1976,24 +1973,17 @@ workspace "Name" "Description" {
             }
 
             # Датчик низкого уровня тормозной жидкости
-            ignition_fan_power_fuse.out -> control_lamps_splitter.pin {
+            ignition_fan_power_fuse.out -> low_brake_fluid_warning_light.plus {
                 properties {
                     color "1"
-                    length "2.5"
-                    square "0.5"
+                    length "2"
+                    square "1.5"
                 }
             }
             low_brake_fluid_sensor.out -> m.ground {
                 tags "internal_connection"
             }
             low_brake_fluid_warning_light.minus -> low_brake_fluid_sensor.in {
-                properties {
-                    color "1"
-                    length "2.5"
-                    square "0.5"
-                }
-            }
-            control_lamps_splitter.pin -> low_brake_fluid_warning_light.plus {
                 properties {
                     color "2"
                     length "2.5"
@@ -2093,7 +2083,7 @@ workspace "Name" "Description" {
                     square "0.5"
                 }
             }
-            control_lamps_splitter.pin -> fuel_level_gauge.plus {
+            low_oil_pressure_control_light.plus -> fuel_level_gauge.plus {
                 properties {
                     color "3"
                     length "0.3"
@@ -2112,10 +2102,10 @@ workspace "Name" "Description" {
             engine_overheat_sensor.out -> m.ground {
                 tags "internal_connection"
             }
-            control_lamps_splitter.pin -> engine_overheat_control_light.plus {
+            low_brake_fluid_warning_light.plus -> engine_overheat_control_light.plus {
                 properties {
                     color "4"
-                    length "0.3"
+                    length "0.2"
                     square "0.5"
                 }
             }
@@ -2130,7 +2120,7 @@ workspace "Name" "Description" {
             engine_temp_sensor.out -> m.ground {
                 tags "internal_connection"
             }
-            control_lamps_splitter.pin -> engine_temp_gauge.plus {
+            fuel_level_gauge.plus -> engine_temp_gauge.plus {
                 properties {
                     color "5"
                     length "0.3"
@@ -2149,7 +2139,7 @@ workspace "Name" "Description" {
             low_oil_pressure_sensor.out -> m.ground {
                 tags "internal_connection"
             }
-            control_lamps_splitter.pin -> low_oil_pressure_control_light.plus {
+            engine_overheat_control_light.plus -> low_oil_pressure_control_light.plus {
                 properties {
                     color "6"
                     length "0.3"
@@ -2167,7 +2157,7 @@ workspace "Name" "Description" {
             oil_pressure_sensor.out -> m.ground {
                 tags "internal_connection"
             }
-            control_lamps_splitter.pin -> oil_pressure_gauge.plus {
+            engine_temp_gauge.plus -> oil_pressure_gauge.plus {
                 properties {
                     color "7"
                     length "0.3"
@@ -2183,7 +2173,7 @@ workspace "Name" "Description" {
                     square "0.5"
                 }
             }
-            control_lamps_splitter.pin -> voltmeter_gauge.plus {
+            oil_pressure_gauge.plus -> voltmeter_gauge.plus {
                 properties {
                     color "8"
                     length "0.3"
