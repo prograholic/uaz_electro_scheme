@@ -289,9 +289,9 @@ def deduceAmperageToPowerSource(relationships, relationship, amper, isIncoming) 
 
 def findShortestPath(start, finish, relationships, connectionAllowed, totalElementsCount) {
     //println("FIND SHORTEST PATH from " + start.getCanonicalName() + " to " + finish.getCanonicalName())
-    distance = new HashMap<com.structurizr.model.Element, Integer>()
-    pathHolder = new HashMap<com.structurizr.model.Element, com.structurizr.model.Element>()
-    Queue<com.structurizr.model.Element> queue = new LinkedList<>()
+    def distance = new HashMap<com.structurizr.model.Element, Integer>()
+    def pathHolder = new HashMap<com.structurizr.model.Element, com.structurizr.model.Element>()
+    def Queue<com.structurizr.model.Element> queue = new LinkedList<>()
 
     if (start == finish) {
         throw new IllegalStateException("Cannot find shortest circle!")
@@ -301,15 +301,15 @@ def findShortestPath(start, finish, relationships, connectionAllowed, totalEleme
     queue.add(start)
 
     while (!queue.isEmpty()) {
-        current = queue.remove()
+        def current = queue.remove()
 
         relationships.findAll { relationship ->
             ((relationship.getSource() == current) && connectionAllowed(relationship))
         }.each { relationship ->
-            next = relationship.getDestination()
+            def next = relationship.getDestination()
 
-            distanceToNext = distance.getOrDefault(next, totalElementsCount)
-            distanceToCurrent = distance.getOrDefault(current, totalElementsCount)
+            def distanceToNext = distance.getOrDefault(next, totalElementsCount)
+            def distanceToCurrent = distance.getOrDefault(current, totalElementsCount)
             if (distanceToNext > (distanceToCurrent + 1)) {
                 pathHolder.put(next, current)
                 distance.put(next, distanceToCurrent + 1)
@@ -322,9 +322,9 @@ def findShortestPath(start, finish, relationships, connectionAllowed, totalEleme
         return null
     }
 
-    res = new ArrayList<com.structurizr.model.Relationship>()
-    prev = finish
-    curr = pathHolder.get(prev)
+    def res = new ArrayList<com.structurizr.model.Relationship>()
+    def prev = finish
+    def curr = pathHolder.get(prev)
     res.add(curr.getRelationships().findAll{it.getDestination() == prev}.first())
 
     while (pathHolder.containsKey(curr)) {
@@ -341,10 +341,10 @@ def findShortestPath(start, finish, relationships, connectionAllowed, totalEleme
 def handleActiveConsumer(consumer) {
     println ("   handle active consumer: " + consumer.getCanonicalName())
     if (getElementType(consumer.getParent()) == ElementType.Relay) {
-        activeState = consumer.getProperties().getOrDefault("state_when_active", "1")
+        def activeState = consumer.getProperties().getOrDefault("state_when_active", "1")
         println("    add active state `" + activeState + "` for relay " + consumer.getCanonicalName())
         if (consumer.getParent().getProperties().containsKey("active_switch_state")) {
-            currentActiveState = consumer.getParent().getProperties().get("active_switch_state")
+            def currentActiveState = consumer.getParent().getProperties().get("active_switch_state")
             println("    parent already has active state `" + currentActiveState + "`, add extra value")
             activeState = currentActiveState + "," + activeState
         }
@@ -355,6 +355,14 @@ def handleActiveConsumer(consumer) {
         println("    set active state `1` for starter " + consumer.getCanonicalName())
         consumer.getParent().addProperty("active_switch_state", "1")
     }
+}
+
+def markConsumerAsInactive(consumer) {
+    println ("   mark consumer as inactive: " + consumer.getCanonicalName())
+    def newProps = consumer.getParent().getProperties().findAll {key, value ->
+        (key != "active_switch_state")
+    }
+    consumer.getParent().setProperties(newProps)
 }
 
 def findActiveCircuitsImpl(relationships, elements, consumers, connectionAllowed, iteration) {
@@ -377,10 +385,12 @@ def findActiveCircuitsImpl(relationships, elements, consumers, connectionAllowed
 
         def relationshipWithConsumer = incomingRelationships.first()
 
+        def shouldMarkAsInactive = true
         if (connectionAllowed(relationshipWithConsumer)) {
-            shortestPath = findShortestPath(consumer, relationshipWithConsumer.getSource(), relationships, connectionAllowed, elements.size())
+            def shortestPath = findShortestPath(consumer, relationshipWithConsumer.getSource(), relationships, connectionAllowed, elements.size())
             if (shortestPath != null) {
                 shortestPath.add(relationshipWithConsumer)
+                shouldMarkAsInactive = false
 
                 println(" Shortest path for " + consumer.getCanonicalName())
                 shortestPath.each {
@@ -391,6 +401,9 @@ def findActiveCircuitsImpl(relationships, elements, consumers, connectionAllowed
 
                 handleActiveConsumer(consumer)
             }
+        }
+        if (shouldMarkAsInactive) {
+            markConsumerAsInactive(consumer)
         }
     }
 
@@ -705,7 +718,7 @@ wireRelativeResistance = workspace.model.getProperties().getOrDefault("wire_rela
 def allowActiveSwitchOnly = { relationship ->
     def switchableTags = ["sensor_ctr", "switch_ctr", "relay_power_switch", "starter_switch"]
 
-    hasSwitchableTag = switchableTags.any { switchableTag ->
+    def hasSwitchableTag = switchableTags.any { switchableTag ->
         relationship.getTags().contains(switchableTag)
     }
 

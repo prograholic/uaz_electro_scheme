@@ -14,7 +14,7 @@ workspace "Name" "Description" {
         properties {
             "structurizr.groupSeparator" "/"
             "default_voltage" "13.8"
-            "max_voltage_drop" "0.45"
+            "max_voltage_drop" "0.5"
             "wire_relative_resistance" "0.018"
         }
 
@@ -606,9 +606,9 @@ workspace "Name" "Description" {
                 }
             }
 
-            ignition_relay_power_fuse.out -> generator.v {
+            starter_relay_fuse.out -> generator.v {
                 properties {
-                    color "3"
+                    color "4"
                     length "3.0"
                     square "4"
                 }
@@ -677,7 +677,7 @@ workspace "Name" "Description" {
             starter_relay._87 -> starter.st {
                 properties {
                     color "6"
-                    length "3.5"
+                    length "2.5"
                     square "10"
                 }
             }
