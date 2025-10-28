@@ -605,7 +605,8 @@ def ValidateVoltageDrop(activeCircuits, maxVoltageDrop, wireRelativeResistance) 
 
     activeCircuits.each {consumer, activeCircuit ->
         println(" process consumer: " + consumer.getCanonicalName())
-        ValidateVoltageDropForCircuit(activeCircuit, maxVoltageDrop, wireRelativeResistance)
+        def consumerVoltageDrop = consumer.getProperties().getOrDefault("max_voltage_drop", maxVoltageDrop).toFloat()
+        ValidateVoltageDropForCircuit(activeCircuit, consumerVoltageDrop, wireRelativeResistance)
     }
 }
 

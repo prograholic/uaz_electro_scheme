@@ -6,6 +6,8 @@
 }
 !element es.starter.st_relay {
     properties {
+        # Кратковременный потребитель
+        max_voltage_drop 0.75
         amper 20
     }
 }
@@ -24,6 +26,8 @@
 !element es.winch.winch {
     properties {
         amper 300
+        # Кратковременный потребитель
+        max_voltage_drop 0.75
     }
 }
 

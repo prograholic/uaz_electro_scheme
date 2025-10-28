@@ -14,7 +14,7 @@ workspace "Name" "Description" {
         properties {
             "structurizr.groupSeparator" "/"
             "default_voltage" "13.8"
-            "max_voltage_drop" "0.5"
+            "max_voltage_drop" "0.45"
             "wire_relative_resistance" "0.018"
         }
 
@@ -78,7 +78,7 @@ workspace "Name" "Description" {
                     light_power_fuse = fuse "Предохранитель освещения и охлаждения" {
                         !include "elements/fuse.dsl"
                     }
-                    ignition_fan_power_fuse = fuse "Предохранитель отопителя, дворники, гудок" {
+                    heater_fan_power_fuse = fuse "Предохранитель отопителя, дворники, гудок" {
                         !include "elements/fuse.dsl"
                     }
 
@@ -92,7 +92,7 @@ workspace "Name" "Description" {
                     power_fuse_splitter.pin -> light_power_fuse.in {
                         tags "internal_connection"
                     }
-                    power_fuse_splitter.pin -> ignition_fan_power_fuse.in {
+                    power_fuse_splitter.pin -> heater_fan_power_fuse.in {
                         tags "internal_connection"
                     }
                     power_fuse_splitter.pin -> head_light_power_fuse.in {
@@ -631,7 +631,7 @@ workspace "Name" "Description" {
             }
             ignition_relay._87 -> starter_relay_fuse.in {
                 properties {
-                    length "0.2"
+                    length "0.3"
                     square "2.5"
                     color "3"
                 }
@@ -639,8 +639,8 @@ workspace "Name" "Description" {
             
             starter_relay_fuse.out -> starter_relay._30 {
                 properties {
-                    length "3.0"
-                    square "10"
+                    length "0.3"
+                    square "2.5"
                     color "1"
                 }
             }
@@ -678,7 +678,7 @@ workspace "Name" "Description" {
                 properties {
                     color "6"
                     length "2.5"
-                    square "10"
+                    square "4"
                 }
             }
             starter_relay._88 -> control_line_from_ignition_fuse.in {
@@ -1584,7 +1584,7 @@ workspace "Name" "Description" {
             }
 
             # Отопитель
-            ignition_fan_power_fuse.out -> heater_fuse.in {
+            heater_fan_power_fuse.out -> heater_fuse.in {
                 properties {
                     color "2"
                     length "2.5"
@@ -1672,7 +1672,7 @@ workspace "Name" "Description" {
             }
 
             # Вентилятор салона
-            ignition_fan_power_fuse.out -> interior_fan_fuse.in {
+            heater_fan_power_fuse.out -> interior_fan_fuse.in {
                 properties {
                     color "3"
                     length "2.5"
@@ -1725,7 +1725,7 @@ workspace "Name" "Description" {
 
 
             # Дворники и передний омыватель
-            ignition_fan_power_fuse.out -> wipers_fuse.in {
+            heater_fan_power_fuse.out -> wipers_fuse.in {
                 properties {
                     color "6"
                     length "2.5"
@@ -1797,7 +1797,7 @@ workspace "Name" "Description" {
             }
 
 
-            ignition_fan_power_fuse.out -> windshield_washer_fuse.in {
+            heater_fan_power_fuse.out -> windshield_washer_fuse.in {
                 properties {
                     color "0"
                     length "2.5"
@@ -1866,7 +1866,7 @@ workspace "Name" "Description" {
 
 
             # Гудок
-            ignition_fan_power_fuse.out -> car_horn_fuse.in {
+            heater_fan_power_fuse.out -> car_horn_fuse.in {
                 properties {
                     color "5"
                     length "2.5"
@@ -1917,7 +1917,7 @@ workspace "Name" "Description" {
             }
 
             # Электрическая помпа
-            ignition_fan_power_fuse.out -> electric_pump_fuse.in {
+            heater_fan_power_fuse.out -> electric_pump_fuse.in {
                 properties {
                     color "4"
                     length "2.5"
@@ -1969,7 +1969,7 @@ workspace "Name" "Description" {
             }
 
             # Датчик низкого уровня тормозной жидкости
-            ignition_fan_power_fuse.out -> low_brake_fluid_warning_light.plus {
+            heater_fan_power_fuse.out -> low_brake_fluid_warning_light.plus {
                 properties {
                     color "1"
                     length "2"
