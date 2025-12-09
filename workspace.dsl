@@ -14,7 +14,7 @@ workspace "Name" "Description" {
         properties {
             "structurizr.groupSeparator" "/"
             "default_voltage" "13.8"
-            "max_voltage_drop" "0.45"
+            "max_voltage_drop" "0.5"
             "wire_relative_resistance" "0.018"
         }
 
@@ -568,8 +568,8 @@ workspace "Name" "Description" {
             akb.plus -> power_fuse_splitter.pin {
                 tags "foreign_color"
                 properties {
-                    length "0.3"
-                    square "16"
+                    length "1.4"
+                    square "25"
                     color "1"
                 }
             }
@@ -592,9 +592,10 @@ workspace "Name" "Description" {
             }
 
             ignition_relay_power_fuse.out -> ignition_relay._30 {
+                tags "foreign_color"
                 properties {
-                    color "4"
-                    length "2.0"
+                    color "0"
+                    length "1.2"
                     square "10"
                 }
             }
@@ -746,7 +747,7 @@ workspace "Name" "Description" {
             light_power_fuse.out -> coolant_fan_1_fuse.in {
                 properties {
                     color "0"
-                    length "2"
+                    length "1.2"
                     square "4"
                 }
             }
@@ -775,7 +776,7 @@ workspace "Name" "Description" {
             light_power_fuse.out -> coolant_fan_2_fuse.in {
                 properties {
                     color "1"
-                    length "2"
+                    length "1.2"
                     square "4"
                 }
             }
@@ -923,7 +924,7 @@ workspace "Name" "Description" {
             light_power_fuse.out -> low_beam_relay_fuse.in {
                 properties {
                     color "9"
-                    length "3.5"
+                    length "1.2"
                     square "6"
                 }
             }
@@ -974,7 +975,7 @@ workspace "Name" "Description" {
             light_power_fuse.out -> high_beam_relay_fuse.in {
                 properties {
                     color "2"
-                    length "3"
+                    length "1.2"
                     square "6"
                 }
             }
@@ -1133,7 +1134,7 @@ workspace "Name" "Description" {
             light_power_fuse.out -> side_light_relay_fuse.in {
                 properties {
                     color "4"
-                    length "3"
+                    length "1.2"
                     square "1.5"
                 }
             }
@@ -1142,7 +1143,7 @@ workspace "Name" "Description" {
             light_power_fuse.out -> turn_signal_fuse.in {
                 properties {
                     color "5"
-                    length "3"
+                    length "1.2"
                     square "4"
                 }
             }
@@ -1296,7 +1297,7 @@ workspace "Name" "Description" {
             head_light_power_fuse.out -> front_head_light_fuse.in {
                 properties {
                     color "7"
-                    length "2.5"
+                    length "1.2"
                     square "25"
                 }
             }
@@ -1587,7 +1588,7 @@ workspace "Name" "Description" {
             heater_fan_power_fuse.out -> heater_fuse.in {
                 properties {
                     color "2"
-                    length "2.5"
+                    length "1.2"
                     square "4"
                 }
             }
@@ -1675,7 +1676,7 @@ workspace "Name" "Description" {
             heater_fan_power_fuse.out -> interior_fan_fuse.in {
                 properties {
                     color "3"
-                    length "2.5"
+                    length "1.2"
                     square "1.5"
                 }
             }
@@ -1728,7 +1729,7 @@ workspace "Name" "Description" {
             heater_fan_power_fuse.out -> wipers_fuse.in {
                 properties {
                     color "6"
-                    length "2.5"
+                    length "1.2"
                     square "4"
                 }
             }
@@ -1800,7 +1801,7 @@ workspace "Name" "Description" {
             heater_fan_power_fuse.out -> windshield_washer_fuse.in {
                 properties {
                     color "0"
-                    length "2.5"
+                    length "1.2"
                     square "0.5"
                 }
             }
@@ -1869,7 +1870,7 @@ workspace "Name" "Description" {
             heater_fan_power_fuse.out -> car_horn_fuse.in {
                 properties {
                     color "5"
-                    length "2.5"
+                    length "1.2"
                     square "6"
                 }
             }
@@ -1920,7 +1921,7 @@ workspace "Name" "Description" {
             heater_fan_power_fuse.out -> electric_pump_fuse.in {
                 properties {
                     color "4"
-                    length "2.5"
+                    length "1.2"
                     square "2.5"
                 }
             }
