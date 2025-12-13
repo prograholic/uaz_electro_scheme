@@ -67,16 +67,6 @@ workspace "Name" "Description" {
                     !include "elements/winch.dsl"
                 }
 
-                group "Блок силовых предохранителей" {
-                
-                    power_fuse = fuse "Силовой предохранитель" {
-                        !include "elements/fuse.dsl"
-                    }
-                    power_splitter = splitter "Силовой разветвитель" {
-                        pin = pin "pin"
-                    }
-                }
-
                 group "Вентиляторы" {
                     coolant_fan_1 = fan "Э-вент охл ДВС 1"{
                         !include "elements/fan.dsl"
@@ -167,6 +157,9 @@ workspace "Name" "Description" {
             }
 
             group "Кабина" {
+                power_fuse = fuse "Силовой предохранитель" {
+                    !include "elements/fuse.dsl"
+                }
                 heater = container "Отопитель салона" {
                     tags "heater"
                     !include "elements/electric_motor.dsl"
@@ -208,7 +201,14 @@ workspace "Name" "Description" {
                     !include "elements/sensor.dsl"
                 }
 
-                group "Блок реле и предохранителей" {                
+                group "Блок реле и предохранителей" {
+                    power_splitter = splitter "Силовой разветвитель" {
+                        pin = pin "pin"
+                    }
+                    ground_splitter = splitter "Разветвитель массы" {
+                        pin = pin "pin"
+                    }
+
                     group "Левый блок реле и предохранителей" {
                         group "Левый блок реле" {
                             starter_relay = relay "Реле стартера" {
@@ -552,6 +552,16 @@ workspace "Name" "Description" {
             }
 
 
+            ground_splitter.pin -> m.ground {
+                tags "foreign_color"
+                properties {
+                    length "0.15"
+                    square "0.5"
+                    color "0"
+                }
+            }
+
+
             # Система зажигания
 
             generator.plus -> starter.plus {
@@ -573,7 +583,7 @@ workspace "Name" "Description" {
                 properties {
                     color "1"
                     length "1.4"
-                    square "16"
+                    square "35"
                 }
             }
             power_splitter.pin -> ignition_relay._30 {
@@ -609,9 +619,10 @@ workspace "Name" "Description" {
                 }
             }
             
-            ignition_relay._86 -> m.ground {
+            ignition_relay._86 -> ground_splitter.pin {
+                tags "foreign_color"
                 properties {
-                    length "1.5"
+                    length "0.4"
                     square "0.5"
                     color "0"
                 }
@@ -654,10 +665,11 @@ workspace "Name" "Description" {
                 }
             }
     
-            starter_relay._86 -> m.ground {
+            starter_relay._86 -> ground_splitter.pin {
+                tags "foreign_color"
                 properties {
                     color "0"
-                    length "0.5"
+                    length "0.4"
                     square "0.5"
                 }
             }
@@ -734,7 +746,7 @@ workspace "Name" "Description" {
                 tags "foreign_color"
                 properties {
                     color "0"
-                    length "1.2"
+                    length "0.4"
                     square "4"
                 }
             }
@@ -764,7 +776,7 @@ workspace "Name" "Description" {
                 tags "foreign_color"
                 properties {
                     color "1"
-                    length "1.2"
+                    length "0.4"
                     square "4"
                 }
             }
@@ -882,10 +894,11 @@ workspace "Name" "Description" {
                     square "1.5"
                 }
             }
-            low_beam_relay._86 -> m.ground {
+            low_beam_relay._86 -> ground_splitter.pin {
+                tags "foreign_color"
                 properties {
                     color "0"
-                    length "0.5"
+                    length "0.4"
                     square "0.5"
                 }
             }
@@ -913,7 +926,7 @@ workspace "Name" "Description" {
             power_splitter.pin -> low_beam_relay_fuse.in {
                 properties {
                     color "9"
-                    length "1.2"
+                    length "0.4"
                     square "6"
                 }
             }
@@ -939,10 +952,11 @@ workspace "Name" "Description" {
                     square "2.5"
                 }
             }
-            high_beam_relay._86 -> m.ground {
+            high_beam_relay._86 -> ground_splitter.pin {
+                tags "foreign_color"
                 properties {
                     color "0"
-                    length "0.5"
+                    length "0.4"
                     square "0.5"
                 }
             }
@@ -965,7 +979,7 @@ workspace "Name" "Description" {
                 tags "foreign_color"
                 properties {
                     color "2"
-                    length "1.2"
+                    length "0.4"
                     square "6"
                 }
             }
@@ -1065,10 +1079,11 @@ workspace "Name" "Description" {
             }
 
 
-            side_light_relay._86 -> m.ground {
+            side_light_relay._86 -> ground_splitter.pin {
+                tags "foreign_color"
                 properties {
                     color "0"
-                    length "0.5"
+                    length "0.4"
                     square "0.5"
                 }
             }
@@ -1124,7 +1139,7 @@ workspace "Name" "Description" {
             power_splitter.pin -> side_light_relay_fuse.in {
                 properties {
                     color "4"
-                    length "1.2"
+                    length "0.4"
                     square "1.5"
                 }
             }
@@ -1133,7 +1148,7 @@ workspace "Name" "Description" {
             power_splitter.pin -> turn_signal_fuse.in {
                 properties {
                     color "5"
-                    length "1.2"
+                    length "0.4"
                     square "4"
                 }
             }
@@ -1154,7 +1169,7 @@ workspace "Name" "Description" {
             turn_signal_relay.minus -> m.ground {
                 properties {
                     color "0"
-                    length "0.5"
+                    length "0.4"
                     square "0.5"
                 }
             }
@@ -1287,7 +1302,7 @@ workspace "Name" "Description" {
             power_splitter.pin -> front_head_light_fuse.in {
                 properties {
                     color "7"
-                    length "0.15"
+                    length "0.4"
                     square "5"
                 }
             }
@@ -1349,10 +1364,11 @@ workspace "Name" "Description" {
                     square "0.5"
                 }
             }
-            front_head_light_relay._86 -> m.ground {
+            front_head_light_relay._86 -> ground_splitter.pin {
+                tags "foreign_color"
                 properties {
                     color "0"
-                    length "0.5"
+                    length "0.8"
                     square "0.5"
                 }
             }
@@ -1394,10 +1410,11 @@ workspace "Name" "Description" {
                     square "0.5"
                 }
             }
-            rear_head_light_relay._86 -> m.ground {
+            rear_head_light_relay._86 -> ground_splitter.pin {
+                tags "foreign_color"
                 properties {
                     color "0"
-                    length "0.5"
+                    length "0.8"
                     square "0.5"
                 }
             }
@@ -1438,10 +1455,11 @@ workspace "Name" "Description" {
                     square "0.5"
                 }
             }
-            left_head_light_relay._86 -> m.ground {
+            left_head_light_relay._86 -> ground_splitter.pin {
+                tags "foreign_color"
                 properties {
                     color "0"
-                    length "0.5"
+                    length "0.8"
                     square "0.5"
                 }
             }
@@ -1483,10 +1501,11 @@ workspace "Name" "Description" {
                     square "0.5"
                 }
             }
-            right_head_light_relay._86 -> m.ground {
+            right_head_light_relay._86 -> ground_splitter.pin {
+                tags "foreign_color"
                 properties {
                     color "0"
-                    length "0.5"
+                    length "0.8"
                     square "0.5"
                 }
             }
@@ -1579,7 +1598,7 @@ workspace "Name" "Description" {
             power_splitter.pin -> heater_fuse.in {
                 properties {
                     color "2"
-                    length "1.2"
+                    length "0.4"
                     square "4"
                 }
             }
@@ -1648,17 +1667,19 @@ workspace "Name" "Description" {
                 }
             }
 
-            heater_relay_1._86 -> m.ground {
+            heater_relay_1._86 -> ground_splitter.pin {
+                tags "foreign_color"
                 properties {
                     color "0"
-                    length "0.5"
+                    length "0.4"
                     square "0.5"
                 }
             }
-            heater_relay_2._86 -> m.ground {
+            heater_relay_2._86 -> ground_splitter.pin {
+                tags "foreign_color"
                 properties {
                     color "0"
-                    length "0.5"
+                    length "0.4"
                     square "0.5"
                 }
             }
@@ -1667,7 +1688,7 @@ workspace "Name" "Description" {
             power_splitter.pin -> interior_fan_fuse.in {
                 properties {
                     color "3"
-                    length "1.2"
+                    length "0.4"
                     square "1.5"
                 }
             }
@@ -1707,10 +1728,11 @@ workspace "Name" "Description" {
                     square "0.5"
                 }
             }
-            interior_fan_relay._86 -> m.ground {
+            interior_fan_relay._86 -> ground_splitter.pin {
+                tags "foreign_color"
                 properties {
                     color "0"
-                    length "0.5"
+                    length "0.4"
                     square "0.5"
                 }
             }
@@ -1720,7 +1742,7 @@ workspace "Name" "Description" {
             power_splitter.pin -> wipers_fuse.in {
                 properties {
                     color "6"
-                    length "1.2"
+                    length "0.4"
                     square "4"
                 }
             }
@@ -1792,7 +1814,7 @@ workspace "Name" "Description" {
             power_splitter.pin -> windshield_washer_fuse.in {
                 properties {
                     color "0"
-                    length "1.2"
+                    length "0.4"
                     square "0.5"
                 }
             }
@@ -1825,10 +1847,11 @@ workspace "Name" "Description" {
                     square "0.5"
                 }
             }
-            windshield_washer_relay._86 -> m.ground {
+            windshield_washer_relay._86 -> ground_splitter.pin {
+                tags "foreign_color"
                 properties {
                     color "0"
-                    length "0.5"
+                    length "0.4"
                     square "0.5"
                 }
             }
@@ -1848,10 +1871,11 @@ workspace "Name" "Description" {
                     square "0.5"
                 }
             }
-            wipers_relay._31 -> m.ground {
+            wipers_relay._31 -> ground_splitter.pin {
+                tags "foreign_color"
                 properties {
                     color "0"
-                    length "0.5"
+                    length "0.4"
                     square "0.5"
                 }
             }
@@ -1862,7 +1886,7 @@ workspace "Name" "Description" {
                 tags "foreign_color"
                 properties {
                     color "5"
-                    length "1.2"
+                    length "0.4"
                     square "6"
                 }
             }
@@ -1901,10 +1925,11 @@ workspace "Name" "Description" {
                     square "0.5"
                 }
             }
-            car_horn_relay._86 -> m.ground {
+            car_horn_relay._86 -> ground_splitter.pin {
+                tags "foreign_color"
                 properties {
                     color "0"
-                    length "0.5"
+                    length "0.4"
                     square "0.5"
                 }
             }
@@ -1914,7 +1939,7 @@ workspace "Name" "Description" {
                 tags "foreign_color"
                 properties {
                     color "4"
-                    length "1.2"
+                    length "0.4"
                     square "2.5"
                 }
             }
@@ -1954,10 +1979,11 @@ workspace "Name" "Description" {
                     square "0.5"
                 }
             }
-            electric_pump_relay._86 -> m.ground {
+            electric_pump_relay._86 -> ground_splitter.pin {
+                tags "foreign_color"
                 properties {
                     color "0"
-                    length "0.5"
+                    length "0.4"
                     square "0.5"
                 }
             }
