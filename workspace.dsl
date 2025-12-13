@@ -591,7 +591,7 @@ workspace "Name" "Description" {
                 properties {
                     color "1"
                     length "0.3"
-                    square "4"
+                    square "2.5"
                 }
             }
             power_splitter.pin -> ignition_switch.in {
@@ -747,7 +747,7 @@ workspace "Name" "Description" {
                 properties {
                     color "0"
                     length "0.4"
-                    square "4"
+                    square "2.5"
                 }
             }
             coolant_fan_1_relay._86 -> coolant_control_switch.I {
@@ -777,7 +777,7 @@ workspace "Name" "Description" {
                 properties {
                     color "1"
                     length "0.4"
-                    square "4"
+                    square "2.5"
                 }
             }
             coolant_fan_1_relay._85 -> coolant_fan_2_relay._85 {
@@ -927,7 +927,7 @@ workspace "Name" "Description" {
                 properties {
                     color "9"
                     length "0.4"
-                    square "6"
+                    square "2.5"
                 }
             }
 
@@ -980,7 +980,7 @@ workspace "Name" "Description" {
                 properties {
                     color "2"
                     length "0.4"
-                    square "6"
+                    square "2.5"
                 }
             }
             high_beam_control_light.minus -> m.ground {
@@ -1149,7 +1149,7 @@ workspace "Name" "Description" {
                 properties {
                     color "5"
                     length "0.4"
-                    square "4"
+                    square "2.5"
                 }
             }
             turn_signal_relay.p -> left_steering_column_turn_signal_switch._49a {
@@ -1599,7 +1599,7 @@ workspace "Name" "Description" {
                 properties {
                     color "2"
                     length "0.4"
-                    square "4"
+                    square "2.5"
                 }
             }
             heater_fuse.out -> heater_relay_1._30 {
@@ -1743,7 +1743,7 @@ workspace "Name" "Description" {
                 properties {
                     color "6"
                     length "0.4"
-                    square "4"
+                    square "2.5"
                 }
             }
             wipers_fuse.out -> wipers._1 {
@@ -1887,7 +1887,7 @@ workspace "Name" "Description" {
                 properties {
                     color "5"
                     length "0.4"
-                    square "6"
+                    square "2.5"
                 }
             }
             car_horn_fuse.out -> car_horn_relay._30 {
@@ -1908,7 +1908,7 @@ workspace "Name" "Description" {
                 properties {
                     color "0"
                     length "0.5"
-                    square "6"
+                    square "2.5"
                 }
             }
             control_line_from_ignition_2.pin -> car_horn_switch.in {
