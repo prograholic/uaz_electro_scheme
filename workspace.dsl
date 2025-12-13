@@ -68,35 +68,12 @@ workspace "Name" "Description" {
                 }
 
                 group "Блок силовых предохранителей" {
-                    power_fuse_splitter = splitter "Разветвитель силовых предохранителей" {
+                
+                    power_fuse = fuse "Силовой предохранитель" {
+                        !include "elements/fuse.dsl"
+                    }
+                    power_splitter = splitter "Силовой разветвитель" {
                         pin = pin "pin"
-                    }
-                    # Сюда преды на 60-60-40-90
-                    ignition_relay_power_fuse = fuse "Прд реле зажигания" {
-                        !include "elements/fuse.dsl"
-                    }
-                    light_power_fuse = fuse "Предохранитель освещения и охлаждения" {
-                        !include "elements/fuse.dsl"
-                    }
-                    heater_fan_power_fuse = fuse "Предохранитель отопителя, дворники, гудок" {
-                        !include "elements/fuse.dsl"
-                    }
-
-                    head_light_power_fuse = fuse "Предохранитель дополнительного освещения" {
-                        !include "elements/fuse.dsl"
-                    }
-
-                    power_fuse_splitter.pin -> ignition_relay_power_fuse.in {
-                        tags "internal_connection"
-                    }
-                    power_fuse_splitter.pin -> light_power_fuse.in {
-                        tags "internal_connection"
-                    }
-                    power_fuse_splitter.pin -> heater_fan_power_fuse.in {
-                        tags "internal_connection"
-                    }
-                    power_fuse_splitter.pin -> head_light_power_fuse.in {
-                        tags "internal_connection"
                     }
                 }
 
@@ -231,7 +208,7 @@ workspace "Name" "Description" {
                     !include "elements/sensor.dsl"
                 }
 
-                group "Блок реле и предохранителей" {
+                group "Блок реле и предохранителей" {                
                     group "Левый блок реле и предохранителей" {
                         group "Левый блок реле" {
                             starter_relay = relay "Реле стартера" {
@@ -565,10 +542,10 @@ workspace "Name" "Description" {
                     color "1"
                 }
             }
-            akb.plus -> power_fuse_splitter.pin {
+            akb.plus -> power_fuse.in {
                 tags "foreign_color"
                 properties {
-                    length "1.4"
+                    length "0.35"
                     square "25"
                     color "1"
                 }
@@ -591,15 +568,24 @@ workspace "Name" "Description" {
                 }
             }
 
-            ignition_relay_power_fuse.out -> ignition_relay._30 {
+            power_fuse.out -> power_splitter.pin {
+                tags "foreign_color"
+                properties {
+                    color "1"
+                    length "1.4"
+                    square "16"
+                }
+            }
+            power_splitter.pin -> ignition_relay._30 {
                 tags "foreign_color"
                 properties {
                     color "0"
-                    length "1.2"
-                    square "10"
+                    length "0.3"
+                    square "4"
                 }
             }
-            ignition_relay_power_fuse.out -> ignition_switch.in {
+            power_splitter.pin -> ignition_switch.in {
+                tags "foreign_color"
                 properties {
                     color "1"
                     length "2.5"
@@ -744,7 +730,8 @@ workspace "Name" "Description" {
                     square "0.5"
                 }
             }
-            light_power_fuse.out -> coolant_fan_1_fuse.in {
+            power_splitter.pin -> coolant_fan_1_fuse.in {
+                tags "foreign_color"
                 properties {
                     color "0"
                     length "1.2"
@@ -773,7 +760,8 @@ workspace "Name" "Description" {
                     square "4"
                 }
             }
-            light_power_fuse.out -> coolant_fan_2_fuse.in {
+            power_splitter.pin -> coolant_fan_2_fuse.in {
+                tags "foreign_color"
                 properties {
                     color "1"
                     length "1.2"
@@ -850,7 +838,8 @@ workspace "Name" "Description" {
                     square "0.5"
                 }
             }
-            light_power_fuse.out -> light_switch._30 {
+            power_splitter.pin -> light_switch._30 {
+                tags "foreign_color"
                 properties {
                     color "3"
                     length "2"
@@ -921,7 +910,7 @@ workspace "Name" "Description" {
                     square "1.5"
                 }
             }
-            light_power_fuse.out -> low_beam_relay_fuse.in {
+            power_splitter.pin -> low_beam_relay_fuse.in {
                 properties {
                     color "9"
                     length "1.2"
@@ -972,7 +961,8 @@ workspace "Name" "Description" {
                     square "2.5"
                 }
             }
-            light_power_fuse.out -> high_beam_relay_fuse.in {
+            power_splitter.pin -> high_beam_relay_fuse.in {
+                tags "foreign_color"
                 properties {
                     color "2"
                     length "1.2"
@@ -1131,7 +1121,7 @@ workspace "Name" "Description" {
                     square "1"
                 }
             }
-            light_power_fuse.out -> side_light_relay_fuse.in {
+            power_splitter.pin -> side_light_relay_fuse.in {
                 properties {
                     color "4"
                     length "1.2"
@@ -1140,7 +1130,7 @@ workspace "Name" "Description" {
             }
 
             # Поворотники и аварийка
-            light_power_fuse.out -> turn_signal_fuse.in {
+            power_splitter.pin -> turn_signal_fuse.in {
                 properties {
                     color "5"
                     length "1.2"
@@ -1294,11 +1284,11 @@ workspace "Name" "Description" {
 
 
             # Предохранители доп света
-            head_light_power_fuse.out -> front_head_light_fuse.in {
+            power_splitter.pin -> front_head_light_fuse.in {
                 properties {
                     color "7"
-                    length "1.2"
-                    square "25"
+                    length "0.15"
+                    square "5"
                 }
             }
             front_head_light_fuse.in -> rear_head_light_fuse.in {
@@ -1503,7 +1493,8 @@ workspace "Name" "Description" {
 
 
             # Педаль тормоза
-            light_power_fuse.out -> brake_pressure_sensor.in {
+            power_splitter.pin -> brake_pressure_sensor.in {
+                tags "foreign_color"
                 properties {
                     color "6"
                     length "3"
@@ -1562,7 +1553,7 @@ workspace "Name" "Description" {
             }
 
             # Лампа заднего хода
-            light_power_fuse.out -> reverse_lamp_sensor.in {
+            power_splitter.pin -> reverse_lamp_sensor.in {
                 properties {
                     color "10"
                     length "3.5"
@@ -1585,7 +1576,7 @@ workspace "Name" "Description" {
             }
 
             # Отопитель
-            heater_fan_power_fuse.out -> heater_fuse.in {
+            power_splitter.pin -> heater_fuse.in {
                 properties {
                     color "2"
                     length "1.2"
@@ -1673,7 +1664,7 @@ workspace "Name" "Description" {
             }
 
             # Вентилятор салона
-            heater_fan_power_fuse.out -> interior_fan_fuse.in {
+            power_splitter.pin -> interior_fan_fuse.in {
                 properties {
                     color "3"
                     length "1.2"
@@ -1726,7 +1717,7 @@ workspace "Name" "Description" {
 
 
             # Дворники и передний омыватель
-            heater_fan_power_fuse.out -> wipers_fuse.in {
+            power_splitter.pin -> wipers_fuse.in {
                 properties {
                     color "6"
                     length "1.2"
@@ -1798,7 +1789,7 @@ workspace "Name" "Description" {
             }
 
 
-            heater_fan_power_fuse.out -> windshield_washer_fuse.in {
+            power_splitter.pin -> windshield_washer_fuse.in {
                 properties {
                     color "0"
                     length "1.2"
@@ -1867,7 +1858,8 @@ workspace "Name" "Description" {
 
 
             # Гудок
-            heater_fan_power_fuse.out -> car_horn_fuse.in {
+            power_splitter.pin -> car_horn_fuse.in {
+                tags "foreign_color"
                 properties {
                     color "5"
                     length "1.2"
@@ -1918,7 +1910,8 @@ workspace "Name" "Description" {
             }
 
             # Электрическая помпа
-            heater_fan_power_fuse.out -> electric_pump_fuse.in {
+            power_splitter.pin -> electric_pump_fuse.in {
+                tags "foreign_color"
                 properties {
                     color "4"
                     length "1.2"
@@ -1970,7 +1963,7 @@ workspace "Name" "Description" {
             }
 
             # Датчик низкого уровня тормозной жидкости
-            heater_fan_power_fuse.out -> low_brake_fluid_warning_light.plus {
+            power_splitter.pin -> low_brake_fluid_warning_light.plus {
                 properties {
                     color "1"
                     length "2"
