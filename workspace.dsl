@@ -589,7 +589,7 @@ workspace "Name" "Description" {
             power_splitter.pin -> ignition_relay._30 {
                 tags "foreign_color"
                 properties {
-                    color "0"
+                    color "1"
                     length "0.3"
                     square "4"
                 }
@@ -623,7 +623,7 @@ workspace "Name" "Description" {
                 tags "foreign_color"
                 properties {
                     length "0.4"
-                    square "0.5"
+                    square "0.25"
                     color "0"
                 }
             }
@@ -670,7 +670,7 @@ workspace "Name" "Description" {
                 properties {
                     color "0"
                     length "0.4"
-                    square "0.5"
+                    square "0.25"
                 }
             }
             starter_relay._87 -> starter.st {
@@ -899,7 +899,7 @@ workspace "Name" "Description" {
                 properties {
                     color "0"
                     length "0.4"
-                    square "0.5"
+                    square "0.25"
                 }
             }
             low_beam_relay._87 -> left_low_beam.plus {
@@ -957,7 +957,7 @@ workspace "Name" "Description" {
                 properties {
                     color "0"
                     length "0.4"
-                    square "0.5"
+                    square "0.25"
                 }
             }
 
@@ -1084,7 +1084,7 @@ workspace "Name" "Description" {
                 properties {
                     color "0"
                     length "0.4"
-                    square "0.5"
+                    square "0.25"
                 }
             }
             side_light_relay._87 -> side_light_splitter.pin {
@@ -1166,11 +1166,11 @@ workspace "Name" "Description" {
                     square "0.5"
                 }
             }
-            turn_signal_relay.minus -> m.ground {
+            turn_signal_relay.minus -> ground_splitter.pin {
                 properties {
                     color "0"
                     length "0.4"
-                    square "0.5"
+                    square "0.25"
                 }
             }
             left_steering_column_turn_signal_switch._49aR -> turn_signal_relay.pb {
@@ -1369,7 +1369,7 @@ workspace "Name" "Description" {
                 properties {
                     color "0"
                     length "0.8"
-                    square "0.5"
+                    square "0.25"
                 }
             }
 
@@ -1415,7 +1415,7 @@ workspace "Name" "Description" {
                 properties {
                     color "0"
                     length "0.8"
-                    square "0.5"
+                    square "0.25"
                 }
             }
 
@@ -1460,7 +1460,7 @@ workspace "Name" "Description" {
                 properties {
                     color "0"
                     length "0.8"
-                    square "0.5"
+                    square "0.25"
                 }
             }
 
@@ -1506,7 +1506,7 @@ workspace "Name" "Description" {
                 properties {
                     color "0"
                     length "0.8"
-                    square "0.5"
+                    square "0.25"
                 }
             }
 
@@ -1672,7 +1672,7 @@ workspace "Name" "Description" {
                 properties {
                     color "0"
                     length "0.4"
-                    square "0.5"
+                    square "0.25"
                 }
             }
             heater_relay_2._86 -> ground_splitter.pin {
@@ -1680,7 +1680,7 @@ workspace "Name" "Description" {
                 properties {
                     color "0"
                     length "0.4"
-                    square "0.5"
+                    square "0.25"
                 }
             }
 
@@ -1733,7 +1733,7 @@ workspace "Name" "Description" {
                 properties {
                     color "0"
                     length "0.4"
-                    square "0.5"
+                    square "0.25"
                 }
             }
 
@@ -1852,7 +1852,7 @@ workspace "Name" "Description" {
                 properties {
                     color "0"
                     length "0.4"
-                    square "0.5"
+                    square "0.25"
                 }
             }
             windshield_washer.minus -> m.ground {
@@ -1876,7 +1876,7 @@ workspace "Name" "Description" {
                 properties {
                     color "0"
                     length "0.4"
-                    square "0.5"
+                    square "0.25"
                 }
             }
 
@@ -1930,7 +1930,7 @@ workspace "Name" "Description" {
                 properties {
                     color "0"
                     length "0.4"
-                    square "0.5"
+                    square "0.25"
                 }
             }
 
@@ -1984,7 +1984,7 @@ workspace "Name" "Description" {
                 properties {
                     color "0"
                     length "0.4"
-                    square "0.5"
+                    square "0.25"
                 }
             }
 
