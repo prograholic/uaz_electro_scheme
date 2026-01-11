@@ -199,6 +199,10 @@ workspace "Name" "Description" {
                     !include "elements/sensor.dsl"
                 }
 
+                lower_ground_splitter = splitter "Нижний разветвитель массы" {
+                    pin = pin "pin"
+                }
+
                 group "Блок реле и предохранителей" {
                     power_splitter = splitter "Силовой разветвитель" {
                         pin = pin "pin"
@@ -559,6 +563,15 @@ workspace "Name" "Description" {
                 }
             }
 
+            lower_ground_splitter.pin -> m.ground {
+                tags "foreign_color"
+                properties {
+                    length "0.1"
+                    square "6"
+                    color "0"
+                }
+            }
+
 
             # Система зажигания
 
@@ -810,7 +823,8 @@ workspace "Name" "Description" {
                     square "0.5"
                 }
             }
-            coolant_control_switch.U -> m.ground {
+            coolant_control_switch.U -> lower_ground_splitter.pin {
+                tags "foreign_color"
                 properties {
                     length "0.5"
                     square "0.5"
@@ -981,7 +995,8 @@ workspace "Name" "Description" {
                     square "2.5"
                 }
             }
-            high_beam_control_light.minus -> m.ground {
+            high_beam_control_light.minus -> lower_ground_splitter.pin {
+                tags "foreign_color"
                 properties {
                     color "0"
                     length "0.5"
@@ -1204,7 +1219,8 @@ workspace "Name" "Description" {
                     square "0.5"
                 }
             }
-            turn_signal_control_light.minus -> m.ground {
+            turn_signal_control_light.minus -> lower_ground_splitter.pin {
+                tags "foreign_color"
                 properties {
                     color "0"
                     length "0.5"
@@ -1704,7 +1720,8 @@ workspace "Name" "Description" {
                     square "0.5"
                 }
             }
-            interior_fan.minus -> m.ground {
+            interior_fan.minus -> lower_ground_splitter.pin {
+                tags "foreign_color"
                 properties {
                     color "0"
                     length "0.5"
@@ -2006,7 +2023,8 @@ workspace "Name" "Description" {
             }
 
             # Подсветка приборов
-            speedometer_backlight.minus -> m.ground {
+            speedometer_backlight.minus -> lower_ground_splitter.pin {
+                tags "foreign_color"
                 properties {
                     color "0"
                     length "0.3"
@@ -2021,7 +2039,8 @@ workspace "Name" "Description" {
                     square "0.5"
                 }
             }
-            fuel_level_backlight.minus -> m.ground {
+            fuel_level_backlight.minus -> lower_ground_splitter.pin {
+                tags "foreign_color"
                 properties {
                     color "0"
                     length "0.3"
@@ -2036,7 +2055,8 @@ workspace "Name" "Description" {
                     square "0.5"
                 }
             }
-            engine_temp_backlight.minus -> m.ground {
+            engine_temp_backlight.minus -> lower_ground_splitter.pin {
+                tags "foreign_color"
                 properties {
                     color "0"
                     length "0.3"
@@ -2051,7 +2071,8 @@ workspace "Name" "Description" {
                     square "0.5"
                 }
             }
-            oil_pressure_backlight.minus -> m.ground {
+            oil_pressure_backlight.minus -> lower_ground_splitter.pin {
+                tags "foreign_color"
                 properties {
                     color "0"
                     length "0.3"
@@ -2066,7 +2087,8 @@ workspace "Name" "Description" {
                     square "0.5"
                 }
             }
-            voltmeter_backlight.minus -> m.ground {
+            voltmeter_backlight.minus -> lower_ground_splitter.pin {
+                tags "foreign_color"
                 properties {
                     color "0"
                     length "0.3"
@@ -2076,7 +2098,8 @@ workspace "Name" "Description" {
 
 
             # Показатель уровня топлива
-            fuel_level_sensor.out -> m.ground {
+            fuel_level_sensor.out -> lower_ground_splitter.pin {
+                tags "foreign_color"
                 properties {
                     color "0"
                     length "0.5"
@@ -2173,7 +2196,8 @@ workspace "Name" "Description" {
             }
 
             # Датчик вольтметра
-            voltmeter_gauge.minus -> m.ground {
+            voltmeter_gauge.minus -> lower_ground_splitter.pin {
+                tags "foreign_color"
                 properties {
                     color "0"
                     length "0.3"
