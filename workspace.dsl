@@ -648,7 +648,7 @@ workspace "Name" "Description" {
             
             starter_relay_fuse.out -> starter_relay._30 {
                 properties {
-                    length "0.3"
+                    length "0.2"
                     square "2.5"
                     color "1"
                 }
@@ -663,7 +663,7 @@ workspace "Name" "Description" {
             starter_relay_fuse.out -> start_button.in {
                 properties {
                     color "2"
-                    length "2.5"
+                    length "2.0"
                     square "0.5"
                 }
             }
