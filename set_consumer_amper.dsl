@@ -16,9 +16,16 @@
         amper 5
     }
 }
-!element es.ignition.xxx {
+
+# Катушки зажигания (405.3705)
+!element es.ignition.ignition_coil_1 {
     properties {
-        amper 10
+        amper 8
+    }
+}
+!element es.ignition.ignition_coil_2 {
+    properties {
+        amper 8
     }
 }
 

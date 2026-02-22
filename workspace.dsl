@@ -7,6 +7,7 @@ workspace "Name" "Description" {
     }
 
     #масса под рулем - длина 10 см, диаметр 6мм2 - это ещё один разветвитель
+    # TODO: актуализировать длину проводов до катушек зажигания
 
     model {
         properties {
@@ -44,16 +45,29 @@ workspace "Name" "Description" {
                 }
 
                 ignition = splitter "Система зажигания" {
-                    data = pin "pin"
+                    data = pin "input"
 
-                    xxx = consumer "x"
+                    ignition_coil_1_pin = pin "coil 1 pin"
+                    ignition_coil_2_pin = pin "coil 2 pin"
+
+
+                    ignition_coil_1 = consumer "ignition coil 1"
+                    ignition_coil_2 = consumer "ignition coil 2"
 
                     g = ground "масса"
 
-                    data -> xxx {
+                    ignition_coil_1_pin -> ignition_coil_1 {
                         tags "internal_connection"
                     }
-                    xxx -> g {
+
+                    ignition_coil_2_pin -> ignition_coil_2 {
+                        tags "internal_connection"
+                    }
+
+                    ignition_coil_1 -> g {
+                        tags "internal_connection"
+                    }
+                    ignition_coil_2 -> g {
                         tags "internal_connection"
                     }
                     g -> m.ground {
@@ -518,7 +532,7 @@ workspace "Name" "Description" {
             #######################
             # Описание соединений #
             #######################
-    
+
             # Система питания
 
             m.ground -> ground_switch.in {
@@ -552,7 +566,7 @@ workspace "Name" "Description" {
             akb.plus -> power_fuse.in {
                 tags "foreign_color"
                 properties {
-                    length "0.35"
+                    length "1.35"
                     square "25"
                     color "1"
                 }
@@ -598,16 +612,16 @@ workspace "Name" "Description" {
                 tags "foreign_color"
                 properties {
                     color "1"
-                    length "1.4"
-                    square "35"
+                    length "0.09"
+                    square "6"
                 }
             }
             power_splitter.pin -> direct_consumer_fuse_splitter.pin {
                 tags "foreign_color"
                 properties {
                     color "1"
-                    length "0.2"
-                    square "16"
+                    length "0.1"
+                    square "6"
                 }
             }
             power_splitter.pin -> extra_stuff_fuse_splitter.pin {
@@ -629,28 +643,28 @@ workspace "Name" "Description" {
             power_splitter.pin -> ignition_switch.in {
                 tags "foreign_color"
                 properties {
-                    color "2"
-                    length "2.2"
+                    color "5"
+                    length "2.6"
                     square "0.5"
                 }
             }
 
             starter_relay_fuse.out -> generator.v {
                 properties {
-                    color "4"
-                    length "3.0"
+                    color "5"
+                    length "3.4"
                     square "4"
                 }
             }
-    
+
             ignition_switch.out -> ignition_relay._85 {
                 properties {
-                    color "2"
-                    length "2.0"
+                    color "6"
+                    length "2.4"
                     square "0.5"
                 }
             }
-            
+
             ignition_relay._86 -> upper_ground_splitter.pin {
                 tags "foreign_color"
                 properties {
@@ -661,12 +675,12 @@ workspace "Name" "Description" {
             }
             ignition_relay._87 -> starter_relay_fuse.in {
                 properties {
-                    length "0.3"
+                    length "0.2"
                     square "2.5"
                     color "3"
                 }
             }
-            
+
             starter_relay_fuse.out -> starter_relay._30 {
                 properties {
                     length "0.2"
@@ -676,27 +690,44 @@ workspace "Name" "Description" {
             }
             starter_relay_fuse.out -> ignition.data {
                 properties {
-                    color "0"
-                    length "3.0"
-                    square "4"
+                    color "7"
+                    length "0.5"
+                    square "2.5"
+                }
+            }
+
+            ignition.data -> ignition.ignition_coil_1_pin {
+                tags "foreign_color"
+                properties {
+                    color "2"
+                    length "2.5"
+                    square "2.5"
+                }
+            }
+            ignition.data -> ignition.ignition_coil_2_pin {
+                tags "foreign_color"
+                properties {
+                    color "2"
+                    length "2.5"
+                    square "2.5"
                 }
             }
             starter_relay_fuse.out -> start_button.in {
                 properties {
                     color "2"
-                    length "2.0"
+                    length "2.2"
                     square "0.5"
                 }
             }
-    
+
             start_button.out -> starter_relay._85 {
                 properties {
                     color "3"
-                    length "2.5"
+                    length "2.2"
                     square "0.5"
                 }
             }
-    
+
             starter_relay._86 -> upper_ground_splitter.pin {
                 tags "foreign_color"
                 properties {
@@ -708,7 +739,7 @@ workspace "Name" "Description" {
             starter_relay._87 -> starter.st {
                 properties {
                     color "6"
-                    length "2.5"
+                    length "2.6"
                     square "4"
                 }
             }
@@ -736,7 +767,7 @@ workspace "Name" "Description" {
 
 
             # Лебедка
-        
+
             winch.minus -> m.ground {
                 properties {
                     length "1.5"
