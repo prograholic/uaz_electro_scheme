@@ -17,10 +17,10 @@ lb = pin "ЛБ" {
 kt = pin "КТ" {
     tags "relay_pin,relay_kt"
 }
-left = pin "Лев" {
+left = pin "Лев (ЛТ)" {
     tags "relay_pin,relay_left"
 }
-right = pin "Прав" {
+right = pin "Прав (ПТ)" {
     tags "relay_pin,relay_right"
 }
 coil_r = consumer "coil_r" {

@@ -363,12 +363,6 @@ workspace "Name" "Description" {
                         }
                     }
                 }
-                right_turn_signal_splitter = splitter "Подключение правых поворотников"{
-                    pin = pin "pin"
-                }
-                left_turn_signal_splitter = splitter "Подключение левых поворотников"{
-                    pin = pin "pin"
-                }
                 side_light_splitter = splitter "разветвитель габаритов" {
                     pin = pin "pin"
                 }
@@ -1207,8 +1201,8 @@ workspace "Name" "Description" {
             turn_signal_relay.minus -> upper_ground_splitter.pin {
                 properties {
                     color "0"
-                    length "0.4"
-                    square "0.25"
+                    length "1"
+                    square "0.5"
                 }
             }
             left_steering_column_turn_signal_switch._49aR -> turn_signal_relay.pb {
@@ -1252,18 +1246,37 @@ workspace "Name" "Description" {
                     square "0.5"
                 }
             }
-            turn_signal_relay.right -> right_turn_signal_splitter.pin {
+            turn_signal_relay.right -> right_turn_signal_repeater.plus {
                 properties {
                     color "8"
-                    length "3"
+                    length "2.6"
                     square "1.5"
                 }
             }
-            turn_signal_relay.left -> left_turn_signal_splitter.pin {
+
+            turn_signal_relay.right -> right_rear_turn_signal.plus {
+                tags "foreign_color"
+                properties {
+                    color "8"
+                    length "5"
+                    square "1.5"
+                }
+            }
+
+            turn_signal_relay.left -> left_turn_signal_repeater.plus {
                 properties {
                     color "9"
-                    length "3"
+                    length "1.2"
                     square "1.5"
+                }
+            }
+
+            turn_signal_relay.left -> left_rear_turn_signal.plus {
+                tags "foreign_color"
+                properties {
+                    color "9"
+                    length "3.5"
+                    square "1.0"
                 }
             }
 
@@ -1275,10 +1288,10 @@ workspace "Name" "Description" {
                 }
             }
 
-            # TODO тут питание должно приходить только при включенном зажигании - значит нужно поставить реле
-            turn_signal_fuse.out -> emergency_light_button.pow {
+            starter_relay_fuse.out -> emergency_light_button.pow {
+                tags "foreign_color"
                 properties {
-                    color "2"
+                    color "7"
                     length "2"
                     square "1.5"
                 }
@@ -1292,50 +1305,22 @@ workspace "Name" "Description" {
             }
 
 
-            right_turn_signal_splitter.pin -> right_front_turn_signal.plus {
+            right_turn_signal_repeater.plus -> right_front_turn_signal.plus {
                 properties {
                     color "1"
-                    length "2"
-                    square "0.75"
-                }
-            }
-            right_turn_signal_splitter.pin -> right_turn_signal_repeater.plus {
-                properties {
-                    color "2"
-                    length "1"
-                    square "0.75"
-                }
-            }
-            right_turn_signal_splitter.pin -> right_rear_turn_signal.plus {
-                properties {
-                    color "3"
-                    length "4"
+                    length "3"
                     square "0.75"
                 }
             }
 
-            left_turn_signal_splitter.pin -> left_front_turn_signal.plus {
+            left_turn_signal_repeater.plus -> left_front_turn_signal.plus {
+                tags "foreign_color"
                 properties {
-                    color "1"
+                    color "9"
                     length "2"
                     square "0.75"
                 }
             }
-            left_turn_signal_splitter.pin -> left_turn_signal_repeater.plus {
-                properties {
-                    color "2"
-                    length "1"
-                    square "0.75"
-                }
-            }
-            left_turn_signal_splitter.pin -> left_rear_turn_signal.plus {
-                properties {
-                    color "3"
-                    length "4"
-                    square "0.75"
-                }
-            }
-
 
             # Предохранители доп света
             extra_stuff_fuse_splitter.pin -> front_head_light_fuse.in {
