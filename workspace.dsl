@@ -1257,7 +1257,7 @@ workspace "Name" "Description" {
             turn_signal_relay.right -> right_rear_turn_signal.plus {
                 tags "foreign_color"
                 properties {
-                    color "8"
+                    color "3"
                     length "5"
                     square "1.5"
                 }
