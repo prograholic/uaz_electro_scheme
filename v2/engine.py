@@ -1,4 +1,6 @@
 from enum import Enum
+from typing import Self
+from networkx import Graph
 
 class COLOR(Enum):
     Black = 'black'
@@ -14,38 +16,70 @@ class COLOR(Enum):
     Grey = 'grey'
 
 
+class SwitchManager:
+    def __init__(self):
+        pass
+
+
+
 class Scheme:
-    def __init__(self, graph):
+    def __init__(self, graph: Graph, switchManager: SwitchManager):
         self._graph = graph
+        self._switchManager = switchManager
 
-    def getGraph(self):
+    def getGraph(self) -> Graph:
         return self._graph
+    
+    def getSwitchManager(self) -> SwitchManager:
+        return self._switchManager
 
-    def addPin(self, name):
+    def addPin(self, name: str):
         self._graph.add_node(name)
 
-    def setPinProperty(self, pinName, key, value):
+    def setPinProperty(self, pinName: str, key: str, value):
         self._graph.nodes[pinName][key] = value
 
-    def getPinProperty(self, pinName, key):
+    def getPinProperty(self, pinName: str, key: str):
         return self._graph.nodes[pinName][key]
 
-    def addConnection(self, name1, name2):
+    def addConnection(self, name1: str, name2: str):
         self._graph.add_edge(name1, name2)
 
-    def removeConnection(self, name1, name2):
+    def removeConnection(self, name1: str, name2: str):
         self._graph.remove_edge(name1, name2)
 
-    def setConnectionProperty(self, name1, name2, key, value):
+    def hasConnection(self, name1: str, name2: str) -> bool:
+        return self._graph.has_edge(name1, name2)
+
+    def setConnectionProperty(self, name1: str, name2: str, key: str, value):
         self._graph.edges[name1, name2][key] = value
 
-    def getConnectionProperty(self, name1, name2, key):
+    def getConnectionProperty(self, name1: str, name2: str, key: str):
         return self._graph.edges[name1, name2][key]
 
+class Pin:
+    def __init__(self, scheme: Scheme, name: str):
+        self._name = name
+        self._scheme = scheme
+        self._scheme.addPin(name)
 
+    def getName(self):
+        return self._name
+
+    def _setProperty(self, key: str, value):
+        self._scheme.setPinProperty(self.getName(), key, value)
+
+    def _getProperty(self, key: str):
+        return self._scheme.getPinProperty(self.getName(), key)
+
+    def addConnectionTo(self, pin: Self, length: float, square: float, color: COLOR):
+        return Connection(self, pin, length, square, color)
+
+    def _addInternalConnectionTo(self, pin: Self):
+        return createInternalConnection(self, pin)
 
 class Connection:
-    def __init__(self, pin1, pin2, length, square, color, internal=False, initialConnected=True):
+    def __init__(self, pin1: Pin, pin2: Pin, length: float, square: float, color: COLOR, internal=False, initialConnected=True):
         self._pin1 = pin1
         self._pin2 = pin2
         self._length = length
@@ -56,112 +90,65 @@ class Connection:
         if initialConnected:
             self.connect()
 
-    def _setProperty(self, key, value):
+    def _setProperty(self, key: str, value):
         self._pin1._scheme.setConnectionProperty(self._pin1.getName(), self._pin2.getName(), key, value)
 
-    def _getProperty(self, key):
-        return self._scheme.getConnectionProperty(self._pin1.getName(), self._pin2.getName(), key)
+    def _getProperty(self, key: str):
+        return self._pin1._scheme.getConnectionProperty(self._pin1.getName(), self._pin2.getName(), key)
 
-    def setLength(self, length):
+    def setLength(self, length: float):
         self._setProperty('_length', length)
 
-    def getLength(self):
+    def getLength(self) -> float:
         return self._getProperty('_length')
     
-    def setSquare(self, square):
+    def setSquare(self, square: float):
         self._setProperty('_square', square)
 
-    def getSquare(self):
+    def getSquare(self) -> float:
         return self._getProperty('_square')
     
-    def setColor(self, color):
+    def setColor(self, color: COLOR):
         self._setProperty('color', color.value)
 
-    def getColor(self):
+    def getColor(self) -> COLOR:
         return self._getProperty('color')
     
-    def isInternal(self):
+    def isInternal(self) -> bool:
         return self._getProperty('_internal')
     
     def connect(self):
-        self.pin1._scheme.addConnection(self.pin1.getName(), self.pin2.getName())
+        self._pin1._scheme.addConnection(self._pin1.getName(), self._pin2.getName())
         self.setLength(self._length)
         self.setSquare(self._square)
         self.setColor(self._color)
         self._setProperty('_internal', self._internal)
 
     def disconnect(self):
-        self.pin1._scheme.removeConnection(self.pin1.getName(), self.pin2.getName())
+        if self._pin1._scheme.hasConnection(self._pin1.getName(), self._pin2.getName()):
+            self._pin1._scheme.removeConnection(self._pin1.getName(), self._pin2.getName())
 
-class InternalConnection(Connection):
-    def __init__(self, pin1, pin2, initialConnected=True):
-        super().__init__(pin1, pin2, 0, 0, COLOR.Black, True, initialConnected)
+    def isConnected(self) -> bool:
+        return self._pin1._scheme.hasConnection(self._pin1.getName(), self._pin2.getName())
 
+def createInternalConnection(pin1: Pin, pin2: Pin, initialConnected=True):
+    return Connection(pin1, pin2, 0, 0, COLOR.Black, True, initialConnected)
 
-class Pin:
-    pin_names = set()
-
-    def __init__(self, scheme, name):
-        if name in self.pin_names:
-            raise Exception(f'Pin with name `{name}` already exists')
-        else:
-            self.pin_names.add(name)
-
+class SwitchBase:
+    def __init__(self, name: str, connectionMapping: dict[int, list[Connection]], currentSwitchState: int = 0):
         self._name = name
-        self._scheme = scheme
-        self._scheme.addPin(name)
+        self._connectionMapping = connectionMapping
+        self._currentSwitchState = -1
 
-    def getName(self):
-        return self._name
+        self.applySwitchState(currentSwitchState)
 
-    def _setProperty(self, key, value):
-        self._scheme.setPinProperty(self.getName(), key, value)
+    def applySwitchState(self, newSwitchState: int):
+        if newSwitchState != self._currentSwitchState:
+            for connections in self._connectionMapping.values():
+                for connection in connections:
+                    connection.disconnect()
 
-    def _getProperty(self, key):
-        return self._scheme.getPinProperty(self.getName(), key)
-
-    def addConnectionTo(self, pin, length, square, color):
-        return Connection(self, pin, length, square, color)
-
-    def _addInternalConnectionTo(self, pin, initialConnected=True):
-        return InternalConnection(self, pin, initialConnected)
-
-
-class PotentialDiff(Pin):
-    def __init__(self, scheme, name):
-        super().__init__(scheme, name)
-
-        self._plus = Pin(scheme, name + '.плюс')
-        self._minus = Pin(scheme, name + '.минус')
-
-        self._addInternalConnectionTo(self._plus)
-        self._addInternalConnectionTo(self._minus)
-
-    def plus(self):
-        return self._plus
-    
-    def minus(self):
-        return self._minus
-
-class Consumer(PotentialDiff):
-    def __init__(self, scheme, name, amperage):
-        super().__init__(scheme, name)
-        self.setAmperage(amperage)
-
-    def setAmperage(self, amperage):
-        self._setProperty('_amperage', amperage)
-
-    def getAmperage(self):
-        return self._getProperty('_amperage')
-
-class PowerSource(PotentialDiff):
-    def __init__(self, scheme, name, voltage):
-        super().__init__(scheme, name)
-        self.setVoltage(voltage)
-
-    def setVoltage(self, voltage):
-        self._setProperty('_voltage', voltage)
-
-    def getVoltage(self):
-        return self._getProperty('_voltage')
-
+            newActiveConnections = self._connectionMapping[newSwitchState]
+            for connection in newActiveConnections:
+                connection.connect()
+            self._currentSwitchState = newSwitchState
