@@ -591,14 +591,16 @@ workspace "Name" "Description" {
             generator.plus -> starter.plus {
                 tags "foreign_color"
                 properties {
-                    #length "1.0"
+                    length "1.0"
                     color "1"
+                    square "50"
                 }
             }
             m.ground -> generator.minus {
                 properties {
                     color "0"
                     length "0.1"
+                    square "25"
                 }
             }
 

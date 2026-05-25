@@ -1,8 +1,8 @@
-from enum import Enum
+from enum import StrEnum
 from typing import Self
 from networkx import Graph
 
-class COLOR(Enum):
+class COLOR(StrEnum):
     Black = 'black'
     Red = 'red'
     Blue = 'blue'
