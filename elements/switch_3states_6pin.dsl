@@ -1,3 +1,5 @@
+tags "switch_3states_6slots,switch"
+
 D = pin "D"
 I = pin "I"
 U = pin "U"

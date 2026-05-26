@@ -48,7 +48,7 @@ class Light(Consumer):
         super().__init__(scheme, name, amperage)
 
 
-class SimpleSwitch(engine.SwitchBase):
+class SimpleSwitch(engine.Switch):
     def __init__(self, name: str, pin1: engine.Pin, pin2: engine.Pin, connected:bool=False):
 
         connection = engine.createInternalConnection(pin1, pin2, False)

@@ -62,6 +62,7 @@ class Pin:
         self._name = name
         self._scheme = scheme
         self._scheme.addPin(name)
+        self._connections: list[Connection] = []
 
     def getName(self):
         return self._name
@@ -71,12 +72,18 @@ class Pin:
 
     def _getProperty(self, key: str):
         return self._scheme.getPinProperty(self.getName(), key)
+    
+    def _doConnect(self, pin, connection):
+        self._connections.append(connection)
+        pin._connections.append(connection)
+
+        return connection
 
     def addConnectionTo(self, pin: Self, length: float, square: float, color: COLOR):
-        return Connection(self, pin, length, square, color)
+        self._doConnect(pin, Connection(self, pin, length, square, color))
 
     def _addInternalConnectionTo(self, pin: Self):
-        return createInternalConnection(self, pin)
+        self._doConnect(pin, createInternalConnection(self, pin))
 
 class Connection:
     def __init__(self, pin1: Pin, pin2: Pin, length: float, square: float, color: COLOR, internal=False, initialConnected=True):
@@ -135,12 +142,17 @@ def createInternalConnection(pin1: Pin, pin2: Pin, initialConnected=True):
     return Connection(pin1, pin2, 0, 0, COLOR.Black, True, initialConnected)
 
 class SwitchBase:
-    def __init__(self, name: str, connectionMapping: dict[int, list[Connection]], currentSwitchState: int = 0):
+    def __init__(self, name: str):
         self._name = name
-        self._connectionMapping = connectionMapping
-        self._currentSwitchState = -1
+        self._connectionMapping: dict[int, list[Connection]] = {}
+        self._currentSwitchState: int = -1
 
-        self.applySwitchState(currentSwitchState)
+    def createConnection(self, position: int, pin1: Pin, pin2: Pin):
+        connection = createInternalConnection(pin1, pin2, False)
+        self._connectionMapping.setdefault(position, []).append(connection)
+
+    def getActiveConnections(self):
+        return self._connectionMapping.get(self._currentSwitchState, [])
 
     def applySwitchState(self, newSwitchState: int):
         if newSwitchState != self._currentSwitchState:
