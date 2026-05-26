@@ -3,17 +3,17 @@ from enum import StrEnum
 
 
 class COLOR(StrEnum):
-    Black = 'black'
-    Red = 'red'
-    Blue = 'blue'
-    White = 'white'
-    Green = 'green'
-    Yellow = 'yellow'
-    Brown = 'brown'
-    Orange = 'orange'
-    Pink = 'pink'
-    Violet = 'violet'
-    Grey = 'grey'
+    Black = 'Black'
+    Red = 'Red'
+    Blue = 'Blue'
+    White = 'White'
+    Green = 'Green'
+    Yellow = 'Yellow'
+    Brown = 'Brown'
+    Orange = 'Orange'
+    Pink = 'Pink'
+    Violet = 'Violet'
+    Grey = 'Grey'
 
 
 class ArgumentInfo:
@@ -69,7 +69,8 @@ def parseRelationship(rel):
     dstId = rel['destinationId']
     tags = rel['tags'].split(',')
     if 'internal_connection' in tags:
-        RELATIONSHIPS[id] = RelationshipInfo(srcId, dstId, 0, 0, 'COLOR.Black', True)
+        #RELATIONSHIPS[id] = RelationshipInfo(srcId, dstId, 0, 0, 'COLOR.Black', True)
+        print('Skip internal connection')
     else:
         props = rel['properties']
         length = float(props.get('length', 1000))
@@ -95,17 +96,30 @@ def fillRelationshipsAndComponents(container):
             else:
                 parseRelationship(rel)
 
+def findComponentPropertiesByName(container, name):
+    for component in container['components']:
+        props = component['properties']
+        if props['structurizr.dsl.identifier'] == 'es.' + name:
+            return props
+        
+    raise Exception(f'Cannot find component with subname `{name}` in container with id `{container["id"]}`')
+
 def parseRelay(id, name, variableName, container):
     type = 'Relay'
-    if 'relay5' in container['tags']:
+
+    tags = container['tags']
+    if 'relay5' in tags:
         type = 'Relay5'
+
+    if 'wipers_relay' in tags:
+        type = 'uaz3151.WipersRelay'
     
-    ctorArgs = [StringArgumentInfo(name)]
+    ctorArgs = [ArgumentInfo('uaz'), StringArgumentInfo(name)]
     CONTAINERS[id] = ContainerInfo(variableName, type, ctorArgs)
     
 def parseFuse(id, name, variableName, container):
     type = 'Fuse'
-    ctorArgs = [StringArgumentInfo(name)]
+    ctorArgs = [ArgumentInfo('uaz'), StringArgumentInfo(name), ArgumentInfo('5')]
     CONTAINERS[id] = ContainerInfo(variableName, type, ctorArgs)
 
 def parseSwitch(id, name, variableName, container):
@@ -113,101 +127,137 @@ def parseSwitch(id, name, variableName, container):
     tags = container['tags'].split(',')
     if 'switch_3states_6slots' in tags:
         type = 'Switch3States6Pins'
+    if 'uaz3151_switch' in tags:
+        type = 'uaz3151.LightSwitch'
+    if 'emer_lght_switch' in tags:
+        type = 'uaz3151.EmergencyLightSwitch'
 
-    ctorArgs = [StringArgumentInfo(name)]
+    ctorArgs = [ArgumentInfo('uaz'), StringArgumentInfo(name)]
     CONTAINERS[id] = ContainerInfo(variableName, type, ctorArgs)
 
 
 def parseAkb(id, name, variableName, container):
     type = 'Akb'
-    ctorArgs = [StringArgumentInfo(name), ArgumentInfo('12.0')]
+    ctorArgs = [ArgumentInfo('uaz'), StringArgumentInfo(name), ArgumentInfo('12.0')]
     CONTAINERS[id] = ContainerInfo(variableName, type, ctorArgs)
 
 def parseStarter(id, name, variableName, container):
     type = 'Starter'
-    ctorArgs = [StringArgumentInfo(name), ArgumentInfo('300'), ArgumentInfo('20')]
+    ctorArgs = [ArgumentInfo('uaz'), StringArgumentInfo(name), ArgumentInfo('300'), ArgumentInfo('20')]
     CONTAINERS[id] = ContainerInfo(variableName, type, ctorArgs)
-    print('TODO: parseStarter: search for components and get amper properties')
 
 def parseGenerator(id, name, variableName, container):
     type = 'Generator'
-    ctorArgs = [StringArgumentInfo(name)]
+
+    props = findComponentPropertiesByName(container, variableName + '.v')
+    amperage = props['amper']
+
+    ctorArgs = [ArgumentInfo('uaz'), StringArgumentInfo(name), ArgumentInfo('14.0'), ArgumentInfo(amperage)]
     CONTAINERS[id] = ContainerInfo(variableName, type, ctorArgs)
 
 def parseChassis(id, name, variableName, container):
-    type = 'Ground'
-    ctorArgs = [StringArgumentInfo(name)]
+    type = 'Pin'
+    ctorArgs = [ArgumentInfo('uaz'), StringArgumentInfo(name)]
     CONTAINERS[id] = ContainerInfo(variableName, type, ctorArgs)
 
 def parseSplitter(id, name, variableName, container):
     type = 'Pin'
-    ctorArgs = [StringArgumentInfo(name)]
+    ctorArgs = [ArgumentInfo('uaz'), StringArgumentInfo(name)]
     CONTAINERS[id] = ContainerInfo(variableName, type, ctorArgs)
 
 def parseWinch(id, name, variableName, container):
     type = 'Winch'
-    ctorArgs = [StringArgumentInfo(name), ArgumentInfo('300')]
+    ctorArgs = [ArgumentInfo('uaz'), StringArgumentInfo(name), ArgumentInfo('300')]
     CONTAINERS[id] = ContainerInfo(variableName, type, ctorArgs)
 
 def parseFan(id, name, variableName, container):
     type = 'Fan'
-    ctorArgs = [StringArgumentInfo(name), ArgumentInfo('8')]
+
+    props = findComponentPropertiesByName(container, variableName + '.motor')
+    amperage = props['amper']
+
+    ctorArgs = [ArgumentInfo('uaz'), StringArgumentInfo(name), ArgumentInfo(amperage)]
     CONTAINERS[id] = ContainerInfo(variableName, type, ctorArgs)
-    print('TODO: parseFan: search for component with suffix .motor and get amper property')
+
 
 def parseSensor(id, name, variableName, container):
     type = 'Sensor'
-    ctorArgs = [StringArgumentInfo(name)]
+    ctorArgs = [ArgumentInfo('uaz'), StringArgumentInfo(name)]
     CONTAINERS[id] = ContainerInfo(variableName, type, ctorArgs)
 
 def parseCarHorn(id, name, variableName, container):
     type = 'CarHorn'
-    ctorArgs = [StringArgumentInfo(name), ArgumentInfo('15')]
+
+    props = findComponentPropertiesByName(container, variableName + '.horn')
+    amperage = props['amper']
+
+    ctorArgs = [ArgumentInfo('uaz'), StringArgumentInfo(name), ArgumentInfo(amperage)]
     CONTAINERS[id] = ContainerInfo(variableName, type, ctorArgs)
 
 def parseLight(id, name, variableName, container):
     type = 'Light'
-    ctorArgs = [StringArgumentInfo(name), ArgumentInfo('15')]
+
+    props = findComponentPropertiesByName(container, variableName + '.lamp')
+    amperage = props['amper']
+
+    ctorArgs = [ArgumentInfo('uaz'), StringArgumentInfo(name), ArgumentInfo(amperage)]
     CONTAINERS[id] = ContainerInfo(variableName, type, ctorArgs)
-    print('TODO: parseLight: search for component with suffix .lamp and get amper property')
 
 def parseElectricPump(id, name, variableName, container):
     type = 'ElectricPump'
-    ctorArgs = [StringArgumentInfo(name), ArgumentInfo('15')]
+
+    props = findComponentPropertiesByName(container, variableName + '.motor')
+    amperage = props['amper']
+
+    ctorArgs = [ArgumentInfo('uaz'), StringArgumentInfo(name), ArgumentInfo(amperage)]
     CONTAINERS[id] = ContainerInfo(variableName, type, ctorArgs)
-    print('TODO: parseElectricPump: search for component with suffix .motor and get amper property')
+
 
 def parseHeater(id, name, variableName, container):
     type = 'Heater'
-    ctorArgs = [StringArgumentInfo(name), ArgumentInfo('15')]
+
+    props = findComponentPropertiesByName(container, variableName + '.motor')
+    amperage = props['amper']
+
+    ctorArgs = [ArgumentInfo('uaz'), StringArgumentInfo(name), ArgumentInfo(amperage)]
     CONTAINERS[id] = ContainerInfo(variableName, type, ctorArgs)
-    print('TODO: parseHeater: search for component with suffix .motor and get amper property')
+
 
 def parseResistor(id, name, variableName, container):
     type = 'Resistor'
-    ctorArgs = [StringArgumentInfo(name), ArgumentInfo('15')]
+    ctorArgs = [ArgumentInfo('uaz'), StringArgumentInfo(name), ArgumentInfo('15')]
     CONTAINERS[id] = ContainerInfo(variableName, type, ctorArgs)
 
 def parseWipers(id, name, variableName, container):
     type = 'Wipers'
-    ctorArgs = [StringArgumentInfo(name), ArgumentInfo('15')]
+
+    props = findComponentPropertiesByName(container, variableName + '.motor1') # Достаточно одного моторчика, остальное нужно обыграть резистором
+    amperage = props['amper']
+
+    ctorArgs = [ArgumentInfo('uaz'), StringArgumentInfo(name), ArgumentInfo(amperage)]
     CONTAINERS[id] = ContainerInfo(variableName, type, ctorArgs)
-    print('TODO: parseWipers: search for component with suffix .motor and get amper property')
 
 def parseWindshieldWasher(id, name, variableName, container):
-    type = 'WinshieldWasher'
-    ctorArgs = [StringArgumentInfo(name), ArgumentInfo('15')]
+    type = 'WindshieldWasher'
+
+    props = findComponentPropertiesByName(container, variableName + '.motor')
+    amperage = props['amper']
+
+    ctorArgs = [ArgumentInfo('uaz'), StringArgumentInfo(name), ArgumentInfo(amperage)]
     CONTAINERS[id] = ContainerInfo(variableName, type, ctorArgs)
-    print('TODO: parseWindshieldWasher: search for component with suffix .motor and get amper property')
 
 def SkipTag(id, name, variableName, container):
     print(f'Skipping container with id `{id}`...')
 
 def parseGauge(id, name, variableName, container):
     type = 'Gauge'
-    ctorArgs = [StringArgumentInfo(name), ArgumentInfo('15')]
+
+    props = findComponentPropertiesByName(container, variableName + '.gauge')
+    amperage = props['amper']
+
+    ctorArgs = [ArgumentInfo('uaz'), StringArgumentInfo(name), ArgumentInfo(amperage)]
     CONTAINERS[id] = ContainerInfo(variableName, type, ctorArgs)
-    print('TODO: parseGauge: search for component with suffix .motor and get amper property')
+
 
 CONTAINER_PARSERS = {
     'relay': parseRelay,
@@ -262,13 +312,47 @@ with open('../workspace.json') as f:
             parseContainer(container)
 
 
+def updateVarName(varName):
+    if varName.endswith('.in'):
+        return varName.removesuffix('.in') + '.pin1'
+
+    if varName.endswith('.out'):
+        return varName.removesuffix('.out') + '.pin2'
+    
+    if varName.endswith('.ground'):
+        return varName.removesuffix('.ground')
+    
+    if varName.endswith('splitter.pin'):
+        return varName.removesuffix('.pin')
+
+    return varName
+
+def shouldSkip(connectionString: str):
+    if connectionString.startswith('ignition.data.'):
+        return True
+    
+
+    return False
+
 print('')
 for id, object in CONTAINERS.items():
-    print(f'{object.variableName} = {object.type}(uaz, {', '.join(arg.get() for arg in object.ctorArgs)})')
+    print(f'{object.variableName} = {object.type}({', '.join(arg.get() for arg in object.ctorArgs)})')
 
 print('')
 for id, rel in RELATIONSHIPS.items():
-    srcVarName = COMPONENTS[rel.srcId].variableName
-    dstVarName = COMPONENTS[rel.dstId].variableName
-    print(f'{dstVarName}.addConnectionTo({srcVarName}, {rel.length}, {rel.square}, {rel.color})')
-    #print(f'rel {srcVarName} -> {dstVarName}, length: `{rel.length}`, square: `{rel.square}`, color: `{rel.color}`, internal: {rel.internalConnection}')
+    srcVarName = updateVarName(COMPONENTS[rel.srcId].variableName)
+    dstVarName = updateVarName(COMPONENTS[rel.dstId].variableName)
+
+    if srcVarName.endswith('.in'):
+        srcVarName.removesuffix('.in')
+        srcVarName += '.pin1'
+
+    if srcVarName.endswith('.in'):
+        srcVarName.removesuffix('.in')
+        srcVarName += '.pin1'
+
+    connectionString = f'{srcVarName}.addConnectionTo({dstVarName}, {rel.length}, {rel.square}, {rel.color})'
+    if shouldSkip(connectionString):
+        connectionString = '#' + connectionString
+    
+    print(connectionString)

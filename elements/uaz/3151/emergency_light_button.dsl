@@ -1,3 +1,4 @@
+tags "switch" "emer_lght_switch"
 pb = pin "ПБ (7)"
 p = pin "П (1)"
 lb = pin "ЛБ (3)"

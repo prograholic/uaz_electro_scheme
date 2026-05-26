@@ -56,16 +56,22 @@ class Scheme:
 
     def getConnectionProperty(self, name1: str, name2: str, key: str):
         return self._graph.edges[name1, name2][key]
-
-class Pin:
-    def __init__(self, scheme: Scheme, name: str):
+    
+class NamedEntity:
+    def __init__(self, name: str):
         self._name = name
+
+    def getName(self):
+        return self._name
+
+
+class Pin(NamedEntity):
+    def __init__(self, scheme: Scheme, name: str):
+        super().__init__(name)
         self._scheme = scheme
         self._scheme.addPin(name)
         self._connections: list[Connection] = []
 
-    def getName(self):
-        return self._name
 
     def _setProperty(self, key: str, value):
         self._scheme.setPinProperty(self.getName(), key, value)
@@ -141,15 +147,17 @@ class Connection:
 def createInternalConnection(pin1: Pin, pin2: Pin, initialConnected=True):
     return Connection(pin1, pin2, 0, 0, COLOR.Black, True, initialConnected)
 
-class SwitchBase:
+class SwitchBase(NamedEntity):
     def __init__(self, name: str):
-        self._name = name
+        super().__init__(name)
         self._connectionMapping: dict[int, list[Connection]] = {}
         self._currentSwitchState: int = -1
 
     def createConnection(self, position: int, pin1: Pin, pin2: Pin):
         connection = createInternalConnection(pin1, pin2, False)
         self._connectionMapping.setdefault(position, []).append(connection)
+
+        return connection
 
     def getActiveConnections(self):
         return self._connectionMapping.get(self._currentSwitchState, [])
