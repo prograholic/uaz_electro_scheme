@@ -10,7 +10,6 @@ class PotentialDiff(engine.Pin):
         self._addInternalConnectionTo(self.plus)
         self._addInternalConnectionTo(self.minus)
 
-
 class Consumer(PotentialDiff):
     def __init__(self, scheme, name, amperage):
         super().__init__(scheme, name)
@@ -89,7 +88,7 @@ class Relay5(engine.SwitchBase):
         self.createSwitchState([0], self._30, self._88)
         self.createSwitchState([1], self._30, self._87)
 
-        
+
 
 class Starter(engine.SwitchBase):
     def __init__(self, scheme: engine.Scheme, name: str, engineAmperage: float, solenoidAmperage: float):
@@ -105,7 +104,7 @@ class Starter(engine.SwitchBase):
         self.g = engine.Pin(scheme, name + ".минус")
         self.g._addInternalConnectionTo(self.eng.minus)
         self.g._addInternalConnectionTo(self.st_relay.minus)
-        
+
 
 
 

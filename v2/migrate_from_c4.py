@@ -26,7 +26,7 @@ class ArgumentInfo:
 class StringArgumentInfo(ArgumentInfo):
     def __init__(self, token):
         super().__init__('"' + token + '"')
-    
+
 
 class ContainerInfo:
     def __init__(self, variableName: str, type: str, ctorArgs: list[ArgumentInfo]):
@@ -101,7 +101,7 @@ def findComponentPropertiesByName(container, name):
         props = component['properties']
         if props['structurizr.dsl.identifier'] == 'es.' + name:
             return props
-        
+
     raise Exception(f'Cannot find component with subname `{name}` in container with id `{container["id"]}`')
 
 def parseRelay(id, name, variableName, container):
@@ -116,10 +116,10 @@ def parseRelay(id, name, variableName, container):
 
     if 'relay950' in tags:
         type = 'uaz3151.TurnSignalRelay950'
-    
+
     ctorArgs = [ArgumentInfo('uaz'), StringArgumentInfo(name)]
     CONTAINERS[id] = ContainerInfo(variableName, type, ctorArgs)
-    
+
 def parseFuse(id, name, variableName, container):
     type = 'Fuse'
     ctorArgs = [ArgumentInfo('uaz'), StringArgumentInfo(name), ArgumentInfo('5')]
@@ -327,10 +327,10 @@ def updateVarName(varName):
 
     if varName.endswith('.out'):
         return varName.removesuffix('.out') + '.pin2'
-    
+
     if varName.endswith('.ground'):
         return varName.removesuffix('.ground')
-    
+
     if varName.endswith('splitter.pin'):
         return varName.removesuffix('.pin')
 
@@ -350,7 +350,7 @@ def modifyConnectionString(connectionString: str):
         return connectionString.replace('control_line_from_ignition_1.pin', 'control_line_from_ignition_1')
     if 'control_line_from_ignition_2.pin' in connectionString:
         return connectionString.replace('control_line_from_ignition_2.pin', 'control_line_from_ignition_2')
-    
+
     return connectionString
 
 print('')
@@ -375,5 +375,5 @@ for id, rel in RELATIONSHIPS.items():
         connectionString = '#' + connectionString
 
     connectionString = modifyConnectionString(connectionString)
-    
+
     print(connectionString)

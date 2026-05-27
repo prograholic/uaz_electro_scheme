@@ -29,7 +29,7 @@ class Scheme:
 
     def getGraph(self) -> Graph:
         return self._graph
-    
+
     def getSwitchManager(self) -> SwitchManager:
         return self._switchManager
 
@@ -56,7 +56,7 @@ class Scheme:
 
     def getConnectionProperty(self, name1: str, name2: str, key: str):
         return self._graph.edges[name1, name2][key]
-    
+
 class NamedEntity:
     def __init__(self, name: str):
         self._name = name
@@ -78,7 +78,7 @@ class Pin(NamedEntity):
 
     def _getProperty(self, key: str):
         return self._scheme.getPinProperty(self.getName(), key)
-    
+
     def _doConnect(self, pin, connection):
         self._connections.append(connection)
         pin._connections.append(connection)
@@ -114,22 +114,22 @@ class Connection:
 
     def getLength(self) -> float:
         return self._getProperty('_length')
-    
+
     def setSquare(self, square: float):
         self._setProperty('_square', square)
 
     def getSquare(self) -> float:
         return self._getProperty('_square')
-    
+
     def setColor(self, color: COLOR):
         self._setProperty('color', color.value)
 
     def getColor(self) -> COLOR:
         return self._getProperty('color')
-    
+
     def isInternal(self) -> bool:
         return self._getProperty('_internal')
-    
+
     def connect(self):
         self._pin1._scheme.addConnection(self._pin1.getName(), self._pin2.getName())
         self.setLength(self._length)
@@ -157,7 +157,7 @@ class SwitchBase(NamedEntity):
         connection = createInternalConnection(pin1, pin2, False)
         for position in positions:
             self._connectionMapping.setdefault(position, []).append(connection)
-  
+
 
     def getActiveConnections(self):
         return self._connectionMapping.get(self._currentSwitchState, [])

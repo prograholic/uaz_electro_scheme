@@ -24,7 +24,7 @@ class WipersRelay(engine.SwitchBase):
         self.j._addInternalConnectionTo(self._coil2.plus)
         self._coil1.minus._addInternalConnectionTo(self._31)
         self._coil2.minus._addInternalConnectionTo(self._31)
-        
+
         self.createSwitchState([0], self.s, self._31b)
         self.createSwitchState([1], self._15, self.s)
 
