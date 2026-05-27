@@ -153,11 +153,11 @@ class SwitchBase(NamedEntity):
         self._connectionMapping: dict[int, list[Connection]] = {}
         self._currentSwitchState: int = -1
 
-    def createConnection(self, position: int, pin1: Pin, pin2: Pin):
+    def createSwitchState(self, positions: list[int], pin1: Pin, pin2: Pin):
         connection = createInternalConnection(pin1, pin2, False)
-        self._connectionMapping.setdefault(position, []).append(connection)
-
-        return connection
+        for position in positions:
+            self._connectionMapping.setdefault(position, []).append(connection)
+  
 
     def getActiveConnections(self):
         return self._connectionMapping.get(self._currentSwitchState, [])

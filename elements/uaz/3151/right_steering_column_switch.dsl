@@ -1,3 +1,5 @@
+tags "right_steering_column"
+
 _53e = pin "53e"
 _53 = pin "53"
 _53a = pin "53a"

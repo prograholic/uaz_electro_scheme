@@ -1,3 +1,5 @@
+tags "left_steering_column_turn_signal"
+
 _49aR = pin "49aR"
 _49a = pin "49a"
 _49aL = pin "49aL"

@@ -51,7 +51,7 @@ class SimpleSwitch(engine.SwitchBase):
         self.pin1 = engine.Pin(scheme, name + '.pin1')
         self.pin2 = engine.Pin(scheme, name + '.pin2')
 
-        self.createConnection(1, self.pin1, self.pin2)
+        self.createSwitchState([1], self.pin1, self.pin2)
 
     def on(self):
         self.applySwitchState(1)
@@ -71,7 +71,7 @@ class Relay(engine.SwitchBase):
         self._85._addInternalConnectionTo(self._coil.plus)
         self._86._addInternalConnectionTo(self._coil.minus)
 
-        self.createConnection(1, self._30, self._87)
+        self.createSwitchState([1], self._30, self._87)
 
 class Relay5(engine.SwitchBase):
     def __init__(self, scheme, name, coilAmperage=0.2):
@@ -86,15 +86,27 @@ class Relay5(engine.SwitchBase):
         self._85._addInternalConnectionTo(self._coil.plus)
         self._86._addInternalConnectionTo(self._coil.minus)
 
-        self.createConnection(0, self._30, self._88)
-        self.createConnection(1, self._30, self._87)
+        self.createSwitchState([0], self._30, self._88)
+        self.createSwitchState([1], self._30, self._87)
 
         
 
-class Starter(Consumer):
-    def __init__(self, scheme, name, engineAmperage, solenoidAmperage):
-        super().__init__(scheme, name, engineAmperage)
-        self.solenoid = Consumer(scheme, name + ".втяг. реле", solenoidAmperage)
+class Starter(engine.SwitchBase):
+    def __init__(self, scheme: engine.Scheme, name: str, engineAmperage: float, solenoidAmperage: float):
+        super().__init__(name)
+        self.st_relay = Consumer(scheme, name + ".втяг. реле", solenoidAmperage)
+        self.st = engine.Pin(scheme, name + ".втяг")
+        self.st._addInternalConnectionTo(self.st_relay.plus)
+
+        self.eng = Consumer(scheme, name + ".двигатель", engineAmperage)
+        self.plus = engine.Pin(scheme, name + ".плюс")
+        self.createSwitchState([1], self.eng.plus, self.plus)
+
+        self.g = engine.Pin(scheme, name + ".минус")
+        self.g._addInternalConnectionTo(self.eng.minus)
+        self.g._addInternalConnectionTo(self.st_relay.minus)
+        
+
 
 
 class Sensor(SimpleSwitch):
@@ -130,7 +142,7 @@ class Fuse(engine.SwitchBase):
         self.pin1 = engine.Pin(scheme, name + '.pin1')
         self.pin2 = engine.Pin(scheme, name + '.pin2')
 
-        self.createConnection(0, self.pin1, self.pin2)
+        self.createSwitchState([0], self.pin1, self.pin2)
 
 class Heater(Consumer):
     def __init__(self, scheme, name, amperage):
@@ -143,7 +155,7 @@ class Resistor(SimpleSwitch):
         self.pin1 = engine.Pin(scheme, name + '.pin1')
         self.pin2 = engine.Pin(scheme, name + '.pin2')
 
-        self.createConnection(0, self.pin1, self.pin2)
+        self.createSwitchState([0], self.pin1, self.pin2)
 
 class Wipers(Consumer):
     def __init__(self, scheme, name, amperage):
@@ -167,15 +179,15 @@ class Gauge(Consumer):
 class Switch3States6Pins(engine.SwitchBase):
     def __init__(self, scheme, name):
         super().__init__(name)
-        self.D = engine.Pin(scheme, name + '.D')
-        self.I = engine.Pin(scheme, name + '.I')
-        self.U = engine.Pin(scheme, name + '.U')
-        self.V = engine.Pin(scheme, name + '.V')
-        self.L = engine.Pin(scheme, name + '.L')
-        self.H = engine.Pin(scheme, name + '.H')
+        self.d = engine.Pin(scheme, name + '.D')
+        self.i = engine.Pin(scheme, name + '.I')
+        self.u = engine.Pin(scheme, name + '.U')
+        self.v = engine.Pin(scheme, name + '.V')
+        self.l = engine.Pin(scheme, name + '.L')
+        self.h = engine.Pin(scheme, name + '.H')
 
-        self.createConnection(1, self.I, self.D)
-        self.createConnection(2, self.I, self.U)
+        self.createSwitchState([1], self.i, self.d)
+        self.createSwitchState([2], self.i, self.u)
 
-        self.createConnection(1, self.V, self.L)
-        self.createConnection(2, self.L, self.H)
+        self.createSwitchState([1], self.v, self.l)
+        self.createSwitchState([2], self.l, self.h)

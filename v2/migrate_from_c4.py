@@ -113,6 +113,9 @@ def parseRelay(id, name, variableName, container):
 
     if 'wipers_relay' in tags:
         type = 'uaz3151.WipersRelay'
+
+    if 'relay950' in tags:
+        type = 'uaz3151.TurnSignalRelay950'
     
     ctorArgs = [ArgumentInfo('uaz'), StringArgumentInfo(name)]
     CONTAINERS[id] = ContainerInfo(variableName, type, ctorArgs)
@@ -131,6 +134,12 @@ def parseSwitch(id, name, variableName, container):
         type = 'uaz3151.LightSwitch'
     if 'emer_lght_switch' in tags:
         type = 'uaz3151.EmergencyLightSwitch'
+    if 'left_steering_column_turn_signal' in tags:
+        type = 'uaz3151.LeftSteeringColumnTurnSignalSwitch'
+    if 'right_steering_column' in tags:
+        type = 'uaz3151.RightSteeringColumnSwitch'
+    if 'left_steering_column_light' in tags:
+        type = 'uaz3151.LeftSteeringColumnLightSwitch'
 
     ctorArgs = [ArgumentInfo('uaz'), StringArgumentInfo(name)]
     CONTAINERS[id] = ContainerInfo(variableName, type, ctorArgs)
@@ -330,9 +339,19 @@ def updateVarName(varName):
 def shouldSkip(connectionString: str):
     if connectionString.startswith('ignition.data.'):
         return True
-    
+    if connectionString.startswith('starter_relay_fuse.pin2.addConnectionTo(ignition.data'):
+        return True
 
     return False
+
+
+def modifyConnectionString(connectionString: str):
+    if 'control_line_from_ignition_1.pin' in connectionString:
+        return connectionString.replace('control_line_from_ignition_1.pin', 'control_line_from_ignition_1')
+    if 'control_line_from_ignition_2.pin' in connectionString:
+        return connectionString.replace('control_line_from_ignition_2.pin', 'control_line_from_ignition_2')
+    
+    return connectionString
 
 print('')
 for id, object in CONTAINERS.items():
@@ -354,5 +373,7 @@ for id, rel in RELATIONSHIPS.items():
     connectionString = f'{srcVarName}.addConnectionTo({dstVarName}, {rel.length}, {rel.square}, {rel.color})'
     if shouldSkip(connectionString):
         connectionString = '#' + connectionString
+
+    connectionString = modifyConnectionString(connectionString)
     
     print(connectionString)
