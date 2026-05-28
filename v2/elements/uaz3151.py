@@ -17,8 +17,8 @@ class WipersRelay(engine.SwitchBase):
         self.j = engine.Pin(scheme, name + '.J')
         self._31 = engine.Pin(scheme, name + '.31')
 
-        self._coil1 = elements.generic_car_elements.Consumer(scheme, name + '.coil1', 0.2)
-        self._coil2 = elements.generic_car_elements.Consumer(scheme, name + '.coil2', 0.2)
+        self._coil1 = engine.Consumer(scheme, name + '.coil1', 0.2)
+        self._coil2 = engine.Consumer(scheme, name + '.coil2', 0.2)
 
         self._86._addInternalConnectionTo(self._coil1.plus)
         self.j._addInternalConnectionTo(self._coil2.plus)
@@ -68,8 +68,8 @@ class TurnSignalRelay950(engine.SwitchBase):
         self.kt = engine.Pin(scheme, name + '.КТ')
         self.left = engine.Pin(scheme, name + '.Лев (ЛТ)')
         self.right = engine.Pin(scheme, name + '.Прав (ПТ)')
-        self.coil_r = elements.generic_car_elements.Consumer(scheme, name + '.coil_r', 0.2)
-        self.coil_l = elements.generic_car_elements.Consumer(scheme, name + '.coil_l', 0.2)
+        self.coil_r = engine.Consumer(scheme, name + '.coil_r', 0.2)
+        self.coil_l = engine.Consumer(scheme, name + '.coil_l', 0.2)
 
         self.coil_r.minus._addInternalConnectionTo(self.minus)
         self.coil_l.minus._addInternalConnectionTo(self.minus)

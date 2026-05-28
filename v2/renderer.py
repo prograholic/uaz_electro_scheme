@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import math
 import random
+import engine
 
 random.seed(100500)
 
@@ -65,14 +66,10 @@ def drawBoundingBox(groupName, pos, nodes, ax, padding=DEFAULT_PADDING):
         fontsize=12, weight="bold", ha="center", va="bottom"
     )
 
-def prepareGroups(graph):
+def prepareGroups(graph: nx.Graph):
     groups = {}
-    for node, data in graph.nodes(data=True):
-        gr_val = data.get('prefix_group', "unknown")
-        groups.setdefault(gr_val, []).append(node)
-
-    for name in groups.keys():
-        print(f'group: {name}')
+    for node, pin in graph.nodes(data=engine.PIN_TAG):
+        groups.setdefault(pin.getGroupName(), []).append(node)
 
     return groups
 
@@ -134,14 +131,14 @@ def prepareGroupPositions(graph, groups, padding=DEFAULT_PADDING, group_margin=D
     return pos
 
 def draw(graph: nx.Graph, pin_color_map: dict[str, str]=DEFAULT_PIN_COLOR_MAP, size_mapping: dict[str, int]=DEFAULT_NODE_SIZE_MAP):
-    colors = [graph[u][v].get('color', 'blue') for u, v in graph.edges()]
+    colors = [c.getColor().value for u, v, c in graph.edges(data=engine.CONNECTION_TAG)]
 
     groups = prepareGroups(graph)
     pos = prepareGroupPositions(graph, groups)
 
-    node_colors = [pin_color_map.get(graph.nodes[node].get('category', 'Pin'), 'blue') for node in graph.nodes]
-    node_sizes = [size_mapping.get(graph.nodes[node].get('category', 'Pin'), 10) for node in graph.nodes()]
-    labels = {node: graph.nodes[node]['label'] for node in graph.nodes()}
+    node_colors = [pin_color_map.get(type(pin).__name__, 'blue') for _, pin in graph.nodes(data=engine.PIN_TAG)]
+    node_sizes = [size_mapping.get(type(pin).__name__, 10) for _, pin in graph.nodes(data=engine.PIN_TAG)]
+    labels = {node: node for node in graph.nodes()}
 
     fig, ax = plt.subplots(figsize=(10, 8))
 

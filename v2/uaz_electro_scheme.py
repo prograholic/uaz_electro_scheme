@@ -1,13 +1,11 @@
 from networkx import Graph
-from engine import Scheme, SwitchManager, Pin, COLOR
+from engine import Scheme, Pin, COLOR
 
 from elements.generic_car_elements import *
 import elements.uaz3151 as uaz3151
 
 graph = Graph()
-sm = SwitchManager()
-
-uaz = Scheme(graph, sm)
+uaz = Scheme(graph)
 
 m = Pin(uaz, "Кузов")
 ground_switch = SimpleSwitch(uaz, "Размыкатель массы")
@@ -87,7 +85,7 @@ heater_relay_2 = Relay(uaz, "Реле отопителя (2-я скорость)
 interior_fan_relay = Relay(uaz, "Реле вентилятора салона")
 car_horn_relay = Relay(uaz, "Реле гудка")
 electric_pump_relay = Relay(uaz, "Реле электрической помпы")
-starter_relay_fuse = Fuse(uaz, "Прд реле стартера.", 5)
+starter_relay_fuse = Fuse(uaz, "Прд реле стартера", 5)
 extra_stuff_fuse_splitter = Pin(uaz, "Разветвитель для предохранителей доп оборудования")
 front_head_light_fuse = Fuse(uaz, "Прд передней люстры", 5)
 rear_head_light_fuse = Fuse(uaz, "Прд задней люстры", 5)
@@ -252,7 +250,7 @@ car_horn_relay._87.addConnectionTo(car_horn.plus, 3.5, 6.0, COLOR.Blue)
 car_horn_relay._86.addConnectionTo(upper_ground_splitter, 0.4, 0.25, COLOR.Black)
 electric_pump_relay._87.addConnectionTo(electric_pump.plus, 2.5, 2.5, COLOR.Blue)
 electric_pump_relay._86.addConnectionTo(upper_ground_splitter, 0.4, 0.25, COLOR.Black)
-starter_relay_fuse.pin2.addConnectionTo(generator.v, 3.4, 4.0, COLOR.Yellow)
+starter_relay_fuse.pin2.addConnectionTo(generator.v.plus, 3.4, 4.0, COLOR.Yellow)
 starter_relay_fuse.pin2.addConnectionTo(starter_relay._30, 0.2, 2.5, COLOR.Red)
 #starter_relay_fuse.pin2.addConnectionTo(ignition.data, 0.5, 2.5, COLOR.Orange)
 starter_relay_fuse.pin2.addConnectionTo(start_button.pin1, 2.2, 0.5, COLOR.Blue)
