@@ -1,8 +1,8 @@
 import engine
 
 class PotentialDiff(engine.Pin):
-    def __init__(self, scheme, name):
-        super().__init__(scheme, name)
+    def __init__(self, scheme, name, category='PotentialDiff'):
+        super().__init__(scheme, name, category)
 
         self.plus = engine.Pin(scheme, name + '.плюс')
         self.minus = engine.Pin(scheme, name + '.минус')
@@ -10,9 +10,12 @@ class PotentialDiff(engine.Pin):
         self._addInternalConnectionTo(self.plus)
         self._addInternalConnectionTo(self.minus)
 
+    def getPins(self):
+        return [self, self.plus, self.minus]
+
 class Consumer(PotentialDiff):
-    def __init__(self, scheme, name, amperage):
-        super().__init__(scheme, name)
+    def __init__(self, scheme, name, amperage, category: str ='Consumer'):
+        super().__init__(scheme, name, category)
         self.setAmperage(amperage)
 
     def setAmperage(self, amperage):
@@ -22,8 +25,8 @@ class Consumer(PotentialDiff):
         return self._getProperty('_amperage')
 
 class PowerSource(PotentialDiff):
-    def __init__(self, scheme, name, voltage):
-        super().__init__(scheme, name)
+    def __init__(self, scheme, name, voltage, category: str ='PowerSource'):
+        super().__init__(scheme, name, category)
         self.setVoltage(voltage)
 
     def setVoltage(self, voltage):
@@ -35,13 +38,13 @@ class PowerSource(PotentialDiff):
 
 class Akb(PowerSource):
     def __init__(self, scheme, name, voltage):
-        super().__init__(scheme, name, voltage)
+        super().__init__(scheme, name, voltage, category='Akb')
 
 
 
 class Light(Consumer):
     def __init__(self, scheme, name, amperage):
-        super().__init__(scheme, name, amperage)
+        super().__init__(scheme, name, amperage, category='Light')
 
 
 class SimpleSwitch(engine.SwitchBase):
@@ -118,21 +121,27 @@ class Generator(PowerSource):
         self.v = Consumer(scheme, name + ".возбуждение", vAmperage)
         self.v.minus._addInternalConnectionTo(self.minus)
 
+    def getPins(self):
+        res = super().getPins()
+        res.extend(self.v.getPins())
+
+        return res
+
 class Winch(Consumer):
     def __init__(self, scheme, name, amperage):
-        super().__init__(scheme, name, amperage)
+        super().__init__(scheme, name, amperage, category='Winch')
 
 class Fan(Consumer):
     def __init__(self, scheme, name, amperage):
-        super().__init__(scheme, name, amperage)
+        super().__init__(scheme, name, amperage, category='Fan')
 
 class CarHorn(Consumer):
     def __init__(self, scheme, name, amperage):
-        super().__init__(scheme, name, amperage)
+        super().__init__(scheme, name, amperage, category='CarHorn')
 
 class ElectricPump(Consumer):
     def __init__(self, scheme, name, amperage):
-        super().__init__(scheme, name, amperage)
+        super().__init__(scheme, name, amperage, category='ElectricPump')
 
 class Fuse(engine.SwitchBase):
     def __init__(self, scheme: engine.Scheme, name: str, amperage: float):
@@ -145,7 +154,7 @@ class Fuse(engine.SwitchBase):
 
 class Heater(Consumer):
     def __init__(self, scheme, name, amperage):
-        super().__init__(scheme, name, amperage)
+        super().__init__(scheme, name, amperage, category='Heater')
 
 class Resistor(SimpleSwitch):
     def __init__(self, scheme: engine.Scheme, name: str, resistance: float):
@@ -158,7 +167,7 @@ class Resistor(SimpleSwitch):
 
 class Wipers(Consumer):
     def __init__(self, scheme, name, amperage):
-        super().__init__(scheme, name, amperage)
+        super().__init__(scheme, name, amperage, category='Wipers')
 
         self._1 = engine.Pin(scheme, name + '.1')
         self._2 = engine.Pin(scheme, name + '.2')
@@ -169,11 +178,11 @@ class Wipers(Consumer):
 
 class WindshieldWasher(Consumer):
     def __init__(self, scheme, name, amperage):
-        super().__init__(scheme, name, amperage)
+        super().__init__(scheme, name, amperage, category='WindshieldWasher')
 
 class Gauge(Consumer):
     def __init__(self, scheme, name, amperage):
-        super().__init__(scheme, name, amperage)
+        super().__init__(scheme, name, amperage, category='Gauge')
 
 class Switch3States6Pins(engine.SwitchBase):
     def __init__(self, scheme, name):

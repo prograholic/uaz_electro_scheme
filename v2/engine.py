@@ -1,6 +1,6 @@
 from enum import StrEnum
 from typing import Self
-from networkx import Graph
+from networkx import Graph, snap_aggregation
 
 class COLOR(StrEnum):
     Black = 'black'
@@ -30,11 +30,28 @@ class Scheme:
     def getGraph(self) -> Graph:
         return self._graph
 
+    def getSubGraph(self, objects: list):
+        subgraphPinList = list()
+        for object in objects:
+            subgraphPinList.extend(object.getPins())
+
+        subgraphIdList = [pin.getName() for pin in subgraphPinList]
+        return self._graph.subgraph(subgraphIdList)
+
+    def getSNAPGraph(self):
+        res = snap_aggregation(self._graph, node_attributes=('prefix_group',))
+
+        for node in res.nodes():
+            res.nodes[node]['label'] = res.nodes[node]['prefix_group']
+
+        return res
+
     def getSwitchManager(self) -> SwitchManager:
         return self._switchManager
 
-    def addPin(self, name: str):
-        self._graph.add_node(name)
+    def addPin(self, name: str, category: str):
+        rootName = name.split('.')[0]
+        self._graph.add_node(name, category=category, prefix_group=rootName, label=name)
 
     def setPinProperty(self, pinName: str, key: str, value):
         self._graph.nodes[pinName][key] = value
@@ -66,12 +83,14 @@ class NamedEntity:
 
 
 class Pin(NamedEntity):
-    def __init__(self, scheme: Scheme, name: str):
+    def __init__(self, scheme: Scheme, name: str, category: str = 'Pin'):
         super().__init__(name)
         self._scheme = scheme
-        self._scheme.addPin(name)
+        self._scheme.addPin(name, category)
         self._connections: list[Connection] = []
 
+    def getPins(self):
+        return [self]
 
     def _setProperty(self, key: str, value):
         self._scheme.setPinProperty(self.getName(), key, value)
@@ -102,6 +121,9 @@ class Connection:
 
         if initialConnected:
             self.connect()
+
+    def getPins(self):
+        return [self._pin1, self._pin2]
 
     def _setProperty(self, key: str, value):
         self._pin1._scheme.setConnectionProperty(self._pin1.getName(), self._pin2.getName(), key, value)
@@ -153,11 +175,18 @@ class SwitchBase(NamedEntity):
         self._connectionMapping: dict[int, list[Connection]] = {}
         self._currentSwitchState: int = -1
 
+    def getPins(self):
+        res = set()
+        for connections in self._connectionMapping.values():
+            for connection in connections:
+                res.update(connection.getPins())
+
+        return list(res)
+
     def createSwitchState(self, positions: list[int], pin1: Pin, pin2: Pin):
         connection = createInternalConnection(pin1, pin2, False)
         for position in positions:
             self._connectionMapping.setdefault(position, []).append(connection)
-
 
     def getActiveConnections(self):
         return self._connectionMapping.get(self._currentSwitchState, [])

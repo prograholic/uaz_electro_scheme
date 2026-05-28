@@ -17,8 +17,8 @@ class WipersRelay(engine.SwitchBase):
         self.j = engine.Pin(scheme, name + '.J')
         self._31 = engine.Pin(scheme, name + '.31')
 
-        self._coil1 = elements.generic_car_elements.Consumer(scheme, name + 'coil1', 0.2)
-        self._coil2 = elements.generic_car_elements.Consumer(scheme, name + 'coil2', 0.2)
+        self._coil1 = elements.generic_car_elements.Consumer(scheme, name + '.coil1', 0.2)
+        self._coil2 = elements.generic_car_elements.Consumer(scheme, name + '.coil2', 0.2)
 
         self._86._addInternalConnectionTo(self._coil1.plus)
         self.j._addInternalConnectionTo(self._coil2.plus)
