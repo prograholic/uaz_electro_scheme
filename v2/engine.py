@@ -245,7 +245,7 @@ class SwitchBase(NamedEntity):
             self._currentSwitchState = newSwitchState
 
 class Consumer(NamedEntity):
-    def __init__(self, scheme, name, amperage):
+    def __init__(self, scheme: Scheme, name: str, amperage: float):
         super().__init__(name)
 
         self.plus = Pin(scheme, name + '.плюс', amperage=amperage, consumerPlus=True)
