@@ -7,7 +7,7 @@ class Ignition:
     pass
 
 
-class WipersRelay(engine.SwitchBase):
+class WipersRelay(engine.RelayBase):
     def __init__(self, scheme: engine.Scheme, name: str):
         super().__init__(name)
         self._31b = engine.Pin(scheme, name + '.31b')
@@ -20,15 +20,16 @@ class WipersRelay(engine.SwitchBase):
         self._coil1 = engine.Consumer(scheme, name + '.coil1', 0.2)
         self._coil2 = engine.Consumer(scheme, name + '.coil2', 0.2)
 
-        self._86._addInternalConnectionTo(self._coil1.plus)
-        self.j._addInternalConnectionTo(self._coil2.plus)
-        self._coil1.minus._addInternalConnectionTo(self._31)
-        self._coil2.minus._addInternalConnectionTo(self._31)
+        self._86.addStaticInternalConnection(self._coil1.plus)
+        self.j.addStaticInternalConnection(self._coil2.plus)
+        self._coil1.minus.addStaticInternalConnection(self._31)
+        self._coil2.minus.addStaticInternalConnection(self._31)
 
-        self.createSwitchState([0], self.s, self._31b)
-        self.createSwitchState([1], self._15, self.s)
+        self.addRelayConnection(self.s, self._31b, self._coil1, connectWhenUnpowered=True)
+        self.addRelayConnection(self._15, self.s, self._coil2)
 
-class LightSwitch(engine.SwitchBase):
+
+class LightSwitch(elements.generic_car_elements.ManualSwitchBase):
     def __init__(self, scheme: engine.Scheme, name: str):
         super().__init__(name)
 
@@ -41,7 +42,7 @@ class LightSwitch(engine.SwitchBase):
         self.createSwitchState([2], self.x, self._56)
 
 
-class EmergencyLightSwitch(engine.SwitchBase):
+class EmergencyLightSwitch(elements.generic_car_elements.ManualSwitchBase):
     def __init__(self, scheme: engine.Scheme, name: str):
         super().__init__(name)
         self.pb = engine.Pin(scheme, name + '.ПБ (7)')
@@ -57,7 +58,7 @@ class EmergencyLightSwitch(engine.SwitchBase):
         self.createSwitchState([1], self.p, self.lb)
 
 
-class TurnSignalRelay950(engine.SwitchBase):
+class TurnSignalRelay950(engine.RelayBase):
     def __init__(self, scheme: engine.Scheme, name: str):
         super().__init__(name)
         self.plus = engine.Pin(scheme, name + '.+')
@@ -68,21 +69,29 @@ class TurnSignalRelay950(engine.SwitchBase):
         self.kt = engine.Pin(scheme, name + '.КТ')
         self.left = engine.Pin(scheme, name + '.Лев (ЛТ)')
         self.right = engine.Pin(scheme, name + '.Прав (ПТ)')
-        self.coil_r = engine.Consumer(scheme, name + '.coil_r', 0.2)
-        self.coil_l = engine.Consumer(scheme, name + '.coil_l', 0.2)
 
-        self.coil_r.minus._addInternalConnectionTo(self.minus)
-        self.coil_l.minus._addInternalConnectionTo(self.minus)
+        self._coil_r = engine.Consumer(scheme, name + '.coil_r', 0.2)
+        self._coil_l = engine.Consumer(scheme, name + '.coil_l', 0.2)
+        self._kt_right_helper = engine.Pin(scheme, name + '.kt_right_helper')
+        self._kt_left_helper = engine.Pin(scheme, name + '.kt_left_helper')
 
-        self.plus._addInternalConnectionTo(self.p)
-        self.pb._addInternalConnectionTo(self.coil_r.plus)
-        self.lb._addInternalConnectionTo(self.coil_l.plus)
+        self._coil_r.minus.addStaticInternalConnection(self.minus)
+        self._coil_l.minus.addStaticInternalConnection(self.minus)
 
-        self.createSwitchState([1], self.plus, self.left)
-        self.createSwitchState([2], self.plus, self.right)
-        self.createSwitchState([1, 2], self.plus, self.kt)
+        self.plus.addStaticInternalConnection(self.p)
+        self.plus.addStaticInternalConnection(self._kt_right_helper)
+        self.plus.addStaticInternalConnection(self._kt_left_helper)
+        self.pb.addStaticInternalConnection(self._coil_r.plus)
+        self.lb.addStaticInternalConnection(self._coil_l.plus)
 
-class LeftSteeringColumnTurnSignalSwitch(engine.SwitchBase):
+        self.addRelayConnection(self.plus, self.left, self._coil_l)
+        self.addRelayConnection(self.plus, self.right, self._coil_r)
+
+        self.addRelayConnection(self._kt_right_helper, self.kt, self._coil_r)
+        self.addRelayConnection(self._kt_left_helper, self.kt, self._coil_l)
+
+
+class LeftSteeringColumnTurnSignalSwitch(elements.generic_car_elements.ManualSwitchBase):
     def __init__(self, scheme: engine.Scheme, name: str):
         super().__init__(name)
         self._49ar = engine.Pin(scheme, name + '.49aR')
@@ -92,7 +101,8 @@ class LeftSteeringColumnTurnSignalSwitch(engine.SwitchBase):
         self.createSwitchState([1], self._49a, self._49ar)
         self.createSwitchState([2], self._49a, self._49al)
 
-class RightSteeringColumnSwitch(engine.SwitchBase):
+
+class RightSteeringColumnSwitch(elements.generic_car_elements.ManualSwitchBase):
     def __init__(self, scheme: engine.Scheme, name: str):
         super().__init__(name)
         self._53e = engine.Pin(scheme, name + '.53e')
@@ -113,7 +123,7 @@ class RightSteeringColumnSwitch(engine.SwitchBase):
         self.createSwitchState([7], self._53ah, self._53h)
         self.createSwitchState([8], self._53ah, self.w)
 
-class LeftSteeringColumnLightSwitch(engine.SwitchBase):
+class LeftSteeringColumnLightSwitch(elements.generic_car_elements.ManualSwitchBase):
     def __init__(self, scheme: engine.Scheme, name: str):
         super().__init__(name)
 

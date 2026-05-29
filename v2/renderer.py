@@ -130,8 +130,25 @@ def prepareGroupPositions(graph, groups, padding=DEFAULT_PADDING, group_margin=D
 
     return pos
 
+
+def prepare_edge_styles(graph: nx.Graph):
+    colors = list()
+    styles = list()
+
+    for u, v, connection in graph.edges(data=engine.CONNECTION_TAG):
+        if connection.isInternal():
+            colors.append('cyan')
+            styles.append((0, (1, 10)))
+        else:
+            colors.append(connection.getColor().value)
+            styles.append('solid')
+
+    return colors, styles
+
+
+
 def draw(graph: nx.Graph, pin_color_map: dict[str, str]=DEFAULT_PIN_COLOR_MAP, size_mapping: dict[str, int]=DEFAULT_NODE_SIZE_MAP):
-    colors = [c.getColor().value for u, v, c in graph.edges(data=engine.CONNECTION_TAG)]
+    edge_colors, edge_styles = prepare_edge_styles(graph)
 
     groups = prepareGroups(graph)
     pos = prepareGroupPositions(graph, groups)
@@ -142,18 +159,9 @@ def draw(graph: nx.Graph, pin_color_map: dict[str, str]=DEFAULT_PIN_COLOR_MAP, s
 
     fig, ax = plt.subplots(figsize=(10, 8))
 
-    nx.draw(graph, pos,
-        with_labels=False,
-        edge_color=colors,
-        node_color=node_colors,
-        node_size=node_sizes,
-        labels=labels,
-        arrows=True,
-        arrowsize=0,
-        connectionstyle='angle,angleA=0,angleB=90,rad=0',
-        ax=ax,
-        width=0.8
-    )
+    nx.draw_networkx_edges(graph, pos, width=0.8, arrows=True, edge_color=edge_colors, style=edge_styles, arrowsize=0, ax=ax, connectionstyle='angle,angleA=0,angleB=90,rad=0')
+    nx.draw_networkx_nodes(graph, pos, node_color=node_colors, node_size=node_sizes, ax=ax)
+    #nx.draw_networkx_labels(graph, pos, ax=ax, labels=labels)
 
     for group_name, nodes in groups.items():
         drawBoundingBox(group_name, pos, nodes, ax)
