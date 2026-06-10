@@ -1,5 +1,5 @@
 from networkx import Graph
-from engine import Scheme, Pin, COLOR
+from engine import Scheme, Pin, COLOR, GroundPin
 
 from elements.generic_car_elements import *
 import elements.uaz3151 as uaz3151
@@ -7,7 +7,7 @@ import elements.uaz3151 as uaz3151
 graph = Graph()
 uaz = Scheme(graph)
 
-m = Pin(uaz, "Кузов")
+m = GroundPin(uaz, "Кузов")
 ground_switch = SimpleSwitch(uaz, "Размыкатель массы")
 akb = Akb(uaz, "Аккумулятор", 12.0)
 starter = Starter(uaz, "Стартер", 300, 20)
@@ -137,6 +137,7 @@ extra_stop_signal = Light(uaz, "Доп стоп-сигнал", 2)
 stop_signal_splitter = Pin(uaz, "разветвитель стоп сигналов")
 
 m.addWireConnectionTo(generator.minus, 0.1, 25.0, COLOR.Black)
+m.addStaticInternalConnection(ground_switch.pin1) # прикручено к кузову
 ground_switch.pin2.addWireConnectionTo(akb.minus, 0.3, 50.0, COLOR.Black)
 akb.plus.addWireConnectionTo(starter.plus, 1.5, 50.0, COLOR.Red)
 akb.plus.addWireConnectionTo(winch.plus, 1.5, 50.0, COLOR.Red)

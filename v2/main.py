@@ -1,5 +1,6 @@
 from uaz_electro_scheme import *
 from renderer import draw
+from circuit_analyzers import *
 
 
 drawList = [generator, starter, akb, m]

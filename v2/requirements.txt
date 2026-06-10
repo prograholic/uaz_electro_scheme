@@ -21,6 +21,7 @@ Pygments==2.19.2
 pyparsing==3.3.2
 pytest==8.4.2
 python-dateutil==2.9.0.post0
+scipy
 six==1.17.0
 types-networkx==3.6.1.20260518
 typing_extensions==4.15.0

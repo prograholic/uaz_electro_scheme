@@ -11,18 +11,25 @@ def createScheme():
     return Scheme(graph)
 
 
-def test_expect_short_circuit():
+def test_with_simple_light():
     s = createScheme()
-    ps = PowerSource(s, 'ps', 12)
-    ps.plus.addConnectionTo(ps.minus, 1, 1, COLOR.Black)
-    with pytest.raises(ShortCircuitException, match='Detected short circuit for ps.минус, voltage is 12.0'):
-        calculateCircuit(s)
+
+    ps = PowerSource(s, 'АКБ', 12)
+    gnd = GroundPin(s, 'Земля')
+    l = Consumer(s, 'Свет', 5)
+
+    ps.minus.addWireConnectionTo(gnd, 1, 1, COLOR.Black)
+    ps.plus.addWireConnectionTo(l.plus, 1, 1, COLOR.Red)
+    l.minus.addWireConnectionTo(gnd, 1, 1, COLOR.Black)
+
+    simulate_circuit_with_relays(s, gnd)
 
 
-def test_expect_no_short_circuit():
-    s = createScheme()
-    ps = PowerSource(s, 'ps', 12)
-    cs = Consumer(s, 'cs', 5)
-    ps.plus.addConnectionTo(cs.plus, 1, 1, COLOR.Black)
-    cs.plus.addConnectionTo(cs.minus, 1, 1, COLOR.Black)
-    calculateCircuit(s)
+    for pinName, pin in s.getGraph().nodes(data=engine.PIN_TAG):
+        print(f'PIN {pinName} -> {pin.getPotential()}')
+
+    for u, v, connection in s.getGraph().edges(data=engine.CONNECTION_TAG):
+        print(f'CONN {u} - {v} -> {connection.getCurrent()}')
+
+
+    assert(l.plus.getPotential() > 5)
