@@ -2,88 +2,109 @@ import networkx as nx
 import numpy as np
 from scipy.sparse import lil_matrix
 from scipy.sparse.linalg import spsolve
+import scipy.sparse as sp
 
 import engine
 
 def solve_mna(scheme: engine.Scheme, ground_node: engine.GroundPin):
     graph = scheme.getGraph()
 
-    nodes = list(graph.nodes())
-    node_to_idx = {node: i for i, node in enumerate(nodes)}
-    num_nodes = len(nodes)
+    ground_node_name = ground_node.getName()
 
-    voltage_sources = []
+    nodes = sorted(list(graph.nodes()))
+    nodes_reduced = [n for n in nodes if n != ground_node_name]
+
+    vdc_sources = [connection for u, v, connection in graph.edges(data=engine.CONNECTION_TAG) if connection.isPowerSourceConnection()]
+
+    print(nodes)
+    print(nodes_reduced)
+
+    node_to_idx = {node: idx for idx, node in enumerate(nodes_reduced)}
+
+    # 2. Строим базовую матрицу проводимостей Y
+    Y_graph = nx.Graph()
     for u, v, connection in graph.edges(data=engine.CONNECTION_TAG):
-        connection: engine.ConnectionBase
-        if connection.isPowerSourceConnection():
-            voltage_sources.append({'from': u, 'to': v, 'E': connection.getPowerSourceVoltage(), 'edge': (u, v)})
-
-    num_sources = len(voltage_sources)
-    total_dim = num_nodes + num_sources
-    A = lil_matrix((total_dim, total_dim))
-    B = np.zeros(total_dim)
-
-    for u, v, connection in graph.edges(data=engine.CONNECTION_TAG):
-        connection: engine.ConnectionBase
         r = connection.getResistance()
         # Обработка бесконечного сопротивления (разомкнутый контакт)
-        g = 1.0 / r if r < engine.MAX_RESISTANCE else 0.0
+        if r < engine.MAX_RESISTANCE:
+            g = 1.0 / r
+            if Y_graph.has_edge(u, v):
+                Y_graph[u][v]['cond'] += g
+            else:
+                Y_graph.add_edge(u, v, cond=g)
 
-        iu, iv = node_to_idx[u], node_to_idx[v]
-        A[iu, iu] += g
-        A[iv, iv] += g
-        A[iu, iv] -= g
-        A[iv, iu] -= g
+    # Добавляем изолированные узлы, если они есть
+    Y_graph.add_nodes_from(nodes)
 
-    for k, src in enumerate(voltage_sources):
-        idx_from = node_to_idx[src['from']]
-        idx_to = node_to_idx[src['to']]
-        idx_source_equation = num_nodes + k
-        A[idx_from, idx_source_equation] += 1
-        A[idx_to, idx_source_equation] -= 1
-        A[idx_source_equation, idx_from] += 1
-        A[idx_source_equation, idx_to] -= 1
-        B[idx_source_equation] = src['E']
+    # Получаем матрицу Лапласа и редуцируем ее
+    Y_full = nx.laplacian_matrix(Y_graph, weight='cond', nodelist=nodes).todense()
+    # Индексы для удаления заземленного узла
+    ground_idx = nodes.index(ground_node_name)
+    Y_reduced = np.delete(Y_full, ground_idx, axis=0)
+    Y_reduced = np.delete(Y_reduced, ground_idx, axis=1)
 
-    idx_gnd = node_to_idx[ground_node.getName()]
-    A[idx_gnd, :] = 0; A[:, idx_gnd] = 0; A[idx_gnd, idx_gnd] = 1.0; B[idx_gnd] = 0.0
+    # 3. Строим матрицу B для источников напряжения
+    num_nodes_red = len(nodes_reduced)
+    num_sources = len(vdc_sources)
 
-    X = spsolve(A.tocsr(), B)
-    for i in range(num_nodes):
-        pin = scheme.findPinByName(nodes[i])
-        pin.setPotential(X[i])
+    B = np.zeros((num_nodes_red, num_sources))
+    E = np.zeros(num_sources)
 
-    #potentials = {nodes[i]: X[i] for i in range(num_nodes)}
+    for psc_idx, connection in enumerate(vdc_sources):
+        E[psc_idx] = connection.getPowerSourceVoltage()
+        # Плюс источника (ток вытекает)
+        if connection.plus().getName() in node_to_idx:
+            B[node_to_idx[connection.plus().getName()], psc_idx] = 1.0
+        # Минус источника (ток втекает)
+        if connection.minus().getName() in node_to_idx:
+            B[node_to_idx[connection.minus().getName()], psc_idx] = -1.0
 
-    #circuit_currents = {}
+    # 4. Собираем расширенную матрицу MNA
+    C = np.zeros((num_sources, num_sources))
+
+    # Блочная сборка матрицы
+    A_top = np.hstack((Y_reduced, B))
+    A_bottom = np.hstack((B.T, C))
+    A_mna = np.vstack((A_top, A_bottom))
+
+    # Преобразуем в разреженный формат для spsolve
+    A_sparse = sp.csr_matrix(A_mna)
+
+    # Вектор правой части (токи узлов от источников тока тут равны 0)
+    I_nodes = np.zeros(num_nodes_red)
+    RHS = np.concatenate((I_nodes, E))
+
+    # 5. Решение системы через spsolve
+    X = spsolve(A_sparse, RHS)
+
+    # Разбор результатов
+    ground_node.setPotential(0.0)
+    for node in nodes_reduced:
+        pin = scheme.findPinByName(node)
+        pin.setPotential(X[node_to_idx[node]])
+
     for u, v, connection in graph.edges(data=engine.CONNECTION_TAG):
         connection: engine.ConnectionBase
 
         r = connection.getResistance()
         if r >= engine.MAX_RESISTANCE:
             connection.setCurrent(0.0)
-            #circuit_currents[(u, v)] = 0.0
             continue
 
-        edge_src = [s for s in voltage_sources if s['edge'] == (u, v) or s['edge'] == (v, u)]
+        edge_src = [connection for connection in vdc_sources if connection.hasEdge(u, v)]
         if edge_src and r == 0:
-            k = voltage_sources.index(edge_src[0])
-            i_src = X[num_nodes + k]
+            k = vdc_sources.index(edge_src[0])
+            i_src = X[len(nodes) + k]
             connection.setCurrent(abs(i_src))
-            #circuit_currents[(u, v)] = abs(i_src)
         else:
             e_val = 0
             if edge_src:
-                e_val = edge_src[0]['E'] if edge_src[0]['from'] == u else -edge_src[0]['E']
-            #current = (potentials[u] - potentials[v] + e_val) / r
+                connection = edge_src[0]
+                e_val = connection.getPowerSourceVoltage() if connection.plus().getName() == u else -connection.getPowerSourceVoltage()
             current = (scheme.findPinByName(u).getPotential() - scheme.findPinByName(v).getPotential() + e_val) / r
             connection.setCurrent(current)
-            #if current >= 0:
-            #    circuit_currents[(u, v)] = current
-            #else:
-            #    circuit_currents[(v, u)] = abs(current)
 
-    #return potentials, circuit_currents
+
 
 # --- ФУНКЦИЯ ДИНАМИЧЕСКОЙ СИМУЛЯЦИИ РЕЛЕ ---
 def simulate_circuit_with_relays(scheme: engine.Scheme, ground_node: engine.GroundPin, max_iterations=10):

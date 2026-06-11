@@ -107,7 +107,7 @@ class PinBase(NamedEntity):
         self._scheme = scheme
         self._voltage = voltage
         self._scheme.addPin(self)
-        self.__potential = -1.0
+        self._potential = -1.0
 
     def getPotential(self) -> float:
         return self._potential
@@ -142,6 +142,17 @@ class ConnectionBase:
 
         self._pin1._scheme.addConnection(self)
         self._current = -1.0
+
+    def hasEdge(self, name1: str, name2: str) -> bool:
+        if self._pin1 == name1:
+            if self._pin2 == name2:
+                return True
+
+        if self._pin1 == name2:
+            if self._pin2 == name1:
+                return True
+
+        return False
 
     def getCurrent(self) -> float:
         return self._current
@@ -323,10 +334,19 @@ class Consumer(NamedEntity):
 
 
 class StaticPowerSourceConnection(StaticInternalConnection):
-    def __init__(self, pin1: PinBase, pin2: PinBase, powerSourceVoltage: float):
-        assert(isinstance(pin1, PowerSourcePin))
-        super().__init__(pin1, pin2)
+    def __init__(self, minus: PinBase, plus: PinBase, powerSourceVoltage: float):
+        assert(isinstance(minus, GroundPin))
+        super().__init__(minus, plus)
         self._powerSourceVoltage = powerSourceVoltage
+
+    def minus(self) -> PinBase:
+        return self._pin1
+
+    def plus(self) -> PinBase:
+        return self._pin2
+
+    def getResistance(self) -> float:
+        return MAX_RESISTANCE
 
     def isPowerSourceConnection(self) -> bool:
         return True
@@ -413,25 +433,17 @@ class GroundPin(Pin):
     def isGroundPin(self) -> bool:
         return True
 
-class PowerSourcePin(Pin):
-    def __init__(self, scheme: Scheme, name: str):
-        super().__init__(scheme, name)
-
-    def isPowerSourcePin(self) -> bool:
-        return True
-
 
 class PowerSource(NamedEntity):
-    def __init__(self, scheme, name, voltage):
+    def __init__(self, scheme: Scheme, name: str, voltage: float, groundPin: GroundPin):
         super().__init__(name)
 
-        self.ps = PowerSourcePin(scheme, name + '.power_source')
         self.plus = Pin(scheme, name + '.плюс')
-        self.minus = Pin(scheme, name + '.минус')
-        self._connection = StaticPowerSourceConnection(self.ps, self.plus, voltage)
+        self.minus = groundPin
+        self._connection = StaticPowerSourceConnection(self.minus, self.plus, voltage)
 
     def getPins(self) -> list[Pin]:
-        return [self.plus, self.ps, self.minus]
+        return [self.plus, self.minus]
 
     def getVoltage(self):
         return self.plus.getVoltage()

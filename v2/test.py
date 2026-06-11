@@ -14,11 +14,12 @@ def createScheme():
 def test_with_simple_light():
     s = createScheme()
 
-    ps = PowerSource(s, 'АКБ', 12)
     gnd = GroundPin(s, 'Земля')
+
+    ps = PowerSource(s, 'АКБ', 12, gnd)
+
     l = Consumer(s, 'Свет', 5)
 
-    ps.minus.addWireConnectionTo(gnd, 1, 1, COLOR.Black)
     ps.plus.addWireConnectionTo(l.plus, 1, 1, COLOR.Red)
     l.minus.addWireConnectionTo(gnd, 1, 1, COLOR.Black)
 
@@ -29,7 +30,12 @@ def test_with_simple_light():
         print(f'PIN {pinName} -> {pin.getPotential()}')
 
     for u, v, connection in s.getGraph().edges(data=engine.CONNECTION_TAG):
-        print(f'CONN {u} - {v} -> {connection.getCurrent()}')
+        curr = connection.getCurrent()
+        if curr >= 0:
+            print(f'CONN {u} -> {v} : {curr}')
+        else:
+            print(f'CONN {v} -> {u} : {-curr}')
 
 
-    assert(l.plus.getPotential() > 5)
+
+    assert(l.plus.getPotential() > 11)

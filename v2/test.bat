@@ -1,1 +1,1 @@
-python -m pytest test.py --tb=native > test.log 2>&1
+python -m pytest test.py --tb=native -s > test.log 2>&1
