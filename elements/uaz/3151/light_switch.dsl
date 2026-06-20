@@ -1,3 +1,4 @@
+tags "switch" "uaz3151_switch"
 _30 = pin "30"
 _58 = pin "58"
 x = pin "X"

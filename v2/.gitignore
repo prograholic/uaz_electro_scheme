@@ -1,0 +1,7 @@
+.venv
+.mypy_cache
+__pycache__
+run.log
+migrate.log
+test.log
+pip.log

@@ -1,3 +1,5 @@
+tags "left_steering_column_light"
+
 _56 = pin "56"
 _56b = pin "56b"
 _56a = pin "56a"
