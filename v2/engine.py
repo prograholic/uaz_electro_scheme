@@ -20,6 +20,7 @@ class COLOR(StrEnum):
 # Превышение этого значения фактически означает, что цепь разомкнута
 MAX_RESISTANCE = 1e10
 DEFAULT_VOLTAGE = 12.0
+MIN_VOLTAGE = DEFAULT_VOLTAGE / MAX_RESISTANCE
 DEFAULT_RELAY_ACTIVATION_AMPERAGE = 0.03
 
 
@@ -175,11 +176,8 @@ class ConnectionBase:
     def getResistance(self) -> float:
         raise Exception('getResistance should be implemented in child classes')
 
-    def getAmperage(self) -> float:
-        raise Exception('getAmperage should be implemented in child classes')
-
-    def calculateVoltageDrop(self):
-        return self.getAmperage() * self.getResistance()
+    def getVoltageDrop(self):
+        return self.getCurrent() * self.getResistance()
 
 class StaticConnection(ConnectionBase):
     def __init__(self, pin1: PinBase, pin2: PinBase):
@@ -216,9 +214,6 @@ class WireConnection(StaticConnection):
 
     def getResistance(self) -> float:
         return WIRE_RELATIVE_RESISTANCE * self.getLength() / self.getSquare()
-
-    def getAmperage(self) -> float:
-        raise Exception('Not implemeted yet')
 
 
 class StaticInternalConnection(StaticConnection):
@@ -300,13 +295,14 @@ class ManualSwitchConnection(DynamicConnectionBase):
 class StaticConsumerConnection(StaticInternalConnection):
     def __init__(self, pin1: PinBase, pin2: PinBase, amperage: float):
         super().__init__(pin1, pin2)
-        self._amperage = amperage
-
-    def getAmperage(self) -> float:
-        return self._amperage
+        self.setCurrent(amperage)
 
     def getResistance(self) -> float:
-        return DEFAULT_VOLTAGE / self.getAmperage()
+        if abs(self.getCurrent()) < MIN_VOLTAGE:
+            return MAX_RESISTANCE
+
+        return DEFAULT_VOLTAGE / self.getCurrent()
+
 
 class ConsumerPin(Pin):
     def __init__(self, scheme: Scheme, name: str):
@@ -314,6 +310,7 @@ class ConsumerPin(Pin):
 
     def isConsumerPin(self) -> bool:
         return True
+
 
 class Consumer(NamedEntity):
     def __init__(self, scheme: Scheme, name: str, amperage: float):
@@ -329,8 +326,8 @@ class Consumer(NamedEntity):
     def getPins(self) -> list[Pin]:
         return [self.plus, self.consumer, self.minus]
 
-    def getAmperage(self):
-        return self._connection.getAmperage()
+    def getCurrent(self):
+        return self._connection.getCurrent()
 
 
 class StaticPowerSourceConnection(StaticInternalConnection):
@@ -366,18 +363,15 @@ class RelaySwitchConnection(DynamicConnectionBase):
     def isManualSwitchConnection(self) -> bool:
         return False
 
-    def getCoilAmperage(self) -> float:
-        return self._coil.getAmperage()
-
     def _getResistanceWhenConnected(self) -> float:
-        return DEFAULT_VOLTAGE / self.getCoilAmperage()
+        return DEFAULT_VOLTAGE / self._coilMinusConnection.getCurrent()
 
     def updateState(self) -> bool:
         shouldConnect = False
         if self._connectWhenUnpowered:
-            shouldConnect = self._coilMinusConnection.getAmperage() < self._activationAmperage
+            shouldConnect = abs(self._coilMinusConnection.getCurrent()) < self._activationAmperage
         else:
-            shouldConnect = self._coilMinusConnection.getAmperage() > self._activationAmperage
+            shouldConnect = abs(self._coilMinusConnection.getCurrent()) > self._activationAmperage
         if shouldConnect:
             return self.connect()
         else:
