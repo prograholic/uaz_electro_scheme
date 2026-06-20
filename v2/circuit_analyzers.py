@@ -6,6 +6,7 @@ import scipy.sparse as sp
 
 import engine
 
+
 def solve_mna(scheme: engine.Scheme, ground_node: engine.GroundPin):
     graph = scheme.getGraph()
 

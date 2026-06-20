@@ -19,6 +19,8 @@ class COLOR(StrEnum):
 
 # Превышение этого значения фактически означает, что цепь разомкнута
 MAX_RESISTANCE = 1e10
+# Меньше этого значения - идеальный проводник
+MIN_RESISTANCE = 0.01
 DEFAULT_VOLTAGE = 12.0
 MIN_VOLTAGE = DEFAULT_VOLTAGE / MAX_RESISTANCE
 DEFAULT_RELAY_ACTIVATION_AMPERAGE = 0.03
@@ -159,6 +161,9 @@ class ConnectionBase:
         return self._current
 
     def setCurrent(self, current: float):
+        maxAllowedCurrent = abs(self._getMaxAllowedCurrent())
+        if abs(current) > maxAllowedCurrent:
+            raise ShortCircuitException(f'Detected short circuit, too high current for {self._pin1.getName()} - {self._pin2.getName()}, current: {current}, max allowed: {maxAllowedCurrent}')
         self._current = current
 
     def getPins(self):
@@ -172,6 +177,10 @@ class ConnectionBase:
 
     def isPowerSourceConnection(self) -> bool:
         return False
+
+    def _getMaxAllowedCurrent(self) -> float:
+        # Если падение напряжения больше 10% на проводе - считаем, что близки к КЗ
+        return (DEFAULT_VOLTAGE / 10.0) / self.getResistance()
 
     def getResistance(self) -> float:
         raise Exception('getResistance should be implemented in child classes')
@@ -224,7 +233,7 @@ class StaticInternalConnection(StaticConnection):
         return True
 
     def getResistance(self) -> float:
-        return 0.01
+        return MIN_RESISTANCE
 
 
 class Pin(PinBase):
@@ -274,7 +283,7 @@ class DynamicConnectionBase(ConnectionBase):
         return self._getResistanceWhenConnected()
 
     def _getResistanceWhenConnected(self) -> float:
-        raise Exception('_getResistanceWhenConnected should be implemented in child classes')
+        raise Exception(f'_getResistanceWhenConnected should be implemented in child classes, class: {type(self).__name__}')
 
     def updateState(self) -> bool:
         raise Exception('updateState should be implemented in child classes')
@@ -295,7 +304,12 @@ class ManualSwitchConnection(DynamicConnectionBase):
 class StaticConsumerConnection(StaticInternalConnection):
     def __init__(self, pin1: PinBase, pin2: PinBase, amperage: float):
         super().__init__(pin1, pin2)
+        self._maxCurrent = amperage
+
         self.setCurrent(amperage)
+
+    def _getMaxAllowedCurrent(self) -> float:
+        return self._maxCurrent
 
     def getResistance(self) -> float:
         if abs(self.getCurrent()) < MIN_VOLTAGE:
@@ -331,10 +345,14 @@ class Consumer(NamedEntity):
 
 
 class StaticPowerSourceConnection(StaticInternalConnection):
-    def __init__(self, minus: PinBase, plus: PinBase, powerSourceVoltage: float):
+    def __init__(self, minus: PinBase, plus: PinBase, powerSourceVoltage: float, maxCurrent: float):
         assert(isinstance(minus, GroundPin))
         super().__init__(minus, plus)
         self._powerSourceVoltage = powerSourceVoltage
+        self._maxCurrent = maxCurrent
+
+    def _getMaxAllowedCurrent(self) -> float:
+        return self._maxCurrent
 
     def minus(self) -> PinBase:
         return self._pin1
@@ -411,6 +429,9 @@ class FuseConnection(DynamicConnectionBase):
         super().__init__(pin1, pin2, True)
         self._maxAmperage = maxAmperage
 
+    def _getResistanceWhenConnected(self) -> float:
+        return MIN_RESISTANCE
+
     def isManualSwitchConnection(self) -> bool:
         return True
 
@@ -429,12 +450,12 @@ class GroundPin(Pin):
 
 
 class PowerSource(NamedEntity):
-    def __init__(self, scheme: Scheme, name: str, voltage: float, groundPin: GroundPin):
+    def __init__(self, scheme: Scheme, name: str, voltage: float, maxCurrent: float, groundPin: GroundPin):
         super().__init__(name)
 
         self.plus = Pin(scheme, name + '.плюс')
         self.minus = groundPin
-        self._connection = StaticPowerSourceConnection(self.minus, self.plus, voltage)
+        self._connection = StaticPowerSourceConnection(self.minus, self.plus, voltage, maxCurrent)
 
     def getPins(self) -> list[Pin]:
         return [self.plus, self.minus]

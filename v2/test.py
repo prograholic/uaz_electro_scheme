@@ -30,7 +30,7 @@ def test_with_simple_light():
     s = createScheme()
 
     gnd = GroundPin(s, 'Земля')
-    ps = PowerSource(s, 'АКБ', 12, gnd)
+    ps = PowerSource(s, 'АКБ', 12, 500, gnd)
     l = Consumer(s, 'Свет', 5)
 
     ps.plus.addWireConnectionTo(l.plus, 1, 1, COLOR.Red)
@@ -46,7 +46,7 @@ def test_with_relay_light():
     s = createScheme()
 
     gnd = GroundPin(s, 'Земля')
-    ps = PowerSource(s, 'АКБ', 12, gnd)
+    ps = PowerSource(s, 'АКБ', 12, 500, gnd)
     l = Consumer(s, 'Свет', 5)
     relay = Relay(s, 'Реле')
 
@@ -62,3 +62,20 @@ def test_with_relay_light():
     printScheme(s)
 
     assert(l.plus.getPotential() > 11)
+
+
+def test_short_circuit():
+    s = createScheme()
+
+    gnd = GroundPin(s, 'Земля')
+    ps = PowerSource(s, 'АКБ', 12, 500, gnd)
+
+    pin = Pin(s, 'Pin')
+
+    ps.plus.addWireConnectionTo(pin, 1, 50, COLOR.Red)
+    pin.addWireConnectionTo(gnd, 1, 50, COLOR.Red)
+
+    with pytest.raises(ShortCircuitException):
+        simulate_circuit_with_relays(s, gnd)
+
+    printScheme(s)

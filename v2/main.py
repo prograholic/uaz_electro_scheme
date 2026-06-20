@@ -3,6 +3,9 @@ from renderer import draw
 from circuit_analyzers import *
 
 
+simulate_circuit_with_relays(uaz, m)
+
+
 drawList = [generator, starter, akb, m]
 
 graph = uaz.getGraph()

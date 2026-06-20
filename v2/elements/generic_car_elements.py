@@ -33,8 +33,8 @@ class ManualSwitchBase(engine.SwitchBase):
 
 
 class Akb(engine.PowerSource):
-    def __init__(self, scheme, name, voltage):
-        super().__init__(scheme, name, voltage)
+    def __init__(self, scheme: engine.Scheme, name: str, voltage: float, maxCurrent: float, groundPin: engine.GroundPin):
+        super().__init__(scheme, name, voltage, maxCurrent, groundPin)
 
 
 
@@ -115,8 +115,8 @@ class Sensor(SimpleSwitch):
 
 
 class Generator(engine.PowerSource):
-    def __init__(self, scheme, name, voltage, vAmperage):
-        super().__init__(scheme, name, voltage)
+    def __init__(self, scheme: engine.Scheme, name: str, voltage: float, vAmperage: float, maxCurrent: float, groundPin: engine.GroundPin):
+        super().__init__(scheme, name, voltage, maxCurrent, groundPin)
         self.v = engine.Consumer(scheme, name + '.возбуждение', vAmperage)
         self.v.minus.addStaticInternalConnection(self.minus)
 
