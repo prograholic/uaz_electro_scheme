@@ -105,12 +105,12 @@ class NamedEntity:
 
 
 class PinBase(NamedEntity):
-    def __init__(self, scheme: Scheme, name: str, voltage: float = -1.0):
+    def __init__(self, scheme: Scheme, name: str, voltage: float = 0.0):
         super().__init__(name)
         self._scheme = scheme
         self._voltage = voltage
         self._scheme.addPin(self)
-        self._potential = -1.0
+        self._potential = 0.0
 
     def getPotential(self) -> float:
         return self._potential
@@ -144,7 +144,10 @@ class ConnectionBase:
         self._pin2 = pin2
 
         self._pin1._scheme.addConnection(self)
-        self._current = -1.0
+        self._current = 0.0
+
+    def _trace(self, prefix: str='', suffix: str=''):
+        print(f'{prefix}, connection: {self._pin1.getName()} - {self._pin2.getName()}, current: {self._current}, {suffix}')
 
     def hasEdge(self, name1: str, name2: str) -> bool:
         if self._pin1 == name1:
@@ -237,7 +240,7 @@ class StaticInternalConnection(StaticConnection):
 
 
 class Pin(PinBase):
-    def __init__(self, scheme: Scheme, name: str, voltage: float = -1.0):
+    def __init__(self, scheme: Scheme, name: str, voltage: float = 0.0):
         super().__init__(scheme, name, voltage)
 
     def addWireConnectionTo(self, pin: PinBase, length: float, square: float, color: COLOR):
@@ -266,15 +269,21 @@ class DynamicConnectionBase(ConnectionBase):
 
     def connect(self):
         # если были выключены, то должны вернуть True, т.к. состояние меняется
-        res = not self._connected
-        self._connected = True
-        return res
+        if not self._connected:
+            print(f'Connect {self._pin1.getName()} and {self._pin2.getName()}')
+            self._connected = True
+            return True
+
+        return False
 
     def disconnect(self):
         # если были включены, то должны вернуть True, т.к. состояние меняется
-        res = self._connected
-        self._connected = False
-        return res
+        if self._connected:
+            print(f'Disconnect {self._pin1.getName()} and {self._pin2.getName()}')
+            self._connected = False
+            return True
+
+        return False
 
     def getResistance(self) -> float:
         if not self.isConnected():
@@ -286,7 +295,7 @@ class DynamicConnectionBase(ConnectionBase):
         raise Exception(f'_getResistanceWhenConnected should be implemented in child classes, class: {type(self).__name__}')
 
     def updateState(self) -> bool:
-        raise Exception('updateState should be implemented in child classes')
+        raise Exception(f'updateState should be implemented in child classes, class: {type(self).__name__}')
 
 
 
@@ -312,10 +321,7 @@ class StaticConsumerConnection(StaticInternalConnection):
         return self._maxCurrent
 
     def getResistance(self) -> float:
-        if abs(self.getCurrent()) < MIN_VOLTAGE:
-            return MAX_RESISTANCE
-
-        return DEFAULT_VOLTAGE / self.getCurrent()
+        return DEFAULT_VOLTAGE / self._maxCurrent
 
 
 class ConsumerPin(Pin):
@@ -372,9 +378,9 @@ class StaticPowerSourceConnection(StaticInternalConnection):
 
 
 class RelaySwitchConnection(DynamicConnectionBase):
-    def __init__(self, pin1: PinBase, pin2: PinBase, coilMinusConnection: ConnectionBase, activationAmperage: float=DEFAULT_RELAY_ACTIVATION_AMPERAGE, connectWhenUnpowered: bool=False):
+    def __init__(self, pin1: PinBase, pin2: PinBase, coilPlusConnection: ConnectionBase, activationAmperage: float=DEFAULT_RELAY_ACTIVATION_AMPERAGE, connectWhenUnpowered: bool=False):
         super().__init__(pin1, pin2, connectWhenUnpowered)
-        self._coilMinusConnection = coilMinusConnection
+        self._coilPlusConnection = coilPlusConnection
         self._activationAmperage = activationAmperage
         self._connectWhenUnpowered = connectWhenUnpowered
 
@@ -382,14 +388,14 @@ class RelaySwitchConnection(DynamicConnectionBase):
         return False
 
     def _getResistanceWhenConnected(self) -> float:
-        return DEFAULT_VOLTAGE / self._coilMinusConnection.getCurrent()
+        return MIN_RESISTANCE
 
     def updateState(self) -> bool:
         shouldConnect = False
         if self._connectWhenUnpowered:
-            shouldConnect = abs(self._coilMinusConnection.getCurrent()) < self._activationAmperage
+            shouldConnect = abs(self._coilPlusConnection.getCurrent()) < self._activationAmperage
         else:
-            shouldConnect = abs(self._coilMinusConnection.getCurrent()) > self._activationAmperage
+            shouldConnect = abs(self._coilPlusConnection.getCurrent()) > self._activationAmperage
         if shouldConnect:
             return self.connect()
         else:
@@ -419,8 +425,8 @@ class RelayBase(SwitchBase):
     def getConnections(self) -> Iterable[RelaySwitchConnection]:
         return self._connections
 
-    def addRelayConnection(self, pin1: PinBase, pin2: PinBase, coilMinusConnection: ConnectionBase, activationAmperage: float=DEFAULT_RELAY_ACTIVATION_AMPERAGE, connectWhenUnpowered: bool=False):
-        self._connections.append(RelaySwitchConnection(pin1, pin2, coilMinusConnection, activationAmperage, connectWhenUnpowered))
+    def addRelayConnection(self, pin1: PinBase, pin2: PinBase, coilPlusConnection: ConnectionBase, activationAmperage: float=DEFAULT_RELAY_ACTIVATION_AMPERAGE, connectWhenUnpowered: bool=False):
+        self._connections.append(RelaySwitchConnection(pin1, pin2, coilPlusConnection, activationAmperage, connectWhenUnpowered))
 
 
 
@@ -462,3 +468,18 @@ class PowerSource(NamedEntity):
 
     def getVoltage(self):
         return self.plus.getVoltage()
+
+
+def printScheme(s):
+    print('printScheme:')
+    for pinName, pin in s.getGraph().nodes(data=PIN_TAG):
+        print(f'PIN {pinName} -> {pin.getPotential()}')
+
+    for u, v, connection in s.getGraph().edges(data=CONNECTION_TAG):
+        curr = connection.getCurrent()
+        if curr >= 0:
+            print(f'CONN {u} -> {v} : {curr}')
+        else:
+            print(f'CONN {v} -> {u} : {-curr}')
+
+    print('\n')

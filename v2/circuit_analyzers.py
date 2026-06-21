@@ -17,9 +17,6 @@ def solve_mna(scheme: engine.Scheme, ground_node: engine.GroundPin):
 
     vdc_sources = [connection for u, v, connection in graph.edges(data=engine.CONNECTION_TAG) if connection.isPowerSourceConnection()]
 
-    print(nodes)
-    print(nodes_reduced)
-
     node_to_idx = {node: idx for idx, node in enumerate(nodes_reduced)}
 
     # 2. Строим базовую матрицу проводимостей Y
@@ -109,24 +106,6 @@ def solve_mna(scheme: engine.Scheme, ground_node: engine.GroundPin):
 
 # --- ФУНКЦИЯ ДИНАМИЧЕСКОЙ СИМУЛЯЦИИ РЕЛЕ ---
 def simulate_circuit_with_relays(scheme: engine.Scheme, ground_node: engine.GroundPin, max_iterations=10):
-    """
-    relays: список словарей конфигурации реле, например:
-    [{
-        'coil': (node1, node2),      # ребро катушки
-        'contacts': (node3, node4),  # ребро контактов
-        'i_trigger': 0.02,           # ток срабатывания катушки (А)
-        'type': 'NO'                 # NO - нормально разомкнутый, NC - нормально замкнутый
-    }]
-    """
-    # 1. Задаем исходное состояние контактов реле
-    #for r in relays:
-    #    if r['type'] == 'NO':
-    #        G[r['contacts'][0]][r['contacts'][1]]['R'] = 1e9  # Разомкнуто (1 ГОм)
-    #    else:
-    #        G[r['contacts'][0]][r['contacts'][1]]['R'] = 0.01 # Замкнуто (0.01 Ом)
-
-    prev_states = []
-
     # Итерационный цикл логики реле
     for iteration in range(max_iterations):
         # Шаг А: Рассчитываем токи в текущей конфигурации
@@ -141,67 +120,9 @@ def simulate_circuit_with_relays(scheme: engine.Scheme, ground_node: engine.Grou
             if autoConnection.updateState():
                 changed = True
 
-        '''
-        for r in relays:
-            c_u, c_v = r['coil']
-            # Находим ток через катушку (в любом направлении)
-            i_coil = currents.get((c_u, c_v), currents.get((c_v, c_u), 0.0))
-
-            # Определяем, должно ли реле сработать
-            is_active = i_coil >= r['i_trigger']
-            current_states.append(is_active)
-
-            # Управляем контактами
-            contact_u, contact_v = r['contacts']
-            old_R = G[contact_u][contact_v]['R']
-
-            if r['type'] == 'NO':
-                new_R = 0.01 if is_active else 1e9
-            else: # NC
-                new_R = 1e9 if is_active else 0.01
-
-            if old_R != new_R:
-                G[contact_u][contact_v]['R'] = new_R
-                changed = True
-
-        '''
-
         # Если ни одно реле не изменило статус, схема стабилизировалась
         if not changed:
             print(f"Схема стабилизировалась за {iteration + 1} итераций.")
-            return #potentials, currents
+            return
 
     print("Внимание: Превышено число итераций! Возможно зацикливание реле (осцилляция).")
-    return #potentials, currents
-
-'''
-
-# --- ПРИМЕР СХЕМЫ ---
-G = nx.Graph()
-
-# Цепь 1: Управляющая (включает катушку)
-G.add_edge('VCC1', 'coil_in', E=12.0, from='VCC1', to='coil_in', R=0.1) # Источник 12В
-G.add_edge('coil_in', 'GND', R=300.0)                                  # Катушка реле (300 Ом)
-
-# Цепь 2: Управляемая (силовая нагрузка, коммутируется контактами)
-G.add_edge('VCC2', 'sw_in', E=24.0, from='VCC2', to='sw_in', R=0.1)   # Силовой источник 24В
-G.add_edge('sw_in', 'load_in', R=1e9)                                  # Сюда запишем контакты реле
-G.add_edge('load_in', 'GND', R=10.0)                                   # Мощная нагрузка (10 Ом)
-
-# Конфигурация реле
-relays_config = [{
-    'coil': ('coil_in', 'GND'),
-    'contacts': ('sw_in', 'load_in'),
-    'i_trigger': 0.03, # 30 мА нужно для срабатывания
-    'type': 'NO'
-}]
-
-# Запуск симуляции
-potentials, currents = simulate_circuit_with_relays(G, relays_config, ground_node='GND')
-
-print("\nКонечные токи в схеме:")
-for (start, end), I in currents.items():
-    if I > 1e-5: # убираем утечки разомкнутых контактов из вывода
-        print(f"Ток: {start} -> {end} | {I:.3f} А")
-
-'''

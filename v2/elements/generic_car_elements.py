@@ -67,10 +67,10 @@ class Relay(engine.RelayBase):
         self._87 = engine.Pin(scheme, name + '.87')
         self._coil = engine.Consumer(scheme, name + '.coil', coilAmperage)
 
-        self._85.addStaticInternalConnection(self._coil.plus)
-        coilMinusConnection = self._86.addStaticInternalConnection(self._coil.minus)
+        coilPlusConnection = self._85.addStaticInternalConnection(self._coil.plus)
+        self._86.addStaticInternalConnection(self._coil.minus)
 
-        self.addRelayConnection(self._30, self._87, coilMinusConnection)
+        self.addRelayConnection(self._30, self._87, coilPlusConnection)
 
 
 class Relay5(engine.RelayBase):
@@ -83,11 +83,11 @@ class Relay5(engine.RelayBase):
         self._88 = engine.Pin(scheme, name + '.88')
         self._coil = engine.Consumer(scheme, name + '.coil', coilAmperage)
 
-        self._85.addStaticInternalConnection(self._coil.plus)
-        coilMinusConnection = self._86.addStaticInternalConnection(self._coil.minus)
+        coilPlusConnection = self._85.addStaticInternalConnection(self._coil.plus)
+        self._86.addStaticInternalConnection(self._coil.minus)
 
-        self.addRelayConnection(self._30, self._88, coilMinusConnection, connectWhenUnpowered=True)
-        self.addRelayConnection(self._30, self._87, coilMinusConnection)
+        self.addRelayConnection(self._30, self._88, coilPlusConnection, connectWhenUnpowered=True)
+        self.addRelayConnection(self._30, self._87, coilPlusConnection)
 
 
 
@@ -102,11 +102,11 @@ class Starter(engine.RelayBase):
 
         self.g = engine.Pin(scheme, name + ".минус")
 
-        self.st.addStaticInternalConnection(self.st_relay.plus)
+        coilPlusConnection = self.st.addStaticInternalConnection(self.st_relay.plus)
         self.g.addStaticInternalConnection(self.eng.minus)
-        coilMinusConnection = self.g.addStaticInternalConnection(self.st_relay.minus)
+        self.g.addStaticInternalConnection(self.st_relay.minus)
 
-        self.addRelayConnection(self.eng.plus, self.plus, coilMinusConnection)
+        self.addRelayConnection(self.eng.plus, self.plus, coilPlusConnection)
 
 
 class Sensor(SimpleSwitch):

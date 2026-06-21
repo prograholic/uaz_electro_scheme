@@ -20,13 +20,13 @@ class WipersRelay(engine.RelayBase):
         self._coil1 = engine.Consumer(scheme, name + '.coil1', 0.2)
         self._coil2 = engine.Consumer(scheme, name + '.coil2', 0.2)
 
-        self._86.addStaticInternalConnection(self._coil1.plus)
-        self.j.addStaticInternalConnection(self._coil2.plus)
-        coil1MinusConnection = self._coil1.minus.addStaticInternalConnection(self._31)
-        coil2MinusConnection = self._coil2.minus.addStaticInternalConnection(self._31)
+        coil1PlusConnection = self._86.addStaticInternalConnection(self._coil1.plus)
+        coil2PlusConnection = self.j.addStaticInternalConnection(self._coil2.plus)
+        self._coil1.minus.addStaticInternalConnection(self._31)
+        self._coil2.minus.addStaticInternalConnection(self._31)
 
-        self.addRelayConnection(self.s, self._31b, coil1MinusConnection, connectWhenUnpowered=True)
-        self.addRelayConnection(self._15, self.s, coil2MinusConnection)
+        self.addRelayConnection(self.s, self._31b, coil1PlusConnection, connectWhenUnpowered=True)
+        self.addRelayConnection(self._15, self.s, coil2PlusConnection)
 
 
 class LightSwitch(elements.generic_car_elements.ManualSwitchBase):
@@ -75,20 +75,20 @@ class TurnSignalRelay950(engine.RelayBase):
         self._kt_right_helper = engine.Pin(scheme, name + '.kt_right_helper')
         self._kt_left_helper = engine.Pin(scheme, name + '.kt_left_helper')
 
-        coilRMinusConnection = self._coil_r.minus.addStaticInternalConnection(self.minus)
-        coilLMinusConnection = self._coil_l.minus.addStaticInternalConnection(self.minus)
+        self._coil_r.minus.addStaticInternalConnection(self.minus)
+        self._coil_l.minus.addStaticInternalConnection(self.minus)
 
         self.plus.addStaticInternalConnection(self.p)
         self.plus.addStaticInternalConnection(self._kt_right_helper)
         self.plus.addStaticInternalConnection(self._kt_left_helper)
-        self.pb.addStaticInternalConnection(self._coil_r.plus)
-        self.lb.addStaticInternalConnection(self._coil_l.plus)
+        coilrPlusConnection = self.pb.addStaticInternalConnection(self._coil_r.plus)
+        coilLPlusConnection = self.lb.addStaticInternalConnection(self._coil_l.plus)
 
-        self.addRelayConnection(self.plus, self.left, coilLMinusConnection)
-        self.addRelayConnection(self.plus, self.right, coilRMinusConnection)
+        self.addRelayConnection(self.plus, self.left, coilLPlusConnection)
+        self.addRelayConnection(self.plus, self.right, coilrPlusConnection)
 
-        self.addRelayConnection(self._kt_right_helper, self.kt, coilRMinusConnection)
-        self.addRelayConnection(self._kt_left_helper, self.kt, coilLMinusConnection)
+        self.addRelayConnection(self._kt_right_helper, self.kt, coilrPlusConnection)
+        self.addRelayConnection(self._kt_left_helper, self.kt, coilLPlusConnection)
 
 
 class LeftSteeringColumnTurnSignalSwitch(elements.generic_car_elements.ManualSwitchBase):
