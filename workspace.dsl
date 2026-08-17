@@ -449,8 +449,14 @@ workspace "Name" "Description" {
                     coolant_control_switch = switch "Переключатель упр э-вент охл ДВС" {
                         !include "elements/switch_3states_6pin.dsl"
                     }
-                    light_switch = switch "Выключатель габаритов и ближнего света" {
-                        !include "elements/uaz/3151/light_switch.dsl"
+                    #light_switch = switch "Выключатель габаритов и ближнего света" {
+                    #    !include "elements/uaz/3151/light_switch.dsl"
+                    #}
+                    side_light_switch = switch  "Выключатель габаритов" {
+                        !include "elements/switch.dsl"
+                    }
+                    low_beam_switch = switch "Выключатель ближнего света" {
+                        !include "elements/switch.dsl"
                     }
 
                     emergency_light_button = switch "Кнопка аварийной сигнализации" {
@@ -910,14 +916,15 @@ workspace "Name" "Description" {
                 }
             }
 
-            control_line_from_ignition_1.pin -> light_switch.x {
+            control_line_from_ignition_1.pin -> low_beam_switch.in {
+                #tags "foreign_color"
                 properties {
-                    color "0"
+                    color "6"
                     length "2.5"
                     square "0.5"
                 }
             }
-            power_splitter.pin -> light_switch._30 {
+            power_splitter.pin -> side_light_switch.in {
                 tags "foreign_color"
                 properties {
                     color "3"
@@ -925,21 +932,21 @@ workspace "Name" "Description" {
                     square "0.5"
                 }
             }
-            light_switch._58 -> speedometer_backlight.plus {
+            side_light_switch.out -> speedometer_backlight.plus {
                 properties {
                     color "1"
                     length "0.5"
                     square "1"
                 }
             }
-            light_switch._56 -> left_steering_column_light_switch._56 {
+            low_beam_switch.out -> left_steering_column_light_switch._56 {
                 properties {
                     color "2"
                     length "1.5"
                     square "0.5"
                 }
             }
-            light_switch._58 -> side_light_relay._85 {
+            side_light_switch.out -> side_light_relay._85 {
                 properties {
                     color "4"
                     length "2.5"
@@ -1310,7 +1317,7 @@ workspace "Name" "Description" {
             starter_relay_fuse.out -> emergency_light_button.pow {
                 tags "foreign_color"
                 properties {
-                    color "7"
+                    color "5"
                     length "2"
                     square "1.5"
                 }
