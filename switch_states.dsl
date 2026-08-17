@@ -31,12 +31,19 @@
 
 
 # Освещение
-!element es.light_switch {
+!element es.side_light_switch {
     properties {
         # 0 - выключено
         # 1 - габариты
         # 2 - габариты + ближний
-        active_switch_state 2
+        active_switch_state 1
+    }
+}
+!element es.low_beam_switch {
+    properties {
+        # 0 - выключено
+        # 1 - ближний
+        active_switch_state 1
     }
 }
 !element es.left_steering_column_light_switch {
