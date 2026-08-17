@@ -2,6 +2,24 @@ def getRelationshipName(relationship) {
     return "{" + relationship.getSource().getCanonicalName() + " -> " + relationship.getDestination().getCanonicalName() + ", tags: " + relationship.getTags().toString() + ", props: " + relationship.getProperties().toString() + "}"
 }
 
+def getRelTask(relationship, color, length, square, completed) {
+    task = "(" + relationship.getSource().getCanonicalName() + " -> " + relationship.getDestination().getCanonicalName() + "),  color: " + color + ", square: " + square + " mm2"
+    if (completed) {
+        return '[X] ' + task
+    } else {
+        return '[ ] ' + task
+    }
+}
+
+def getObjTask(obj, completed) {
+    task = obj.getCanonicalName()
+    if (completed) {
+        return '[X] ' + task
+    } else {
+        return '[ ] ' + task
+    }
+}
+
 enum ElementType {
     ElectricSystem,
 
@@ -252,7 +270,7 @@ def validateOfflineGraph(relationships, elements, pins) {
 def deduceAmperageToPowerSource(relationships, relationship, amper, isIncoming) {
     currentAmper = relationship.getProperties().getOrDefault("amper", "0").toFloat() + amper
     println(" props(" + isIncoming + "): " + getRelationshipName(relationship) + relationship.getProperties() + ", current amper: " + currentAmper)
-    
+
     relationship.addProperty("amper", currentAmper.toString())
 
     relationshipsForElement = null
@@ -372,7 +390,7 @@ def findActiveCircuitsImpl(relationships, elements, consumers, connectionAllowed
 
     consumers.each { consumer ->
         incomingRelationships = relationships.findAll { relationship ->
-            (relationship.getDestination() == consumer) 
+            (relationship.getDestination() == consumer)
         }
 
         if (incomingRelationships.size() != 1) {
@@ -493,12 +511,12 @@ def calculateWireDistance(activeCircuits) {
 
         activeCircuit.each{ relationship ->
             relProps = relationship.getProperties()
-            
+
             def old_length_to_power_source = relProps.getOrDefault("length_to_power_source", "0").toFloat()
             if (old_length_to_power_source > length_to_power_source) {
                 println (" !!! found relationship with bigger length: " + getRelationshipName(relationship) + ", old: " + old_length_to_power_source + ", current: " + length_to_power_source)
                 length_to_power_source = old_length_to_power_source
-                
+
             }
 
             relationship.addProperty("length_to_power_source", length_to_power_source.toString())
@@ -513,7 +531,7 @@ def ValidateKirchhoffsCurrentLaw(activeCircuits) {
 
     activeElements = new TreeSet<com.structurizr.model.Element>()
     activeRelationships = new TreeSet<com.structurizr.model.Relationship>()
-    
+
     activeCircuits.each {consumer, circuit ->
         circuit.each { rel ->
             activeElements.add(rel.getSource())
@@ -527,7 +545,7 @@ def ValidateKirchhoffsCurrentLaw(activeCircuits) {
         incomingRelationships = activeRelationships.findAll {relationship ->
             (relationship.getSource() == element)
         }
-        
+
         incomingRelationships.each { relationship ->
             incomingAmperage += relationship.getProperties().getAt("amper").toFloat()
         }
@@ -536,7 +554,7 @@ def ValidateKirchhoffsCurrentLaw(activeCircuits) {
         outgoingRelationships = activeRelationships.findAll {relationship ->
             (relationship.getDestination() == element)
         }
-        
+
         outgoingRelationships.each { relationship ->
             outgoingAmperage += relationship.getProperties().getAt("amper").toFloat()
         }
@@ -581,7 +599,7 @@ def CalculateVoltageDropForRelationShip(relationship) {
         throw new IllegalStateException("No `square` property on " + getRelationshipName(relationship))
     }
     def square = relationship.getProperties().get("square").toFloat()
-    
+
     def res = amper * wireRelativeResistance * length / square
 
     println("  Voltage drop for  " + getRelationshipName(relationship) + " is: " + res)
@@ -650,6 +668,7 @@ def colorizeAndPrintStats(activeCircuits) {
             def square = relProps.getAt("square")
             def colorIndex = relProps.getAt("color")
             def color = MapColorIndexToColor[colorIndex]
+            def completed = relProps.getOrDefault('completed', 'False').toBoolean()
             if (color == null) {
                 throw new IllegalStateException("Cannot map color index " + colorIndex + " to color for " + getRelationshipName(rel))
             }
@@ -681,6 +700,21 @@ def colorizeAndPrintStats(activeCircuits) {
             }
 
             println(" relationship: " + getRelationshipName(rel) + ", amper: " + amper)
+            println(" task: " + getRelTask(rel, color, length, square, completed))
+
+
+            if (!rel.getSource().getParent().hasTag('visited')) {
+                def srcParent = rel.getSource().getParent()
+                def srcParentCompleted = srcParent.getProperties().getOrDefault('completed', 'False').toBoolean()
+                println(" task: " + getObjTask(srcParent, srcParentCompleted))
+                srcParent.addTags('visited')
+            }
+            if (!rel.getDestination().getParent().hasTag('visited')) {
+                def dstParent = rel.getDestination().getParent()
+                def dstParentCompleted = dstParent.getProperties().getOrDefault('completed', 'False').toBoolean()
+                println(" task: " + getObjTask(dstParent, dstParentCompleted))
+                dstParent.addTags('visited')
+            }
         }
     }
 
