@@ -72,6 +72,18 @@ def solve_mna(scheme: engine.Scheme, ground_node: engine.GroundPin):
     I_nodes = np.zeros(num_nodes_red)
     RHS = np.concatenate((I_nodes, E))
 
+    zero_rows = np.where(np.diff(A_sparse.indptr) == 0)[0]
+    print("Пустые строки (индексы узлов/ветвей):", zero_rows)
+    for zr in zero_rows:
+        found = False
+        for node, idx in node_to_idx.items():
+            if idx == zr:
+                print(f'  node: {node}')
+                found = True
+
+        if not found:
+            print(f'  cannot find node for index {zr}')
+
     # 5. Решение системы через spsolve
     X = spsolve(A_sparse, RHS)
 

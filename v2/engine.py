@@ -105,10 +105,9 @@ class NamedEntity:
 
 
 class PinBase(NamedEntity):
-    def __init__(self, scheme: Scheme, name: str, voltage: float = 0.0):
+    def __init__(self, scheme: Scheme, name: str):
         super().__init__(name)
         self._scheme = scheme
-        self._voltage = voltage
         self._scheme.addPin(self)
         self._potential = 0.0
 
@@ -117,16 +116,6 @@ class PinBase(NamedEntity):
 
     def setPotential(self, potential: float):
         self._potential = potential
-
-    def getVoltage(self) -> float:
-        return self._voltage
-
-    def updateVoltage(self, newVoltage: float) -> bool:
-        if newVoltage > self._voltage:
-            self._voltage = newVoltage
-            return True
-
-        return False
 
     def isGroundPin(self) -> bool:
         return False
@@ -240,8 +229,8 @@ class StaticInternalConnection(StaticConnection):
 
 
 class Pin(PinBase):
-    def __init__(self, scheme: Scheme, name: str, voltage: float = 0.0):
-        super().__init__(scheme, name, voltage)
+    def __init__(self, scheme: Scheme, name: str):
+        super().__init__(scheme, name)
 
     def addWireConnectionTo(self, pin: PinBase, length: float, square: float, color: COLOR):
         return WireConnection(self, pin, length, square, color)
@@ -307,7 +296,7 @@ class ManualSwitchConnection(DynamicConnectionBase):
         return True
 
     def _getResistanceWhenConnected(self) -> float:
-        return 0.0
+        return MIN_RESISTANCE
 
 
 class StaticConsumerConnection(StaticInternalConnection):
